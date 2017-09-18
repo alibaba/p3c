@@ -15,4 +15,4 @@
 
 代码规约最新更新消息关注“代码规约”微信公众号：
 
-!![代码规约](https://gw.alicdn.com/tfscom/TB1x5WJaGmgSKJjSsphXXcy1VXa.jpg)
+![代码规约](https://gw.alicdn.com/tfscom/TB1x5WJaGmgSKJjSsphXXcy1VXa.jpg)

@@ -9,4 +9,4 @@
 电子工业版本社也将在一年后出版孤 参与编写的“码出高效 - 阿里巴巴的Java开发手册详解”这本书。
 
 代码规约最新更新消息关注“代码规约”微信公众号：
-![代码规约](https://gw.alicdn.com/tfscom/TB1aHaKhFcJL1JjSZFOXXcWlXXa.jpg)
+![代码规约](https://gw.alicdn.com/tfscom/TB1x5WJaGmgSKJjSsphXXcy1VXa.jpg)

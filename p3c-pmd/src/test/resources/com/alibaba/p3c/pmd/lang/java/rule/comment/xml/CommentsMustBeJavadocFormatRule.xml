@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="class-without-comments"><![CDATA[
+public class CommentsMustBeJavadocFormat {
+    private String name;
+    public void getName() {}
+}
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>Class have no comment.</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="class-without-comments" />
+	</test-code>
+
+
+	<code-fragment id="class-with-non-javadoc-comments"><![CDATA[
+// a comment
+// a comment
+public class CommentsMustBeJavadocFormat {
+    // a comment
+    private String name;
+    // a comment
+    public void getName() {}
+}
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>Class have non-javadoc comments.</description>
+		<expected-problems>3</expected-problems>
+		<expected-linenumbers>2,4,6</expected-linenumbers>
+		<code-ref id="class-with-non-javadoc-comments" />
+	</test-code>
+
+
+	<code-fragment id="class-with-javadoc-comments"><![CDATA[
+/**
+ * test
+ */
+public class CommentsMustBeJavadocFormat {
+    /**
+     * name
+     */
+    private String name;
+    
+    /**
+     * return name
+     */
+    public void getName() {}
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Class have javadoc comments.</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="class-with-javadoc-comments" />
+	</test-code>
+
+
+	<code-fragment id="anonymous-class-with-non-javadoc-comments"><![CDATA[
+// comment of outer class
+public class Outer_class {
+   // comment of method of outer class
+   public void test() {
+      // comment of anonymous inner class
+      AnonymousInner inner = new AnonymousInner() {
+         // comment of method in anonymous inner class
+         public void mymethod() {
+            System.out.println("This is an example of anonymous inner class");
+         }
+      };
+      inner.mymethod();	
+   }
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Anonymous Inner Class have non javadoc comments.
+		</description>
+		<expected-problems>2</expected-problems>
+		<expected-linenumbers>1,3</expected-linenumbers>
+		<code-ref id="anonymous-class-with-non-javadoc-comments" />
+	</test-code>
+
+
+	<code-fragment id="non-javadoc-comments-before-package-and-import"><![CDATA[
+/*
+ * Created on 18 nov. 2004
+ */
+
+package com.alibaba.pmd.test;
+
+import java.util.ArrayList;
+// following import is important
+import java.util.Comparator;
+
+public class PMDProjectPropertyPage extends PropertyPage {
+    private Table buildAvailableRulesTableViewer(final Composite parent) {
+        return ruleTable;
+    }
+}
+
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Non-javadoc comments before package and import
+		</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="non-javadoc-comments-before-package-and-import" />
+	</test-code>
+
+	<code-fragment id="ignore-comments-behind-statements"><![CDATA[
+public class CommentsMustBeJavadocFormat {
+    private String name; //avoid two two violations in one line.
+    private Integer age;
+    public void getName() {
+    }
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Ignore comments behind statements.
+		</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="ignore-comments-behind-statements" />
+	</test-code>
+
+</test-data>

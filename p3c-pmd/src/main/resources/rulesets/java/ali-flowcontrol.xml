@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<ruleset name="AlibabaJavaFlowControl" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <rule name="SwitchStatementRule"
+          language="java"
+          message="java.flowcontrol.SwitchStatementRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.flowcontrol.SwitchStatementRule">
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+    switch( x ){
+        case 1 :
+        break ;
+        case 2 :
+        break ;
+        default :
+    }
+			]]>
+        </example>
+    </rule>
+
+    <rule name="NeedBraceRule"
+          language="java"
+          message="java.flowcontrol.NeedBraceRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.flowcontrol.NeedBraceRule">
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+    if(flag) {
+        System.out.println("hello world");
+    }
+			]]>
+        </example>
+    </rule>
+
+    <rule name="AvoidComplexConditionRule"
+          language="java"
+          message="java.flowcontrol.AvoidComplexConditionRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.flowcontrol.AvoidComplexConditionRule">
+        <description>java.flowcontrol.AvoidComplexConditionRule.rule.desc</description>
+        <priority>3</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+    if ((file.open(fileName, "w") != null) && (...) || (...)) {
+        ...
+    }
+			]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+    boolean existed = (file.open(fileName, "w") != null) && (...) || (...);
+    if (existed) {
+        ...
+    }
+			]]>
+        </example>
+    </rule>
+
+</ruleset>

@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+
+<ruleset name="AlibabaJavaComments" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+
+    <rule name="CommentsMustBeJavadocFormatRule" message="java.comment.CommentsMustBeJavadocFormatRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.comment.CommentsMustBeJavadocFormatRule">
+        <description>java.comment.CommentsMustBeJavadocFormatRule.rule.desc</description>
+        <priority>3</priority>
+
+        <example>
+<![CDATA[
+    /**
+     * 
+     * XXX class function description.
+     *
+     */
+    public class XxClass implements Serializable {
+        private static final long serialVersionUID = 113323427779853001L;
+        /**
+         * id
+         */
+        private Long id;
+        /**
+         * title
+         */
+        private String title;
+    
+        /**
+         * find by id
+         * 
+         * @param ruleId rule id
+         * @param page start from 1
+         * @return Result<Xxxx>
+         */
+        public Result<Xxxx> funcA(Long ruleId, Integer page) {
+            return null;
+        }
+    }
+]]>
+        </example>
+    </rule>
+
+    <rule name="AbstractMethodOrInterfaceMethodMustUseJavadocRule"
+        message="java.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule">
+        <description>java.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule.rule.desc</description>
+        <priority>3</priority>
+
+        <example>
+<![CDATA[
+    /**
+     * fetch data by rule id
+     * 
+     * @param ruleId rule id
+     * @param page page number
+     * @param jsonContext json format context
+     * @return Result<XxxxDO>
+     */
+    Result<XxxxDO> fetchDataByRuleId(Long ruleId, Integer page, String jsonContext);
+]]>
+        </example>
+    </rule>
+
+    <rule name="ClassMustHaveAuthorRule" message="java.comment.ClassMustHaveAuthorRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.comment.ClassMustHaveAuthorRule">
+        <description>java.comment.ClassMustHaveAuthorRule.rule.desc</description>
+        <priority>3</priority>
+
+        <example>
+<![CDATA[
+    /**
+     * Demo class
+     * 
+     * @author keriezhang
+     * @date 2016/10/31
+     */
+    public class CodeNoteDemo {
+    }
+]]>
+        </example>
+    </rule>
+
+    <rule name="EnumConstantsMustHaveCommentRule" message="java.comment.EnumConstantsMustHaveCommentRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.comment.EnumConstantsMustHaveCommentRule">
+        <priority>2</priority>
+
+        <example>
+<![CDATA[
+    public enum TestEnum {
+        /**
+         * agree
+         */
+        agree("agree"),
+        /**
+         * reject
+         */
+        reject("reject");
+        
+        private String action;
+    
+        TestEnum(String action) {
+            this.action = action;
+        }
+    
+        public String getAction() {
+            return action;
+        }
+    }
+]]>
+        </example>
+    </rule>
+
+    <rule name="AvoidCommentBehindStatementRule"
+        message="java.comment.AvoidCommentBehindStatementRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.comment.AvoidCommentBehindStatementRule">
+        <priority>3</priority>
+
+        <example>
+<![CDATA[
+    public void method() {
+        // Put single line comment above code. (Note: align '//' comment with code)
+        int a = 3;
+    
+        /**
+        * Some description about follow code. (Note: align '/**' comment with code)
+        */
+        int b = 4;
+    }
+]]>
+        </example>
+    </rule>
+
+    <rule name="RemoveCommentedCodeRule"
+          message="java.comment.RemoveCommentedCodeRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.comment.RemoveCommentedCodeRule">
+        <description>java.comment.RemoveCommentedCodeRule.rule.desc</description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+Positive example: For codes which are temporarily removed and likely to be reused, use /// to add a reasonable note.
+ public static void hello() {
+    /// Business is stopped temporarily by the owner.
+    // Business business = new Business();
+    // business.active();
+    System.out.println("it's finished");
+}
+]]>
+        </example>
+    </rule>
+</ruleset>

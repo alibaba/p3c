@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+    <test-code>
+        <description>ThreadShouldSetNameRule</description>
+        <expected-problems>3</expected-problems>
+        <expected-linenumbers>17,19,26</expected-linenumbers>
+        <code><![CDATA[
+package com.alibaba.idea.pmd.test.thread;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * @author caikang
+ * @date 2016/11/17
+ */
+public class ThreadNameTest implements ThreadFactory{
+
+    private void test(){
+        new ThreadPoolExecutor(10, 10, 100, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>()
+               , (r, executor) -> System.out.println("xxx"));
+        new ThreadPoolExecutor(10, 10, 100, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>(),
+                new RejectedExecutionHandler() {
+                    @Override
+                    public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+
+                    }
+                });
+        new ThreadPoolExecutor(10,10,100,TimeUnit.MILLISECONDS,new SynchronousQueue<>(),
+                Executors.defaultThreadFactory());
+
+    }
+
+    @Override
+    public Thread newThread(Runnable r) {
+        return null;
+    }
+}
+        ]]></code>
+    </test-code>
+    <test-code>
+        <description>right</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>11</expected-linenumbers>
+        <code><![CDATA[
+package com.alibaba;
+
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+
+/**
+ * @author caikang
+ * @date 2017/03/07
+ */
+public class TestScheduledExecutorService {
+    public static final ScheduledExecutorService EXECUTOR_SERVICE = new ScheduledThreadPoolExecutor(3);
+}
+        ]]></code>
+    </test-code>
+    <test-code>
+        <description>right</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+package com.alibaba.idea.pmd.test.thread;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * @author caikang
+ * @date 2016/11/17
+ */
+public class ThreadNameTest implements ThreadFactory{
+
+    private void test(){
+        new ThreadPoolExecutor(10, 10, 100, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>(),r -> {
+            Thread thread1 = new Thread();
+            thread1.setName("xxx");
+            return thread1;
+        });
+        new ThreadPoolExecutor(10, 10, 100, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>(),new ThreadNameTest());
+       ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 10, 100, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>(),
+                new ThreadFactory() {
+                    @Override
+                    public Thread newThread(Runnable r) {
+                        return new Thread();
+                    }
+                }, (r, executor) -> {
+
+                });
+        new ThreadPoolExecutor(10, 10, 100, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>(),
+                r -> {
+                    Thread thread1 = new Thread();
+                    thread1.setName("xxx");
+                    return thread1;
+                }, new RejectedExecutionHandler() {
+            @Override
+            public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+
+            }
+        });
+        new ThreadPoolExecutor(10, 10, 100, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>(),
+                r -> {
+                    Thread thread1 = new Thread();
+                    thread1.setName("xxx");
+                    return thread1;
+                });
+    }
+
+    @Override
+    public Thread newThread(Runnable r) {
+        return null;
+    }
+}
+        ]]></code>
+    </test-code>
+</test-data>

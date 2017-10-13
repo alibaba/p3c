@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="use-new-date-get-time"><![CDATA[
+import java.util.Date;
+public class AvoidNewDateGetTimeRule {
+    public void test() {
+        long time = new Date().getTime();
+    }
+}
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>Use new Date().getTime()</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>4</expected-linenumbers>
+		<code-ref id="use-new-date-get-time" />
+	</test-code>
+
+
+	<code-fragment id="not-use-new-date-get-time"><![CDATA[
+import java.util.Date;
+public class AvoidNewDateGetTimeRule {
+    public void test() {
+        long time = new Date(123L).getTime();
+    }
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Not using newDate().getTime()</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="not-use-new-date-get-time" />
+	</test-code>
+
+</test-data>

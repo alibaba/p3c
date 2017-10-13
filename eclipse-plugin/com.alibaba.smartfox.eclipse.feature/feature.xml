@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+        id="com.alibaba.smartfox.eclipse.feature"
+        label="%feature.label"
+        version="1.0.0.qualifier"
+        provider-name="%feature.provider_name"
+        plugin="com.alibaba.smartfox.eclipse.plugin"
+        image="smartfox.png">
+
+    <description url="%description.url">
+        Alibaba Java Coding Guidelines
+    </description>
+
+    <copyright>
+        %copyright.text
+    </copyright>
+
+    <license url="%license.url">
+        %license.text
+    </license>
+
+    <url>
+        <update label="%feature.update_site_name" url="https://p3c.alibaba.com/plugin/eclipse/update"/>
+    </url>
+
+    <requires>
+        <import plugin="org.eclipse.ui"/>
+        <import plugin="org.eclipse.core.runtime"/>
+        <import plugin="org.eclipse.jdt.core"/>
+        <import plugin="org.eclipse.ui.ide"/>
+        <import plugin="org.eclipse.ui.views"/>
+        <import plugin="org.eclipse.core.resources"/>
+        <import plugin="org.eclipse.jface.text"/>
+        <import plugin="org.eclipse.ui.workbench.texteditor"/>
+        <import plugin="org.eclipse.ltk.core.refactoring"/>
+        <import plugin="org.eclipse.jdt.ui"/>
+        <import plugin="org.eclipse.core.filebuffers"/>
+    </requires>
+
+    <plugin
+            id="com.alibaba.smartfox.eclipse.plugin"
+            download-size="0"
+            install-size="0"
+            version="0.0.0"/>
+
+</feature>

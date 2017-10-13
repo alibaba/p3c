@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="comments-before-code"><![CDATA[
+public class AvoidCommentBehindStatementRule {
+    // comment above code 0
+    private String name;
+    public String getName() {
+        // comment above code 1
+        return this.name; 
+    }
+    public void setName(String name) {
+        // comment above code 2
+        this.name = name; 
+    }
+}
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>Comment before code</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="comments-before-code" />
+	</test-code>
+
+
+	<code-fragment id="comments-behind-code"><![CDATA[
+public class AvoidCommentBehindStatementRule {
+    private String name; // comment behind code 0
+    public String getName() {
+        return this.name; // comment behind code 1
+    }
+    public void setName(String name) {
+        this.name = name; // comment behind code 2
+    }
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Comments behind code</description>
+		<expected-problems>3</expected-problems>
+		<expected-linenumbers>2,4,7</expected-linenumbers>
+		<code-ref id="comments-behind-code" />
+	</test-code>
+
+
+	<code-fragment id="comments-behind-enum-constant"><![CDATA[
+public enum Level {
+    HIGH, // high level
+    MEDIUM, // medium level
+    LOW // low level
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Comments enum constant</description>
+		<expected-problems>3</expected-problems>
+		<expected-linenumbers>2,3,4</expected-linenumbers>
+		<code-ref id="comments-behind-enum-constant" />
+	</test-code>
+
+</test-data>

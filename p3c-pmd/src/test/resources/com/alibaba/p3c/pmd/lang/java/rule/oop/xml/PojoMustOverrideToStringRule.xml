@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="pojo-not-override-tostring">
+		<![CDATA[
+	public class FooDO {
+		private String tom;
+
+		// BAD, not Override toString()
+
+		private static class NestedDTO {
+			private String tom;
+			private boolean isBar;
+
+			@Override
+			public String tostring() {		// BAD
+				return tom;
+			}
+		}
+
+		private static class InnerClass {
+			// OK
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>POJO not override toString()</description>
+		<expected-problems>2</expected-problems>
+		<expected-linenumbers>1,6</expected-linenumbers>
+		<code-ref id="pojo-not-override-tostring" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="pojo-override-tostring">
+		<![CDATA[
+	public class FooDO {
+		private String tom;
+
+		@Override
+		public String toString() {
+			return tom;
+		}
+
+		private static class NestedDTO {
+			private String tom;
+			private boolean isBar;
+
+			@Override
+			public String toString() {
+				return super.toString();
+			}
+		}
+
+		private static class InnerClass {
+			// OK
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>POJO already override toString()</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="pojo-override-tostring" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="lombok-pojo">
+		<![CDATA[
+	import lombok.Data;
+
+	@Data
+	public class FooDO {
+		private String tom;
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>lombok generated source not need override toString()</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="lombok-pojo" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="lombok-pojo-2">
+		<![CDATA[
+	@lombok.Data
+	public class FooDO {
+		private String tom;
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>lombok generated source not need override toString()</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="lombok-pojo-2" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="lombok-pojo-3">
+		<![CDATA[
+	import lombok.*;
+	@Data
+	public class FooDO {
+		private String tom;
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>import lombok.*</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="lombok-pojo-3" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="lombok-pojo-4">
+		<![CDATA[
+	import lombok.*;
+	@ToString
+	public class FooDO {
+		private String tom;
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>use lombok.@ToString annotation</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="lombok-pojo-4" />
+	</test-code>
+</test-data>

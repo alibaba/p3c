@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+    <code-fragment id="commented-code"><![CDATA[
+//import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
+public class Test {
+    //private String name;
+    private Integer age;
+    //public String getName() {
+    //    return name;
+    //}
+    public Integer getAge() {
+        return age;
+    }
+    /*public void setName(String name) {
+        this.name = name;
+    }*/
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+}
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>Commented Code</description>
+        <expected-problems>4</expected-problems>
+        <expected-linenumbers>1,3,7,11</expected-linenumbers>
+        <code-ref id="commented-code" />
+    </test-code>
+
+
+    <code-fragment id="commented-code-with-three-slashes"><![CDATA[
+/// no scan
+//import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
+public class Test {
+    /// no scan
+    //private String name;
+    private Integer age;
+    /// no scan
+    //public String getName() {
+    //    return name;
+    //}
+    public Integer getAge() {
+        return age;
+    }
+    /// no scan
+    /*public void setName(String name) {
+        this.name = name;
+    }*/
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Commented code with three slashes</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="commented-code-with-three-slashes" />
+    </test-code>
+
+
+    <code-fragment id="commented-code-with-anonymous-class"><![CDATA[
+public class Test {
+    public void test() {
+        // if (dtos.size() > 100 || dtos.size() == 0) {
+        //     return new RPCReturnResult().combineFail("invalid argument");
+        // }
+        Collections.sort(dtos, new Comparator<TicketDto>() {
+            @Override
+            public int compare(TicketDto o1, TicketDto o2) {
+                return o1.getId().compareTo(o2.getId());
+            }
+        });
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Commented code with anonymous class</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>5</expected-linenumbers>
+        <code-ref id="commented-code-with-anonymous-class" />
+    </test-code>
+
+    <code-fragment id="example-in-javadoc"><![CDATA[
+/**
+ * example: tair key = prefix|key.toString();
+ */
+public class Test {
+    /**
+     * example: test = test();
+     */
+    public void test() {
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Example in javadoc</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="example-in-javadoc" />
+    </test-code>
+
+</test-data>

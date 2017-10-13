@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+    <test-code>
+        <description>CountDownShouldInFinallyRule</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>15</expected-linenumbers>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import java.util.concurrent.CountDownLatch;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+public class CountDownTest {
+    private CountDownLatch countDownLatch = new CountDownLatch(5);
+
+    private void test(){
+        try{
+            System.out.println("dslkjf");
+            countDownLatch.countDown();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+}
+
+        ]]></code>
+    </test-code>
+    <test-code>
+        <description>right</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import java.util.concurrent.CountDownLatch;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+public class CountDownTest {
+    private CountDownLatch countDownLatch = new CountDownLatch(5);
+
+    private void test(){
+        countDownLatch.countDown();
+        try{
+            System.out.println("dslkjf");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+}
+
+
+        ]]></code>
+    </test-code>
+    <test-code>
+        <description>right</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import java.util.concurrent.CountDownLatch;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+public class CountDownTest {
+    private CountDownLatch countDownLatch = new CountDownLatch(5);
+
+    private void test(){
+        try{
+            System.out.println("dslkjf");
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            countDownLatch.countDown();
+        }
+    }
+}
+
+
+        ]]></code>
+    </test-code>
+</test-data>

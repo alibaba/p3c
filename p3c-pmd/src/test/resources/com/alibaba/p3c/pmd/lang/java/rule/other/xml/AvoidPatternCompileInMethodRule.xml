@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="use-pattern-compile-as-static-field"><![CDATA[
+import java.util.regex.Pattern;
+public class PatternCompile {
+    // precompile regex
+    private static Pattern NUMBER_PATTERN = Pattern.compile("[0-9]+");
+}
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>Use Pattern.compile as static field</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="use-pattern-compile-as-static-field" />
+	</test-code>
+
+
+	<code-fragment id="use-pattern-compile-in-method-string-literal"><![CDATA[
+import java.util.regex.Pattern;
+public class PatternCompile {
+    public void getNumberPattern() {
+        // Avoid define Pattern.compile in method body
+        Pattern localPattern = Pattern.compile("[0-9]+");
+    }
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Use Pattern.compile in method string literal</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>5</expected-linenumbers>
+		<code-ref id="use-pattern-compile-in-method-string-literal" />
+	</test-code>
+
+
+	<code-fragment id="use-pattern-compile-in-method-not-literal"><![CDATA[
+import java.util.regex.Pattern;
+public class PatternCompile {
+    public void getNumberPattern(String number) {
+        // define Pattern.compile in method body
+        Pattern localPattern = Pattern.compile(number);
+    }
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Use Pattern.compile in method not literal</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="use-pattern-compile-in-method-not-literal" />
+	</test-code>
+
+</test-data>

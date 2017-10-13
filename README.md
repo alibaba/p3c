@@ -1,16 +1,35 @@
-## 代码规约插件全球首发
-![倒计时_](https://gw.alicdn.com/tfscom/TB1il8pf6ihSKJjy0FeXXbJtpXa.jpg)
-10月14日杭州云栖大会上会，代码规约插件及源码，将在杭州云栖大会上[研发效能峰会](https://yunqi.aliyun.com/2017/hangzhou/meeting?day=day4&theme=all&meeting=detail1433 )的首发仪式上全球首发。
+Java代码规约扫描插件已在[研发协同RDC](https://rdc-test.aliyun.com)（云效公有云解决方案）的测试功能中实现（设置->测试服务->阿里巴巴Java代码规约）。
 
-过去的整整一年中，阿里内部经历过无数次针锋相对的讨论，与实战经验相结合，系统性地从编程，数据库，异常日志，工程结构，安全，单元测试（new）六个维度总结做为Java合格开发者必备的技术素养。只是文档让开发同学遵守是非常困难的，阿里研发一套自动检测插件——代码规约扫描插件，已在[研发协同RDC](https://rdc-test.aliyun.com/)（云效公有云解决方案）的实验室功能中实现。
+# P3C
 
-[![alt text](https://gw.alicdn.com/tfscom/TB13OnghlUSMeJjy1zkXXaWmpXa.png "title")](https://rdc-test.aliyun.com)
-点图可在线扫描代码合规情况
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-“开发手册”主要作者孤尽在10月13日的云栖大会上分享“从推动的Java的代码规约谈技术人成长的有所为”，欢迎大家到场零距离沟通。
+## <font color="green">Preface</font>
+> We are pleased to present Alibaba Java Coding Guidelines, which consolidates the best programming practices over the years from Alibaba Group's technical teams. A vast number of Java programming teams impose demanding requirements on code quality across projects as we encourage reuse and better understanding of each other's programs. We have seen many programming problems in the past. For example, defective database table structures and index designs may cause software architecture flaws and performance risks. Yet as another example, confusing code structures make it difficult to maintain. Furthermore, vulnerable code without authentication is prone to hackers’ attacks. To address those kinds of problems, we developed this document for Java developers in Alibaba.
+ 
+For more information please refer the *Alibaba Java Coding Guidelines*:
+- 中文版: *[阿里巴巴Java开发手册](https://github.com/alibaba/p3c/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%EF%BC%88%E7%BB%88%E6%9E%81%E7%89%88%EF%BC%89.pdf)*
+- English Version: *[Alibaba Java Coding Guidelines](https://alibaba.github.io/Alibaba-Java-Coding-Guidelines)*
 
-电子工业出版社也将在一年后出版孤尽参与编写的“码出高效 - 阿里巴巴的Java开发手册详解”这本书。
+## <font color="green">Introduction</font>
+The project consists of 3 parts:  
+- [PMD implementations](p3c-pmd)  
+- [IntelliJ IDEA plugin](idea-plugin)  
+- [Eclipse plugin](eclipse-plugin)   
 
-代码规约最新更新消息关注“代码规约”微信公众号：
+## <font color="green">Rules</font>
+<font color="blue">49 rules are realized based on PMD, please refer the P3C-PMD documentation for more detailed information. 4 rules implemented within IDE plugins (IDEA and Eclipse) as following:</font>  
 
-![代码规约](https://gw.alicdn.com/tfscom/TB1x5WJaGmgSKJjSsphXXcy1VXa.jpg)
+- ``[Mandatory]`` Using a deprecated class or method is prohibited.  
+   Note: For example, decode(String source, String encode) should be used instead of the deprecated method decode(String encodeStr). Once an interface has been deprecated, the interface provider has the obligation to provide a new one. At the same time, client programmers have the obligation to check out what its new implementation is.
+   
+- ``[Mandatory]`` An overridden method from an interface or abstract class must be marked with @Override annotation.
+   Counter example: For getObject() and get0bject(), the first one has a letter 'O', and the second one has a number '0'. To accurately determine whether the overriding is successful, an @Override annotation is necessary. Meanwhile, once the method signature in the abstract class is changed, the implementation class will report a compile-time error immediately.
+   
+- ``[Mandatory]`` A static field or method should be directly referred by its class name instead of its corresponding object name.
+
+- ``[Mandatory]`` The usage of hashCode and equals should follow:
+    1. Override hashCode if equals is overridden.
+    2. These two methods must be overridden for Set since they are used to ensure that no duplicate object will be inserted in Set.
+    3. These two methods must be overridden if self-defined object is used as the key of Map.
+   Note: String can be used as the key of Map since these two methods have been rewritten.

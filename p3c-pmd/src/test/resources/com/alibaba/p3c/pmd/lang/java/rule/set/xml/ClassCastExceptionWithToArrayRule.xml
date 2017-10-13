@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="sets-ClassCastExceptionWithToArray-ok"><![CDATA[
+	    public class Foo {   
+            private void method(long aLong) {  
+              Integer[] b = (Integer [])c.toArray(new Integer[c.size()]);
+             } 
+        }
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>sets-ClassCastExceptionWithToArray-ok.</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="sets-ClassCastExceptionWithToArray-ok" />
+	</test-code>
+ 
+	<code-fragment id="sets-ClassCastExceptionWithToArray-warn"><![CDATA[
+  	  public class Foo {   
+            private void method(long aLong) { 
+              Integer[] a = (Integer [])c.toArray(); 
+             } 
+        }
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>sets-ClassCastExceptionWithToArray-warn.</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>3</expected-linenumbers>
+		<code-ref id="sets-ClassCastExceptionWithToArray-warn" />
+	</test-code>
+
+</test-data>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+    <test-code>
+        <description>TransactionMustHaveRollbackRule</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>17</expected-linenumbers>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.ResourceTransactionManager;
+import org.springframework.transaction.support.SimpleTransactionStatus;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+public class TestTransactional {
+    private ResourceTransactionManager manager;
+
+    @Transactional
+    @Override
+    public void test(){
+        //manager.rollback(new SimpleTransactionStatus());
+    }
+}
+        ]]></code>
+    </test-code>
+
+    <test-code>
+        <description>with rollback</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.ResourceTransactionManager;
+import org.springframework.transaction.support.SimpleTransactionStatus;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+public class TestTransactional {
+    private ResourceTransactionManager manager;
+
+    @Transactional
+    public void test(){
+        manager.rollback(new SimpleTransactionStatus());
+    }
+}
+        ]]></code>
+    </test-code>
+    <test-code>
+        <description>with rollback</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.ResourceTransactionManager;
+import org.springframework.transaction.support.SimpleTransactionStatus;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+public class TestTransactional {
+    private ResourceTransactionManager manager;
+
+    @Transactional(rollbackFor = Exception.class)
+    public void test(){
+        //manager.rollback(new SimpleTransactionStatus());
+    }
+}
+        ]]></code>
+    </test-code>
+    <test-code>
+        <description>class</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>10</expected-linenumbers>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.ResourceTransactionManager;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+@Transactional
+public class TestTransactional {
+    private ResourceTransactionManager manager;
+
+    public void test(){
+        //manager.rollback(new SimpleTransactionStatus());
+    }
+}
+        ]]></code>
+    </test-code>
+
+    <test-code>
+        <description>class with rollbackFor</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.ResourceTransactionManager;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+@Transactional(rollbackFor = Exception.class)
+public class TestTransactional {
+    private ResourceTransactionManager manager;
+
+    public void test(){
+        //manager.rollback(new SimpleTransactionStatus());
+    }
+}
+        ]]></code>
+    </test-code>
+    <test-code>
+        <description>class with rollbackFor</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>10</expected-linenumbers>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.ResourceTransactionManager;
+
+/**
+@author caikang
+@date 2017/03/29
+*/
+@Transactional
+public class TestTransactional {
+
+private ResourceTransactionManager manager;
+
+public void test(){
+    manager.rollback(new SimpleTransactionStatus());
+}
+}
+        ]]></code>
+    </test-code>
+</test-data>

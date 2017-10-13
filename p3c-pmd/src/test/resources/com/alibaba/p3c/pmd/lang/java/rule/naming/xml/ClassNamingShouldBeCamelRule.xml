@@ -1,0 +1,105 @@
+<test-data>
+    <code-fragment id="CamelClassNaming">
+        <![CDATA[
+public class CamelClassNameRuleTest {
+    class CamelclassnameRuleTest{}
+    class CamelclassNameRuleTest{}
+    class camelClassNameRuleTest{}
+    class camelClassNameruletest{}
+    class CamelclassNameRuleTestDO{}
+    class CamelclassNameRuleTestDODO{}
+    class CamelclassNameRuleTestdo{}
+    class CamelclassNameRuleTestBO{}
+    class CamelclassNameRuleTestBo{}
+    class CamelclassNameRuleTestbO{}
+    class CamelclassNameRuleTestYunOS{}
+    class CamelclassNameRuleTestyunOS{}
+    class CamelclassNameRuleTestDDO{}
+    class ICamelclassNameRuleTestDO{}
+    class ICamelclassNameRuleTest{}
+    class IDO{}
+    class IAO{}
+    class IpAO{}
+    class CamelclassNameRuleTestAO{}
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Class Name Should Camel</description>
+        <expected-problems>6</expected-problems>
+        <code-ref id="CamelClassNaming" />
+        <expected-linenumbers>4,5,7,13,14,18</expected-linenumbers>
+    </test-code>
+
+
+    <code-fragment id="CamelClassNaming1">
+        <![CDATA[
+public class CamelClassNameRuleTest {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Class Name Should Camel1</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="CamelClassNaming1" />
+    </test-code>
+
+    <code-fragment id="CamelClassNaming2">
+        <![CDATA[
+public class AbstractDAOImpl {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Class Name Should Camel2</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="CamelClassNaming2" />
+    </test-code>
+
+    <code-fragment id="CamelClassNaming3">
+        <![CDATA[
+public class AbstractBO {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Class Name Should Camel3</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="CamelClassNaming3" />
+    </test-code>
+
+    <code-fragment id="CamelClassNaming4">
+        <![CDATA[
+public class TestBO {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Class Name Should Camel4</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="CamelClassNaming4" />
+    </test-code>
+
+    <code-fragment id="CamelClassNaming5">
+        <![CDATA[
+public class RoutingBranchRouteBO extends AbstractBO {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Class Name Should Camel5</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="CamelClassNaming5" />
+    </test-code>
+    <code-fragment id="CamelClassNaming6">
+        <![CDATA[
+public class RoutingBranchRoutePO{
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Class Name Should Camel6</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="CamelClassNaming6" />
+    </test-code>
+</test-data>

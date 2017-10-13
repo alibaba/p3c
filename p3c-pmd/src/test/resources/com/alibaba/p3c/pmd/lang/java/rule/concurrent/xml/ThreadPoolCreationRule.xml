@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+	<test-code>
+		<description>Executors.new</description>
+		<expected-problems>5</expected-problems>
+		<expected-linenumbers>9,11,16,17,18</expected-linenumbers>
+		<code><![CDATA[
+
+package com.alibaba.idea.pmd.test;
+
+import java.util.concurrent.ExecutorService;
+import static java.util.concurrent.Executors.newSingleThreadExecutor;
+
+
+import java.util.concurrent.Executors;
+public class Executors2Test {
+    private ExecutorService executorService = newSingleThreadExecutor();
+
+    private ExecutorService executorService1 = Executors.newSingleThreadExecutor();
+
+    private ExecutorService executorServic2 = executorService;
+
+    public SimpleDateFormatRule2Test(){
+        executorService1 = newSingleThreadExecutor();
+        newSingleThreadExecutor().submit(() -> System.out.println("xxx"));
+        java.util.concurrent.Executors.newSingleThreadExecutor().submit(() -> {
+
+        });
+    }
+}
+        ]]></code>
+	</test-code>
+	<test-code>
+		<description>no Executors</description>
+		<expected-problems>0</expected-problems>
+		<code><![CDATA[
+
+package com.alibaba.idea.pmd.test.thread;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * @author caikang
+ * @date 2016/11/17
+ */
+public class ExecutorsTest2 {
+    private void test(){
+        new ThreadPoolExecutor(10,10,100,TimeUnit.MILLISECONDS,new SynchronousQueue<>(),
+                Executors.defaultThreadFactory());
+       ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 10, 100, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>(),
+                new ThreadFactory() {
+                    @Override
+                    public Thread newThread(Runnable r) {
+                        return new Thread();
+                    }
+                }, (r, executor) -> {
+
+                });
+        new ThreadPoolExecutor(10, 10, 100, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>(),
+                r -> {
+                    Thread thread1 = new Thread();
+                    thread1.setName("xxx");
+                    return thread1;
+                }, new RejectedExecutionHandler() {
+            @Override
+            public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+
+            }
+        });
+        new ThreadPoolExecutor(10, 10, 100, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>());
+    }
+}
+
+        ]]></code>
+	</test-code>
+</test-data>

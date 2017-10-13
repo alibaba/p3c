@@ -1,0 +1,53 @@
+<test-data>
+    <code-fragment id="ServiceClassNamingRule">
+        <![CDATA[
+public class ServiceNameRuleTest implements TestDAO{
+    class ServiceNameRuleTest1 implements TestService{
+
+    }
+    class ServiceNameRuleTest2Impl implements TestService{
+
+    }
+    class ServiceNameRuleTest3Impl implements TestDAO{
+
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Service Class Name should be end with Impl</description>
+        <expected-problems>2</expected-problems>
+        <code-ref id="ServiceClassNamingRule" />
+        <expected-linenumbers>1,2</expected-linenumbers>
+    </test-code>
+
+
+
+    <code-fragment id="ServiceClassNamingRule1">
+        <![CDATA[
+public class ServiceNameRuleTestImpl implements TestDAO{
+
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Service Class Name should be end with Impl</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="ServiceClassNamingRule1" />
+    </test-code>
+
+    <code-fragment id="ServiceClassNamingRule2">
+        <![CDATA[
+public abstract class ServiceNameRuleTest implements TestDAO{
+
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Service Class Name should be end with Impl</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="ServiceClassNamingRule2" />
+    </test-code>
+
+
+</test-data>

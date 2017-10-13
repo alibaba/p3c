@@ -1,0 +1,288 @@
+<?xml version="1.0"?>
+<ruleset name="AlibabaJavaConcurrent"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <rule name="ThreadPoolCreationRule"
+          language="java"
+          since="1.6"
+          message="java.concurrent.ThreadPoolCreationRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.ThreadPoolCreationRule">
+        <description>java.concurrent.ThreadPoolCreationRule.rule.desc</description>
+        <priority>1</priority>
+        <example>
+            <![CDATA[
+Positive example 1：
+    //org.apache.commons.lang3.concurrent.BasicThreadFactory
+    ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1,
+        new BasicThreadFactory.Builder().namingPattern("example-schedule-pool-%d").daemon(true).build());
+       ]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example 2：
+    ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+        .setNameFormat("demo-pool-%d").build();
+
+    //Common Thread Pool
+    ExecutorService pool = new ThreadPoolExecutor(5, 200,
+         0L, TimeUnit.MILLISECONDS,
+         new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+
+    pool.execute(()-> System.out.println(Thread.currentThread().getName()));
+    pool.shutdown();//gracefully shutdown
+       ]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example 3：
+    <bean id="userThreadPool"
+        class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="10" />
+        <property name="maxPoolSize" value="100" />
+        <property name="queueCapacity" value="2000" />
+
+    <property name="threadFactory" value= threadFactory />
+        <property name="rejectedExecutionHandler">
+            <ref local="rejectedExecutionHandler" />
+        </property>
+    </bean>
+    //in code
+    userThreadPool.execute(thread);
+       ]]>
+        </example>
+    </rule>
+    <rule name="AvoidUseTimerRule"
+          language="java"
+          since="1.6"
+          message="java.concurrent.AvoidUseTimerRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.AvoidUseTimerRule">
+        <priority>1</priority>
+        <example>
+            <![CDATA[
+    //org.apache.commons.lang3.concurrent.BasicThreadFactory
+    ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1,
+            new BasicThreadFactory.Builder().namingPattern("example-schedule-pool-%d").daemon(true).build());
+    executorService.scheduleAtFixedRate(new Runnable() {
+        @Override
+        public void run() {
+            //do something
+        }
+    },initialDelay,period, TimeUnit.HOURS);
+       ]]>
+        </example>
+    </rule>
+    <rule name="AvoidManuallyCreateThreadRule"
+          language="java"
+          since="1.6"
+          message="java.concurrent.AvoidConcurrentCompetitionRandomRule.rule.msg"
+          dfa="true"
+          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.AvoidManuallyCreateThreadRule">
+        <description>java.concurrent.AvoidManuallyCreateThreadRule.rule.desc</description>
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+    ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+    .setNameFormat("demo-pool-%d").build();
+    ExecutorService singleThreadPool = new ThreadPoolExecutor(1, 1,
+    0L, TimeUnit.MILLISECONDS,
+    new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+
+    singleThreadPool.execute(()-> System.out.println(Thread.currentThread().getName()));
+    singleThreadPool.shutdown();
+    ]]>
+        </example>
+    </rule>
+    <rule name="ThreadShouldSetNameRule"
+          language="java"
+          since="1.6"
+          message="java.concurrent.ThreadShouldSetNameRule.rule.msg"
+          dfa="true"
+          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.ThreadShouldSetNameRule">
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+    ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+    .setNameFormat("demo-pool-%d").build();
+    ExecutorService singleThreadPool = new ThreadPoolExecutor(1, 1,
+    0L, TimeUnit.MILLISECONDS,
+    new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+
+    singleThreadPool.execute(()-> System.out.println(Thread.currentThread().getName()));
+    singleThreadPool.shutdown();
+    ]]>
+        </example>
+        <example>
+            <![CDATA[
+    public class TimerTaskThread extends Thread {
+        public TimerTaskThread(){
+        super.setName("TimerTaskThread"); …
+    }
+       ]]>
+        </example>
+    </rule>
+    <rule name="AvoidCallStaticSimpleDateFormatRule"
+          language="java"
+          since="1.6"
+          message="java.concurrent.AvoidCallStaticSimpleDateFormatRule.rule.msg"
+          dfa="true"
+          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.AvoidCallStaticSimpleDateFormatRule">
+        <description>java.concurrent.AvoidCallStaticSimpleDateFormatRule.rule.desc</description>
+
+        <example>
+            <![CDATA[
+Positive example 1：
+    private static final String FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public String getFormat(Date date){
+        SimpleDateFormat dateFormat = new SimpleDateFormat(FORMAT);
+        return sdf.format(date);
+    }
+        ]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example 2：
+    private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public void getFormat(){
+        synchronized (sdf){
+        sdf.format(new Date());
+        ….;
+    }
+        ]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example 3：
+    private static final ThreadLocal<DateFormat> DATE_FORMATTER = new ThreadLocal<DateFormat>() {
+        @Override
+        protected DateFormat initialValue() {
+            return new SimpleDateFormat("yyyy-MM-dd");
+        }
+    };
+        ]]>
+        </example>
+        <priority>2</priority>
+    </rule>
+
+    <rule name="ThreadLocalShouldRemoveRule"
+          language="java"
+          since="1.6"
+          message="java.concurrent.ThreadLocalShouldRemoveRule.rule.msg"
+          dfa="true"
+          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.ThreadLocalShouldRemoveRule">
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+    /**
+     * @author caikang
+     * @date 2017/04/07
+     */
+    public class UserHolder {
+        private static final ThreadLocal<User> userThreadLocal = new ThreadLocal<User>();
+
+        public static void set(User user){
+            userThreadLocal.set(user);
+        }
+
+        public static User get(){
+            return userThreadLocal.get();
+        }
+
+        public static void remove(){
+            userThreadLocal.remove();
+        }
+    }
+
+    /**
+     * @author caikang
+     * @date 2017/04/07
+     */
+    public class UserInterceptor extends HandlerInterceptorAdapter {
+        @Override
+        public boolean preHandle(HttpServletRequest request,
+            HttpServletResponse response, Object handler) throws Exception {
+            UserHolder.set(new User());
+            return true;
+        }
+
+        @Override
+        public void afterCompletion(HttpServletRequest request,
+            HttpServletResponse response, Object handler, Exception ex) throws Exception {
+            UserHolder.remove();
+        }
+    }
+        ]]>
+        </example>
+    </rule>
+    <rule name="AvoidConcurrentCompetitionRandomRule"
+          language="java"
+          since="1.6"
+          message="java.concurrent.AvoidConcurrentCompetitionRandomRule.rule.msg"
+          dfa="true"
+          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.AvoidConcurrentCompetitionRandomRule">
+        <priority>3</priority>
+        <example>
+            <![CDATA[
+Positive example 1：
+    /**
+     * @author caikang
+     * @date 2017/04/07
+     */
+    public class RandomInThread extends Thread {
+        private Random random = new Random();
+
+        @Override
+        public void run() {
+            long t = random.nextLong();
+        }
+    }
+        ]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example 2：
+    /**
+     * @author caikang
+     * @date 2017/04/07
+     */
+    public class RandomInThread extends Thread {
+        private Random random = ThreadLocalRandom.current();
+
+        @Override
+        public void run() {
+            long t = random.nextLong();
+        }
+    }
+        ]]>
+        </example>
+    </rule>
+    <rule name="CountDownShouldInFinallyRule"
+          language="java"
+          since="1.6"
+          message="java.concurrent.CountDownShouldInFinallyRule.rule.msg"
+          dfa="true"
+          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.CountDownShouldInFinallyRule">
+        <description>java.concurrent.CountDownShouldInFinallyRule.rule.desc</description>
+        <priority>3</priority>
+        <example>
+            <![CDATA[
+    /**
+     * @author caikang
+     * @date 2017/04/07
+     */
+    public class CountDownExample {
+        public void operate(CountDownLatch countDownLatch){
+            try{
+                System.out.println("business logic");
+            }catch (RuntimeException e){
+                // do something
+            }finally {
+                countDownLatch.countDown();
+            }
+        }
+    }
+        ]]>
+        </example>
+    </rule>
+</ruleset>

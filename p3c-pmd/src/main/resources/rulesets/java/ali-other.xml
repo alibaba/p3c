@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+
+<ruleset name="AlibabaJavaOthers" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <rule name="AvoidPatternCompileInMethodRule" language="java"
+        message="java.other.AvoidPatternCompileInMethodRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.other.AvoidPatternCompileInMethodRule">
+        <description>java.other.AvoidPatternCompileInMethodRule.rule.desc</description>
+        <priority>1</priority>
+        <example>
+<![CDATA[
+    public class XxxClass {
+        // Use precompile
+        private static Pattern NUMBER_PATTERN = Pattern.compile("[0-9]+");
+        public Pattern getNumberPattern() {
+            // Avoid use Pattern.compile in method body.
+            Pattern localPattern = Pattern.compile("[0-9]+");
+            return localPattern;
+        }
+    }
+]]>
+      </example>
+    </rule>
+
+    <rule name="AvoidApacheBeanUtilsCopyRule" language="java"
+        message="java.other.AvoidApacheBeanUtilsCopyRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.other.AvoidApacheBeanUtilsCopyRule">
+        <description>java.other.AvoidApacheBeanUtilsCopyRule.rule.desc</description>
+        <priority>1</priority>
+        <example>
+<![CDATA[
+    TestObject a = new TestObject();
+    TestObject b = new TestObject();
+    a.setX(b.getX());
+    a.setY(b.getY());
+]]>
+      </example>
+    </rule>
+
+    <rule name="AvoidNewDateGetTimeRule" language="java"
+        message="java.other.AvoidNewDateGetTimeRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.other.AvoidNewDateGetTimeRule">
+        <description>java.other.AvoidNewDateGetTimeRule.rule.desc</description>
+        <priority>1</priority>
+        <example>
+<![CDATA[
+    public class TimeMillisDemo {
+        public static void main(String args[]) {
+            // Positive example:
+            long a = System.currentTimeMillis();
+            // Negative example:
+            long b = new Date().getTime();
+    
+            System.out.println(a);
+            System.out.println(b);
+        }
+    }
+]]>
+      </example>
+    </rule>
+
+    <rule name="AvoidMissUseOfMathRandomRule" language="java"
+          message="java.other.AvoidMissUseOfMathRandomRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.other.AvoidMissUseOfMathRandomRule">
+        <priority>3</priority>
+        <example>
+<![CDATA[
+Negative example:
+    Long randomLong =(long) (Math.random() * 10);
+]]>
+        </example>
+        <example>
+<![CDATA[
+Positive example:
+    Long randomLong = new Random().nextLong();
+]]>
+        </example>
+    </rule>
+
+</ruleset>

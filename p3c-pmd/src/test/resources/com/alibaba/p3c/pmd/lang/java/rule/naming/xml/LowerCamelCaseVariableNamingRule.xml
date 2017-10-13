@@ -1,0 +1,129 @@
+<test-data>
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest">
+        <![CDATA[
+        public class VariableNameRuleTest {
+    private String abC;
+    private String AbC;
+    private String abCd;
+    private void f(){
+        String s = "test";
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase</description>
+        <expected-problems>1</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest" />
+        <expected-linenumbers>3</expected-linenumbers>
+    </test-code>
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest1">
+        <![CDATA[
+        public class VariableNameRuleTest {
+    private String abCdeFghKmi123;
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase1</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest1" />
+    </test-code>
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest2">
+        <![CDATA[
+public interface PluginConstants {
+    String PLUGIN_ID = "PMDPlugin";
+     String RULE = "java/ali-pmd";
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase2</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest2" />
+    </test-code>
+
+
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest3">
+        <![CDATA[
+public class PluginConstants {
+    String PLUGIN_ID = "PMDPlugin";
+    String RULE = "java/ali-pmd";
+    private private static final String CONSTANT_RULE = "constantRuleTest";
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase3</description>
+        <expected-problems>2</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest3" />
+        <expected-linenumbers>2,3</expected-linenumbers>
+    </test-code>
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest4">
+        <![CDATA[
+public interface BizConstants {
+        interface SDK4cloud {
+        int USER_TYPE_JAQ = 1;
+        int USER_TYPE_ALIYUN = 2;
+        int ACCESS_USAGE_SERVER = 0;
+        int GATEWAY_TYPE_POP = 2;
+        }
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase4</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest4" />
+    </test-code>
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest5">
+        <![CDATA[
+        public class demoTest{
+        public static String ENV_LOCAL = "local";
+        public static String ENV_PROJECT = "project";
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase5</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest5" />
+    </test-code>
+
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest6">
+        <![CDATA[
+        public class FinalVariableTest{
+        public static String ENV_LOCAL = "local";
+        public static String ENV_PROJECT = "project";
+        private final int MAX_LENGTH =  5;
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase6</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest6" />
+    </test-code>
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest7">
+        <![CDATA[
+     public class MockTest{
+        @Mock
+        void $clinit(){}
+     }   
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase7</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest7" />
+    </test-code>
+</test-data>
+
+

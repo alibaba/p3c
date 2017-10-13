@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="sets-CollectionInitShouldAssignCapacityRule-ok"><![CDATA[
+	    public class Foo {   
+	    	Map<String,  String> map = new HashMap<String,  String>(); 
+            private void method(long aLong) {  
+               Map<String,  String> map2 = new HashMap<String,  String>(16);
+               Map<String,  String> map3 = new ConcurrentHashMap<String,  String>(16);
+               List<String> originList = new ArrayList<String>(2048);
+            } 
+        }
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>sets-CollectionInitShouldAssignCapacityRule-ok.</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="sets-CollectionInitShouldAssignCapacityRule-ok" />
+	</test-code>
+ 
+	<code-fragment id="sets-CollectionInitShouldAssignCapacityRule-warn"><![CDATA[
+  	  public class Foo {   
+           private void method1() {  
+		       Map<String,  String> map = new HashMap<String,  String>();
+		       Map<String,  String> map3 = new ConcurrentHashMap<String,  String>();
+           }  
+      }
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>sets-CollectionInitShouldAssignCapacityRule-warn.</description>
+		<expected-problems>2</expected-problems>
+		<expected-linenumbers>3,4</expected-linenumbers>
+		<code-ref id="sets-CollectionInitShouldAssignCapacityRule-warn" />
+	</test-code>
+
+</test-data>

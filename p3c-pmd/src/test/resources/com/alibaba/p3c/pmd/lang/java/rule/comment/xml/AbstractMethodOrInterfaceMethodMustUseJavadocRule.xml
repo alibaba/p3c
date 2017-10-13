@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+	<code-fragment id="non-abstract-method-in-abstract-class"><![CDATA[
+public abstract class AbstractClassOrInterfaceMethodMustUseJavadoc {
+    public String getName(String firstName, String secondName) throws XPathException, IOException {
+        return "lalalala";
+    }
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Non abstract method may have no comment.</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="non-abstract-method-in-abstract-class" />
+	</test-code>
+
+	<code-fragment id="abstract-method-without-comment-in-abstract-class"><![CDATA[
+public abstract class AbstractClassOrInterfaceMethodMustUseJavadoc {
+    public abstract String getName(String firstName, String secondName) throws XPathException, IOException;
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Abstract method have no comment.</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>2</expected-linenumbers>
+		<code-ref id="abstract-method-without-comment-in-abstract-class" />
+	</test-code>
+
+	<code-fragment id="abstract-method-with-part-of-comment-in-abstract-class"><![CDATA[
+public abstract class AbstractClassOrInterfaceMethodMustUseJavadoc {
+    /**
+     */
+    public abstract String getName(String firstName, String secondName) throws XPathException, IOException;
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Abstract method have part of javadoc comment about
+			function, return, parameters and exceptions.
+		</description>
+		<expected-problems>6</expected-problems>
+		<expected-linenumbers>4</expected-linenumbers>
+		<code-ref id="abstract-method-with-part-of-comment-in-abstract-class" />
+	</test-code>
+
+	<code-fragment id="abstract-method-with-full-comment-in-abstract-class"><![CDATA[
+public abstract class AbstractClassOrInterfaceMethodMustUseJavadoc {
+    /**
+     * only function comment.
+     */
+    public abstract void getFistName();
+    
+    /**
+     * function comment
+     * 
+     * @param firstName first name
+     * @param secondName second name
+     * @return full name
+     * @throws XPathException xpath exception
+     * @throws IOException IO exceptioin
+     */
+    public abstract String getName(String firstName, String secondName) throws XPathException, IOException;
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Abstract method have javadoc comment about function,
+			return, parameters and exceptions.
+		</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="abstract-method-with-full-comment-in-abstract-class" />
+	</test-code>
+
+
+	<code-fragment id="method-in-interface-without-comment"><![CDATA[
+public interface AbstractClassOrInterfaceMethodMustUseJavadoc {
+    String getName(String firstName, String secondName) throws XPathException, IOException;
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Method in interface with non-javadoc comment.
+		</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>2</expected-linenumbers>
+		<code-ref id="method-in-interface-without-comment" />
+	</test-code>
+
+	<code-fragment id="void-method-in-interface-with-part-of-comment"><![CDATA[
+public interface AbstractClassOrInterfaceMethodMustUseJavadoc {
+    /**
+     */
+    void getName();
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Void method with empty javadoc.</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>4</expected-linenumbers>
+		<code-ref id="void-method-in-interface-with-part-of-comment" />
+	</test-code>
+
+	<code-fragment id="method-in-interface-with-part-of-comment"><![CDATA[
+public interface AbstractClassOrInterfaceMethodMustUseJavadoc {
+    /**
+     */
+    String getName(String firstName, String secondName) throws XPathException, IOException;
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Method in interface have part of javadoc comment about
+			function, return, parameters and exceptions.
+		</description>
+		<expected-problems>6</expected-problems>
+		<expected-linenumbers>4</expected-linenumbers>
+		<code-ref id="method-in-interface-with-part-of-comment" />
+	</test-code>
+
+	<code-fragment id="method-in-interface-with-full-comment"><![CDATA[
+public interface AbstractClassOrInterfaceMethodMustUseJavadoc {
+    /**
+     * get user name
+     * 
+     * @param firstName first name
+     * @param secondName second name
+     * @return full name
+     * @throws XPathException xpath exception
+     * @throws IOException io exception
+     */
+    String getName(String firstName, String secondName) throws XPathException, IOException;
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Method in interface have javadoc comment about
+			function,
+			return, parameters and exceptions.
+		</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="method-in-interface-with-full-comment" />
+	</test-code>
+
+
+	<code-fragment id="interface-ignore-methods-in-inner-enums-or-classes"><![CDATA[
+public interface InterfaceTest {
+   int test();
+   
+   int test2();
+   
+   public enum CmdbAttributeName {
+       schema("schema"), planId("planId");
+
+       private String prototype;
+
+       CmdbAttributeName(String prototype){
+           this.prototype = prototype;
+       }
+
+       public String getPrototype() {
+           return this.prototype;
+       }
+   }
+   
+   public class InnerClass {
+       public void classTest() {
+       };
+   }
+   
+   
+   String getName(String username);
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Interface ignore methods in inner enums or classes.
+		</description>
+		<expected-problems>3</expected-problems>
+		<expected-linenumbers>2,4,26</expected-linenumbers>
+		<code-ref id="interface-ignore-methods-in-inner-enums-or-classes" />
+	</test-code>
+
+	<code-fragment id="java8-interface"><![CDATA[
+public interface Stage {
+    /**
+     * test
+     */
+	void test();
+
+    /**
+     * Process Stage
+     *
+     * @param context context of responsibility chain
+     */
+    void process(PipeLineContext context);
+
+    /**
+     * whether this stage can be skipped, true by default.
+     * @return  boolean  can skip or not.
+     */
+    default boolean isCanSkip() {
+        return true;
+    }
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Java8 Interface</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="java8-interface" />
+	</test-code>
+</test-data>

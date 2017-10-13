@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+    <test-code>
+        <description>AvoidCallStaticSimpleDateFormatRule</description>
+        <expected-problems>4</expected-problems>
+        <expected-linenumbers>30,22,18,45</expected-linenumbers>
+        <code><![CDATA[
+package com.alibaba.idea.pmd.rule.calendar;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+/**
+ * @author caikang
+ * @date 2016/11/25
+ */
+public class SimpleDateFormatRule {
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    private Lock lock = new ReentrantLock();
+
+    private void test(){
+        String string = dateFormat.format(new Date());
+        synchronized (this){
+            dateFormat.format(new Date());
+        }
+        dateFormat.format(new Date());
+        lock.lock();
+        try {
+            dateFormat.format(new Date());
+            dateFormat.format(new Date());
+        }finally {
+            lock.unlock();
+        }
+        dateFormat.format(new Date());
+        lock.lock();
+        dateFormat.format(new Date());
+        try{
+        dateFormat.format(new Date());
+        }finally{
+            lock.unlock();
+        }
+    }
+
+    private synchronized void test1(){
+        dateFormat.format(new Date());
+    }
+
+    private void test2(){
+        dateFormat.format(new Date());
+    }
+}
+
+
+        ]]></code>
+    </test-code>
+
+    <test-code>
+        <description>call with lock</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+package com.alibaba.idea.pmd.rule.calendar;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+/**
+ * @author caikang
+ * @date 2016/11/25
+ */
+public class SimpleDateFormatRule {
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    private Lock lock = new ReentrantLock();
+
+    private void test(){
+        synchronized (this){
+            dateFormat.format(new Date());
+        }
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        simpleDateFormat.format(new Date());
+        lock.lock();
+        try {
+            dateFormat.format(new Date());
+            dateFormat.format(new Date());
+        }finally {
+            lock.unlock();
+        }
+    }
+
+    private synchronized void test1(){
+        dateFormat.format(new Date());
+    }
+
+}
+
+
+        ]]></code>
+    </test-code>
+</test-data>

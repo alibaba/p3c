@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="pojo-field-has-primitive-type">
+		<![CDATA[
+	public class FooDO {
+		private static final int age;		// OK
+		private String tom; 				// OK
+		private boolean isBar;				// BAD
+		private byte[] buffer;				// BAD
+		private Long pageSize = 20;			// OK
+
+		public void bar() {
+			int pageNo = 1;
+		}
+
+		private static class NestedDTO {
+			private String tom; 			// OK
+			private boolean isBar;			// BAD
+		}
+
+		private static class InnerClass {
+			private boolean isBar; 			// OK
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>POJO has primitive type fileds</description>
+		<expected-problems>3</expected-problems>
+		<expected-linenumbers>14,4,5</expected-linenumbers>
+		<code-ref id="pojo-field-has-primitive-type" />
+	</test-code>
+
+</test-data>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="argument-is-string-literal">
+		<![CDATA[
+	public class Foo {
+		private String alias;
+
+		public void bar() {
+			String name;
+			if (name.equals("tom")) {	// BAD
+				return;
+			};
+
+			if (name.toString().equals("tom")) { // BAD
+			    return;
+			}
+
+			if (this.alias.equals("tom")) { // BAD
+			    return;
+			}
+
+			Integer a;
+			if (a.equals(3)) { // OK, literal number has no equals method
+			    return;
+			}
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>argument of equals is string literal</description>
+		<expected-problems>3</expected-problems>
+		<expected-linenumbers>6,10,14</expected-linenumbers>
+		<code-ref id="argument-is-string-literal" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="argument-is-constant">
+		<![CDATA[
+	public class Foo {
+		private static final String TOM = "tom";
+
+		public void bar() {
+			String label;
+			//"abc".equals(label);			// OK
+			//"abc".equals(label.toString()); // OK
+			if (label.equals(TOM)) {		// BAD
+				return;
+			};
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>argument of equals is constant</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>8</expected-linenumbers>
+		<code-ref id="argument-is-constant" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="both-object-equals">
+		<![CDATA[
+	public class Foo {
+		public void bar() {
+			String name;
+			String label;
+			if (name.equals(label)) {	// OK
+				return;
+			};
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>non literal with equals</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="both-object-equals" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="equals-in-nested-class">
+		<![CDATA[
+	public class Foo {
+		public static class Inner1 {
+			public void bar() {
+				String name;
+				if (name.equals("")) {
+					return;
+				};
+			}
+		}
+		public static class Inner2 {
+			public void bar() {
+				String name;
+				if (name.equals("")) {
+					return;
+				};
+			}
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>multiple nested class</description>
+		<expected-problems>2</expected-problems>
+		<code-ref id="equals-in-nested-class" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="caller-is-constant">
+		<![CDATA[
+	public class Foo {
+		private static final ThreadLocal<Boolean> LOCAL_TEST_FLAG = new ThreadLocal<Boolean>();
+
+		public static boolean isLoadTestFlag() {
+			return Boolean.TRUE.equals(LOCAL_TEST_FLAG.get());
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>caller of equals is constant</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="caller-is-constant" />
+	</test-code>
+</test-data>

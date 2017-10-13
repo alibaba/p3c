@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+    <code-fragment id="finally-has-return">
+        <![CDATA[
+	public class Example {
+	    public int fn() {
+	    	try {
+	    	    return 1;
+	    	} finally {
+	    		return 0;
+	    	}
+	    }
+	}
+		]]>
+    </code-fragment>
+    <test-code>
+        <description>finally statement contains return</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>6</expected-linenumbers>
+        <code-ref id="finally-has-return"/>
+    </test-code>
+
+    <!-- ====================================================================== -->
+
+    <code-fragment id="finally-has-multi-return">
+        <![CDATA[
+	public class Example {
+	    public int fn() {
+	        int a = 0;
+	    	try {
+	    	    a++;
+	    	    return 1;
+	    	} finally {
+	    		if (a > 1) {
+	    		    return a;
+	    		} else {
+	    		    return 0;
+	    		}
+	    	}
+	    }
+	}
+		]]>
+    </code-fragment>
+    <test-code>
+        <description>finally statement has multiple return</description>
+        <expected-problems>2</expected-problems>
+        <expected-linenumbers>9,11</expected-linenumbers>
+        <code-ref id="finally-has-multi-return"/>
+    </test-code>
+
+    <!-- ====================================================================== -->
+
+    <code-fragment id="finally-no-return">
+        <![CDATA[
+	public class Example {
+	    public int fn() {
+	        int a = 0;
+	    	try {
+	    	    a++;
+	    	    return 1;
+	    	} finally {
+	    		// do thing
+	    	}
+	    	return 0;
+	    }
+	}
+		]]>
+    </code-fragment>
+    <test-code>
+        <description>finally statement contains no return</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="finally-no-return"/>
+    </test-code>
+</test-data>

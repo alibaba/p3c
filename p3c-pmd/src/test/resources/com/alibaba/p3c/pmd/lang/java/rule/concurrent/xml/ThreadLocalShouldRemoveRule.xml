@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+    <test-code>
+        <description>ThreadLocalShouldRemoveRule</description>
+        <expected-problems>2</expected-problems>
+        <expected-linenumbers>9,10</expected-linenumbers>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+public class ThreadLocalTest {
+    private String test;
+    private ThreadLocal<String> local;
+    private static ThreadLocal<String> local2;
+
+    public void remove(){
+        //local.remove();
+        //local2.remove();
+    }
+}
+
+        ]]></code>
+    </test-code>
+
+    <test-code>
+        <description>with remove</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+public class ThreadLocalTest {
+    private String test;
+    private ThreadLocal<String> local;
+    private static ThreadLocal<String> local2;
+
+    public void remove(){
+        local.remove();
+        local2.remove();
+    }
+}
+        ]]></code>
+    </test-code>
+
+    <test-code>
+        <description>with initial 1</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+/**
+ * @author caikang
+ * @date 2017/3/29
+ */
+public class ThreadLocalTest {
+    private static final ThreadLocal<DateFormat> df = new ThreadLocal<DateFormat>() {
+        @Override
+        protected DateFormat initialValue() {
+            return new SimpleDateFormat("yyyy-MM-dd");
+        }
+    };
+}
+
+        ]]></code>
+    </test-code>
+
+    <test-code>
+        <description>with initial 2</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+/**
+ * @author caikang
+ * @date 2017/3/29
+ */
+public class ThreadLocalTest {
+    private static final ThreadLocal<DateFormat> df = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
+}
+
+        ]]></code>
+    </test-code>
+</test-data>

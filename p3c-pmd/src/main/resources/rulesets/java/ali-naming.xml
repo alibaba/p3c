@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+
+<ruleset name="AlibabaJavaNaming" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+
+    <rule name="ClassNamingShouldBeCamelRule"
+          language="java"
+          since="1.6"
+          message="java.naming.ClassNamingShouldBeCamelRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.naming.ClassNamingShouldBeCamelRule">
+        <priority>3</priority>
+    </rule>
+
+    <rule name="AbstractClassShouldStartWithAbstractNamingRule"
+          language="java"
+          since="1.4"
+          message="java.naming.AbstractClassShouldStartWithAbstractNamingRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.naming.AbstractClassShouldStartWithAbstractNamingRule">
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+    abstract class BaseControllerDemo{
+    }
+
+    abstract class AbstractActionDemo{
+    }
+            ]]>
+        </example>
+    </rule>
+
+    <rule name="ExceptionClassShouldEndWithExceptionRule"
+          language="java"
+          since="1.6"
+          message="java.naming.ExceptionClassShouldEndWithExceptionRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.naming.ExceptionClassShouldEndWithExceptionRule">
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+    public class CacheDemoException extends Exception{
+    }
+            ]]>
+        </example>
+    </rule>
+
+
+    <rule name="TestClassShouldEndWithTestNamingRule"
+          language="java"
+          since="1.6"
+          message="java.naming.TestClassShouldEndWithTestNamingRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.naming.TestClassShouldEndWithTestNamingRule">
+        <priority>3</priority>
+        <example>
+            <![CDATA[
+    public class DemoTest {
+    }
+            ]]>
+        </example>
+    </rule>
+
+    <rule name="LowerCamelCaseVariableNamingRule"
+          language="java"
+          since="1.6"
+          message="java.naming.LowerCamelCaseVariableNamingRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.naming.LowerCamelCaseVariableNamingRule">
+        <priority>2</priority>
+    </rule>
+
+    <rule name="AvoidStartWithDollarAndUnderLineNamingRule"
+          language="java"
+          since="1.6"
+          message="java.naming.AvoidStartWithDollarAndUnderLineNamingRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.naming.AvoidStartWithDollarAndUnderLineNamingRule">
+        <priority>2</priority>
+    </rule>
+
+    <rule name="ConstantFieldShouldBeUpperCaseRule"
+          language="java"
+          since="1.6"
+          message="java.naming.ConstantFieldShouldBeUpperCaseRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.naming.ConstantFieldShouldBeUpperCaseRule">
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+    public class ConstantNameDemo {
+
+    /**
+    * max stock count
+    */
+    public static final Long MAX_STOCK_COUNT = 50000L;
+            ]]>
+        </example>
+    </rule>
+
+    <rule name="ServiceOrDaoClassShouldEndWithImplRule"
+          language="java"
+          since="1.6"
+          message="java.naming.ServiceOrDaoClassShouldEndWithImplRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.naming.ServiceOrDaoClassShouldEndWithImplRule">
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+    public interface DemoService{
+        void f();
+    }
+
+    public class DemoServiceImpl implements DemoService {
+        @Override
+        public void f(){
+            System.out.println("hello world");
+        }
+    }
+            ]]>
+        </example>
+    </rule>
+
+    <rule name="PackageNamingRule"
+          language="java"
+          since="1.6"
+          message="java.naming.PackageNamingRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.naming.PackageNamingRule">
+        <priority>3</priority>
+        <example>
+            <![CDATA[
+    com.alibaba.mpp.util / com.taobao.tddl.domain.dto
+            ]]>
+        </example>
+    </rule>
+
+    <rule name="BooleanPropertyShouldNotStartWithIsRule"
+          language="java"
+          since="1.6"
+          message="java.naming.BooleanPropertyShouldNotStartWithIsRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.naming.BooleanPropertyShouldNotStartWithIsRule">
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+    public class DemoDO{
+        Boolean success;
+        Boolean delete;
+    }
+            ]]>
+        </example>
+    </rule>
+
+    <rule name="ArrayNamingShouldHaveBracketRule"
+          language="java"
+          since="1.6"
+          message="java.naming.ArrayNamingShouldHaveBracketRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.naming.ArrayNamingShouldHaveBracketRule">
+        <priority>3</priority>
+        <example>
+            <![CDATA[
+    String[] a = new String[3];
+            ]]>
+        </example>
+    </rule>
+
+</ruleset>

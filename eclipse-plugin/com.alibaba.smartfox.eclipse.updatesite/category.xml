@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="https://p3c.alibaba.com/plugin/eclipse/update">
+      Alibaba Java Coding Guidelines
+   </description>
+   <feature id="com.alibaba.smartfox.eclipse.feature" version="0.0.0">
+      <category name="Smartfox"/>
+   </feature>
+   <category-def name="Smartfox" label="Smartfox Eclipse Plugin"/>
+</site>

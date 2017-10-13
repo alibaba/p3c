@@ -1,0 +1,35 @@
+<test-data>
+
+    <code-fragment id="PackageNamingRule">
+        <![CDATA[
+        // should be lowercase name
+        package com.MyCompany;
+        public class SomeClass {
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Package Name should be lowercase</description>
+        <expected-problems>1</expected-problems>
+        <code-ref id="PackageNamingRule" />
+        <expected-linenumbers>2</expected-linenumbers>
+    </test-code>
+
+
+    <code-fragment id="PackageNamingRule1">
+        <![CDATA[
+        // should be lowercase name
+        package com.my.company;
+        public class SomeClass {
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Package Name should be lowercase</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="PackageNamingRule1" />
+    </test-code>
+
+
+
+</test-data>

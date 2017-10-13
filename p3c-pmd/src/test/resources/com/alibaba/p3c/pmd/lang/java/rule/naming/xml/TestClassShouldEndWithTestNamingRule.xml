@@ -1,0 +1,35 @@
+<test-data>
+    <code-fragment id="TestClassNameEndWithTest">
+        <![CDATA[
+public class TestClassNameRuleTest {
+    @Test
+    public void testCase() {
+
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Test Class Name Should End With Test</description>
+        <code-ref id="TestClassNameEndWithTest" />
+        <expected-problems>0</expected-problems>
+    </test-code>
+
+
+    <code-fragment id="TestClassNameNotEndWithTest">
+        <![CDATA[
+public class TestClassNameRuleErrorExample {
+    @Test
+    public void testCase() {
+
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Test Class Name Should End With Test</description>
+        <expected-problems>1</expected-problems>
+        <code-ref id="TestClassNameNotEndWithTest" />
+        <expected-linenumbers>1</expected-linenumbers>
+    </test-code>
+</test-data>

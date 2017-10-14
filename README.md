@@ -1,6 +1,7 @@
-
-![](https://gw.alicdn.com/tfscom/TB1fb3nlYsTMeJjy1zbXXchlVXa.png)
-
+<a href="https://yunqi.aliyun.com/#/video/detail1433" target="_blank">
+                                <img src="https://gw.alicdn.com/tfscom/TB1mDzzf_SPY1JjSZPcXXXIwpXa.jpg ">
+                            </a>
+                         
  2017年10月14日杭州云栖大会，Java代码规约扫描插件全球首发仪式正式启动，规范正式以插件形式公开走向业界，引领Java语言的规范之路。目前，插件已在[云效公有云产品](https://www.aliyun.com/product/yunxiao)中集成，[立即体验]（https://rdc-test.aliyun.com）！（云效>公有云>设置->测试服务->阿里巴巴Java代码规约）。
 
 # P3C

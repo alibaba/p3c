@@ -35,3 +35,7 @@ The project consists of 3 parts:
     2. These two methods must be overridden for Set since they are used to ensure that no duplicate object will be inserted in Set.
     3. These two methods must be overridden if self-defined object is used as the key of Map.
    Note: String can be used as the key of Map since these two methods have been rewritten.
+   
+ ## <font color="green">Other</font>
+ - Messy Code：[中文乱码解决方法](https://github.com/alibaba/p3c/issues/32#issuecomment-336762512)
+ > Appearance&Behavior->Appearance->UI Options->Name里面设置成微软雅黑（microsoft yahei light）

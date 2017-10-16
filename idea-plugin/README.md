@@ -63,11 +63,11 @@ compile 'com.alibaba.p3c.idea:p3c-common:1.0.0'
 ## <font color="green">Other</font>
 1. <font color="blue">[中文乱码解决方法](https://github.com/alibaba/p3c/issues/32#issuecomment-336762512)</font>
 
-	<font color="blue">Appearance&Behavior -> Appearance -> UI Options -> Name 里面设置成微软雅黑（microsoft yahei light）</font>
+	* <font color="blue">Appearance&Behavior -> Appearance -> UI Options -> Name 里面设置成微软雅黑（microsoft yahei light）</font>
 
-	![Switch language](doc/images/change_name.png) 
+	   ![Font](doc/images/change_name.png) 
  
-	<font color="blue">重启 Android Studio</font>
+	* <font color="blue">Switch Language to English and restrt.</font>
 
-	![Switch language](doc/images/normal_view.png) 
+	   ![Switch language](doc/images/normal_view.png) 
 

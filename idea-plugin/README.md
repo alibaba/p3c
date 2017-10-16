@@ -25,7 +25,7 @@ compile 'com.alibaba.p3c.idea:p3c-common:1.0.0'
 ```
 
 ## <font color="green">Install</font>
-
+### Install from repositories
 1. <font color="blue">Settings >> Plugins >> Browse repositories... </font>
 
     ![Switch language](doc/images/install_1.png) 
@@ -35,6 +35,11 @@ compile 'com.alibaba.p3c.idea:p3c-common:1.0.0'
     ![Switch language](doc/images/install_2.png) 
 
 3.  <font color="blue">Restart to take effect. </font>
+### Install from local zip file.
+1. Open https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines and download the latest version zip file.
+    ![download](https://gw.alicdn.com/tfscom/TB1WcF3hzlxYKJjSZFuXXaYlVXa.png)
+2. Settings >> Plugins >> Install plugin from disk...,select the downloaded zip file in previous step then restart your idea
+    ![](https://gw.alicdn.com/tfscom/TB1WFsKiqigSKJjSsppXXabnpXa.png)
 
 ## <font color="green">Use</font>
 

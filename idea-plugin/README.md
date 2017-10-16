@@ -56,7 +56,7 @@ compile 'com.alibaba.p3c.idea:p3c-common:1.0.0'
 	 
 	![Result](doc/images/inspection_result.png)  
 	
-	<font color="blue">We can also analyze file which is modified before vsc checkin.</font>  
+	<font color="blue">We can also analyze file which is modified before vcs checkin.</font>  
 	
 	![Before Checkin](doc/images/analyze_before_checkin.png) 
 
@@ -71,4 +71,3 @@ compile 'com.alibaba.p3c.idea:p3c-common:1.0.0'
 
 	![Switch language](doc/images/normal_view.png) 
 
-	

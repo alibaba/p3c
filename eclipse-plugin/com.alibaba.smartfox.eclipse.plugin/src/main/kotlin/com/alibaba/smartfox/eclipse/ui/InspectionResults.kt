@@ -41,8 +41,8 @@ object InspectionResults {
 
 
     fun clear() {
-        fileViolations.forEach { t, u ->
-            MarkerUtil.removeAllMarkers(t)
+        fileViolations.forEach {
+            MarkerUtil.removeAllMarkers(it.key)
         }
         fileViolations.clear()
         // update contentDescription

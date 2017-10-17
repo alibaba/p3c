@@ -1,4 +1,4 @@
-# Idea Plugin
+# Idea Plugin 
 ---
 ## <font color="green">Prepare</font>
 - Project JDK: 1.7+
@@ -23,7 +23,7 @@ gradle runIde -Pidea_version=14.1.7
 ``` groovy
 compile 'com.alibaba.p3c.idea:p3c-common:1.0.0'
 ```
-
+## [中文使用手册](README_cn.md)
 ## <font color="green">Install</font>
 ### Install from repositories
 1. <font color="blue">Settings >> Plugins >> Browse repositories... </font>
@@ -72,7 +72,7 @@ compile 'com.alibaba.p3c.idea:p3c-common:1.0.0'
 
 	   ![Font](doc/images/change_name.png) 
  
-	* <font color="blue">Switch Language to English and restrt.</font>
+	* <font color="blue">Switch Language to English and restart.</font>
 
 	   ![Switch language](doc/images/normal_view.png) 
 

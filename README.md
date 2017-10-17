@@ -35,3 +35,6 @@ The project consists of 3 parts:
     2. These two methods must be overridden for Set since they are used to ensure that no duplicate object will be inserted in Set.
     3. These two methods must be overridden if self-defined object is used as the key of Map.
    Note: String can be used as the key of Map since these two methods have been rewritten.
+
+## Join us
+If you have any questions or some advices, please contact with gujin whose email is guanbao.yanggb@alibaba-inc.com, and welcome to join us to make project P3C perfect to serve more programmer.

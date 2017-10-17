@@ -9,7 +9,7 @@
 ```
 mvn -U clean install
 ```
-
+## [中文使用手册](README_cn.md)
 ## <font color="green">Install</font>
 1. <font color="blue">Help >> Install New Software
 then enter this update site URL [https://p3c.alibaba.com/plugin/eclipse/update](https://p3c.alibaba.com/plugin/eclipse/update)</font>

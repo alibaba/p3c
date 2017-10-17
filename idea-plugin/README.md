@@ -72,7 +72,7 @@ compile 'com.alibaba.p3c.idea:p3c-common:1.0.0'
 
 	   ![Font](doc/images/change_name.png) 
  
-	* <font color="blue">Switch Language to English and restrt.</font>
+	* <font color="blue">Switch Language to English and restart.</font>
 
 	   ![Switch language](doc/images/normal_view.png) 
 

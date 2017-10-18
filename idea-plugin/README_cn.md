@@ -111,3 +111,9 @@ Alt+Enter键可呼出Intention菜单，不同的规则会提示不同信息的Qu
    
 #### 其他
 面板中其他按钮的功能大家自行探索吧，就不一一赘述了
+
+### 代码提交时检测
+1. 在提交代码框勾选Alibaba Code Guidelines选项
+   ![](https://gw.alicdn.com/tfscom/TB1u_ZZjamgSKJjSspiXXXyJFXa.png)
+2. 如果有违反手册的地方会提示是否继续提交，选择取消后会自动对修改的代码进行扫描
+   ![](https://gw.alicdn.com/tfscom/TB1r5PUXbb85uJjSZFmXXcgsFXa.png)

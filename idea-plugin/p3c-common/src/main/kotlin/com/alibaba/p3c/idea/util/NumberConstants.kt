@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.p3c.idea;
+package com.alibaba.p3c.idea.util
 
 /**
  * @author caikang
  * @date 2016/12/28
  */
-public interface NumberConstants {
-    int INTEGER_SIZE_OR_LENGTH_0 = 0;
-    int INTEGER_SIZE_OR_LENGTH_1 = 1;
-    int INTEGER_SIZE_OR_LENGTH_2 = 2;
+object NumberConstants {
+    val INTEGER_SIZE_OR_LENGTH_0 = 0
+    val INTEGER_SIZE_OR_LENGTH_1 = 1
+    val INTEGER_SIZE_OR_LENGTH_2 = 2
 
-    int INDEX_0 = 0;
-    int INDEX_1 = 1;
+    val INDEX_0 = 0
+    val INDEX_1 = 1
 }

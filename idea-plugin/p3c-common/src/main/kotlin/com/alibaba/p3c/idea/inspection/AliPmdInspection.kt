@@ -16,6 +16,7 @@
 package com.alibaba.p3c.idea.inspection
 
 import com.alibaba.p3c.idea.inspection.AliLocalInspectionToolProvider.ShouldInspectChecker
+import com.alibaba.p3c.idea.util.NumberConstants
 import com.alibaba.p3c.idea.util.QuickFixes
 import com.intellij.codeHighlighting.HighlightDisplayLevel
 import com.intellij.codeInspection.InspectionManager
@@ -103,8 +104,8 @@ class AliPmdInspection(private val ruleName: String)
 
         var shortName = "Alibaba" + ruleName
         val index = shortName.lastIndexOf("Rule")
-        if (index > com.alibaba.p3c.idea.NumberConstants.INDEX_0) {
-            shortName = shortName.substring(com.alibaba.p3c.idea.NumberConstants.INDEX_0, index)
+        if (index > NumberConstants.INDEX_0) {
+            shortName = shortName.substring(NumberConstants.INDEX_0, index)
         }
         return shortName
     }

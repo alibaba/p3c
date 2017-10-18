@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.p3c.idea;
+package com.alibaba.p3c.idea.util
 
 /**
  * @author caikang
  * @date 2016/12/28
  */
-public interface ObjectConstants {
-    String METHOD_NAME_EQUALS = "equals";
-    String METHOD_NAME_HASHCODE = "hashCode";
-    String METHOD_NAME_ADD = "add";
-    String METHOD_NAME_PUT = "put";
-    String CLASS_LITERAL = "class";
-    String INTERFACE_LITERAL = "interface";
-    String ENUM_LITERAL = "enum";
+object ObjectConstants {
+    val METHOD_NAME_EQUALS = "equals"
+    val METHOD_NAME_HASHCODE = "hashCode"
+    val METHOD_NAME_ADD = "add"
+    val METHOD_NAME_PUT = "put"
+    val CLASS_LITERAL = "class"
+    val INTERFACE_LITERAL = "interface"
+    val ENUM_LITERAL = "enum"
 }

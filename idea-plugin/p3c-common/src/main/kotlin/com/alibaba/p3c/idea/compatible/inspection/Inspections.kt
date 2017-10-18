@@ -15,9 +15,11 @@
  */
 package com.alibaba.p3c.idea.compatible.inspection
 
+import com.google.common.base.Splitter
 import com.intellij.codeInspection.ex.InspectionProfileImpl
 import com.intellij.codeInspection.ex.InspectionToolWrapper
 import com.intellij.codeInspection.ex.ScopeToolState
+import com.intellij.codeInspection.javaDoc.JavaDocLocalInspection
 import com.intellij.openapi.project.Project
 
 /**
@@ -30,6 +32,24 @@ object Inspections {
     fun aliInspections(project: Project, filter: (InspectionToolWrapper<*, *>) -> Boolean): List<InspectionToolWrapper<*, *>> {
         val profile = InspectionProfileService.getProjectInspectionProfile(project)
         return getAllTools(project, profile).filter(filter)
+    }
+
+    fun addCustomTag(project: Project, tag: String) {
+        val profile = InspectionProfileService.getProjectInspectionProfile(project)
+        val javaDocLocalInspection = profile.getInspectionTool("JavaDoc", project)?.tool
+                as? JavaDocLocalInspection ?: return
+        if (javaDocLocalInspection.myAdditionalJavadocTags.isEmpty()) {
+            javaDocLocalInspection.myAdditionalJavadocTags = tag
+            return
+        }
+
+        val tags = Splitter.on(',').splitToList(javaDocLocalInspection.myAdditionalJavadocTags)
+        if (tags.contains(tag)) {
+            return
+        }
+        javaDocLocalInspection.myAdditionalJavadocTags += "," + tag
+        profile.profileChanged()
+        profile.scopesChanged()
     }
 
     private fun getAllTools(project: Project, profile: InspectionProfileImpl): List<InspectionToolWrapper<*, *>> {

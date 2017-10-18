@@ -15,8 +15,8 @@
  */
 package com.alibaba.p3c.idea.inspection.standalone
 
-import com.alibaba.p3c.idea.NumberConstants
-import com.alibaba.p3c.idea.ObjectConstants
+import com.alibaba.p3c.idea.util.NumberConstants
+import com.alibaba.p3c.idea.util.ObjectConstants
 import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.p3c.idea.inspection.AliBaseInspection
 import com.alibaba.p3c.idea.util.HighlightDisplayLevels

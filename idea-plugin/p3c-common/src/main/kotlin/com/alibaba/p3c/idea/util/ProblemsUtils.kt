@@ -111,9 +111,9 @@ object ProblemsUtils {
         if (psiElement == null) {
             return null
         }
-        if (psiElement is PsiKeyword && psiElement.text != null && (com.alibaba.p3c.idea.ObjectConstants.CLASS_LITERAL == psiElement.text
-                || com.alibaba.p3c.idea.ObjectConstants.INTERFACE_LITERAL == psiElement.text
-                || com.alibaba.p3c.idea.ObjectConstants.ENUM_LITERAL == psiElement.text) && psiElement.parent is PsiClass) {
+        if (psiElement is PsiKeyword && psiElement.text != null && (ObjectConstants.CLASS_LITERAL == psiElement.text
+                || ObjectConstants.INTERFACE_LITERAL == psiElement.text
+                || ObjectConstants.ENUM_LITERAL == psiElement.text) && psiElement.parent is PsiClass) {
             val parent = psiElement.parent as PsiClass
             val identifier = parent.nameIdentifier
             return identifier ?: psiElement

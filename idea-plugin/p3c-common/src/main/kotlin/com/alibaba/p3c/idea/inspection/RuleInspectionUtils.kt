@@ -17,6 +17,7 @@ package com.alibaba.p3c.idea.inspection
 
 import com.alibaba.p3c.idea.config.P3cConfig
 import com.alibaba.p3c.idea.util.HighlightDisplayLevels
+import com.alibaba.p3c.idea.util.NumberConstants
 import com.alibaba.p3c.pmd.I18nResources
 import com.alibaba.smartfox.idea.common.util.getService
 import com.google.common.base.Joiner
@@ -177,7 +178,7 @@ object RuleInspectionUtils {
         logger.info("start to find rule sets from jar " + url)
         var path = URLDecoder.decode(url.path, StandardCharsets.UTF_8.name())
         val index = path.lastIndexOf(URLUtil.JAR_SEPARATOR)
-        if (index > com.alibaba.p3c.idea.NumberConstants.INDEX_0) {
+        if (index > NumberConstants.INDEX_0) {
             path = path.substring("file:".length, index)
         }
         val jarFile = JarFile(path)

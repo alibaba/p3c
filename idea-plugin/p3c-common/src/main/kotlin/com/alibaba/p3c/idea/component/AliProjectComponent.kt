@@ -15,6 +15,7 @@
  */
 package com.alibaba.p3c.idea.component
 
+import com.alibaba.p3c.idea.compatible.inspection.Inspections
 import com.alibaba.p3c.idea.config.P3cConfig
 import com.alibaba.p3c.idea.inspection.AliPmdInspectionInvoker
 import com.alibaba.p3c.idea.pmd.SourceCodeProcessor
@@ -30,8 +31,10 @@ import com.intellij.psi.PsiManager
  * @author caikang
  * @date 2016/12/13
  */
-class AliProjectComponent(private val project: Project,
-        val p3cConfig: P3cConfig) : AliBaseProjectComponent {
+class AliProjectComponent(
+        private val project: Project,
+        val p3cConfig: P3cConfig
+) : AliBaseProjectComponent {
     private val listener: VirtualFileListener
     private val javaExtension = ".java"
     private val velocityExtension = ".vm"
@@ -56,6 +59,7 @@ class AliProjectComponent(private val project: Project,
     }
 
     override fun projectOpened() {
+        Inspections.addCustomTag(project, "date")
         VirtualFileManager.getInstance().addVirtualFileListener(listener)
     }
 

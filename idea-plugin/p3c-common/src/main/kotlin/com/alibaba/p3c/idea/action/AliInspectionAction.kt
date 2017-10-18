@@ -20,6 +20,7 @@ import com.alibaba.p3c.idea.compatible.inspection.Inspections
 import com.alibaba.p3c.idea.ep.InspectionActionExtensionPoint
 import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.p3c.idea.inspection.AliBaseInspection
+import com.alibaba.p3c.idea.util.NumberConstants
 import com.beust.jcommander.internal.Lists
 import com.intellij.analysis.AnalysisScope
 import com.intellij.analysis.AnalysisUIOptions
@@ -68,7 +69,7 @@ class AliInspectionAction : AnAction() {
         if (psiFile != null) {
             analysisScope = AnalysisScope(psiFile)
             projectDir = isBaseDir(psiFile.virtualFile, project)
-        } else if (virtualFiles != null && virtualFiles.size > com.alibaba.p3c.idea.NumberConstants.INTEGER_SIZE_OR_LENGTH_0) {
+        } else if (virtualFiles != null && virtualFiles.size > NumberConstants.INTEGER_SIZE_OR_LENGTH_0) {
             analysisScope = AnalysisScope(project, Lists.newArrayList<VirtualFile>(*virtualFiles))
             projectDir = virtualFiles.any {
                 isBaseDir(it, project)

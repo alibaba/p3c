@@ -16,6 +16,7 @@
 package com.alibaba.p3c.idea.quickfix
 
 import com.alibaba.p3c.idea.i18n.P3cBundle
+import com.google.common.base.Splitter
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiIdentifier
@@ -27,6 +28,8 @@ import com.intellij.psi.PsiIdentifier
  * @date 2017/02/28
  */
 object ConstantFieldShouldBeUpperCaseQuickFix : AliQuickFix {
+    val separator = '_'
+
     override fun getName(): String {
         return P3cBundle.getMessage("com.alibaba.p3c.idea.quickfix.field.to.upperCaseWithUnderscore")
     }
@@ -34,18 +37,32 @@ object ConstantFieldShouldBeUpperCaseQuickFix : AliQuickFix {
     override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
         val psiIdentifier = descriptor.psiElement as? PsiIdentifier ?: return
         val identifier = psiIdentifier.text
-        val resultName = separateCamelCase(identifier, "_").toUpperCase()
+        val list = Splitter.on(separator).trimResults().omitEmptyStrings().splitToList(identifier)
+
+        val resultName = list.joinToString(separator.toString()) {
+            separateCamelCase(it).toUpperCase()
+        }
+
         AliQuickFix.doQuickFix(resultName, project, psiIdentifier)
     }
 
-    internal fun separateCamelCase(name: String, separator: String): String {
+    private fun separateCamelCase(name: String): String {
         val translation = StringBuilder()
-        for (i in 0..name.length - 1) {
+
+
+        for (i in 0 until name.length - 1) {
             val character = name[i]
-            if (Character.isUpperCase(character) && translation.isNotEmpty()) {
+            val next = name[i + 1]
+            if (Character.isUpperCase(character) && !next.isUpperCase() && translation.isNotEmpty()) {
                 translation.append(separator)
             }
-            translation.append(character)
+            if (character != separator) {
+                translation.append(character)
+            }
+        }
+        val last = name.last()
+        if (last != separator) {
+            translation.append(last)
         }
         return translation.toString()
     }

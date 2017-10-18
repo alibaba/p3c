@@ -60,7 +60,7 @@
         <![CDATA[注解【Transactional】需要设置rollbackFor属性。]]>
     </entry>
     <entry key="java.exception.TransactionMustHaveRollbackRule.violation.msg">
-        <![CDATA[方法【%s】需要在Transactional注解指定rollbackFor或者在方法中显示的rollback。]]>
+        <![CDATA[方法【%s】需要在Transactional注解指定rollbackFor或者在方法中显式的rollback。]]>
     </entry>
     <entry key="java.exception.TransactionMustHaveRollbackRule.rule.msg">
         <![CDATA[事务场景中，抛出异常被catch后，如果需要回滚，一定要手动回滚事务。]]>
@@ -126,7 +126,7 @@
     </entry>
 
     <entry key="java.concurrent.AvoidManuallyCreateThreadRule.violation.msg">
-        <![CDATA[不要显示创建线程，请使用线程池。]]>
+        <![CDATA[不要显式创建线程，请使用线程池。]]>
     </entry>
     <entry key="java.concurrent.AvoidManuallyCreateThreadRule.rule.msg">
         <![CDATA[线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。]]>

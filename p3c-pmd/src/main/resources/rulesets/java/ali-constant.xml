@@ -33,7 +33,7 @@
         <![CDATA[    
  Negative example: 
    //Magic values, except for predefined, are forbidden in coding.
-   if(key.equals("Id#taobao_1")){ 
+   if ("Id#taobao_1".equals(key)) { 
       //...
    }    
          ]]>
@@ -42,7 +42,7 @@
         <![CDATA[ 
  Positive example:  
    String KEY_PRE = "Id#taobao_1";  
-   if(key.equals(KEY_PRE)){ 
+   if (KEY_PRE.equals(key)) { 
        //...
    }
       ]]>

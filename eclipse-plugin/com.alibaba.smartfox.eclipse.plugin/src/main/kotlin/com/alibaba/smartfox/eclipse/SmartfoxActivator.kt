@@ -132,8 +132,7 @@ class SmartfoxActivator : AbstractUIPlugin() {
 
         fun createRuleSets(): RuleSets {
             val ruleSetFactory = RuleSetFactory()
-            val ruleSet = ruleSetFactory.createRuleSet("java-ali-pmd,vm-ali-other")
-            return RuleSets(ruleSet)
+            return ruleSetFactory.createRuleSets("java-ali-pmd,vm-ali-other")
         }
     }
 }

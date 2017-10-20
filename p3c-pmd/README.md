@@ -15,7 +15,7 @@
 </dependency>
 ```
 ### <font color="green">Gradle</font>
-``` groovy
+```groovy
 compile 'com.alibaba.p3c:p3c-pmd:1.3.0'
 ```
 
@@ -28,7 +28,7 @@ P3C-PMD implements 49 rules involved in *Alibaba Java Coding Guidelines*, based 
 * 2 ``[Mandatory]`` A meaningful thread name is helpful to trace the error information, so assign a name when creating threads or thread pools.  
 Positive example:
 
-	```
+	```java
 	public class TimerTaskThread extends Thread {
 	    public TimerTaskThread(){
 	        super.setName("TimerTaskThread"); … }
@@ -44,7 +44,7 @@ Note: Below are the problems created by usage of Executors for thread pool creat
 * 5 ``[Mandatory]`` SimpleDataFormat is unsafe, do not define it as a static variable. If you have to, lock or Apache DateUtils class must be used.
 Positive example: Pay attention to thread-safety when using DateUtils. It is recommended to use below:
 
-	```
+	```java
 	private static final ThreadLocal<DateFormat> df = new ThreadLocal<DateFormat>() {  
 	    @Override  
 	    protected DateFormat initialValue() {  
@@ -70,7 +70,7 @@ Note: subList of ArrayList is an inner class, which is a view of ArrayList. All 
 Counter example: Do not use toArray method without arguments. Since the return type is Object[], ClassCastException will be thrown when casting it to a different array type.
 Positive example:
 
-	```
+	```java
 	    List<String> list = new ArrayList<String>(2);
 	    list.add("guan");
 	    list.add("bao");        
@@ -81,7 +81,7 @@ Note: When using toArray method with arguments, if input array size is not large
 * 4 ``[Mandatory]`` Do not use methods which will modify the list after using Arrays.asList to convert array to list, otherwise methods like add/remove/clear will throw UnsupportedOperationException.
 Note: The result of asList is the inner class of Arrays, which does not implement methods to modify itself. Arrays.asList is only a transferred interface, data inside which is stored as an array.
 
-	```
+	```java
 	String[] str = new String[] { "a", "b" };
 	List<String> list = Arrays.asList(str); 
 	```
@@ -90,7 +90,7 @@ Case 2: str[0]= "gujin"; list.get(0) will be modified.
 * 5 ``[Mandatory]`` Do not remove or add elements to a collection in a foreach loop. Please use Iterator to remove an item. Iterator object should be synchronized when executing concurrent operations.  
 Counter example:
 
-	```
+	```java
 	List<String> a = new ArrayList<String>();
 	    a.add("1");
 	    a.add("2");
@@ -103,7 +103,7 @@ Counter example:
 	Note: If you try to replace "1" with "2", you will get an unexpected result.
 Positive example:
 
-	```
+	```java
 	Iterator<String> it = a.iterator();
 	while (it.hasNext()) {    
 	        String temp =  it.next();             
@@ -180,7 +180,7 @@ Note: We can call the toString method in a POJO directly to print property value
 
 	Counter example:
 
-	```
+	```java
     String str = "start";  
     for(int i=0; i<100; i++) {  
         str = str + "hello";  
@@ -193,14 +193,14 @@ Note: We can call the toString method in a POJO directly to print property value
 * 1 ``[Mandatory]`` In a switch block, each case should be finished by break/return. If not, a note should be included to describe at which case it will stop. Within every switch block, a default statement must be present, even if it is empty.
 * 2 ``[Mandatory]`` Braces are used with if, else, for, do and while statements, even if the body contains only a single statement. Avoid using the following example:
 
-	```	
+	```java
 	if (condition) statements; 
 	```
 * 3 ``[Recommended]`` Do not use complicated expressions in conditional statements (except for frequently used methods like getXxx/isXxx). Using boolean variables to store results of complicated expressions temporarily will increase the code's readability.
 Note: Logic within many if statements are very complicated. Readers need to analyze the final results of the conditional expression to understand the branching logic.  
 Positive example:
 
-	```
+	```java
 	// please refer to the pseudo-code as follows 
 	boolean existed = (file.open(fileName, "w") != null) && (...) || (...);
 	if (existed) {
@@ -210,7 +210,7 @@ Positive example:
 
 	Counter example:  
 
-	```
+	```java
 	if ((file.open(fileName, "w") != null) && (...) || (...)) {
 	    ...
 	}

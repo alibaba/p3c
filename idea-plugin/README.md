@@ -20,7 +20,7 @@ gradle runIde -Pidea_version=14.1.7
 ```
 
 ## <font color="green">Use p3c-common as your plugin dependency</font>
-``` groovy
+```groovy
 compile 'com.alibaba.p3c.idea:p3c-common:1.0.0'
 ```
 ## [中文使用手册](README_cn.md)

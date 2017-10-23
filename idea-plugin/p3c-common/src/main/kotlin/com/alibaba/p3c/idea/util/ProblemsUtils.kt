@@ -15,6 +15,7 @@
  */
 package com.alibaba.p3c.idea.util
 
+import com.alibaba.p3c.pmd.lang.java.rule.comment.AvoidCommentBehindStatementRule
 import com.intellij.codeInspection.InspectionManager
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
@@ -39,7 +40,8 @@ import com.intellij.psi.impl.source.tree.ElementType
 6
  */
 object ProblemsUtils {
-    private val highlightLineRules = setOf("AvoidCommentBehindStatement")
+    private val highlightLineRules = setOf(AvoidCommentBehindStatementRule::class.java.simpleName)
+
     fun createProblemDescriptorForPmdRule(psiFile: PsiFile, manager: InspectionManager, isOnTheFly: Boolean,
             ruleName: String, desc: String, start: Int, end: Int,
             checkLine: Int = 0,

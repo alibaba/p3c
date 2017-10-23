@@ -37,8 +37,8 @@ The project consists of 3 parts:
    Note: String can be used as the key of Map since these two methods have been rewritten.
 
 ## Join us
-If you have any questions or some advices, please contact with gujin whose email is guanbao.yanggb@alibaba-inc.com, and welcome to join us to make project P3C perfect to serve more programmer.  
+If you have any questions or some advices, please contact with gujin whose email is guanbao.yanggb@alibaba-inc.com, and welcome to join us to make project P3C perfect to serve more programmers.  
 
-Please follow our weChat official accounts as alibabacode blow:
+Please follow our weChat official account as ali_yunxiao blow:
 
 ![](https://gw.alicdn.com/tfscom/TB1TrNcXjv85uJjSZFNXXcJApXa.png)

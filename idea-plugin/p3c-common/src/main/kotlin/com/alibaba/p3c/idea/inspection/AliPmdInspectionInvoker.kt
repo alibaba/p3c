@@ -98,7 +98,7 @@ class AliPmdInspectionInvoker(
         }
 
         fun invokeInspection(psiFile: PsiFile?, manager: InspectionManager, rule: Rule,
-                             isOnTheFly: Boolean): Array<ProblemDescriptor>? {
+                isOnTheFly: Boolean): Array<ProblemDescriptor>? {
             if (psiFile == null) {
                 return null
             }

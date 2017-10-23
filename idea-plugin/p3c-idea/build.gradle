@@ -16,7 +16,8 @@ version plugin_version
 
 dependencies {
     compile group: 'org.freemarker', name: 'freemarker', version: '2.3.25-incubating'
-    compile 'com.alibaba.p3c.idea:p3c-common:1.0.0'
+    //compile 'com.alibaba.p3c.idea:p3c-common:1.0.0'
+    compile project(':p3c-common')
     compile group: 'org.javassist', name: 'javassist', version: '3.21.0-GA'
 }
 

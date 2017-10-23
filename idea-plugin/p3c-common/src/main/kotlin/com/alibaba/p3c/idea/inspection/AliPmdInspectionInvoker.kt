@@ -17,8 +17,10 @@ package com.alibaba.p3c.idea.inspection
 
 import com.alibaba.p3c.idea.config.P3cConfig
 import com.alibaba.p3c.idea.pmd.AliPmdProcessor
+import com.alibaba.p3c.idea.util.DocumentUtils.calculateLineStart
 import com.alibaba.p3c.idea.util.DocumentUtils.calculateRealOffset
 import com.alibaba.p3c.idea.util.ProblemsUtils
+import com.alibaba.p3c.pmd.lang.java.rule.comment.RemoveCommentedCodeRule
 import com.beust.jcommander.internal.Lists
 import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
@@ -39,9 +41,11 @@ import java.util.concurrent.TimeUnit
  * @author caikang
  * @date 2016/12/13
  */
-class AliPmdInspectionInvoker(private val psiFile: PsiFile,
+class AliPmdInspectionInvoker(
+        private val psiFile: PsiFile,
         private val manager: InspectionManager,
-        private val rule: Rule) {
+        private val rule: Rule
+) {
     val logger = Logger.getInstance(javaClass)
 
     private var violations: List<RuleViolation> = emptyList()
@@ -64,15 +68,21 @@ class AliPmdInspectionInvoker(private val psiFile: PsiFile,
             val virtualFile = LocalFileSystem.getInstance().findFileByPath(rv.filename) ?: continue
             val psiFile = PsiManager.getInstance(manager.project).findFile(virtualFile) ?: continue
             val document = FileDocumentManager.getInstance().getDocument(virtualFile) ?: continue
-            val offset = calculateRealOffset(document, rv.beginLine, rv.beginColumn)
-            val endOffset = calculateRealOffset(document, rv.endLine, rv.endColumn)
+
+            val offsets = if (rv.rule.name == RemoveCommentedCodeRule::class.java.simpleName) {
+                Offsets(calculateLineStart(document, rv.beginLine),
+                        calculateLineStart(document, rv.endLine + 1) - 1)
+            } else {
+                Offsets(calculateRealOffset(document, rv.beginLine, rv.beginColumn),
+                        calculateRealOffset(document, rv.endLine, rv.endColumn))
+            }
             val errorMessage = if (isOnTheFly) {
                 rv.description
             } else {
                 "${rv.description} (line ${rv.beginLine})"
             }
             val problemDescriptor = ProblemsUtils.createProblemDescriptorForPmdRule(psiFile, manager,
-                    isOnTheFly, rv.rule.name, errorMessage, offset, endOffset, rv.beginLine) ?: continue
+                    isOnTheFly, rv.rule.name, errorMessage, offsets.start, offsets.end, rv.beginLine) ?: continue
             problemDescriptors.add(problemDescriptor)
         }
         return problemDescriptors.toTypedArray()
@@ -88,7 +98,7 @@ class AliPmdInspectionInvoker(private val psiFile: PsiFile,
         }
 
         fun invokeInspection(psiFile: PsiFile?, manager: InspectionManager, rule: Rule,
-                isOnTheFly: Boolean): Array<ProblemDescriptor>? {
+                             isOnTheFly: Boolean): Array<ProblemDescriptor>? {
             if (psiFile == null) {
                 return null
             }
@@ -130,3 +140,4 @@ class AliPmdInspectionInvoker(private val psiFile: PsiFile,
 }
 
 data class FileRule(val filePath: String, val ruleName: String)
+data class Offsets(val start: Int, val end: Int)

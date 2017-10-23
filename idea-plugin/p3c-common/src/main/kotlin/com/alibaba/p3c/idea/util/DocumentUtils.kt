@@ -36,6 +36,14 @@ object DocumentUtils {
         return lineOffset + calculateRealColumn(document, line, pmdColumn)
     }
 
+    fun calculateLineStart(document: Document, line: Int): Int {
+        val maxLine = document.lineCount
+        if (maxLine < line) {
+            return -1
+        }
+        return document.getLineStartOffset(line - 1)
+    }
+
     fun calculateRealColumn(document: Document, line: Int, pmdColumn: Int): Int {
         var realColumn = pmdColumn - 1
         val minusSize = PMD_TAB_SIZE - 1

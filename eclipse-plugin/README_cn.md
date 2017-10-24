@@ -11,7 +11,7 @@ Help -> Install New Software...
 
 ![](https://gw.alicdn.com/tfscom/TB1Ud5kifBNTKJjSszcXXbO2VXa.png)
 
-`注意：有同学反映插件扫描会触发JPA插件启动后台线程执行不明任务，如果不需要的话卸载掉JPA插件即可，目前尚未发现原因`
+注意：有同学反映插件扫描会触发很多 "JPA Java Change Event Handler (Waiting)" 的任务，这个是Eclipse的一个[bug](https://bugs.eclipse.org/bugs/show_bug.cgi?id=387455)，因为插件在扫描的时候会对文件进行标记，所以触发了JPA的任务。卸载JPA插件，或者尝试升级到最新版的Eclipse。附：[JPA project Change Event Handler问题解决](https://my.oschina.net/cimu/blog/278724)
 
 
 ## 插件使用
@@ -23,7 +23,7 @@ Help -> Install New Software...
  	* long或者Long初始赋值时，必须使用大写的L，不能是小写的l）
  	* Object的equals方法容易抛空指针异常，应使用常量或确定有值的对象来调用equals。
  	
-目前不支持代码实时检测，需要手动触发，希望更多的人加入进来一起把咱们的插件做得越来越来，尽量提升研发的使用体验。
+目前不支持代码实时检测，需要手动触发，希望更多的人加入进来一起把咱们的插件做得越来越好，尽量提升研发的使用体验。
 
    
 ### 代码扫描

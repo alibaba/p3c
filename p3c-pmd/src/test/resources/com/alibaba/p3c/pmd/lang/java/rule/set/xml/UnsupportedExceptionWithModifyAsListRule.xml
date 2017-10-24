@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test-data>
 
-	<code-fragment id="sets-UnsupportedExceptionWithModifyAsListRule-ok"><![CDATA[
-	    public class Foo {   
-            private void method(long aLong) {  
-               List<String> t   = Arrays.asList("a","b","c"); 
-            } 
+    <code-fragment id="sets-UnsupportedExceptionWithModifyAsListRule-ok"><![CDATA[
+    public class Foo {
+        private void method(long aLong) {
+            List<String> t   = Arrays.asList("a","b","c");
         }
+    }
     ]]>
-	</code-fragment>
+    </code-fragment>
 
-	<test-code>
-		<description>sets-UnsupportedExceptionWithModifyAsListRule-ok.</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="sets-UnsupportedExceptionWithModifyAsListRule-ok" />
-	</test-code>
- 
-	<code-fragment id="sets-UnsupportedExceptionWithModifyAsListRule-warn"><![CDATA[
-  	  public class Foo {   
-            private void method1() {  
-		      if(true){
-		            List<String> list = Arrays.asList("a","b","c");
-		            list.add("d");  
-		            list.remove("22");
-		            list.clear();
-		      }
-		      List<String> list = new ArrayList<String>();
-		      list.add("b");
-		      list.remove("b");
-           } 
-           
-           private void method2() {  
-		      if(true){
-		            List<String> list = Arrays.asList("a","b","c");
-		            list.add("d");  
-		      }
-		      List<String> list = new ArrayList<String>();
-		      list.add("b"); 
-           }
-      }
+    <test-code>
+        <description>sets-UnsupportedExceptionWithModifyAsListRule-ok.</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="sets-UnsupportedExceptionWithModifyAsListRule-ok"/>
+    </test-code>
+
+    <code-fragment id="sets-UnsupportedExceptionWithModifyAsListRule-warn"><![CDATA[
+    public class Foo {
+        private void method1() {
+            if (true) {
+                List<String> list = Arrays.asList("a", "b", "c");
+                list.add("d");
+                list.remove("22");
+                list.clear();
+            }
+            List<String> list = new ArrayList<String>();
+            list.add("b");
+            list.remove("b");
+        }
+
+        private void method2() {
+            if (true) {
+                List<String> list = Arrays.asList("a", "b", "c");
+                list.add("d");
+            }
+            List<String> list = new ArrayList<String>();
+            list.add("b");
+        }
+    }
     ]]>
-	</code-fragment>
+    </code-fragment>
 
-	<test-code>
-		<description>sets-UnsupportedExceptionWithModifyAsListRule-warn.</description>
-		<expected-problems>4</expected-problems>
-		<expected-linenumbers>5,6,7,17</expected-linenumbers>
-		<code-ref id="sets-UnsupportedExceptionWithModifyAsListRule-warn" />
-	</test-code>
+    <test-code>
+        <description>sets-UnsupportedExceptionWithModifyAsListRule-warn.</description>
+        <expected-problems>4</expected-problems>
+        <expected-linenumbers>5,6,7,17</expected-linenumbers>
+        <code-ref id="sets-UnsupportedExceptionWithModifyAsListRule-warn"/>
+    </test-code>
 
 </test-data>

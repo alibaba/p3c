@@ -28,31 +28,31 @@ P3C-PMD implements 49 rules involved in *Alibaba Java Coding Guidelines*, based 
 * 2 ``[Mandatory]`` A meaningful thread name is helpful to trace the error information, so assign a name when creating threads or thread pools.  
 Positive example:
 
-	```java
-	public class TimerTaskThread extends Thread {
-	    public TimerTaskThread(){
-	        super.setName("TimerTaskThread"); … }
-	```
+    ```java
+    public class TimerTaskThread extends Thread {
+        public TimerTaskThread(){
+            super.setName("TimerTaskThread"); … }
+    ```
 * 3 ``[Mandatory]`` Threads should be provided by thread pools. Explicitly creating threads is not allowed. 
 Note: Using thread pool can reduce the time of creating and destroying thread and save system resource. If we do not use thread pools, lots of similar threads will be created which lead to "running out of memory" or over-switching problems.
 * 4 ``[Mandatory]`` A thread pool should be created by ThreadPoolExecutor rather than Executors. These would make the parameters of the thread pool understandable. It would also reduce the risk of running out of system resources.
 Note: Below are the problems created by usage of Executors for thread pool creation:  
-	1. FixedThreadPool and SingleThreadPool:
- 		Maximum request queue size Integer.MAX_VALUE. A large number of requests might cause OOM.
-	2. CachedThreadPool and ScheduledThreadPool:  
-		The number of threads which are allowed to be created is Integer.MAX_VALUE. Creating too many threads might lead to OOM.
+    1. FixedThreadPool and SingleThreadPool:
+         Maximum request queue size Integer.MAX_VALUE. A large number of requests might cause OOM.
+    2. CachedThreadPool and ScheduledThreadPool:  
+        The number of threads which are allowed to be created is Integer.MAX_VALUE. Creating too many threads might lead to OOM.
 * 5 ``[Mandatory]`` SimpleDataFormat is unsafe, do not define it as a static variable. If you have to, lock or Apache DateUtils class must be used.
 Positive example: Pay attention to thread-safety when using DateUtils. It is recommended to use below:
 
-	```java
-	private static final ThreadLocal<DateFormat> df = new ThreadLocal<DateFormat>() {  
-	    @Override  
-	    protected DateFormat initialValue() {  
-	        return new SimpleDateFormat("yyyy-MM-dd");  
-	    }  
-	};  
-	```
-	Note: In JDK8, Instant can be used to replace Date; likewise Calendar is replaced by LocalDateTime, and SimpleDateFormatter is replaced by DateTimeFormatter.
+    ```java
+    private static final ThreadLocal<DateFormat> df = new ThreadLocal<DateFormat>() {  
+        @Override  
+        protected DateFormat initialValue() {  
+            return new SimpleDateFormat("yyyy-MM-dd");  
+        }  
+    };  
+    ```
+    Note: In JDK8, Instant can be used to replace Date; likewise Calendar is replaced by LocalDateTime, and SimpleDateFormatter is replaced by DateTimeFormatter.
 * 6 ``[Mandatory]`` Run multiple TimeTask by using ScheduledExecutorService rather than Timer, because Timer will kill all running threads in case of failure to catch exceptions.
 * 7 ``[Recommended]`` When using CountDownLatch to convert asynchronous operations to synchronous ones, each thread must call countdown method before quitting. Make sure to catch any exception during thread running, to let countdown method be executed. If main thread cannot reach await method, program will return until timeout.
 Note: Be careful, exception thrown by a child thread cannot be caught by main thread.
@@ -70,48 +70,48 @@ Note: subList of ArrayList is an inner class, which is a view of ArrayList. All 
 Counter example: Do not use toArray method without arguments. Since the return type is Object[], ClassCastException will be thrown when casting it to a different array type.
 Positive example:
 
-	```java
-	    List<String> list = new ArrayList<String>(2);
-	    list.add("guan");
-	    list.add("bao");        
-	    String[] array = new String[list.size()];
-	    array = list.toArray(array);
-	```
+    ```java
+        List<String> list = new ArrayList<String>(2);
+        list.add("guan");
+        list.add("bao");        
+        String[] array = new String[list.size()];
+        array = list.toArray(array);
+    ```
 Note: When using toArray method with arguments, if input array size is not large enough, the method will re-assign the size internally, and then return the address of new array. If the size is larger than needed, the value of index[list.size()] will be set to null while other values remain the same. Defining an input with the same size of the list is recommended.
 * 4 ``[Mandatory]`` Do not use methods which will modify the list after using Arrays.asList to convert array to list, otherwise methods like add/remove/clear will throw UnsupportedOperationException.
 Note: The result of asList is the inner class of Arrays, which does not implement methods to modify itself. Arrays.asList is only a transferred interface, data inside which is stored as an array.
 
-	```java
-	String[] str = new String[] { "a", "b" };
-	List<String> list = Arrays.asList(str); 
-	```
+    ```java
+    String[] str = new String[] { "a", "b" };
+    List<String> list = Arrays.asList(str); 
+    ```
 Case 1: list.add("c"); will throw a runtime exception.  
 Case 2: str[0]= "gujin"; list.get(0) will be modified.
 * 5 ``[Mandatory]`` Do not remove or add elements to a collection in a foreach loop. Please use Iterator to remove an item. Iterator object should be synchronized when executing concurrent operations.  
 Counter example:
 
-	```java
-	List<String> a = new ArrayList<String>();
-	    a.add("1");
-	    a.add("2");
-	    for (String temp : a) {
-	        if ("1".equals(temp)){
-	            a.remove(temp);
-	        }
-	    }
-	```
-	Note: If you try to replace "1" with "2", you will get an unexpected result.
+    ```java
+    List<String> a = new ArrayList<String>();
+    a.add("1");
+    a.add("2");
+    for (String temp : a) {
+        if ("1".equals(temp)) {
+            a.remove(temp);
+        }
+    }
+    ```
+    Note: If you try to replace "1" with "2", you will get an unexpected result.
 Positive example:
 
-	```java
-	Iterator<String> it = a.iterator();
-	while (it.hasNext()) {    
-	        String temp =  it.next();             
-	        if (delete condition) {              
-	              it.remove();       
-	        }
-	    }    
-	```
+    ```java
+    Iterator<String> it = a.iterator();
+    while (it.hasNext()) {    
+            String temp =  it.next();             
+            if (delete condition) {              
+                  it.remove();       
+            }
+        }    
+    ```
 * 6``[Recommended]`` Set a size when initializing a collection if possible.  
 Note: Better to use ArrayList(int initialCapacity) to initialize ArrayList.
 
@@ -145,9 +145,9 @@ Counter example: boolean isSuccess; The method name will be isSuccess() and then
 * 9 ``[Mandatory]`` Package should be named in lowercase characters. There should be only one English word after each dot. Package names are always in singular format while class name can be in plural format if necessary.  
 Positive example: com.alibaba.open.util can be used as package name for utils;
 * 10 There are mainly two rules for interface and corresponding implementation class naming:
-	1. ``[Mandatory]`` All Service and DAO classes must be interface based on SOA principle. Implementation class names should be ended with Impl.  
+    1. ``[Mandatory]`` All Service and DAO classes must be interface based on SOA principle. Implementation class names should be ended with Impl.  
 Positive example: CacheServiceImpl to implement CacheService.
-	2. ``[Recommended]`` If the interface name is to indicate the ability of the interface, then its name should be adjective.  
+    2. ``[Recommended]`` If the interface name is to indicate the ability of the interface, then its name should be adjective.  
 Positive example: AbstractTranslator to implement Translatable.
 
 ### <font color="green">Constant Conventions</font>
@@ -167,9 +167,9 @@ Note: java.util.Objects#equals (a utility class in JDK7) is recommended.
 * 5 ``[Mandatory]`` The wrapper classes should be compared by equals method rather than by symbol of '==' directly.  
 Note: Consider this assignment: Integer var = ?. When it fits the range from -128 to 127, we can use == directly for a comparison. Because the Integer object will be generated by IntegerCache.cache, which reuses an existing object. Nevertheless, when it fits the complementary set of the former range, the Integer object will be allocated in Heap, which does not reuse an existing object. This is an [implementation-level detail](https://docs.oracle.com/javase/specs/jls/se9/html/jls-5.html#jls-5.1.7-300) that should NOT be relied upon. Hence using the equals method is always recommended.
 * 6 ``[Mandatory]`` Rules for using primitive data types and wrapper classes:
-	1. Members of a POJO class must be wrapper classes.
-	2. The return value and arguments of a RPC method must be wrapper classes.
-	3. ``[Recommended]`` Local variables should be primitive data types.    
+    1. Members of a POJO class must be wrapper classes.
+    2. The return value and arguments of a RPC method must be wrapper classes.
+    3. ``[Recommended]`` Local variables should be primitive data types.    
 Note: In order to remind the consumer of explicit assignments, there are no initial values for members in a POJO class. As a consumer, you should check problems such as NullPointerException and warehouse entries for yourself.
  Positive example: As the result of a database query may be null, assigning it to a primitive date type will cause a risk of NullPointerException because of Unboxing.  
  Counter example: Consider the output of a transaction volume's amplitude, like ±x%. As a primitive data, when it comes to a failure of calling a RPC service, the default return value: 0% will be assigned, which is not correct. A hyphen like - should be assigned instead. Therefore, the null value of a wrapper class can represent additional information, such as a failure of calling a RPC service, an abnormal exit, etc.
@@ -178,56 +178,56 @@ Note: In order to remind the consumer of explicit assignments, there are no init
 Note: We can call the toString method in a POJO directly to print property values in order to check the problem when a method throws an exception in runtime.
 * 9 ``[Recommended]`` Use the append method in StringBuilder inside a loop body when concatenating multiple strings.  
 
-	Counter example:
+    Counter example:
 
-	```java
+    ```java
     String str = "start";  
     for(int i=0; i<100; i++) {  
         str = str + "hello";  
     }
-	```
-	
-	Note: According to the decompiled bytecode file, for each iteration, it allocates a new StringBuilder object, appends a string, and finally returns a String object via the toString method. This is a tremendous waste of memory, especially when the iteration count is large.
+    ```
+    
+    Note: According to the decompiled bytecode file, for each iteration, it allocates a new StringBuilder object, appends a string, and finally returns a String object via the toString method. This is a tremendous waste of memory, especially when the iteration count is large.
 
 ### <font color="green">Flow Control Statements</font>
 * 1 ``[Mandatory]`` In a switch block, each case should be finished by break/return. If not, a note should be included to describe at which case it will stop. Within every switch block, a default statement must be present, even if it is empty.
 * 2 ``[Mandatory]`` Braces are used with if, else, for, do and while statements, even if the body contains only a single statement. Avoid using the following example:
 
-	```java
-	if (condition) statements; 
-	```
+    ```java
+    if (condition) statements; 
+    ```
 * 3 ``[Recommended]`` Do not use complicated expressions in conditional statements (except for frequently used methods like getXxx/isXxx). Using boolean variables to store results of complicated expressions temporarily will increase the code's readability.
 Note: Logic within many if statements are very complicated. Readers need to analyze the final results of the conditional expression to understand the branching logic.  
 Positive example:
 
-	```java
-	// please refer to the pseudo-code as follows 
-	boolean existed = (file.open(fileName, "w") != null) && (...) || (...);
-	if (existed) {
-	    ...
-	}  
-	```
+    ```java
+    // please refer to the pseudo-code as follows 
+    boolean existed = (file.open(fileName, "w") != null) && (...) || (...);
+    if (existed) {
+        //...
+    }  
+    ```
 
-	Counter example:  
+    Counter example:  
 
-	```java
-	if ((file.open(fileName, "w") != null) && (...) || (...)) {
-	    ...
-	}
-	```
+    ```java
+    if ((file.open(fileName, "w") != null) && (...) || (...)) {
+       // ...
+    }
+    ```
 
 ### <font color="green">Exception</font>
 * 4 ``[Mandatory]`` Make sure to invoke the rollback if a method throws an Exception. Rollbacks are based on the context of the coding logic.
 * 5 ``[Mandatory]`` Never use return within a finally block. A return statement in a finally block will cause exceptions or result in a discarded return value in the try-catch block.
 * 6 ``[Recommended]`` One of the most common errors is NullPointerException. Pay attention to the following situations:
-	* 1 If the return type is primitive, return a value of wrapper class may cause NullPointerException.
-	  Counter example: public int f() { return Integer } Unboxing a null value will throw a NullPointerException.
-	* 2 The return value of a database query might be null.
-	* 3 Elements in collection may be null, even though Collection.isEmpty() returns false.
-	* 4 Return values from an RPC might be null.
-	* 5 Data stored in sessions might by null.
-	* 6 Method chaining, like obj.getA().getB().getC(), is likely to cause NullPointerException.  
-	  Positive example: Use Optional to avoid null check and NPE (Java 8+).
+    * 1 If the return type is primitive, return a value of wrapper class may cause NullPointerException.
+      Counter example: public int f() { return Integer } Unboxing a null value will throw a NullPointerException.
+    * 2 The return value of a database query might be null.
+    * 3 Elements in collection may be null, even though Collection.isEmpty() returns false.
+    * 4 Return values from an RPC might be null.
+    * 5 Data stored in sessions might by null.
+    * 6 Method chaining, like obj.getA().getB().getC(), is likely to cause NullPointerException.  
+      Positive example: Use Optional to avoid null check and NPE (Java 8+).
 
 ### <font color="green">Code Comments</font>
 * 1 ``[Mandatory]`` Javadoc should be used for classes, class variables and methods. The format should be '/** comment **/', rather than '// xxx'.  

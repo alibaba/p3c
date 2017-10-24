@@ -101,11 +101,10 @@ Negative example:
    Iterator<Integer> it=b.iterator();		 
    while(it.hasNext()){                      
       Integer temp =  it.next();             
-      if(delCondition){              
-         it.remove();       
-      } 
-      
-   }      
+      if (delCondition) {
+          it.remove();
+      }
+   }
          ]]>
       </example>
     </rule>

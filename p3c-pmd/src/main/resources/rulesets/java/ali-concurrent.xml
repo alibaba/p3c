@@ -27,8 +27,8 @@ Positive example 2：
 
     //Common Thread Pool
     ExecutorService pool = new ThreadPoolExecutor(5, 200,
-         0L, TimeUnit.MILLISECONDS,
-         new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+        0L, TimeUnit.MILLISECONDS,
+        new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
 
     pool.execute(()-> System.out.println(Thread.currentThread().getName()));
     pool.shutdown();//gracefully shutdown
@@ -63,7 +63,7 @@ Positive example 3：
             <![CDATA[
     //org.apache.commons.lang3.concurrent.BasicThreadFactory
     ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1,
-            new BasicThreadFactory.Builder().namingPattern("example-schedule-pool-%d").daemon(true).build());
+        new BasicThreadFactory.Builder().namingPattern("example-schedule-pool-%d").daemon(true).build());
     executorService.scheduleAtFixedRate(new Runnable() {
         @Override
         public void run() {
@@ -84,9 +84,9 @@ Positive example 3：
         <example>
             <![CDATA[
     ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
-    .setNameFormat("demo-pool-%d").build();
+        .setNameFormat("demo-pool-%d").build();
     ExecutorService singleThreadPool = new ThreadPoolExecutor(1, 1,
-    0L, TimeUnit.MILLISECONDS,
+        0L, TimeUnit.MILLISECONDS,
     new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
 
     singleThreadPool.execute(()-> System.out.println(Thread.currentThread().getName()));
@@ -104,9 +104,9 @@ Positive example 3：
         <example>
             <![CDATA[
     ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
-    .setNameFormat("demo-pool-%d").build();
+        .setNameFormat("demo-pool-%d").build();
     ExecutorService singleThreadPool = new ThreadPoolExecutor(1, 1,
-    0L, TimeUnit.MILLISECONDS,
+        0L, TimeUnit.MILLISECONDS,
     new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
 
     singleThreadPool.execute(()-> System.out.println(Thread.currentThread().getName()));

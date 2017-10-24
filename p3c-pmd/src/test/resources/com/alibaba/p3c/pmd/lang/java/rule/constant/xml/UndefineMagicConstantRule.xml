@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test-data>
 
-	<code-fragment id="constants-ok"><![CDATA[
-	    public class Foo { 
-	        private final static  String notWarn = "666l";    
+    <code-fragment id="constants-ok"><![CDATA[
+    public class Foo {
+        private final static  String notWarn = "666l";
         } 
     ]]>
-	</code-fragment>
+    </code-fragment>
 
-	<test-code>
-		<description>UndefineMagicConstant.</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="constants-ok" />
-	</test-code>
- 
-	<code-fragment id="constants-err"><![CDATA[
-  	  public class Foo {        
-           private void method() {
-                  Integer i = 1;
-                  Integer k = 0;
-                  Boolean h = false;
-                  Long m = 2L;
-                  String n = "";
-                  if(i > 2){ 
-                  }
-                  if(i > 1){ 
-                  }
-                  if(m > 1L){
-                  }  
-                  if(i != null){ 
-                  }
-                  if(h != false){ 
-                  }
-                  if(n.equals("")){
-                  }    
-                  for(int j=0 ; j< 10 ; i++){
-               	     if(i > 2){
-                 
-                     }
-                     if(i != null){ 
-                     }   
-                  }     
-                  while(k < 1){
-                     if(i > 2){ 
-                     }
-                     k++;
-                  }
-           }   
-      } 
+    <test-code>
+        <description>UndefineMagicConstant.</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="constants-ok"/>
+    </test-code>
+
+    <code-fragment id="constants-err"><![CDATA[
+    public class Foo {
+        private void method() {
+            Integer i = 1;
+            Integer k = 0;
+            Boolean h = false;
+            Long m = 2L;
+            String n = "";
+            if (i > 2) {
+            }
+            if (i > 1) {
+            }
+            if (m > 1L) {
+            }
+            if (i != null) {
+            }
+            if (h != false) {
+            }
+            if (n.equals("")) {
+            }
+            for (int j = 0; j < 10; i++) {
+                if (i > 2) {
+
+                }
+                if (i != null) {
+                }
+            }
+            while (k < 1) {
+                if (i > 2) {
+                }
+                k++;
+            }
+        }
+    }
     ]]>
-	</code-fragment>
+    </code-fragment>
 
-	<test-code>
-		<description>UndefineMagicConstant.</description>
-		<expected-problems>2</expected-problems>
-		<expected-linenumbers>8,20</expected-linenumbers>
-		<code-ref id="constants-err" />
-	</test-code>
-	
-	<code-fragment id="constants-err-2"><![CDATA[
+    <test-code>
+        <description>UndefineMagicConstant.</description>
+        <expected-problems>2</expected-problems>
+        <expected-linenumbers>8,20</expected-linenumbers>
+        <code-ref id="constants-err"/>
+    </test-code>
+
+    <code-fragment id="constants-err-2"><![CDATA[
 	 public class Foo {        
         private void method(String path) {
 	         if (null == path || !path.startsWith("/home/admin/leveldb/")
@@ -67,13 +67,13 @@
 	    }
 	 }        
     ]]>
-	</code-fragment>
+    </code-fragment>
 
-	<test-code>
-		<description>UndefineMagicConstant.</description>
-		<expected-problems>1</expected-problems>
-		<expected-linenumbers>3</expected-linenumbers>
-		<code-ref id="constants-err-2" />
-	</test-code>
+    <test-code>
+        <description>UndefineMagicConstant.</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>3</expected-linenumbers>
+        <code-ref id="constants-err-2"/>
+    </test-code>
 
 </test-data>

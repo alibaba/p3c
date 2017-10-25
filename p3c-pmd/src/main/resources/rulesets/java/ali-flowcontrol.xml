@@ -12,12 +12,12 @@
 
         <example>
             <![CDATA[
-    switch( x ){
-        case 1 :
-        break ;
-        case 2 :
-        break ;
-        default :
+    switch (x) {
+        case 1:
+            break;
+        case 2:
+            break;
+        default:
     }
 			]]>
         </example>
@@ -31,8 +31,8 @@
 
         <example>
             <![CDATA[
-    if(flag) {
-        System.out.println("hello world");
+    if (flag) {
+            System.out.println("hello world");
     }
 			]]>
         </example>
@@ -49,7 +49,7 @@
             <![CDATA[
 Negative example:
     if ((file.open(fileName, "w") != null) && (...) || (...)) {
-        ...
+        // ...
     }
 			]]>
         </example>
@@ -58,7 +58,7 @@ Negative example:
 Positive example:
     boolean existed = (file.open(fileName, "w") != null) && (...) || (...);
     if (existed) {
-        ...
+        //...
     }
 			]]>
         </example>

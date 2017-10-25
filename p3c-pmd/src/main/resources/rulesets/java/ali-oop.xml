@@ -14,7 +14,7 @@
             <![CDATA[
     public void f(String str){
         String inner = "hi";
-        if(inner.equals(str)){
+        if (inner.equals(str)) {
             System.out.println("hello world");
         }
     }
@@ -34,7 +34,7 @@
     Integer a = 235;
     Integer b = 235;
     if (a.equals(b)) {
-        //相等
+        // code
     }
 			]]>
         </example>
@@ -112,7 +112,7 @@
 
         <example>
             <![CDATA[
-反例:
+Negative example:
     String result;
     for (String string : tagNameList) {
         result = result + string;
@@ -121,7 +121,7 @@
         </example>
         <example>
             <![CDATA[
-正例:
+Positive example:
     StringBuilder stringBuilder = new StringBuilder();
     for (String string : tagNameList) {
         stringBuilder.append(string);

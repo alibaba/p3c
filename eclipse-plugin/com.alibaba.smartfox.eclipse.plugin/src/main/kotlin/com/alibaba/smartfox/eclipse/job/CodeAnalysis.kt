@@ -61,7 +61,7 @@ object CodeAnalysis {
                     if (monitor.isCanceled) {
                         return@run Status.CANCEL_STATUS
                     }
-                    if(it.isAccessible){
+                    if (it.isAccessible) {
                         it.accept(fileVisitor)
                     }
                 }

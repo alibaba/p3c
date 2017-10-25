@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test-data>
 
-	<code-fragment id="class-without-comments"><![CDATA[
+    <code-fragment id="class-without-comments"><![CDATA[
 public class CommentsMustBeJavadocFormat {
     private String name;
     public void getName() {}
 }
     ]]>
-	</code-fragment>
+    </code-fragment>
 
-	<test-code>
-		<description>Class have no comment.</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="class-without-comments" />
-	</test-code>
+    <test-code>
+        <description>Class have no comment.</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="class-without-comments" />
+    </test-code>
 
 
-	<code-fragment id="class-with-non-javadoc-comments"><![CDATA[
+    <code-fragment id="class-with-non-javadoc-comments"><![CDATA[
 // a comment
 // a comment
 public class CommentsMustBeJavadocFormat {
@@ -26,17 +26,17 @@ public class CommentsMustBeJavadocFormat {
     public void getName() {}
 }
     ]]>
-	</code-fragment>
+    </code-fragment>
 
-	<test-code>
-		<description>Class have non-javadoc comments.</description>
-		<expected-problems>3</expected-problems>
-		<expected-linenumbers>2,4,6</expected-linenumbers>
-		<code-ref id="class-with-non-javadoc-comments" />
-	</test-code>
+    <test-code>
+        <description>Class have non-javadoc comments.</description>
+        <expected-problems>3</expected-problems>
+        <expected-linenumbers>2,4,6</expected-linenumbers>
+        <code-ref id="class-with-non-javadoc-comments" />
+    </test-code>
 
 
-	<code-fragment id="class-with-javadoc-comments"><![CDATA[
+    <code-fragment id="class-with-javadoc-comments"><![CDATA[
 /**
  * test
  */
@@ -52,15 +52,15 @@ public class CommentsMustBeJavadocFormat {
     public void getName() {}
 }
     ]]>
-	</code-fragment>
-	<test-code>
-		<description>Class have javadoc comments.</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="class-with-javadoc-comments" />
-	</test-code>
+    </code-fragment>
+    <test-code>
+        <description>Class have javadoc comments.</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="class-with-javadoc-comments" />
+    </test-code>
 
 
-	<code-fragment id="anonymous-class-with-non-javadoc-comments"><![CDATA[
+    <code-fragment id="anonymous-class-with-non-javadoc-comments"><![CDATA[
 // comment of outer class
 public class Outer_class {
    // comment of method of outer class
@@ -76,17 +76,17 @@ public class Outer_class {
    }
 }
     ]]>
-	</code-fragment>
-	<test-code>
-		<description>Anonymous Inner Class have non javadoc comments.
-		</description>
-		<expected-problems>2</expected-problems>
-		<expected-linenumbers>1,3</expected-linenumbers>
-		<code-ref id="anonymous-class-with-non-javadoc-comments" />
-	</test-code>
+    </code-fragment>
+    <test-code>
+        <description>Anonymous Inner Class have non javadoc comments.
+        </description>
+        <expected-problems>2</expected-problems>
+        <expected-linenumbers>1,3</expected-linenumbers>
+        <code-ref id="anonymous-class-with-non-javadoc-comments" />
+    </test-code>
 
 
-	<code-fragment id="non-javadoc-comments-before-package-and-import"><![CDATA[
+    <code-fragment id="non-javadoc-comments-before-package-and-import"><![CDATA[
 /*
  * Created on 18 nov. 2004
  */
@@ -104,15 +104,15 @@ public class PMDProjectPropertyPage extends PropertyPage {
 }
 
     ]]>
-	</code-fragment>
-	<test-code>
-		<description>Non-javadoc comments before package and import
-		</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="non-javadoc-comments-before-package-and-import" />
-	</test-code>
+    </code-fragment>
+    <test-code>
+        <description>Non-javadoc comments before package and import
+        </description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="non-javadoc-comments-before-package-and-import" />
+    </test-code>
 
-	<code-fragment id="ignore-comments-behind-statements"><![CDATA[
+    <code-fragment id="ignore-comments-behind-statements"><![CDATA[
 public class CommentsMustBeJavadocFormat {
     private String name; //avoid two two violations in one line.
     private Integer age;
@@ -120,12 +120,71 @@ public class CommentsMustBeJavadocFormat {
     }
 }
     ]]>
-	</code-fragment>
-	<test-code>
-		<description>Ignore comments behind statements.
-		</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="ignore-comments-behind-statements" />
-	</test-code>
+    </code-fragment>
+    <test-code>
+        <description>Ignore comments behind statements.
+        </description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="ignore-comments-behind-statements" />
+    </test-code>
+
+    <code-fragment id="when-node-has-annotation-wrong-format"><![CDATA[
+// test when class has annotation
+@Controller
+@Rest
+public class CommentsMustBeJavadocFormat {
+    // test when node has annotation
+    @Test
+    private String name;
+
+    // test when node has annotation2
+    @Hello(asdf="asdf")
+    @world
+    private Integer age;
+
+    // test when method has annotation
+    @Test
+    @Autowired
+    public void getName() {
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>When node has annotation and wrong comment format
+        </description>
+        <expected-problems>4</expected-problems>
+        <expected-linenumbers>1,5,9,14</expected-linenumbers>
+        <code-ref id="when-node-has-annotation-wrong-format" />
+    </test-code>
+
+    <code-fragment id="when-node-has-annotation-right-format"><![CDATA[
+/** test when class has annotation */
+@Controller
+@Rest
+public class CommentsMustBeJavadocFormat {
+    /** test when node has annotation */
+    @Test
+    private String name;
+
+    /** test when node has annotation2 */
+    @Hello(asdf="asdf")
+    @world
+    private Integer age;
+
+    /** test when method has annotation */
+    @Test
+    @Autowired
+    public void getName() {
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>When node has annotation and right comment format
+        </description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="when-node-has-annotation-right-format" />
+    </test-code>
 
 </test-data>

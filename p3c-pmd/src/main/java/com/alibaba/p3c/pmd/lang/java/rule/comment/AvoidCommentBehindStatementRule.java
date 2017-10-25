@@ -21,7 +21,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import com.alibaba.p3c.pmd.I18nResources;
-import com.alibaba.p3c.pmd.lang.java.rule.util.CommentUtils;
+import com.alibaba.p3c.pmd.lang.java.rule.util.NodeSortUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
@@ -75,19 +75,19 @@ public class AvoidCommentBehindStatementRule extends AbstractAliCommentRule {
 
         // expression nodes
         List<ASTExpression> expressionNodes = cUnit.findDescendantsOfType(ASTExpression.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, expressionNodes);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, expressionNodes);
 
         // filed declaration nodes
         List<ASTFieldDeclaration> fieldNodes =
             cUnit.findDescendantsOfType(ASTFieldDeclaration.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, fieldNodes);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, fieldNodes);
 
         // enum constant nodes
         List<ASTEnumConstant> enumConstantNodes =
             cUnit.findDescendantsOfType(ASTEnumConstant.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, enumConstantNodes);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, enumConstantNodes);
 
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, cUnit.getComments());
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, cUnit.getComments());
 
         return itemsByLineNumber;
     }

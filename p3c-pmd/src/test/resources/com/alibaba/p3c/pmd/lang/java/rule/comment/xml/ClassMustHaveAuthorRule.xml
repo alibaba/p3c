@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test-data>
 
-	<code-fragment id="class-without-author"><![CDATA[
+    <code-fragment id="class-without-author"><![CDATA[
 public class ClassMustHaveAuthorRule {}
     ]]>
-	</code-fragment>
+    </code-fragment>
 
-	<test-code>
-		<description>Class without author.</description>
-		<expected-problems>1</expected-problems>
-		<expected-linenumbers>1</expected-linenumbers>
-		<code-ref id="class-without-author" />
-	</test-code>
+    <test-code>
+        <description>Class without author.</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="class-without-author" />
+    </test-code>
 
 
-	<code-fragment id="class-with-author"><![CDATA[
+    <code-fragment id="class-with-author"><![CDATA[
 /**
  * @author keriezhang
  * @date 2017/07/18
  */
 public class ClassMustHaveAuthorRule {}
     ]]>
-	</code-fragment>
-	<test-code>
-		<description>Class with author.</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="class-with-author" />
-	</test-code>
-	
-	<code-fragment id="class-with-date"><![CDATA[
+    </code-fragment>
+    <test-code>
+        <description>Class with author.</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="class-with-author" />
+    </test-code>
+
+    <code-fragment id="class-with-date"><![CDATA[
 /**
  * @date 2016/12/14
  */
 public class ClassMustHaveAuthorRule {}
     ]]>
-	</code-fragment>
-	<test-code>
-		<description>Class with date.</description>
-		<expected-problems>1</expected-problems>
-		<expected-linenumbers>4</expected-linenumbers>
-		<code-ref id="class-with-date" />
-	</test-code>
-	
-	<code-fragment id="class-with-author-and-date"><![CDATA[
+    </code-fragment>
+    <test-code>
+        <description>Class with date.</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>4</expected-linenumbers>
+        <code-ref id="class-with-date" />
+    </test-code>
+
+    <code-fragment id="class-with-author-and-date"><![CDATA[
 /**
  * @author keriezhang
  * @date 2016/12/14
  */
 public class ClassMustHaveAuthorRule {}
     ]]>
-	</code-fragment>
-	<test-code>
-		<description>Class with author and date.</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="class-with-author-and-date" />
-	</test-code>
+    </code-fragment>
+    <test-code>
+        <description>Class with author and date.</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="class-with-author-and-date" />
+    </test-code>
 
-	<code-fragment id="class-with-inner-class"><![CDATA[
+    <code-fragment id="class-with-inner-class"><![CDATA[
 /**
  * @author keriezhang
  * @date 2016/12/14
@@ -66,28 +66,28 @@ public class Outer_Demo {
    }
 }
     ]]>
-	</code-fragment>
-	<test-code>
-		<description>Class with inner class.</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="class-with-inner-class" />
-	</test-code>
+    </code-fragment>
+    <test-code>
+        <description>Class with inner class.</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="class-with-inner-class" />
+    </test-code>
 
-	<code-fragment id="enum-without-author"><![CDATA[
+    <code-fragment id="enum-without-author"><![CDATA[
 public enum Day {
     SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
     THURSDAY, FRIDAY, SATURDAY
 }
     ]]>
-	</code-fragment>
-	<test-code>
-		<description>Enum without author</description>
-		<expected-problems>1</expected-problems>
-		<expected-linenumbers>1</expected-linenumbers>
-		<code-ref id="enum-without-author" />
-	</test-code>
+    </code-fragment>
+    <test-code>
+        <description>Enum without author</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="enum-without-author" />
+    </test-code>
 
-	<code-fragment id="enum-with-author"><![CDATA[
+    <code-fragment id="enum-with-author"><![CDATA[
 /**
  * @author keriezhang
  * @date 2016/12/14
@@ -97,14 +97,14 @@ public enum Day {
     THURSDAY, FRIDAY, SATURDAY
 }
     ]]>
-	</code-fragment>
-	<test-code>
-		<description>Enum with author</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="enum-with-author" />
-	</test-code>
+    </code-fragment>
+    <test-code>
+        <description>Enum with author</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="enum-with-author" />
+    </test-code>
 
-	<code-fragment id="enum-in-class"><![CDATA[
+    <code-fragment id="enum-in-class"><![CDATA[
 /**
  * @author keriezhang
  * @date 2016/12/14
@@ -117,14 +117,14 @@ public class Vehicle {
     }
 }
     ]]>
-	</code-fragment>
-	<test-code>
-		<description>Enum in class</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="enum-in-class" />
-	</test-code>
+    </code-fragment>
+    <test-code>
+        <description>Enum in class</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="enum-in-class" />
+    </test-code>
 
-	<code-fragment id="enum-in-interface"><![CDATA[
+    <code-fragment id="enum-in-interface"><![CDATA[
 /**
  * @author keriezhang
  * @date 2016/12/14
@@ -137,11 +137,31 @@ public interface Vehicle {
     }
 }
     ]]>
-	</code-fragment>
-	<test-code>
-		<description>Enum in interface</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="enum-in-interface" />
-	</test-code>
+    </code-fragment>
+    <test-code>
+        <description>Enum in interface</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="enum-in-interface" />
+    </test-code>
+
+    <code-fragment id="upper-case-author-annotation"><![CDATA[
+/**
+ * @Author keriezhang
+ * @date 2016/12/14
+ */
+public interface Vehicle {
+    public Number getNumber();
+    public void method2();
+    public enum color {
+        RED, GREEN, ANY;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Uppercase author annotation</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="upper-case-author-annotation" />
+    </test-code>
 
 </test-data>

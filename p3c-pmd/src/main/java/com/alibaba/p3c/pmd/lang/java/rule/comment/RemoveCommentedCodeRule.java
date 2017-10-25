@@ -21,7 +21,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-import com.alibaba.p3c.pmd.lang.java.rule.util.CommentUtils;
+import com.alibaba.p3c.pmd.lang.java.rule.util.NodeSortUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTBlockStatement;
@@ -144,25 +144,25 @@ public class RemoveCommentedCodeRule extends AbstractAliCommentRule {
 
         List<ASTImportDeclaration> importDecl = cUnit
             .findDescendantsOfType(ASTImportDeclaration.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, importDecl);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, importDecl);
 
         List<ASTClassOrInterfaceDeclaration> classDecl = cUnit
             .findDescendantsOfType(ASTClassOrInterfaceDeclaration.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, classDecl);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, classDecl);
 
         List<ASTFieldDeclaration> fields = cUnit.findDescendantsOfType(ASTFieldDeclaration.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, fields);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, fields);
 
         List<ASTMethodDeclaration> methods = cUnit.findDescendantsOfType(ASTMethodDeclaration.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, methods);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, methods);
 
         List<ASTConstructorDeclaration> constructors = cUnit.findDescendantsOfType(ASTConstructorDeclaration.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, constructors);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, constructors);
 
         List<ASTBlockStatement> blockStatements = cUnit.findDescendantsOfType(ASTBlockStatement.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, blockStatements);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, blockStatements);
 
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, cUnit.getComments());
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, cUnit.getComments());
 
         return itemsByLineNumber;
     }

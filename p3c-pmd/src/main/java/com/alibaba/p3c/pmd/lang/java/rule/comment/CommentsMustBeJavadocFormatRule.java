@@ -16,15 +16,17 @@
 package com.alibaba.p3c.pmd.lang.java.rule.comment;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 import com.alibaba.p3c.pmd.I18nResources;
-import com.alibaba.p3c.pmd.lang.java.rule.util.CommentUtils;
+import com.alibaba.p3c.pmd.lang.java.rule.util.NodeSortUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
+import net.sourceforge.pmd.lang.java.ast.ASTAnnotation;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceBodyDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
@@ -43,7 +45,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * [Mandatory] Javadoc should be used for classes, class variables and methods.
- * The format should be '\/** comment **\/', rather than '// xxx'.
+ * The format should be '\/** comment *\/', rather than '// xxx'.
  *
  * @author keriezhang
  * @date 2016/12/14
@@ -155,8 +157,13 @@ public class CommentsMustBeJavadocFormatRule extends AbstractAliCommentRule {
             if (value instanceof AbstractJavaNode) {
                 AbstractJavaNode node = (AbstractJavaNode)value;
 
+                // skip annotation node, we will deal with it later.
+                if (node instanceof ASTAnnotation) {
+                    continue;
+                }
+
                 // Check if comment is one line above class, field, method.
-                if (lastComment != null && isCommentOneLineBefore(lastComment, lastNode, node)) {
+                if (lastComment != null && isCommentOneLineBefore(itemsByLineNumber, lastComment, lastNode, node)) {
                     node.comment(lastComment);
                     lastComment = null;
                 }
@@ -172,28 +179,31 @@ public class CommentsMustBeJavadocFormatRule extends AbstractAliCommentRule {
 
         SortedMap<Integer, Node> itemsByLineNumber = new TreeMap<>();
 
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, cUnit.getComments());
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, cUnit.getComments());
+
+        List<ASTAnnotation> annotations = cUnit.findDescendantsOfType(ASTAnnotation.class);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, annotations);
 
         List<ASTClassOrInterfaceDeclaration> classDecl =
             cUnit.findDescendantsOfType(ASTClassOrInterfaceDeclaration.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, classDecl);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, classDecl);
 
         List<ASTFieldDeclaration> fields = cUnit.findDescendantsOfType(ASTFieldDeclaration.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, fields);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, fields);
 
         List<ASTMethodDeclaration> methods = cUnit.findDescendantsOfType(ASTMethodDeclaration.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, methods);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, methods);
 
         List<ASTConstructorDeclaration> constructors = cUnit.findDescendantsOfType(ASTConstructorDeclaration.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, constructors);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, constructors);
 
         List<ASTEnumDeclaration> enumDecl = cUnit.findDescendantsOfType(ASTEnumDeclaration.class);
-        CommentUtils.addNodesToSortedMap(itemsByLineNumber, enumDecl);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, enumDecl);
 
         return itemsByLineNumber;
     }
 
-    private boolean isCommentOneLineBefore(Comment lastComment, Node lastNode, Node node) {
+    private boolean isCommentOneLineBefore(SortedMap<Integer, Node> items, Comment lastComment, Node lastNode, Node node) {
         ASTClassOrInterfaceBodyDeclaration parentClass =
             node.getFirstParentOfType(ASTClassOrInterfaceBodyDeclaration.class);
 
@@ -207,7 +217,31 @@ public class CommentsMustBeJavadocFormatRule extends AbstractAliCommentRule {
             return false;
         }
 
-        return lastComment.getEndLine() + 1 == node.getBeginLine();
+        // check if there is nothing in the middle except annotations.
+        SortedMap<Integer, Node> subMap = items.subMap(NodeSortUtils.generateIndex(lastComment),
+            NodeSortUtils.generateIndex(node));
+        Iterator<Entry<Integer, Node>> iter = subMap.entrySet().iterator();
+
+        // skip the first comment node.
+        iter.next();
+        int lastEndLine = lastComment.getEndLine();
+
+        while (iter.hasNext()) {
+            Entry<Integer, Node> entry = iter.next();
+            Node value = entry.getValue();
+
+            // only annotation node is allowed between comment and node.
+            if (!(value instanceof ASTAnnotation)) {
+                return false;
+            }
+
+            // allow annotation node after comment.
+            if (lastEndLine + 1 == value.getBeginLine()) {
+                lastEndLine = value.getEndLine();
+            }
+        }
+
+        return lastEndLine + 1 == node.getBeginLine();
     }
 
     /**

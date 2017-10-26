@@ -26,7 +26,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  * @date 2016/11/21
  *
  */
-public class CommentUtils {
+public class NodeSortUtils {
 
     /**
      * add node to SortedMap with sequence to determine comment location
@@ -36,8 +36,16 @@ public class CommentUtils {
      */
     public static void addNodesToSortedMap(SortedMap<Integer, Node> map, List<? extends Node> nodes) {
         for (Node node : nodes) {
-            // sorted by line and column
-            map.put((node.getBeginLine() << 16) + node.getBeginColumn(), node);
+            map.put(generateIndex(node), node);
         }
+    }
+
+    /**
+     * set order according to node begin line and begin column
+     * @param node node to sort
+     * @return generated index
+     */
+    public static int generateIndex(Node node) {
+        return (node.getBeginLine() << 16) + node.getBeginColumn();
     }
 }

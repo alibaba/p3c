@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="sets-ok"><![CDATA[
+	    public class Foo {   
+            private void method() {  
+               List<String> originList = new ArrayList<String>();
+               originList.add("22");
+               for (String item : originList) {  
+                    
+               } 
+               originList.add("bb");
+             } 
+        }
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>sets-ConcurrentExceptionWithModifyOriginSubListRule-ok.</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="sets-ok" />
+	</test-code>
+ 
+	<code-fragment id="sets-warn"><![CDATA[
+  	  public class Foo {   
+            private void method(long aLong) {  
+                List<String> originList = new ArrayList<String>();
+                originList.add("22");
+                for (String item : originList) {  
+                     originList.add("bb");
+                     originList.remove("cc");
+                     originList.clear();
+                } 	   
+             } 
+        }
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>sets-ConcurrentExceptionWithModifyOriginSubListRule-warn.</description>
+		<expected-problems>3</expected-problems>
+		<expected-linenumbers>6,7,8</expected-linenumbers>
+		<code-ref id="sets-warn" />
+	</test-code>
+
+</test-data>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+    <test-code>
+        <description>AvoidConcurrentCompetitionRandomRule</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>13</expected-linenumbers>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import java.util.Random;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+public class RandomTest extends Thread {
+    private static final Random RANDOM = new Random();
+
+    private void test(){
+        RANDOM.nextBoolean();
+    }
+}
+
+
+        ]]></code>
+    </test-code>
+    <test-code>
+        <description>AvoidConcurrentCompetitionRandomRule</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>13</expected-linenumbers>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import java.util.Random;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+public class RandomTest extends Thread {
+    private static Random RANDOM = new Random();
+
+    private void test(){
+        RANDOM.nextBoolean();
+    }
+}
+
+
+        ]]></code>
+    </test-code>
+
+    <test-code>
+        <description>right</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import java.util.Random;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+public class RandomTest extends Thread {
+    private final Random RANDOM = new Random();
+
+    private void test(){
+        RANDOM.nextBoolean();
+    }
+}
+
+        ]]></code>
+    </test-code>
+    <test-code>
+        <description>right</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import java.util.Random;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+public class RandomTest extends Thread {
+    private static final Random RANDOM = new Random();
+
+    private void test(){
+        //RANDOM.nextBoolean();
+    }
+}
+
+        ]]></code>
+    </test-code>
+    <test-code>
+        <description>Math.random</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>9</expected-linenumbers>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+/**
+ * @author caikang
+ * @date 2017/03/30
+ */
+public class MathRandomTest extends Thread {
+    private void test(){
+        double d = Math.random();
+    }
+}
+
+
+        ]]></code>
+    </test-code>
+    <test-code>
+        <description>Math.random</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+/**
+ * @author caikang
+ * @date 2017/03/30
+ */
+public class MathRandomTest extends Thread {
+    double d = Math.random();
+
+    private void test(){
+        //double d = Math.random();
+    }
+}
+
+
+        ]]></code>
+    </test-code>
+</test-data>

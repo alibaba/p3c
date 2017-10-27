@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AlibabaRuleOnEclipse"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <rule name="MissingOverrideAnnotationRule" message="rule.standalone.MissingOverrideAnnotationRule.msg"
+          class="com.alibaba.smartfox.eclipse.pmd.rule.MissingOverrideAnnotationRule">
+        <description>rule.standalone.MissingOverrideAnnotationRule.desc</description>
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+    /**
+     * @author caikang
+     * @date 2016/12/24
+     */
+    public class MissingOverrideAnnotationRule extends AbstractEclipseRule {
+        @Override
+        public Object visit(ASTCompilationUnit node, Object data) {
+            return super.visit(node, data);
+        }
+    }
+]]>
+        </example>
+    </rule>
+    <rule name="AvoidAccessStaticViaInstanceRule" message="rule.standalone.AvoidAccessStaticViaInstanceRule.msg"
+          class="com.alibaba.smartfox.eclipse.pmd.rule.AvoidAccessStaticViaInstanceRule">
+        <priority>1</priority>
+    </rule>
+    <rule name="AvoidUseDeprecationRule" message="rule.standalone.AvoidUseDeprecationRule.msg"
+          class="com.alibaba.smartfox.eclipse.pmd.rule.AvoidUseDeprecationRule">
+        <description>rule.standalone.AvoidUseDeprecationRule.desc</description>
+        <priority>2</priority>
+    </rule>
+
+    <rule name="MapOrSetKeyShouldOverrideHashCodeEqualsRule" message="rule.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsRule.msg"
+          class="com.alibaba.smartfox.eclipse.pmd.rule.MapOrSetKeyShouldOverrideHashCodeEqualsRule">
+        <description>rule.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsRule.desc</description>
+        <priority>1</priority>
+    </rule>
+</ruleset>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+	<test-code>
+		<description>AvoidUseTimer</description>
+		<expected-problems>3</expected-problems>
+		<expected-linenumbers>10,13,14</expected-linenumbers>
+		<code><![CDATA[
+
+package com.alibaba.idea.pmd.test.concurrent;
+
+import java.util.Timer;
+
+/**
+ * @author caikang
+ * @date 2016/11/15
+ */
+public class TimerTest {
+    private Timer timer = new Timer();
+
+    public void test(){
+        Timer t = new Timer();
+        new Timer();
+    }
+}
+
+        ]]></code>
+	</test-code>
+</test-data>

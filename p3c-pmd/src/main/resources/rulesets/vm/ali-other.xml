@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<ruleset name="AlibabaVelocityOthers" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <rule name="UseQuietReferenceNotationRule" language="vm"
+        message="vm.other.UseQuietReferenceNotationRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.vm.rule.other.UseQuietReferenceNotationRule">
+        <description>vm.other.UseQuietReferenceNotationRule.rule.desc</description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+    <input type="text" name="email" value="$!email"/>
+    <input type="text" name="email" value="$!{email}"/>
+]]>
+      </example>
+    </rule>
+
+</ruleset>

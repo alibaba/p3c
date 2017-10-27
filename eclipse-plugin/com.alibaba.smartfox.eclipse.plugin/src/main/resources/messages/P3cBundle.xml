@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="com.alibaba.smartfox.eclipse.handler.CodeAnalysisHandler">阿里编码规约扫描</entry>
+
+    <entry key="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler.text.cur_zh">切换语言至英文(English)</entry>
+    <entry key="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler.text.cur_en">切换语言至中文</entry>
+    <entry key="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler.success.en">切换到English成功，是否重启</entry>
+    <entry key="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler.success.zh">切换到中文成功，是否重启</entry>
+
+
+    <entry key="rule.standalone.MissingOverrideAnnotationRule.msg"><![CDATA[所有的覆写方法，必须加@Override注解。]]></entry>
+    <entry key="rule.standalone.MissingOverrideAnnotationRule.desc"><![CDATA[反例：getObject()与get0bject()的问题。一个是字母的O，一个是数字的0，加@Override可以准确判断是否覆盖成功。另外，如果在抽象类中对方法签名进行修改，其实现类会马上编译报错。]]></entry>
+    <entry key="rule.standalone.MissingOverrideAnnotationRule.error"><![CDATA[方法缺少 '@Override' 注解]]></entry>
+    <entry key="rule.standalone.AvoidAccessStaticViaInstanceRule.msg"><![CDATA[避免通过一个类的对象引用访问此类的静态变量或静态方法，无谓增加编译器解析成本，直接用类名来访问即可。]]></entry>
+    <entry key="rule.standalone.AvoidUseDeprecationRule.msg"><![CDATA[不能使用过时的类或方法。]]></entry>
+    <entry key="rule.standalone.AvoidUseDeprecationRule.desc"><![CDATA[说明：java.net.URLDecoder 中的方法decode(String encodeStr) 这个方法已经过时，应该使用双参数decode(String source, String encode)。接口提供方既然明确是过时接口，那么有义务同时提供新的接口；作为调用方来说，有义务去考证过时方法的新实现是什么。]]></entry>
+    <entry key="rule.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsRule.msg"><![CDATA[Map/Set的key为自定义对象时，必须重写hashCode和equals。]]></entry>
+    <entry key="rule.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsRule.desc"><![CDATA[关于hashCode和equals的处理，遵循如下规则：
+ 1） 只要重写equals，就必须重写hashCode。
+ 2） 因为Set存储的是不重复的对象，依据hashCode和equals进行判断，所以Set存储的对象必须重写这两个方法。
+ 3） 如果自定义对象做为Map的键，那么必须重写hashCode和equals。]]></entry>
+</properties>

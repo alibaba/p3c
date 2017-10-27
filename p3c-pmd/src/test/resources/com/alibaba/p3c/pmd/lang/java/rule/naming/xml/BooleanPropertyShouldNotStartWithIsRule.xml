@@ -1,0 +1,51 @@
+<test-data>
+    <code-fragment id="boolean-property-in-POJO-class">
+        <![CDATA[
+  public class BooleanPropertyNamingRuleTestDO{
+    private boolean issuccess;
+    private boolean issuccess1;
+    private boolean success;
+    public void sayHello (int i) {
+     boolean issuccess1;
+     boolean success1;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>issuccess should not contain is</description>
+        <expected-problems>2</expected-problems>
+        <code-ref id="boolean-property-in-POJO-class" />
+        <expected-problems>2,3</expected-problems>
+    </test-code>
+
+
+    <code-fragment id="boolean-property-in-POJO-class1">
+        <![CDATA[
+  public class BooleanPropertyNamingRuleTest{
+    private boolean success;
+    public void sayHello (int i) {
+     boolean success1;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>issuccess should not contain is</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="boolean-property-in-POJO-class1" />
+    </test-code>
+
+    <code-fragment id="boolean-property-in-POJO-class2">
+        <![CDATA[
+public class ProcessBuilder {
+  public static final boolean isWindows = isWindows();
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>issuccess should not contain is</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="boolean-property-in-POJO-class2" />
+    </test-code>
+</test-data>

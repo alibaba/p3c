@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+
+<ruleset name="AlibabaJavaSets" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+ 
+    <rule name="ClassCastExceptionWithToArrayRule"
+        message="java.set.ClassCastExceptionWithToArrayRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.set.ClassCastExceptionWithToArrayRule">
+        <priority>2</priority>
+        <example>
+        <![CDATA[    
+Negative example:  
+   Integer[] a = (Integer [])c.toArray();
+        ]]>
+        </example> 
+        <example>
+        <![CDATA[
+Positive example： 
+   Integer[] b = (Integer [])c.toArray(new Integer[c.size()]); 
+         ]]>
+        </example>
+    </rule>
+
+    <rule name="UnsupportedExceptionWithModifyAsListRule"
+        message="java.set.UnsupportedExceptionWithModifyAsListRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.set.UnsupportedExceptionWithModifyAsListRule">
+        <priority>2</priority>
+        <example>
+       <![CDATA[ 
+Positive example:
+   List<String> t   = Arrays.asList("a","b","c"); 
+   //warn
+   t.add("22");
+   //warn
+   t.remove("22");
+   //warn
+   t.clear(); 
+         ]]>
+         </example>
+    </rule>
+
+    <rule name="ClassCastExceptionWithSubListToArrayListRule"
+        message="java.set.ClassCastExceptionWithSubListToArrayListRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.set.ClassCastExceptionWithSubListToArrayListRule">
+        <description>java.set.ClassCastExceptionWithSubListToArrayListRule.rule.msg.desc</description>
+        <priority>2</priority>
+        <example>
+        <![CDATA[ 
+Negative example:
+   List<String> list = new ArrayList<String>();
+   list.add("22");
+   //warn
+   List<String> test = (ArrayList<String>) list.subList(0, 1);	 
+         ]]>
+        </example>
+        <example>
+        <![CDATA[ 
+Positive example:
+   List<String> list2 = new ArrayList<String>(list.subList(0, 1));
+         ]]>
+         </example>
+    </rule>
+
+    <rule name="ConcurrentExceptionWithModifyOriginSubListRule"
+        message="java.set.ConcurrentExceptionWithModifyOriginSubListRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.set.ConcurrentExceptionWithModifyOriginSubListRule">
+        <priority>2</priority>
+        <example>
+      <![CDATA[
+Negative example:                
+   List<String> originList = new ArrayList<String>();
+   originList.add("22");
+   List<String> subList = originList.subList(0, 1);
+   //warn
+   originList.add("22"); 
+       ]]>
+         </example>
+    </rule>
+
+
+    <rule name="DontModifyInForeachCircleRule"
+        message="java.set.DontModifyInForeachCircleRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.set.DontModifyInForeachCircleRule">
+        <priority>1</priority>
+
+        <example>
+        <![CDATA[ 
+ Negative example:   
+   List<String> originList = new ArrayList<String>();
+   originList.add("22");
+   for (String item : originList) { 
+      //warn
+      list.add("bb");
+   }  
+        ]]>
+       </example> 
+      <example>
+       <![CDATA[ 
+ Positive example: 
+   Iterator<Integer> it=b.iterator();		 
+   while(it.hasNext()){                      
+      Integer temp =  it.next();             
+      if (delCondition) {
+          it.remove();
+      }
+   }
+         ]]>
+      </example>
+    </rule>
+
+    <rule name="CollectionInitShouldAssignCapacityRule"
+        message="java.set.CollectionInitShouldAssignCapacityRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.set.CollectionInitShouldAssignCapacityRule">
+        <description>java.set.CollectionInitShouldAssignCapacityRule.rule.msg.desc</description>
+        <priority>3</priority>
+        <example>
+        <![CDATA[ 
+ Negative example:   
+   Map<String, String> map = new HashMap<String, String>();
+    
+        ]]>
+       </example> 
+      <example>
+       <![CDATA[ 
+ Positive example: 
+   Map<String, String> map = new HashMap<String, String>(16);
+         ]]>
+      </example>
+    </rule>
+
+</ruleset>

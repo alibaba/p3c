@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+
+<ruleset name="AlibabaJavaOop" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <rule name="EqualsAvoidNullRule"
+          language="java"
+          message="java.oop.EqualsAvoidNullRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.oop.EqualsAvoidNullRule">
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+    public void f(String str){
+        String inner = "hi";
+        if (inner.equals(str)) {
+            System.out.println("hello world");
+        }
+    }
+			]]>
+        </example>
+    </rule>
+
+    <rule name="WrapperTypeEqualityRule"
+          language="java"
+          message="java.oop.WrapperTypeEqualityRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.oop.WrapperTypeEqualityRule">
+        <description>java.oop.WrapperTypeEqualityRule.rule.desc</description>
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+    Integer a = 235;
+    Integer b = 235;
+    if (a.equals(b)) {
+        // code
+    }
+			]]>
+        </example>
+    </rule>
+
+    <rule name="PojoMustUsePrimitiveFieldRule"
+          language="java"
+          message="java.oop.PojoMustUsePrimitiveFieldRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.oop.PojoMustUsePrimitiveFieldRule">
+        <description>java.oop.PojoMustUsePrimitiveFieldRule.rule.msg.desc</description>
+        <priority>3</priority>
+
+        <example>
+            <![CDATA[
+    public class DemoDO {
+        String str;
+        Integer a;
+    }
+			]]>
+        </example>
+    </rule>
+
+    <rule name="PojoNoDefaultValueRule"
+          language="java"
+          message="java.oop.PojoNoDefaultValueRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.oop.PojoNoDefaultValueRule">
+        <priority>3</priority>
+
+        <example>
+            <![CDATA[
+    public class DemoDO {
+        String str;
+        Integer a;
+    }
+			]]>
+        </example>
+    </rule>
+
+    <rule name="PojoMustOverrideToStringRule"
+          language="java"
+          message="java.oop.PojoMustOverrideToStringRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.oop.PojoMustOverrideToStringRule">
+        <description>java.oop.PojoMustOverrideToStringRule.rule.desc</description>
+        <priority>3</priority>
+
+        <example>
+            <![CDATA[
+    public class ToStringDemo extends Super{
+        private String secondName;
+
+        @Override
+        public String toString() {
+            return super.toString() + "ToStringDemo{" + "secondName='" + secondName + '\'' + '}';
+        }
+    }
+
+    class Super {
+        private String firstName;
+
+        @Override
+        public String toString() {
+            return "Super{" + "firstName=" + firstName + '\'' + '}';
+        }
+    }
+			]]>
+        </example>
+    </rule>
+
+    <rule name="StringConcatRule"
+          language="java"
+          message="java.oop.StringConcatRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.oop.StringConcatRule">
+        <description>java.oop.StringConcatRule.rule.msg.desc</description>
+        <priority>3</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+    String result;
+    for (String string : tagNameList) {
+        result = result + string;
+    }
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+    StringBuilder stringBuilder = new StringBuilder();
+    for (String string : tagNameList) {
+        stringBuilder.append(string);
+    }
+    String result = stringBuilder.toString();
+]]>
+        </example>
+    </rule>
+
+</ruleset>

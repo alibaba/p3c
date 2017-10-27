@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="constants-uppercase-L"><![CDATA[
+	    public class Foo { 
+	        private final static  String notWarn = "666l";    
+            private void processUpperEll(long aLong) {
+                   long good = (4+5*7^66L/7+890) & (88L + 78 * 4);  
+             } 
+        } 
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>constants with uppercase L.</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="constants-uppercase-L" />
+	</test-code>
+ 
+	<code-fragment id="constants-lowercase-l"><![CDATA[
+  	  public class Foo { 
+            private static final long IGNORE = 666l + 666L;   
+            private static final Long notWarn = 666L;   
+            private void processUpperEll(long aLong) {
+                long bad = (4+5*7^66l/7+890)  
+                    & (88l + 78 * 4);  
+                long good = (4+5*7^66L/7+890) & (88L + 78 * 4);  
+             } 
+        } 
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>constants with lowercase l.</description>
+		<expected-problems>3</expected-problems>
+		<expected-linenumbers>2,5,6</expected-linenumbers>
+		<code-ref id="constants-lowercase-l" />
+	</test-code>
+
+</test-data>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="com.alibaba.smartfox.eclipse.handler.CodeAnalysisHandler">Alibaba Coding Guidelines Analyze</entry>
+    <entry key="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler.text.cur_zh">Switch language to English</entry>
+    <entry key="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler.text.cur_en">Switch language to Chinese</entry>
+
+    <entry key="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler.success.en">Switch language to English success，restart?</entry>
+    <entry key="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler.success.zh">Switch language to Chinese success，restart?</entry>
+
+    <entry key="rule.standalone.MissingOverrideAnnotationRule.msg"><![CDATA[An overridden method from an interface or abstract class must be marked with @Override annotation.]]></entry>
+    <entry key="rule.standalone.MissingOverrideAnnotationRule.desc"><![CDATA[
+    Counter example: For getObject() and get0bject(), the first one has a letter 'O', and the second one has a number '0'. To accurately determine whether the overriding is successful, an @Override annotation is necessary. Meanwhile, once the method signature in the abstract class is changed, the implementation class will report a compile-time error immediately.]]></entry>
+    <entry key="rule.standalone.MissingOverrideAnnotationRule.error"><![CDATA[Method missing '@Override' annotation]]></entry>
+    <entry key="rule.standalone.AvoidAccessStaticViaInstanceRule.msg"><![CDATA[A static field or method should be directly referred by its class name instead of its corresponding object name.]]></entry>
+
+    <entry key="rule.standalone.AvoidUseDeprecationRule.msg"><![CDATA[Using a deprecated class or method is prohibited.]]></entry>
+    <entry key="rule.standalone.AvoidUseDeprecationRule.desc"><![CDATA[Note: For example, decode(String source, String encode) should be used instead of the deprecated method decode(String encodeStr). Once an interface has been deprecated, the interface provider has the obligation to provide a new one. At the same time, client programmers have the obligation to check out what its new implementation is.]]></entry>
+    <entry key="rule.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsRule.msg"><![CDATA[Custom class must override 'hashCode' and 'equals' while use as key for Map or value for Set.]]></entry>
+    <entry key="rule.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsRule.desc"><![CDATA[The usage of hashCode and equals should follow:
+ 1) Override hashCode if equals is overridden.
+ 2) These two methods must be overridden for Set since they are used to ensure that no duplicate object will be inserted in Set.
+ 3) These two methods must be overridden if self-defined object is used as the key of Map.
+Note: String can be used as the key of Map since these two methods have been rewritten.]]></entry>
+</properties>

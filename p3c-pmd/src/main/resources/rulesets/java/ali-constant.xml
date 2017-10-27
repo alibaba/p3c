@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<ruleset name="AlibabaJavaConstants" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+
+    <rule name="UpperEllRule"
+        message="java.constant.UpperEllRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.constant.UpperEllRule">
+        <priority>1</priority>
+        <example>
+      <![CDATA[
+Negative example:
+    //It is hard to tell whether it is number 11 or Long 1.
+    Long warn = 1l;
+       ]]>
+        </example> 
+        <example>
+        <![CDATA[
+Positive example:
+    Long notwarn = 1L;
+        ]]>
+         </example>
+    </rule>
+    
+    <rule name="UndefineMagicConstantRule"
+        message="java.constant.UndefineMagicConstantRule.rule.msg"
+        class="com.alibaba.p3c.pmd.lang.java.rule.constant.UndefineMagicConstantRule">
+        <priority>3</priority>
+
+        <example>
+        <![CDATA[    
+Negative example:
+    //Magic values, except for predefined, are forbidden in coding.
+    if (key.equals("Id#taobao_1")) {
+            //...
+    }
+         ]]>
+        </example>
+        <example>
+        <![CDATA[ 
+Positive example:
+    String KEY_PRE = "Id#taobao_1";  
+    if (KEY_PRE.equals(key)) {
+            //...
+    }
+      ]]>
+      </example>
+    </rule>
+
+</ruleset>

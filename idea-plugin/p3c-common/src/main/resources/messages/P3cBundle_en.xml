@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="com.alibaba.p3c.analytics.action_group.text">Alibaba Coding Guidelines</entry>
+    <entry key="com.alibaba.p3c.action.switch_language.text.cur_zh">Switch language to English</entry>
+    <entry key="com.alibaba.p3c.action.switch_language.text.cur_en">Switch language to Chinese</entry>
+    <entry key="com.alibaba.p3c.action.switch_language.text.success">
+        <![CDATA[Switch language success，<a href="restart">restart</a> to get effect.]]></entry>
+    <entry key="com.alibaba.p3c.idea.action.AliInspectionAction.text">Alibaba Coding Guidelines Analyze</entry>
+    <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.text.close">Close inspection on the fly
+    </entry>
+    <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.text.open">Open inspection on the fly</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.delete_$">Delete starting '$' or '_'</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.generate.author">Add/Extract @author</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.field.to.upperCaseWithUnderscore">Refactor to upper case with underscore
+    </entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.variable.lowerCamelCase">Refactor to lower camel case name</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.vm.add!">Add '!' for variable</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.replace.with">Replace with</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.standalone.AliAccessStaticViaInstanceInspection">Access static '%s.%s' via
+        class '%s' reference.
+    </entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.standalone.AliMissingOverrideAnnotationInspection">Add @Override
+        annotation
+    </entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.NeedBraceRule">Add braces to statement</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.AliEqualsAvoidNull">Flip 'equals()'</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.ArrayNamingShouldHaveBracketRule">Replace with Java-style array
+        declaration
+    </entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.AliLongLiteralsEndingWithLowercaseL">Replace 'l' with 'L'</entry>
+
+    <entry key="com.alibaba.p3c.idea.inspection.equals.instead.quality">
+        <![CDATA[<code>#ref</code> should replace with equals for wrapper type #loc]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliAccessStaticViaInstanceInspection.message">A static field
+        or method should be directly referred by its class name instead of its corresponding object name.
+    </entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliAccessStaticViaInstanceInspection.errMsg">%s access static
+        member via class instance is prohibited #loc
+    </entry>
+
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliDeprecationInspection.message">Using a deprecated class or
+        method is prohibited.
+    </entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliMissingOverrideAnnotationInspection.message">An overridden
+        method from an interface or abstract class must be marked with @Override annotation.
+    </entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliMissingOverrideAnnotationInspection.errMsg">
+        <![CDATA[Missing '@Override' annotation on <code>#ref()</code> #loc]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsInspection.message">
+        Custom class must override 'hashCode' and 'equals' while use as key for Map or value for Set.
+    </entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsInspection.errMsg">
+        Type of parameter %s does not override 'hashCode' and 'equals' #loc
+    </entry>
+    <entry key="com.alibaba.p3c.idea.inspection.rule.AvoidCallStaticSimpleDateFormatRule.errMsg">
+        <![CDATA[<code>#ref</code> is unsafe,lock or use local variable #loc]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.rule.NeedBraceRule.errMsg">
+        <![CDATA[<code>#ref</code> without braces #loc]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.rule.AliEqualsAvoidNull.errMsg">
+        <![CDATA[<code>#ref</code> is argument of '%s()', instead of its target #loc]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.rule.AliLongLiteralsEndingWithLowercaseL.errMsg">
+        <![CDATA['long' literal <code>#ref</code> ends with lowercase 'l' #loc]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.rule.WrapperTypeEqualityRule.errMsg">
+        <![CDATA[The wrapper classes should be compared by equals method rather than by symbol of '==' directly #loc]]></entry>
+
+    <entry key="com.alibaba.p3c.idea.inspection.rule.ArrayNamingShouldHaveBracketRule.errMsg">
+        <![CDATA[C-style array declaration of {0, choice, 1#field|2#parameter|3#local variable} <code>#ref</code> #loc]]></entry>
+
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliAccessStaticViaInstanceInspection.desc"><![CDATA[
+<html>
+<body>
+A static field or method should be directly referred by its class name instead of its corresponding object name.
+</body>
+</html>
+]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliDeprecationInspection.desc"><![CDATA[
+<html>
+<body>
+Using a deprecated class or method is prohibited.<br>
+Note: For example, decode(String source, String encode) should be used instead of the deprecated method decode(String encodeStr). Once an interface has been deprecated, the interface provider has the obligation to provide a new one. At the same time, client programmers have the obligation to check out what its new implementation is.
+</body>
+</html>
+]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliMissingOverrideAnnotationInspection.desc"><![CDATA[
+<html>
+<body>
+An overridden method from an interface or abstract class must be marked with @Override annotation.<br>
+Counter example: For getObject() and get0bject(), the first one has a letter 'O', and the second one has a number '0'. To accurately determine whether the overriding is successful, an @Override annotation is necessary. Meanwhile, once the method signature in the abstract class is changed, the implementation class will report a compile-time error immediately.
+</body>
+</html>
+]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsInspection.desc">
+        <![CDATA[
+<html>
+<body>
+Custom class must override 'hashCode' and 'equals' while use as key for Map or value for Set.<br>
+The usage of hashCode and equals should follow:<br/>
+ 1) Override hashCode if equals is overridden.<br/>
+ 2) These two methods must be overridden for Set since they are used to ensure that no duplicate object will be inserted in Set.<br/>
+ 3) These two methods must be overridden if self-defined object is used as the key of Map.<br/>
+Note: String can be used as the key of Map since these two methods have been rewritten.
+</body>
+</html>
+]]></entry>
+</properties>

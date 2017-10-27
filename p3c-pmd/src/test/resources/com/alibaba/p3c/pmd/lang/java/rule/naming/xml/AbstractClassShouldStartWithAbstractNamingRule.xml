@@ -1,0 +1,51 @@
+<test-data>
+    <code-fragment id="AbstractNamingRuleStartWithabstract">
+        <![CDATA[
+public abstract class abstractNameRuleTest {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>abstract class name should start with Abstract or Base</description>
+        <expected-problems>1</expected-problems>
+        <code-ref id="AbstractNamingRuleStartWithabstract" />
+        <expected-linenumbers>1</expected-linenumbers>
+    </test-code>
+
+    <code-fragment id="AbstractNamingRuleStartWithAbstract">
+        <![CDATA[
+public abstract class AbstractNameRuleTest {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>abstract class name should start with Abstract or Base</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="AbstractNamingRuleStartWithAbstract" />
+    </test-code>
+
+    <code-fragment id="AbstractNamingRuleStartWithBase">
+        <![CDATA[
+public abstract class BaseAbstractNameRuleTest {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>abstract class name should start with Abstract or Base</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="AbstractNamingRuleStartWithBase" />
+    </test-code>
+
+    <code-fragment id="AbstractNamingRuleStartWithbase">
+        <![CDATA[
+public abstract class baseAbstractNameRuleTest {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>abstract class name should start with Abstract or Base</description>
+        <expected-problems>1</expected-problems>
+        <code-ref id="AbstractNamingRuleStartWithbase" />
+        <expected-linenumbers>1</expected-linenumbers>
+    </test-code>
+</test-data>

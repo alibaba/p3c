@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="enum-without-comment"><![CDATA[
+public enum Level {
+    HIGH, MEDIUM, LOW
+}
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>Enum without Comment.</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>2</expected-linenumbers>
+		<code-ref id="enum-without-comment" />
+	</test-code>
+
+
+	<code-fragment id="enum-with-comment"><![CDATA[
+public enum Level {
+    /**
+     * high, medium and low
+     */
+    HIGH, MEDIUM, LOW
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Enum with comment.</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="enum-with-comment" />
+	</test-code>
+
+</test-data>

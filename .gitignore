@@ -1,0 +1,95 @@
+# Gradle
+build
+.gradle
+
+testdata/
+# Java gitignore #
+.class
+.log
+
+# Package Files #
+
+*.war
+*.ear
+
+#hsf files
+configuration
+
+# maven gitignore#
+target/**
+
+.svn/
+
+# intelliJ.gitignore #
+.idea
+*.iml
+*.ipr
+*.iws
+
+
+# Eclipse git ignore#
+*.pydevproject
+.project
+.metadata
+bin/**
+*/bin/**
+tmp/**
+tmp/**/*
+configuration/**
+*.tmp
+*.bak
+*.orig
+*.swp
+*~.nib
+.classpath
+.settings/
+.loadpath
+.fileTable*
+.cache
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+#log
+*.log
+*.log.*
+
+# Windows Thumbs.db
+*.db
+
+# OSX
+.DS_Store
+
+# sass gitignore#
+.sass-cache
+.idea
+
+# tcc_coverage
+coverage.ec
+
+
+
+config.client.*
+
+temp/
+*.pid
+*.orig
+
+hsf.configuration/
+
+# code coverage report
+*.ec
+
+#hsf test
+*.instance
+out
+!/p3c-idea/src/main/kotlin/com/alibaba/smartfox/work/tools/aone/ui/AoneBranchView.kt

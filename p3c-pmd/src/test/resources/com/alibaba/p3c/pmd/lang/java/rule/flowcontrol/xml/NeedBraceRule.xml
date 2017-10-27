@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+    <code-fragment id="if-no-brace">
+        <![CDATA[
+	public class Example {
+	    public void fn() {
+	    	int a;
+	    	int b;
+	    	if (a > 0) b++;
+	    }
+	}
+		]]>
+    </code-fragment>
+    <test-code>
+        <description>if statement without {}</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>5</expected-linenumbers>
+        <code-ref id="if-no-brace"/>
+    </test-code>
+
+	<!-- ====================================================================== -->
+
+    <code-fragment id="else-no-brace">
+        <![CDATA[
+	public class Example {
+	    public void fn() {
+	    	int a = 2;
+	    	int b = 4;
+
+	    	if (a > 0) b++;			// BAD
+
+	    	if (a > 0) {
+	    		b++;
+	    	} else if (a > -1) {
+	    		b++;
+	    	} else
+	    		b--;				// BAD
+
+	    	for (a = 0; a < 3; a ++) b--;	// BAD
+
+			while (a > 3) a--;				// BAD
+	    }
+	}
+]]>
+    </code-fragment>
+    <test-code>
+        <description>else,while,for statement without {}</description>
+        <expected-problems>4</expected-problems>
+        <expected-linenumbers>6,13,15,17</expected-linenumbers>
+        <code-ref id="else-no-brace"/>
+    </test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="else-line-no">
+		<![CDATA[
+	public class Example {
+	    public void fn() {
+	    	int a;
+	    	boolean flag;
+	    	if (a > 0) {
+	    		// do nothing
+	    	}
+
+	    	 else
+
+
+	    		flag = true;
+	    }
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>figure out else line no</description>
+		<expected-problems>1</expected-problems>
+		<!-- else statement line number is not available in AST, so add violation in following statement -->
+		<expected-linenumbers>12</expected-linenumbers>
+		<code-ref id="else-line-no"/>
+	</test-code>
+</test-data>

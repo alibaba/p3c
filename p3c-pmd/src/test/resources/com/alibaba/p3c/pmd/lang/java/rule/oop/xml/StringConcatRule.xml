@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+	<code-fragment id="in-loop-user-plus">
+		<![CDATA[
+	public class Example {
+		public void fn() {
+			String url = null;
+			for (int i = 0; i < 10; i ++) {
+				url = url +"&i=" + i ;
+			}
+
+			while (url != null) {
+				url = "https://" +
+					"taobao.com";
+			}
+
+			int j = 5;
+			do {
+				url = "https://" +
+					"tmall.com";
+				j--;
+			} while (j > 0);
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>concatenate strings with "+" in loop</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>5</expected-linenumbers>
+		<code-ref id="in-loop-user-plus" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+	<code-fragment id="in-loop-user-sb">
+		<![CDATA[
+	import java.util.List;
+	import java.util.ArrayList;
+
+	public class Example {
+		public void fn() {
+			StringBuilder stringBuilder = new StringBuilder();
+			List<String> tags = new ArrayList<String>();
+			for (String tag : tags) {
+				stringBuilder.append(tag);
+			}
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>concatenate strings with StringBuilder in loop</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="in-loop-user-sb" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+	<code-fragment id="in-loop-not-assignment">
+		<![CDATA[
+	import java.util.List;
+	import java.util.ArrayList;
+	import org.slf4j.Logger;
+	import org.slf4j.LoggerFactory;
+
+	public class Example {
+    	private static final Logger logger = LoggerFactory.getLogger(Example.class);
+
+		public void fn() {
+			List<String> tags = new ArrayList<String>();
+			for (String tag : tags) {
+				logger.info("tag=" + tag);
+			}
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>concatenate strings with "+" in non-assignment statement</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="in-loop-not-assignment" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+	<code-fragment id="assign-variable-out-of-loop">
+		<![CDATA[
+	import java.util.List;
+	import java.util.ArrayList;
+
+	public class Example {
+		public void fn() {
+			String key = null;
+			List<String> tags = new ArrayList<String>();
+			for (String tag : tags) {
+				key = key + tag + "_SURFIX";
+			}
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>concatenate strings with "+" in loop, assigned value presents at right side of = </description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>9</expected-linenumbers>
+		<code-ref id="assign-variable-out-of-loop" />
+	</test-code>
+
+	======================================================================
+	<code-fragment id="assign-variable-in-loop">
+		<![CDATA[
+	import java.util.List;
+	import java.util.ArrayList;
+
+	public class Example {
+		public void fn() {
+			List<String> tags = new ArrayList<String>();
+			for (String tag : tags) {
+			    String key = null;
+				key = key + tag + "_SURFIX";
+			}
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>concatenate strings with "+", assigned value defined in loop</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="assign-variable-in-loop" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+	<code-fragment id="nested-loop">
+		<![CDATA[
+	import java.util.HashMap;
+	import java.util.Map;
+
+	public class Foo {
+		public static Map<String, Map<String, String>> convertRegister(Map<String, Map<String, String>> register) {
+			Map<String, Map<String, String>> newRegister = new HashMap<String, Map<String, String>>();
+			for (Map.Entry<String, Map<String, String>> entry : register.entrySet()) {
+				String serviceName = entry.getKey();
+				Map<String, String> serviceUrls = entry.getValue();
+				if (!serviceName.contains(":") && !serviceName.contains("/")) {
+					for (Map.Entry<String, String> entry2 : serviceUrls.entrySet()) {
+						String serviceUrl = entry2.getKey();
+						String serviceQuery = entry2.getValue();
+						Map<String, String> params = new HashMap<>();
+						String group = params.get("group");
+						String version = params.get("version");
+						String name = serviceName;
+						if (group != null && group.length() > 0) {
+							name = group + "/" + name;
+						}
+						if (version != null && version.length() > 0) {
+							name = name + ":" + version;
+						}
+						Map<String, String> newUrls = newRegister.get(name);
+						if (newUrls == null) {
+							newUrls = new HashMap<String, String>();
+							newRegister.put(name, newUrls);
+						}
+						newUrls.put(serviceUrl, params.toString());
+					}
+				} else {
+					newRegister.put(serviceName, serviceUrls);
+				}
+			}
+			return newRegister;
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>concatenate strings with "+" in nested loop</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="nested-loop" />
+	</test-code>
+
+</test-data>

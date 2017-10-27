@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+    <code-fragment id="miss-use-of-math-random"><![CDATA[
+public class Test {
+    public static void main( String args[] ){
+        int i = (int)(Math.random() * 10);
+        System.out.println("Next int value: " + i);
+
+        long j = (long)(Math.random() * 250);
+        System.out.println("Next long value: " + j);
+    }
+}
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>Miss use of Math.random</description>
+        <expected-problems>2</expected-problems>
+        <expected-linenumbers>3,6</expected-linenumbers>
+        <code-ref id="miss-use-of-math-random" />
+    </test-code>
+
+
+    <code-fragment id="normal-use-of-math-random"><![CDATA[
+import java.util.Random;
+public class Test {
+    public static void main( String args[] ){
+        double d = Math.random() * 10;
+
+        Random random = new Random();
+        int k = random.nextInt();
+    }
+}
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>Normal use of Math.random</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="normal-use-of-math-random" />
+    </test-code>
+
+</test-data>

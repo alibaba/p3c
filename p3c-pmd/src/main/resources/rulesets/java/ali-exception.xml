@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+
+<ruleset name="AlibabaJavaExceptions" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <rule name="MethodReturnWrapperTypeRule"
+          language="java"
+          since="1.6"
+          message="java.exception.MethodReturnWrapperTypeRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.exception.MethodReturnWrapperTypeRule">
+        <priority>3</priority>
+        <example>
+            <![CDATA[
+    public int method() {
+        Integer a = null;
+        return a;
+    }
+            ]]>
+        </example>
+    </rule>
+
+    <rule name="AvoidReturnInFinallyRule"
+          language="java"
+          message="java.exception.AvoidReturnInFinallyRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.exception.AvoidReturnInFinallyRule">
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+Negative example:
+    public static Long readFileLength(String fileName) {
+        try {
+            File file = new File(fileName);
+            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
+            return randomAccessFile.length();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        } finally {
+            countDownLatch.countDown();
+            return 0L;
+        }
+    }
+]]>
+        </example>
+    </rule>
+
+    <rule name="TransactionMustHaveRollbackRule"
+          language="java"
+          since="1.6"
+          message="java.exception.TransactionMustHaveRollbackRule.rule.msg"
+          dfa="true"
+          class="com.alibaba.p3c.pmd.lang.java.rule.exception.TransactionMustHaveRollbackRule">
+        <priority>3</priority>
+        <example>
+            <![CDATA[
+Positive example 1：
+    /**
+     * @author caikang
+     * @date 2017/04/07
+     */
+    @Service
+    @Transactional(rollbackFor = Exception.class)
+    public class UserServiceImpl implements UserService {
+        @Override
+        public void save(User user) {
+            //some code
+            //db operation
+        }
+    }
+        ]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example 2：
+    /**
+     * @author caikang
+     * @date 2017/04/07
+     */
+    @Service
+    public class UserServiceImpl implements UserService {
+        @Override
+        @Transactional(rollbackFor = Exception.class)
+        public void save(User user) {
+            //some code
+            //db operation
+        }
+    }
+        ]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example 3：
+    /**
+     * @author caikang
+     * @date 2017/04/07
+     */
+    @Service
+    public class UserServiceImpl implements UserService {
+        @Autowired
+        private DataSourceTransactionManager transactionManager;
+
+        @Override
+        @Transactional
+        public void save(User user) {
+            DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+            // explicitly setting the transaction name is something that can only be done programmatically
+            def.setName("SomeTxName");
+            def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+
+            TransactionStatus status = transactionManager.getTransaction(def);
+            try {
+                // execute your business logic here
+                //db operation
+            } catch (Exception ex) {
+                transactionManager.rollback(status);
+                throw ex;
+            }
+        }
+    }
+        ]]>
+        </example>
+    </rule>
+
+</ruleset>

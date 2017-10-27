@@ -1,0 +1,45 @@
+<test-data>
+    <code-fragment id="ConstantFieldNamingRule">
+    <![CDATA[
+    public class ConstantFieldNameRuleTest {
+    private  static final int MAX = 5;
+    private  static final long serialVersionUID = 1L;
+    //except Log
+    private static final Logger logger = new Logger();
+    //Constant variable names should be written in upper characters separated by underscores
+    private static final boolean success = true;
+    private static final Integer xxxService = 1;
+    private static final Integer xxxxservice = 1;
+       public void f() {
+         int il = 0;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Constant name should be upper case</description>
+        <expected-problems>2</expected-problems>
+        <code-ref id="ConstantFieldNamingRule" />
+        <expected-linenumbers>7,9</expected-linenumbers>
+    </test-code>
+
+    <code-fragment id="ConstantFieldNamingRule1">
+        <![CDATA[
+    public class ConstantFieldNameRuleTest {
+    private  static final int MAX = 5;
+    private  static final long serialVersionUID = 1L;
+    //Log除外
+    private static final Logger logger = new Logger();
+    private static final Log log = new Log();
+       public void f() {
+         int il = 0;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Constant name should be upper case</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="ConstantFieldNamingRule1" />
+    </test-code>
+</test-data>

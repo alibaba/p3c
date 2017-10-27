@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    <extension
+          id="SmartFoxViews"
+          name="SmartFoxViews"
+          point="org.eclipse.ui.views">
+        <category
+                name="SmartFoxViews"
+                id="com.alibaba.smartfox.eclipse.ui">
+        </category>
+        <view
+                name="P3C Results"
+                allowMultiple="false"
+                icon="icons/view/smartfox_logo.png"
+                category="com.alibaba.smartfox.eclipse.ui"
+                class="com.alibaba.smartfox.eclipse.ui.InspectionResultView"
+                id="com.alibaba.smartfox.eclipse.ui.InspectionResultView">
+        </view>
+        <view
+                name="Rule Detail"
+                allowMultiple="false"
+                icon="icons/view/smartfox_logo.png"
+                category="com.alibaba.smartfox.eclipse.ui"
+                class="com.alibaba.smartfox.eclipse.ui.RuleDetailView"
+                id="com.alibaba.smartfox.eclipse.ui.RuleDetailView">
+        </view>
+        <stickyView
+                location="LEFT"
+                id="com.alibaba.smartfox.eclipse.ui.RuleDetailView">
+        </stickyView>
+    </extension>
+
+    <extension point="org.eclipse.core.expressions.definitions">
+        <definition id="when.alibaba.analysis.is.active">
+            <or>
+                <with variable="activePartId">
+                    <equals
+                            value="org.eclipse.jdt.ui.PackageExplorer">
+                    </equals>
+                </with>
+                <with variable="activePartId">
+                    <equals
+                            value="org.eclipse.ui.navigator.ProjectExplorer">
+                    </equals>
+                </with>
+                <with variable="activeSite">
+                    <adapt
+                            type="org.eclipse.ui.IEditorSite">
+                    </adapt>
+
+                </with>
+            </or>
+
+        </definition>
+    </extension>
+    <extension
+            point="org.eclipse.ui.commands">
+        <category
+                description="Alibaba Code Analysis"
+                id="alibaba.ui.commands"
+                name="Alibaba Command">
+        </category>
+        <command
+                categoryId="alibaba.ui.commands"
+                description="Alibaba Code Analysis"
+                id="com.alibaba.smartfox.eclipse.command.analysis"
+                name="Alibaba Code Analysis"/>
+        <command
+                categoryId="alibaba.ui.commands"
+                description="Alibaba Code Analysis"
+                id="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler"
+                name="Switch Language"/>
+    </extension>
+    <extension
+            point="org.eclipse.ui.bindings">
+        <key
+                commandId="com.alibaba.smartfox.eclipse.command.analysis"
+                contextId="org.eclipse.ui.contexts.window"
+                schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+                sequence="Ctrl+Shift+Alt+J">
+        </key>
+    </extension>
+    <extension
+            point="org.eclipse.ui.handlers">
+        <handler
+                class="com.alibaba.smartfox.eclipse.handler.CodeAnalysisHandler"
+                commandId="com.alibaba.smartfox.eclipse.command.analysis">
+            <enabledWhen>
+                <reference
+                        definitionId="when.alibaba.analysis.is.active">
+                </reference>
+            </enabledWhen>
+        </handler>
+        <handler
+                class="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler"
+                commandId="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler">
+        </handler>
+    </extension>
+    <extension point="org.eclipse.ui.menus">
+        <menuContribution allPopups="false"
+                          locationURI="popup:org.eclipse.ui.popup.any">
+            <command
+                    commandId="com.alibaba.smartfox.eclipse.command.analysis"
+                    icon="icons/ali-ide-run.png"
+                    label="Alibaba Code Guidelines"
+                    style="push">
+                <visibleWhen
+                        checkEnabled="false">
+                    <reference definitionId="when.alibaba.analysis.is.active"/>
+                </visibleWhen>
+            </command>
+        </menuContribution>
+        <menuContribution
+                allPopups="false"
+                locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+            <toolbar
+                    id="com.alibaba.smartfox.eclipse.plugin.toolbar3">
+                <command
+                        commandId="com.alibaba.smartfox.eclipse.command.analysis"
+                        icon="icons/ali-ide-run.png"
+                        label="Alibaba Code Guidelines"
+                        style="push"
+                        tooltip="Alibaba Code Guidelines">
+                </command>
+                <command
+                        commandId="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler"
+                        icon="icons/language.png"
+                        label="Switch Language"
+                        style="push"
+                        tooltip="Switch Language">
+                </command>
+            </toolbar>
+        </menuContribution>
+    </extension>
+    <extension
+            id="p3cMarker"
+            name="P3C Violations"
+            point="org.eclipse.core.resources.markers">
+        <persistent value="false"/>
+        <super type="org.eclipse.core.resources.problemmarker"/>
+    </extension>
+    <extension point="org.eclipse.ui.ide.markerResolution">
+        <markerResolutionGenerator
+                markerType="com.alibaba.smartfox.eclipse.plugin.p3cMarker"
+                class="com.alibaba.smartfox.eclipse.QuickFixGenerator"/>
+    </extension>
+    <extension point="org.eclipse.ui.preferencePages">
+        <page name="Alibaba Code Analysis"
+              class="com.alibaba.smartfox.eclipse.ui.AllRulesPreferencePage"
+              id="com.alibaba.smartfox.eclipse.ui.AllRulesPreferencePage"/>
+    </extension>
+</plugin>

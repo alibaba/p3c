@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="use-apache-beanutils-copy"><![CDATA[
+import java.lang.reflect.InvocationTargetException;
+import org.apache.commons.beanutils.BeanUtils;
+public class AvoidApacheBeanUtilsCopyRule {
+    public void test(Object a, Object b) throws IllegalAccessException, InvocationTargetException {
+        BeanUtils.copyProperties(a, b);
+    }
+}
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>Use Apache BeanUtils copy</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>5</expected-linenumbers>
+		<code-ref id="use-apache-beanutils-copy" />
+	</test-code>
+
+
+	<code-fragment id="use-spring-beanutils-copy"><![CDATA[
+import java.lang.reflect.InvocationTargetException;
+import org.springframework.beans.BeanUtils;
+public class MyTest {
+    public void test(Object a, Object b) throws IllegalAccessException, InvocationTargetException {
+        BeanUtils.copyProperties(a, b);
+    }
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Use Spring BeanUtils copy</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="use-spring-beanutils-copy" />
+	</test-code>
+
+</test-data>

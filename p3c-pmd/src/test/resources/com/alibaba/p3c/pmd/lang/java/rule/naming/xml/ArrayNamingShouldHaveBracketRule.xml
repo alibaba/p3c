@@ -1,0 +1,36 @@
+<test-data>
+    <code-fragment id="ArrayTypeStyleTest">
+        <![CDATA[
+  public class ArrayTypeStyleTest{
+    private String array2[];
+    private String[] array1;
+    public void f(){
+      String[] array3;
+      String array4[];
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>array should be array[]</description>
+        <expected-problems>2</expected-problems>
+        <code-ref id="ArrayTypeStyleTest" />
+        <expected-linenumbers>2,6</expected-linenumbers>
+    </test-code>
+
+    <code-fragment id="ArrayTypeStyleTest1">
+        <![CDATA[
+  public class ArrayTypeStyleTest{
+    private String[] array1;
+    public void f(){
+      String[] array2;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>array should be array[]</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="ArrayTypeStyleTest1" />
+    </test-code>
+</test-data>

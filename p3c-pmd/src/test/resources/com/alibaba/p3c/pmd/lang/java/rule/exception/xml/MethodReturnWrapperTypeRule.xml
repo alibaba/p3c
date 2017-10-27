@@ -1,0 +1,60 @@
+<test-data>
+
+    <code-fragment id="MethodReturnWrapperTypeRule">
+        <![CDATA[
+public class Add{
+    public int add(Integer x, Integer y) {
+        return x+y;
+    }
+    public int add1(Integer x, Integer y) {
+        return new Integer(5);
+    }
+     public int add2(Integer x, Integer y) {
+        return map.get(1);
+    }
+    public int add3(Integer x, Integer y) {
+        Integer z =  new Integer(5);
+        return z;
+    }
+    public String add4(Integer x, Integer y) {
+        Integer z =  new Integer(5);
+        return z;
+    }
+    public boolean testBoolean() {
+        Boolean z =  new Boolean();
+        return z;
+    }
+    public float testFloat() {
+        Float z =  new Float();
+        return z;
+    }
+    public double testDouble() {
+        Double z =  new Double();
+        return z;
+    }
+    public byte testByte() {
+        Byte z =  new Byte();
+        return z;
+    }
+    public short testShort() {
+        Short z =  new Short();
+        return z;
+    }
+    public long testLong() {
+        Long z =  new Long();
+        return z;
+    }
+    public char testCharacter() {
+        Character z =  new Character();
+        return z;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>If the return type is primitive, return a value of wrapper class may cause NullPointerException</description>
+        <expected-problems>8</expected-problems>
+        <code-ref id="MethodReturnWrapperTypeRule"/>
+        <expected-linenumbers>11,19,23,27,31,35,39,43</expected-linenumbers>
+    </test-code>
+</test-data>

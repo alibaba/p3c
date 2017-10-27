@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>9</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>  
+  <groupId>com.alibaba.p3c</groupId>
+  <artifactId>p3c-pmd</artifactId>  
+  <version>1.3.0</version>
+  <packaging>jar</packaging>  
+  <name>p3c-pmd</name>  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+    <pmd.version>5.5.2</pmd.version> 
+  </properties>
+
+  <description>Alibaba Java Coding Guidelines PMD implementations</description>
+  <url>https://github.com/alibaba/p3c</url>
+  <inceptionYear>2017</inceptionYear>
+
+  <licenses>
+    <license>
+      <name>Apache 2</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>https://github.com/alibaba/p3c</url>
+    <connection>scm:git:https://git@github.com/alibaba/p3c.git</connection>
+  </scm>
+
+  <organization>
+    <name>Alibaba Group</name>
+    <url>https://github.com/alibaba</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <name>XuanTan</name>
+      <url>https://github.com/xuantan</url>
+      <email>zhangym124@gmail.com</email>
+    </developer>
+    <developer>
+      <name>ChangLe</name>
+      <url>https://github.com/LQZYC</url>
+      <email>lqleo323@gmail.com</email>
+    </developer>
+    <developer>
+      <name>ZengHou</name>
+      <url>https://github.com/fw8899</url>
+      <email>fengwei1983@gmail.com</email>
+    </developer>
+    <developer>
+      <name>ShengYan</name>
+      <url>http://smiler158.github.io/</url>
+      <email>smiler158@163.com</email>
+    </developer>
+    <developer>
+      <name>KeQi</name>
+      <email>lyzw2009@gmail.com</email>
+    </developer>
+    <developer>
+      <name>JunLie</name>
+      <url>https://github.com/SeanCai</url>
+      <email>sean.caikang@gmail.com</email>
+    </developer>
+  </developers>
+
+  <dependencies> 
+    <dependency> 
+      <groupId>net.sourceforge.pmd</groupId>  
+      <artifactId>pmd-java</artifactId>  
+      <version>${pmd.version}</version> 
+    </dependency>  
+    <dependency> 
+      <groupId>net.sourceforge.pmd</groupId>  
+      <artifactId>pmd-vm</artifactId>  
+      <version>${pmd.version}</version> 
+    </dependency>  
+    <dependency> 
+      <groupId>net.sourceforge.pmd</groupId>  
+      <artifactId>pmd-test</artifactId>  
+      <version>${pmd.version}</version>  
+      <scope>test</scope> 
+    </dependency>  
+    <dependency> 
+      <groupId>com.alibaba</groupId>  
+      <artifactId>fastjson</artifactId>  
+      <version>1.2.9</version> 
+    </dependency> 
+  </dependencies>  
+  <build> 
+    <plugins> 
+      <plugin> 
+        <groupId>org.apache.maven.plugins</groupId>  
+        <artifactId>maven-compiler-plugin</artifactId>  
+        <version>3.3</version>  
+        <configuration> 
+          <source>1.7</source>  
+          <target>1.7</target>  
+          <encoding>UTF-8</encoding> 
+        </configuration> 
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.4</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <tags>
+            <tag>
+              <name>date</name>
+            </tag>
+          </tags>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins> 
+  </build>  
+</project>

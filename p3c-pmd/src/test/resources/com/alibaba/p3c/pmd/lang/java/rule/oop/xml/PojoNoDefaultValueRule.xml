@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+	<code-fragment id="pojo-field-has-default-value">
+		<![CDATA[
+	public class FooDO {
+		private static final String HELLO = "Hello";	// OK
+		private String tom = ""; 	// BAD
+		private String jerry;		// OK
+		private int pageSize = 20;	// BAD
+
+		public void bar() {
+			int pageNo = 1;
+		}
+
+		private static class NestedDTO {
+			private String tom = ""; // BAD
+		}
+
+		private static class InnerClass {
+			private String tom = ""; // OK
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>POJO has fields with default value</description>
+		<expected-problems>3</expected-problems>
+		<expected-linenumbers>12,3,5</expected-linenumbers>
+		<code-ref id="pojo-field-has-default-value" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="not-pojo">
+		<![CDATA[
+	public class FooPO {
+		private static final String HELLO = "Hello";	// OK
+		private String tom = ""; 	// OK, not POJO
+		private String jerry;		// OK
+		private int pageSize = 20;	// OK, not POJO
+
+		public void bar() {
+			int pageNo = 1;
+		}
+
+		private static class NestedDTO {
+			private String tom = ""; // BAD
+		}
+		private static class InnerClass {
+			private String tom = ""; // OK
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>non-POJO, inner POJO class</description>
+		<expected-problems>1</expected-problems>
+		<code-ref id="not-pojo" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="pojo-feild-exclusion">
+		<![CDATA[
+	public class FooBO {
+		private static final String HELLO = "Hello";	// OK
+		private String tom = ""; 	// BAD
+		private String jerry;		// OK
+		public int pageSize = 20;	// OK,public
+
+		public void bar() {
+			int pageNo = 1;
+		}
+
+		private static class NestedDTO {
+			private String tom = ""; // BAD
+		}
+	}
+		]]>
+	</code-fragment>
+
+	<test-code>
+		<description>not check static, transient or public fields</description>
+		<expected-problems>2</expected-problems>
+		<expected-linenumbers>12,3</expected-linenumbers>
+		<code-ref id="pojo-feild-exclusion" />
+	</test-code>
+
+</test-data>

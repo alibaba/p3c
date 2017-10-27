@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="java.naming.AbstractClassShouldStartWithAbstractNamingRule.violation.msg">
+        <![CDATA[Abstract class [%s] names must start with Abstract or Base]]>
+    </entry>
+    <entry key="java.naming.ArrayNamingShouldHaveBracketRule.violation.msg">
+        <![CDATA[An array variable [%s] brackets position error]]>
+    </entry>
+    <entry key="java.naming.AvoidStartWithDollarAndUnderLineNamingRule.violation.msg">
+        <![CDATA[[%s] should not start or end with an underline or a dollar sign]]>
+    </entry>
+    <entry key="java.naming.BooleanPropertyShouldNotStartWithIsRule.violation.msg">
+        <![CDATA[Boolean variable [%s] should not add prefix is]]>
+    </entry>
+    <entry key="java.naming.ClassNamingShouldBeCamelRule.violation.msg">
+        <![CDATA[[%s] not conform to the UpperCamelCase]]>
+    </entry>
+    <entry key="java.naming.ConstantFieldShouldBeUpperCaseRule.violation.msg">
+        <![CDATA[Constant [%s] should be written in upper characters separated by underscores]]>
+    </entry>
+    <entry key="java.naming.ExceptionClassShouldEndWithExceptionRule.violation.msg">
+        <![CDATA[[%s] must be ended with Exception]]>
+    </entry>
+    <entry key="java.naming.LowerCamelCaseVariableNamingRule.violation.msg.method">
+        <![CDATA[method [%s] not conform to the lowerCamelCase]]>
+    </entry>
+    <entry key="java.naming.LowerCamelCaseVariableNamingRule.violation.msg.variable">
+        <![CDATA[variable [%s] not conform to the lowerCamelCase]]>
+    </entry>
+    <entry key="java.naming.PackageNamingRule.violation.msg">
+        <![CDATA[Package [%s] should be named in lowercase characters]]>
+    </entry>
+    <entry key="java.naming.ServiceOrDaoClassShouldEndWithImplRule.violation.msg">
+        <![CDATA[class [%s] should be ended with Impl]]>
+    </entry>
+    <entry key="java.naming.TestClassShouldEndWithTestNamingRule.violation.msg">
+        <![CDATA[Test cases [%s] should be ended with Test]]>
+    </entry>
+    <entry key="java.naming.IbatisMethodQueryForListRule.violation.msg">
+        <![CDATA[iBatis built in com.ibatis.sqlmap.client.SqlMapClient.queryForList(String statementName,int start,int size) is not recommended]]>
+    </entry>
+
+    <entry key="java.exception.AvoidReturnInFinallyRule.rule.msg">
+        <![CDATA[Never use return within a finally block. A return statement in a finally block will cause exceptions or result in a discarded return value in the try-catch block.]]>
+    </entry>
+
+    <entry key="java.exception.AvoidReturnInFinallyRule.violation.msg">
+        <![CDATA[return in finally is prohibited]]>
+    </entry>
+
+    <entry key="java.exception.MethodReturnWrapperTypeRule.violation.msg">
+        <![CDATA[the return type is primitive【%s】，return a value of wrapper class【%s】，may cause NullPointerException]]>
+    </entry>
+
+    <entry key="java.exception.MethodReturnWrapperTypeRule.rule.msg">
+        <![CDATA[If the return type is primitive, return a value of wrapper class may cause NullPointerException]]>
+    </entry>
+
+    <entry key="java.exception.TransactionMustHaveRollbackRule.violation.msg.simple">
+        <![CDATA[Attribute rollbackFor of annotation Transactional must be set.]]>
+    </entry>
+    <entry key="java.exception.TransactionMustHaveRollbackRule.violation.msg">
+        <![CDATA[Annotation of Method [%s] should set value of rollbackFor attribute or call rollback() method explicitly.]]>
+    </entry>
+    <entry key="java.exception.TransactionMustHaveRollbackRule.rule.msg">
+        <![CDATA[Make sure to invoke the rollback if a method throws an Exception.]]>
+    </entry>
+
+
+    <entry key="java.naming.IbatisMethodQueryForListRule.rule.msg">
+        <![CDATA[iBatis built in queryForList(String statementName, int start, int size) is not recommended]]>
+    </entry>
+    <entry key="java.naming.ClassNamingShouldBeCamelRule.rule.msg">
+        <![CDATA[Class names should be nouns in UpperCamelCase except domain models: DO, BO, DTO, VO, etc]]>
+    </entry>
+    <entry key="java.naming.AbstractClassShouldStartWithAbstractNamingRule.rule.msg">
+        <![CDATA[Abstract class names must start with Abstract or Base]]>
+    </entry>
+    <entry key="java.naming.ExceptionClassShouldEndWithExceptionRule.rule.msg">
+        <![CDATA[Exception class names must be ended with Exception]]>
+    </entry>
+    <entry key="java.naming.TestClassShouldEndWithTestNamingRule.rule.msg">
+        <![CDATA[Test cases shall be started with the class names to be tested and ended with Test]]>
+    </entry>
+    <entry key="java.naming.LowerCamelCaseVariableNamingRule.rule.msg">
+        <![CDATA[Method names, parameter names, member variable names, and local variable names should be written in lowerCamelCase]]>
+    </entry>
+    <entry key="java.naming.AvoidStartWithDollarAndUnderLineNamingRule.rule.msg">
+        <![CDATA[All names should not start or end with an underline or a dollar sign]]>
+    </entry>
+    <entry key="java.naming.ConstantFieldShouldBeUpperCaseRule.rule.msg">
+        <![CDATA[Constant variable names should be written in upper characters separated by underscores. These names should be semantically complete and clear]]>
+    </entry>
+    <entry key="java.naming.ServiceOrDaoClassShouldEndWithImplRule.rule.msg">
+        <![CDATA[All Service and DAO classes must be interface based on SOA principle. Implementation class names should be ended with Impl]]>
+    </entry>
+    <entry key="java.naming.PackageNamingRule.rule.msg">
+        <![CDATA[All Service and DAO classes must be interface based on SOA principle. Implementation class names]]>
+    </entry>
+    <entry key="java.naming.BooleanPropertyShouldNotStartWithIsRule.rule.msg">
+        <![CDATA[Do not add 'is' as prefix while defining Boolean variable, since it may cause a serialization exception in some Java Frameworks]]>
+    </entry>
+    <entry key="java.naming.ArrayNamingShouldHaveBracketRule.rule.msg">
+        <![CDATA[Brackets are a part of an Array type. The definition could be: String[] args]]>
+    </entry>
+    <entry key="java.concurrent.AvoidUseTimerRule.violation.msg">Use ScheduledExecutorService instead.</entry>
+    <entry key="java.concurrent.AvoidUseTimerRule.rule.msg">
+        <![CDATA[Run multiple TimeTask by using ScheduledExecutorService rather than Timer because Timer will kill all running threads in case of failing to catch exceptions.]]>
+    </entry>
+
+
+    <entry key="java.concurrent.AvoidCallStaticSimpleDateFormatRule.violation.msg">[%s()] may cause thread-safety issues.
+    </entry>
+    <entry key="java.concurrent.AvoidCallStaticSimpleDateFormatRule.rule.msg">
+        <![CDATA[SimpleDataFormat is unsafe, do not define it as a static variable. If have to, lock or DateUtils class must be used.]]>
+    </entry>
+    <entry key="java.concurrent.AvoidCallStaticSimpleDateFormatRule.rule.desc"><![CDATA[
+Note: In JDK8, Instant can be used to replace Date, Calendar is replaced by LocalDateTime, SimpleDateFormat is replaced by DateTimeFormatter.
+       ]]></entry>
+
+    <entry key="java.concurrent.AvoidConcurrentCompetitionRandomRule.violation.msg.math.random">
+        <![CDATA[Avoid using [Math.random()] by multiple threads.]]>
+    </entry>
+    <entry key="java.concurrent.AvoidConcurrentCompetitionRandomRule.violation.msg.random">
+        <![CDATA[Avoid using Random instance [%s] by multiple threads.]]>
+    </entry>
+    <entry key="java.concurrent.AvoidConcurrentCompetitionRandomRule.rule.msg">
+        <![CDATA[Avoid using Random instance by multiple threads. Although it is safe to share this instance, competition on the same seed will damage performance. Note: Random instance includes instances of java.util.Random and Math.random().]]>
+    </entry>
+
+    <entry key="java.concurrent.AvoidManuallyCreateThreadRule.violation.msg">
+        <![CDATA[Explicitly creating threads is not allowed，use thread pool instead.]]>
+    </entry>
+    <entry key="java.concurrent.AvoidManuallyCreateThreadRule.rule.msg">
+        <![CDATA[Threads should be provided by thread pools. Explicitly creating threads is not allowed.]]>
+    </entry>
+    <entry key="java.concurrent.AvoidManuallyCreateThreadRule.rule.desc">
+        <![CDATA[Note: Using thread pool can reduce the time of creating and destroying thread and save system resource. If we do not use thread pools, lots of similar threads will be created which lead to "running out of memory" or over-switching problems.]]>
+    </entry>
+
+    <entry key="java.concurrent.CountDownShouldInFinallyRule.violation.msg">
+        <![CDATA[[%s()] should be called in finally block.]]>
+    </entry>
+    <entry key="java.concurrent.CountDownShouldInFinallyRule.rule.msg">
+        <![CDATA[When using CountDownLatch to convert asynchronous operations to synchronous ones,each thread must call countdown method before quitting. Make sure to catch any exception during thread running, to let countdown method be executed. If main thread cannot reach await method, program will return until timeout.]]>
+    </entry>
+    <entry key="java.concurrent.CountDownShouldInFinallyRule.rule.desc">
+        <![CDATA[Note: Be careful, exception thrown by sub-thread cannot be caught by main thread.]]>
+    </entry>
+
+    <entry key="java.concurrent.ThreadLocalShouldRemoveRule.violation.msg">
+        <![CDATA[Field [%s] of type 'ThreadLocal' must call remove() method at least one times.]]>
+    </entry>
+    <entry key="java.concurrent.ThreadLocalShouldRemoveRule.rule.msg">
+        <![CDATA[Customized ThreadLocal variables must be recycled,especially when using thread pools in which threads are often reused. Otherwise, it may affect subsequent business logic and cause unexpected problems such as memory leak.]]>
+    </entry>
+
+    <entry key="java.concurrent.ThreadPoolCreationRule.violation.msg">
+        <![CDATA[Manually create thread pool is better.]]>
+    </entry>
+    <entry key="java.concurrent.ThreadPoolCreationRule.rule.msg">
+        <![CDATA[A thread pool should be created by ThreadPoolExecutor rather than Executors. These would make the parameters of the thread pool understandable. It would also reduce the risk of running out of system resource.]]>
+    </entry>
+    <entry key="java.concurrent.ThreadPoolCreationRule.rule.desc">
+        <![CDATA[
+Note: Below are the problems created by usage of Executors for thread pool creation:
+1) FixedThreadPool and SingleThreadPool:
+ Maximum request queue size Integer.MAX_VALUE. A large number of requests might cause OOM.
+2) CachedThreadPool and ScheduledThreadPool:
+ The number of threads which are allowed to be created is Integer.MAX_VALUE. Creating too many threads might lead to OOM.]]>
+    </entry>
+
+    <entry key="java.concurrent.ThreadShouldSetNameRule.violation.msg.ThreadPoolExecutor">
+        <![CDATA[Use ThreadPoolExecutor's constructor with parameter of type ThreadFactory to set a thread name.]]>
+    </entry>
+    <entry key="java.concurrent.ThreadShouldSetNameRule.violation.msg.ScheduledThreadPoolExecutor">
+        <![CDATA[Use ScheduledThreadPoolExecutor's constructor with parameter of type ThreadFactory to set a thread name.]]>
+    </entry>
+    <entry key="java.concurrent.ThreadShouldSetNameRule.rule.msg">
+        <![CDATA[A meaningful thread name is helpful to trace the error information,so assign a name when creating threads or thread pools.]]>
+    </entry>
+
+    <!-- flowcontrol -->
+    <entry key="java.flowcontrol.SwitchStatementRule.violation.nodefault">
+        <![CDATA[missing default statement in switch block]]>
+    </entry>
+    <entry key="java.flowcontrol.SwitchStatementRule.violation.notermination">
+        <![CDATA[every case should end with break or return etc.]]>
+    </entry>
+    <entry key="java.flowcontrol.SwitchStatementRule.rule.msg">
+        <![CDATA[ In a switch block, each case should be finished by break/return. If not, a note should be included to describe at which case it will stop. Within every switch block, a default statement must be present, even if it is empty.]]>
+    </entry>
+
+    <entry key="java.flowcontrol.NeedBraceRule.violation.msg">
+        <![CDATA[missing brace in %s statement]]>
+    </entry>
+    <entry key="java.flowcontrol.NeedBraceRule.rule.msg">
+        <![CDATA[Braces are used with if, else, for, do and while statements, even if the body contains only a single statement. Avoid using the following example: if (condition) statements;]]>
+    </entry>
+
+    <entry key="java.flowcontrol.AvoidComplexConditionRule.violation.msg">
+        <![CDATA[Do not use complicated statements in conditional statements]]>
+    </entry>
+    <entry key="java.flowcontrol.AvoidComplexConditionRule.rule.msg">
+        <![CDATA[Do not use complicated statements in conditional statements (except for frequently used methods like getXxx/isXxx). Use boolean variables to store results of complicated statements temporarily will increase the code's readability.]]>
+    </entry>
+    <entry key="java.flowcontrol.AvoidComplexConditionRule.rule.desc">
+        <![CDATA[Note: Logic within many if statements are very complicated. Readers need to analyze the final results of the conditional expression to decide what statement is to be executed in certain conditions.]]>
+    </entry>
+
+    <!-- set -->
+    <entry key="java.set.ClassCastExceptionWithSubListToArrayListRule.violation.msg">
+        <![CDATA[The result of [%s] can't cast in class ArrayList]]>
+    </entry>
+    <entry key="java.set.ClassCastExceptionWithSubListToArrayListRule.rule.msg">
+        <![CDATA[Do not cast subList in class ArrayList, otherwise ClassCastException will be thrown. ]]>
+    </entry>
+    <entry key="java.set.ClassCastExceptionWithSubListToArrayListRule.rule.msg.desc">
+        <![CDATA[Note:Do not cast, if you have to do，please use new Conllection(sublist result). ]]>
+    </entry>
+    <entry key="java.set.ClassCastExceptionWithToArrayRule.violation.msg">
+        <![CDATA[[%s] should use arguments with  array size.]]>
+    </entry>
+    <entry key="java.set.ClassCastExceptionWithToArrayRule.rule.msg">
+        <![CDATA[Do not use toArray method without arguments. Since the return type is Object[], ClassCastException will be thrown when casting it to a different array type.]]>
+    </entry>
+    <entry key="java.set.CollectionInitShouldAssignCapacityRule.violation.msg">
+        <![CDATA[[%s] should set a size when initializing ]]>
+    </entry>
+    <entry key="java.set.CollectionInitShouldAssignCapacityRule.rule.msg">
+        <![CDATA[Set a size when initializing a collection if possible.]]>
+    </entry>
+    <entry key="java.set.CollectionInitShouldAssignCapacityRule.rule.msg.desc">
+        <![CDATA[Note:HashMap does not set the size of the capacity, with the elements continue to increase, the capacity is often forced to expand, resize the need to rebuild the hash table, seriously affecting performance.]]>
+    </entry>
+    <entry key="java.set.ConcurrentExceptionWithModifyOriginSubListRule.violation.msg">
+        <![CDATA[[%s] could cause ConcurrentModificationException]]>
+    </entry>
+    <entry key="java.set.ConcurrentExceptionWithModifyOriginSubListRule.rule.msg">
+        <![CDATA[When using subList, be careful to modify the size of original list. It might cause ConcurrentModificationException when performing traversing, adding or deleting on the subList.]]>
+    </entry>
+    <entry key="java.set.DontModifyInForeachCircleRule.violation.msg">
+        <![CDATA[Do not use [%s] to a collection in a foreach loop.]]>
+    </entry>
+    <entry key="java.set.DontModifyInForeachCircleRule.rule.msg">
+        <![CDATA[Do not remove or add elements to a collection in a foreach loop. Please use Iterator to remove an item. Iterator object should be synchronized when executing concurrent operations.]]>
+    </entry>
+    <entry key="java.set.UnsupportedExceptionWithModifyAsListRule.violation.msg">
+        <![CDATA[Use [%s] can cause UnsupportedOperationException ]]>
+    </entry>
+    <entry key="java.set.UnsupportedExceptionWithModifyAsListRule.rule.msg">
+        <![CDATA[Do not use methods which will modify the list after using Arrays.asList to convert array to list, otherwise methods like add/remove/clear will throw UnsupportedOperationException. ]]>
+    </entry>
+    <!-- constant -->
+    <entry key="java.constant.UndefineMagicConstantRule.violation.msg">
+        <![CDATA[Magic value [%s] ]]>
+    </entry>
+    <entry key="java.constant.UndefineMagicConstantRule.rule.msg">
+        <![CDATA[Magic values, except for predefined, are forbidden in coding.]]>
+    </entry>
+    <entry key="java.constant.UpperEllRule.violation.msg">
+        <![CDATA[ [%s] shoud use upper L ]]>
+    </entry>
+    <entry key="java.constant.UpperEllRule.rule.msg">
+        <![CDATA[ 'L' instead of 'l' should be used for long or Long variable because 'l' is easily to be regarded as number 1 in mistake.]]>
+    </entry>
+
+    <!-- oop -->
+    <entry key="java.oop.EqualsAvoidNullRule.violation.msg">
+        <![CDATA[[%s] should be argument of equals, but not caller]]>
+    </entry>
+    <entry key="java.oop.EqualsAvoidNullRule.rule.msg">
+        <![CDATA[Since NullPointerException can possibly be thrown while calling the equals method of Object, equals should be invoked by a constant or an object that is definitely not null.]]>
+    </entry>
+
+    <entry key="java.oop.WrapperTypeEqualityRule.violation.msg">
+        <![CDATA[should use equals method instead of ==]]>
+    </entry>
+    <entry key="java.oop.WrapperTypeEqualityRule.rule.msg">
+        <![CDATA[The wrapper classes should be compared by equals method rather than by symbol of '==' directly.]]>
+    </entry>
+    <entry key="java.oop.WrapperTypeEqualityRule.rule.desc">
+        <![CDATA[Note: Consider this assignment: Integer var = ?. When it fits the range from -128 to 127, we can use == directly for a comparison. Because the Integer object will be generated by IntegerCache.cache, which reuses an existing object. Nevertheless, when it fits the complementary set of the former range, the Integer object will be allocated in Heap, which does not reuse an existing object. This is a pitfall. Hence the equals method is recommended.]]>
+    </entry>
+
+    <entry key="java.oop.PojoMustUsePrimitiveFieldRule.violation.msg">
+        <![CDATA[field [%s] should use wrapper type]]>
+    </entry>
+    <entry key="java.oop.PojoMustUsePrimitiveFieldRule.rule.msg">
+        <![CDATA[
+ Rules for using primitive data types and wrapper classes:
+ 1) Members of a POJO class must be wrapper classes.
+ 2) The return value and arguments of a RPC method must be wrapper classes.
+ 3) [Recommended] Local variables should be primitive data types.
+        ]]>
+    </entry>
+    <entry key="java.oop.PojoMustUsePrimitiveFieldRule.rule.msg.desc">
+        <![CDATA[Note: In order to remind the consumer of explicit assignments, there are no initial values for members in a POJO class. As a consumer, you should check problems such as NullPointerException and warehouse entries for yourself.]]>
+    </entry>
+
+    <entry key="java.oop.PojoNoDefaultValueRule.violation.msg">
+        <![CDATA[field [%s] should not has default value]]>
+    </entry>
+    <entry key="java.oop.PojoNoDefaultValueRule.rule.msg">
+        <![CDATA[While defining POJO classes like DO, DTO, VO, etc., do not assign any default values to the members.]]>
+    </entry>
+
+    <entry key="java.oop.PojoMustOverrideToStringRule.violation.msg.notostring">
+        <![CDATA[[%s] not override the toString method]]>
+    </entry>
+    <entry key="java.oop.PojoMustOverrideToStringRule.violation.msg.usesuper">
+        <![CDATA[should call super.toString]]>
+    </entry>
+    <entry key="java.oop.PojoMustOverrideToStringRule.rule.msg">
+        <![CDATA[The toString method must be implemented in a POJO class. The super.toString method should be called in front of the whole implementation if the current class extends another POJO class.]]>
+    </entry>
+    <entry key="java.oop.PojoMustOverrideToStringRule.rule.desc">
+        <![CDATA[ We can call the toString method in a POJO directly to print property values in order to check the problem when a method throws an exception in runtime.]]>
+    </entry>
+
+    <entry key="java.oop.PojoMustOverrideToStringRule.violation.msg">
+        <![CDATA[do not concat string with "+" in loop]]>
+    </entry>
+    <entry key="java.oop.StringConcatRule.rule.msg">
+        <![CDATA[Use the append method in StringBuilder inside a loop body when concatenating multiple strings.]]>
+    </entry>
+    <entry key="java.oop.StringConcatRule.rule.msg.desc">
+        <![CDATA[Note: According to the decompiled bytecode file, for each loop, it allocates a StringBuilder object, appends a string, and finally returns a String object via the toString method. This is a tremendous waste of memory.]]>
+    </entry>
+
+    <!-- comment -->
+    <entry key="java.comment.CommentsMustBeJavadocFormatRule.rule.msg">
+        <![CDATA[Javadoc should be used for classes, class variables and methods. The format should be '/** comment **/', rather than '// xxx'.]]>
+    </entry>
+    <entry key="java.comment.CommentsMustBeJavadocFormatRule.rule.desc">
+        <![CDATA[
+In IDE, Javadoc can be seen directly when hovering, which is a good way to improve efficiency.
+        ]]>
+    </entry>
+    <entry key="java.comment.CommentsMustBeJavadocFormatRule.violation.msg.class">
+        <![CDATA[class [%s] should use javadoc format comment]]>
+    </entry>
+    <entry key="java.comment.CommentsMustBeJavadocFormatRule.violation.msg.constructor.default">
+        <![CDATA[constructor [%s()] should use javadoc format comment]]>
+    </entry>
+    <entry key="java.comment.CommentsMustBeJavadocFormatRule.violation.msg.constructor.parameter">
+        <![CDATA[constructor [%s(%s)] should use javadoc format comment]]>
+    </entry>
+    <entry key="java.comment.CommentsMustBeJavadocFormatRule.violation.msg.method">
+        <![CDATA[method [%s] should use javadoc format comment]]>
+    </entry>
+    <entry key="java.comment.CommentsMustBeJavadocFormatRule.violation.msg.field">
+        <![CDATA[field [%s] should use javadoc format comment]]>
+    </entry>
+    <entry key="java.comment.CommentsMustBeJavadocFormatRule.violation.msg.enum">
+        <![CDATA[enum [%s] should use javadoc format comment]]>
+    </entry>
+
+    <entry key="java.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule.rule.msg">
+        <![CDATA[Abstract methods (including methods in interface) should be commented by Javadoc.]]>
+    </entry>
+    <entry key="java.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule.rule.desc">
+        <![CDATA[
+Javadoc should include method instruction, description of parameters, return values and possible exceptions.
+        ]]>
+    </entry>
+    <entry key="java.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule.violation.msg.abstract">
+        <![CDATA[abstract method [%s] should have javadoc]]>
+    </entry>
+    <entry key="java.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule.violation.msg.interface">
+        <![CDATA[method [%s] in interface should have javadoc]]>
+    </entry>
+    <entry key="java.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule.violation.msg.desc">
+        <![CDATA[please javadoc the purpose of method [%s] in detail]]>
+    </entry>
+    <entry key="java.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule.violation.msg.parameter">
+        <![CDATA[parameter [%s] of method [%s] should have javadoc]]>
+    </entry>
+    <entry key="java.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule.violation.msg.return">
+        <![CDATA[return value of method [%s] should have javadoc]]>
+    </entry>
+    <entry key="java.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule.violation.msg.exception">
+        <![CDATA[exception [%s] of method [%s] should have javadoc]]>
+    </entry>
+
+    <entry key="java.comment.AvoidCommentBehindStatementRule.rule.msg">
+        <![CDATA[Single line comments in a method should be put above the code to be commented, by using // and multiple lines by using /* */.]]>
+    </entry>
+    <entry key="java.comment.AvoidCommentBehindStatementRule.violation.msg">
+        <![CDATA[avoid put comment behind statement]]>
+    </entry>
+
+    <entry key="java.comment.ClassMustHaveAuthorRule.rule.msg">
+        <![CDATA[Every class should include information of author(s) and date.]]>
+    </entry>
+    <entry key="java.comment.ClassMustHaveAuthorRule.rule.desc">
+        <![CDATA[
+Note: When setting template in IDE, the format of author in IDEA is ${USER}, while in Eclipse is ${user} (Case sensitive).
+The format of date is 'yyyy/MM/dd'.
+        ]]>
+    </entry>
+    <entry key="java.comment.ClassMustHaveAuthorRule.violation.msg.comment">
+        <![CDATA[[%s] should have @author javadoc]]>
+    </entry>
+    <entry key="java.comment.ClassMustHaveAuthorRule.violation.msg.author">
+        <![CDATA[javadoc of [%s] should contain @author tag]]>
+    </entry>
+
+    <entry key="java.comment.EnumConstantsMustHaveCommentRule.rule.msg">
+        <![CDATA[All enumeration type fields should be commented as Javadoc style.]]>
+    </entry>
+    <entry key="java.comment.EnumConstantsMustHaveCommentRule.violation.msg">
+        <![CDATA[enum [%s] should have javadoc]]>
+    </entry>
+
+    <entry key="java.comment.RemoveCommentedCodeRule.rule.msg">
+        <![CDATA[Codes or configuration that is noticed to be obsoleted should be resolutely removed from projects.]]>
+    </entry>
+    <entry key="java.comment.RemoveCommentedCodeRule.rule.desc">
+        <![CDATA[
+Note: Remove obsoleted codes or configuration in time to avoid code redundancy.
+        ]]>
+    </entry>
+
+
+    <!-- jave other -->
+    <entry key="java.other.AvoidPatternCompileInMethodRule.rule.msg">
+        <![CDATA[When using regex, precompile needs to be done in order to increase the matching performance.]]>
+    </entry>
+    <entry key="java.other.AvoidPatternCompileInMethodRule.rule.desc">
+        <![CDATA[
+Note: Do not define Pattern pattern = Pattern.compile(.); within method body.
+        ]]>
+    </entry>
+    <entry key="java.other.AvoidPatternCompileInMethodRule.violation.msg">
+        <![CDATA[variable [%s] should be defined as constant or field]]>
+    </entry>
+
+    <entry key="java.other.AvoidApacheBeanUtilsCopyRule.rule.msg">
+        <![CDATA[Avoid using *Apache Beanutils* to copy attributes.]]>
+    </entry>
+    <entry key="java.other.AvoidApacheBeanUtilsCopyRule.rule.desc">
+        <![CDATA[
+Note: *Spring BeanUtils* and *Cglib BeanCopier* are recommended to be used, which have better performance.
+        ]]>
+    </entry>
+
+    <entry key="java.other.AvoidNewDateGetTimeRule.rule.msg">
+        <![CDATA[Use System.currentTimeMillis() to get the current millisecond. Do not use new Date().getTime(). ]]>
+    </entry>
+    <entry key="java.other.AvoidNewDateGetTimeRule.rule.desc">
+        <![CDATA[
+Note: In order to get a more accurate time, use System.nanoTime(). In JDK8, use Instant class to deal with situations like time statistics.
+        ]]>
+    </entry>
+    <entry key="java.other.AvoidNewDateGetTimeRule.violation.msg">
+        <![CDATA[please use System.currentTimeMillis() instead of new Date().getTime()]]>
+    </entry>
+
+    <entry key="java.other.AvoidMissUseOfMathRandomRule.rule.msg">
+        <![CDATA[The return type of Math.random() is double, value range is 0<=x<1 (0 is possible). If a random integer is required, do not multiply x by 10 then round the result. The correct way is to use nextInt or nextLong method which belong to Random Object.]]>
+    </entry>
+
+    <!--other -->
+    <entry key="vm.other.UseQuietReferenceNotationRule.rule.msg">
+        <![CDATA[Variables must add exclamatory mark when passing to velocity engine from backend, ${var}--add '!' after '$'.]]>
+    </entry>
+    <entry key="vm.other.UseQuietReferenceNotationRule.rule.desc">
+        <![CDATA[
+Note: If attribute is null or does not exist, ${var} will be shown directly on web pages.
+        ]]>
+    </entry>
+    <entry key="vm.other.UseQuietReferenceNotationRule.violation.msg">
+        <![CDATA[variable [%s] should add ! after $]]>
+    </entry>
+
+</properties>

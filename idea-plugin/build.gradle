@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+        maven {
+            url 'http://dl.bintray.com/jetbrains/intellij-plugin-service'
+        }
+        mavenCentral()
+
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    group 'com.alibaba.p3c.idea'
+    apply plugin: 'java'
+    apply plugin: 'kotlin'
+    apply plugin: 'maven-publish'
+
+    sourceCompatibility = 1.7
+    compileJava.options.encoding = 'UTF-8'
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    }
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+        testCompile group: 'junit', name: 'junit', version: '4.11'
+    }
+}
+

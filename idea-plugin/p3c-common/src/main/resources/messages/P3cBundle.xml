@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="com.alibaba.p3c.analytics.action_group.text">阿里编码规约</entry>
+    <entry key="com.alibaba.p3c.action.switch_language.text.cur_zh">切换语言至英文(English)</entry>
+    <entry key="com.alibaba.p3c.action.switch_language.text.cur_en">切换语言至中文</entry>
+    <entry key="com.alibaba.p3c.action.switch_language.text.success">
+        <![CDATA[切换语言成功，<a href="restart">重启</a>后生效]]></entry>
+    <entry key="com.alibaba.p3c.idea.action.AliInspectionAction.text">编码规约扫描</entry>
+    <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.text.close">关闭实时检测功能</entry>
+    <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.text.open">打开实时检测功能</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.delete_$">删除开头的 $ 或者 _</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.generate.author">添加/提取 @author</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.field.to.upperCaseWithUnderscore">修正为以下划线分隔大写模式</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.variable.lowerCamelCase">修改为小写驼峰命名（lowerCamelCase）</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.vm.add!">为变量添加!</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.replace.with">替换为</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.standalone.AliAccessStaticViaInstanceInspection">通过类 '%s' 直接访问静态成员
+        '%s.%s'
+    </entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.standalone.AliMissingOverrideAnnotationInspection">添加 @Override 注解</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.NeedBraceRule">为语句加上大括号</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.AliEqualsAvoidNull">翻转 equals 调用</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.ArrayNamingShouldHaveBracketRule">修改为 String[] str 模式</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.AliLongLiteralsEndingWithLowercaseL">'l' 替换为 'L'</entry>
+
+    <entry key="com.alibaba.p3c.idea.inspection.equals.instead.quality">
+        <![CDATA[包装类型间的相等判断应该用equals，而不是<code>#ref</code> #loc]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliAccessStaticViaInstanceInspection.message">
+        避免通过一个类的对象引用访问此类的静态变量或静态方法，无谓增加编译器解析成本，直接用类名来访问即可。
+    </entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliAccessStaticViaInstanceInspection.errMsg">不应该通过类实例访问静态成员
+        %s #loc
+    </entry>
+
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliDeprecationInspection.message">不能使用过时的类或方法。</entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliMissingOverrideAnnotationInspection.message">
+        所有的覆写方法，必须加@Override注解。
+    </entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliMissingOverrideAnnotationInspection.errMsg">
+        <![CDATA[<code>#ref()</code>缺少 '@Override' 注解 #loc]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsInspection.message">
+        Map/Set的key为自定义对象时，必须重写hashCode和equals。
+    </entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsInspection.errMsg">
+        参数类型 %s 没有重写hashCode和equals #loc
+    </entry>
+    <entry key="com.alibaba.p3c.idea.inspection.rule.AvoidCallStaticSimpleDateFormatRule.errMsg">
+        <![CDATA[<code>#ref</code> 是非线程安全的，请加锁或者使用局部变量 #loc]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.rule.NeedBraceRule.errMsg">
+        <![CDATA[<code>#ref</code> 没有加大括号 #loc]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.rule.AliEqualsAvoidNull.errMsg">
+        <![CDATA[<code>#ref</code> 应该作为方法 "%s()"的调用方，而不是参数 #loc]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.rule.ArrayNamingShouldHaveBracketRule.errMsg">
+        <![CDATA[{0, choice, 1#字段|2#参数|3#变量} <code>#ref</code> 数组定义格式错误 #loc]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.rule.AliLongLiteralsEndingWithLowercaseL.errMsg">
+        <![CDATA['long' 型常量 <code>#ref</code> 应该以大写L结尾 #loc]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.rule.WrapperTypeEqualityRule.errMsg">
+        <![CDATA[包装类型间的相等判断应该用equals，而不是<code>#ref</code> #loc]]></entry>
+
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliAccessStaticViaInstanceInspection.desc"><![CDATA[
+<html>
+<body>
+避免通过一个类的对象引用访问此类的静态变量或静态方法，无谓增加编译器解析成本，直接用类名来访问即可。
+</body>
+</html>
+]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliDeprecationInspection.desc"><![CDATA[
+<html>
+<body>
+不能使用过时的类或方法。<br>
+说明：java.net.URLDecoder 中的方法decode(String encodeStr) 这个方法已经过时，应该使用双参数decode(String source, String encode)。接口提供方既然明确是过时接口，那么有义务同时提供新的接口；作为调用方来说，有义务去考证过时方法的新实现是什么。
+</body>
+</html>
+]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.AliMissingOverrideAnnotationInspection.desc"><![CDATA[
+<html>
+<body>
+所有的覆写方法，必须加@Override注解。<br>
+反例：getObject()与get0bject()的问题。一个是字母的O，一个是数字的0，加@Override可以准确判断是否覆盖成功。另外，如果在抽象类中对方法签名进行修改，其实现类会马上编译报错。
+</body>
+</html>
+]]></entry>
+    <entry key="com.alibaba.p3c.idea.inspection.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsInspection.desc">
+        <![CDATA[
+<html>
+<body>
+Map/Set的key为自定义对象时，必须重写hashCode和equals。<br>
+关于hashCode和equals的处理，遵循如下规则：<br/>
+ 1） 只要重写equals，就必须重写hashCode。<br/>
+ 2） 因为Set存储的是不重复的对象，依据hashCode和equals进行判断，所以Set存储的对象必须重写这两个方法。<br/>
+ 3） 如果自定义对象做为Map的键，那么必须重写hashCode和equals。<br/>
+</body>
+</html>
+]]></entry>
+</properties>

@@ -1,0 +1,27 @@
+<test-data>
+    <code-fragment id="ExceptionNamingRuleTest1">
+        <![CDATA[
+public class EndWithExceptionRuleTest extends Exception {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Exception class name should end with Exception</description>
+        <expected-problems>1</expected-problems>
+        <code-ref id="ExceptionNamingRuleTest1" />
+        <expected-linenumbers>1</expected-linenumbers>
+    </test-code>
+
+    <code-fragment id="ExceptionNamingRuleTest2">
+        <![CDATA[
+public class RuleException extends Exception {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Exception class name should end with Exception</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="ExceptionNamingRuleTest2" />
+    </test-code>
+
+</test-data>

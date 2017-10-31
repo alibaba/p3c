@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 ## <font color="green">Preface</font>
-> We are pleased to present Alibaba Java Coding Guidelines, which consolidates the best programming practices over the years from Alibaba Group's technical teams. A vast number of Java programming teams impose demanding requirements on code quality across projects as we encourage reuse and better understanding of each other's programs. We have seen many programming problems in the past. For example, defective database table structures and index designs may cause software architecture flaws and performance risks. Yet as another example, confusing code structures make it difficult to maintain. Furthermore, vulnerable code without authentication is prone to hackers’ attacks. To address those kinds of problems, we developed this document for Java developers in Alibaba.
+> We are pleased to present Alibaba Java Coding Guidelines which consolidates the best programming practices over the years from Alibaba Group's technical teams. A vast number of Java programming teams impose demanding requirements on code quality across projects as we encourage reuse and better understanding of each other's programs. We have seen many programming problems in the past. For example, defective database table structures and index designs may cause software architecture flaws and performance risks. Another example is confusing code structures being difficult to maintain. Furthermore, vulnerable code without authentication is prone to hackers’ attacks. To address these kinds of problems, we developed this document for Java developers at Alibaba.
  
 For more information please refer the *Alibaba Java Coding Guidelines*:
 - 中文版: *[阿里巴巴Java开发手册](https://github.com/alibaba/p3c/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%EF%BC%88%E7%BB%88%E6%9E%81%E7%89%88%EF%BC%89.pdf)*
@@ -20,7 +20,7 @@ The project consists of 3 parts:
 - [Eclipse plugin](eclipse-plugin)   
 
 ## <font color="green">Rules</font>
-<font color="blue">49 rules are realized based on PMD, please refer the P3C-PMD documentation for more detailed information. 4 rules implemented within IDE plugins (IDEA and Eclipse) as following:</font>  
+<font color="blue">Forty-nine rules are realized based on PMD, please refer the P3C-PMD documentation for more detailed information. Four rules are implemented within IDE plugins (IDEA and Eclipse) as follows:</font>  
 
 - ``[Mandatory]`` Using a deprecated class or method is prohibited.  
    Note: For example, decode(String source, String encode) should be used instead of the deprecated method decode(String encodeStr). Once an interface has been deprecated, the interface provider has the obligation to provide a new one. At the same time, client programmers have the obligation to check out what its new implementation is.
@@ -37,7 +37,7 @@ The project consists of 3 parts:
    Note: String can be used as the key of Map since these two methods have been rewritten.
 
 ## Join us
-If you have any questions or some advices, please contact with junlie whose email is caikang.ck@alibaba-inc.com, and welcome to join us to make project P3C perfect to serve more programmers.  
+If you have any questions or some advice, please contact with junlie whose email is caikang.ck@alibaba-inc.com, and please join us to make project P3C perfect for more programmers.  
 
 Please follow our weChat official account as ali_yunxiao blow:
 

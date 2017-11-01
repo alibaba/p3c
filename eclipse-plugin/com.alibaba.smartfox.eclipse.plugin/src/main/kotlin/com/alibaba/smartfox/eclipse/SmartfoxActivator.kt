@@ -79,7 +79,7 @@ class SmartfoxActivator : AbstractUIPlugin() {
             if (language.isNullOrBlank()) {
                 val lang = Locale.getDefault().language
                 return if (lang != Locale.ENGLISH.language && lang != Locale.CHINESE.language) {
-                    Locale.CHINESE.language
+                    Locale.ENGLISH.language
                 } else Locale.getDefault().language
             }
 

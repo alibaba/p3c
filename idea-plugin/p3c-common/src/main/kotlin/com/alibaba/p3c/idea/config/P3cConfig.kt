@@ -43,7 +43,7 @@ class P3cConfig : PersistentStateComponent<P3cConfig> {
             if (field.isEmpty()) {
                 val lang = Locale.getDefault().language
                 return if (lang != Locale.ENGLISH.language && lang != Locale.CHINESE.language) {
-                    Locale.CHINESE.language
+                    Locale.ENGLISH.language
                 } else Locale.getDefault().language
             }
 

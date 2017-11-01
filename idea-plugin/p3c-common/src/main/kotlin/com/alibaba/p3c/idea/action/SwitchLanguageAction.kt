@@ -32,15 +32,12 @@ import com.intellij.openapi.project.DumbAware
  * @date 2017/06/20
  */
 class SwitchLanguageAction : AnAction(), DumbAware {
-    val p3cConfig = P3cConfig::class.java.getService()
+    private val p3cConfig = P3cConfig::class.java.getService()
 
-    val textKey = "com.alibaba.p3c.action.switch_language.text"
+    private val textKey = "com.alibaba.p3c.action.switch_language.text"
 
     override fun actionPerformed(e: AnActionEvent) {
-        p3cConfig.locale = when (p3cConfig.locale) {
-            P3cConfig.localeZh -> P3cConfig.localeEn
-            else -> P3cConfig.localeZh
-        }
+        p3cConfig.toggleLanguage()
         BalloonNotifications.showSuccessNotification(P3cBundle.getMessage("$textKey.success"), e.project,
                 NotificationListener { notification, _ ->
                     notification.expire()

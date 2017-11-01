@@ -86,8 +86,12 @@ class MapOrSetKeyShouldOverrideHashCodeEqualsRule : AbstractEclipseRule() {
             }
 
             private fun isOverrideEqualsAndHashCode(genericType: ITypeBinding): Boolean {
-                // skip enum
-                if (genericType.isEnum || genericType.isInterface || genericType.isTypeVariable || genericType.isWildcardType) {
+                val skip = genericType.isEnum || genericType.isInterface || genericType.isArray
+                        || genericType.isTypeVariable || genericType.isWildcardType
+                        || genericType.qualifiedName?.startsWith(skipJdkPackageJava) ?: false
+                        || genericType.qualifiedName?.startsWith(skipJdkPackageJavax) ?: false
+                // skip
+                if (skip) {
                     return true
                 }
 

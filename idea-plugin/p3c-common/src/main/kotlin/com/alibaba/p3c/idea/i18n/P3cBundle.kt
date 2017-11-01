@@ -29,7 +29,7 @@ import java.util.ResourceBundle
  * @date 2017/06/20
  */
 object P3cBundle {
-    val p3cConfig = P3cConfig::class.java.getService()
+    private val p3cConfig = P3cConfig::class.java.getService()
     private val resourceBundle = ResourceBundle.getBundle("messages.P3cBundle",
             Locale(p3cConfig.locale), I18nResources.XmlControl())
 

@@ -27,6 +27,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiIdentifier
 import com.intellij.psi.PsiLocalVariable
 import com.intellij.psi.PsiMember
+import com.intellij.psi.PsiParameter
 
 /**
  *
@@ -48,7 +49,9 @@ interface AliQuickFix : LocalQuickFix {
 
         fun doQuickFix(newIdentifier: String, project: Project, psiIdentifier: PsiIdentifier) {
             val offset = psiIdentifier.textOffset
-            if (psiIdentifier.parent !is PsiMember && psiIdentifier.parent !is PsiLocalVariable) {
+            val cannotFix = psiIdentifier.parent !is PsiMember
+                    && !(psiIdentifier.parent is PsiLocalVariable || psiIdentifier.parent is PsiParameter)
+            if (cannotFix) {
                 return
             }
 

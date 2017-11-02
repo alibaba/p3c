@@ -32,7 +32,7 @@ intellij {
     updateSinceUntilBuild false
     sandboxDirectory "$project.buildDir/idea-sandbox/$idea_version"
 }
-version '1.0.0'
+version '1.0.1'
 
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 

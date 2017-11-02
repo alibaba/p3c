@@ -33,6 +33,9 @@ class MapOrSetKeyShouldOverrideHashCodeEqualsRule : AbstractEclipseRule() {
     val methodAdd = "add"
     val methodPut = "put"
 
+    private val skipJdkPackageJava = "java."
+    private val skipJdkPackageJavax = "javax."
+
     override fun getVisitor(ast: CompilationUnit, ruleContext: RuleContext): ASTVisitor {
         return object : ASTVisitor() {
 

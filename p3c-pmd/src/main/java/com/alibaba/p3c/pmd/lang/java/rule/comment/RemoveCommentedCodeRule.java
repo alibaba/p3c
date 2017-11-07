@@ -44,6 +44,8 @@ public class RemoveCommentedCodeRule extends AbstractAliCommentRule {
 
     private static final Pattern SUPPRESS_PATTERN = Pattern.compile("\\s*///.*", Pattern.DOTALL);
 
+    private static final Pattern PRE_TAG_PATTERN = Pattern.compile(".*<pre>.*", Pattern.DOTALL);
+
     private static final Pattern IMPORT_PATTERN = Pattern.compile(".*import\\s(static\\s)?(\\w*\\.)*\\w*;.*",
         Pattern.DOTALL);
 
@@ -124,6 +126,11 @@ public class RemoveCommentedCodeRule extends AbstractAliCommentRule {
      */
     protected CommentPatternEnum scanCommentedCode(String content) {
         CommentPatternEnum pattern = CommentPatternEnum.NONE;
+
+        // Skip comment which contains pre tag.
+        if (PRE_TAG_PATTERN.matcher(content).matches()) {
+            return pattern;
+        }
 
         if (IMPORT_PATTERN.matcher(content).matches()) {
             pattern = CommentPatternEnum.IMPORT;

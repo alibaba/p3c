@@ -28,6 +28,7 @@ import org.eclipse.swt.graphics.Image
 import org.eclipse.swt.widgets.Display
 import org.eclipse.ui.plugin.AbstractUIPlugin
 import org.osgi.framework.BundleContext
+import java.util.Locale
 
 /**
  * @author caikang
@@ -72,20 +73,22 @@ class SmartfoxActivator : AbstractUIPlugin() {
         return image!!
     }
 
-    val locale: String get() {
-        val lang = preferenceStore.getString(localeKey)
-        return if (lang.isNullOrBlank()) {
-            "zh"
-        } else {
-            lang
+    val locale: String
+        get() {
+            val language = preferenceStore.getString(localeKey)
+            if (language.isNullOrBlank()) {
+                val lang = Locale.getDefault().language
+                return if (lang != Locale.ENGLISH.language && lang != Locale.CHINESE.language) {
+                    Locale.ENGLISH.language
+                } else Locale.getDefault().language
+            }
+
+            return language
         }
-    }
 
     fun toggleLocale() {
-        preferenceStore.setValue(localeKey, when (locale) {
-            "en" -> "zh"
-            else -> "en"
-        })
+        val lang = if (Locale.ENGLISH.language == locale) Locale.CHINESE.language else Locale.ENGLISH.language
+        preferenceStore.setValue(localeKey, lang)
     }
 
     fun getRule(rule: String): Rule {

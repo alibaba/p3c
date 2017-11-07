@@ -20,6 +20,7 @@ import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import com.intellij.openapi.components.StoragePathMacros
 import com.intellij.util.xmlb.XmlSerializerUtil
+import java.util.Locale
 
 /**
  *
@@ -27,8 +28,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil
  * @author caikang
  * @date 2017/06/19
  */
-@State(name = "P3cConfig",
-        storages = arrayOf(Storage(file = "${StoragePathMacros.APP_CONFIG}/smartfox/p3c.xml")))
+@State(name = "P3cConfig", storages = arrayOf(Storage(file = "${StoragePathMacros.APP_CONFIG}/smartfox/p3c.xml")))
 class P3cConfig : PersistentStateComponent<P3cConfig> {
     var astCacheTime = 1000L
     var astCacheEnable = true
@@ -38,7 +38,21 @@ class P3cConfig : PersistentStateComponent<P3cConfig> {
 
     var analysisBeforeCheckin = false
 
-    var locale = localeZh
+    var locale: String = ""
+        get() {
+            if (field.isEmpty()) {
+                val lang = Locale.getDefault().language
+                return if (lang != Locale.ENGLISH.language && lang != Locale.CHINESE.language) {
+                    Locale.ENGLISH.language
+                } else Locale.getDefault().language
+            }
+
+            return field
+        }
+
+    fun toggleLanguage() {
+        locale = if (localeEn == locale) localeZh else localeEn
+    }
 
     override fun getState(): P3cConfig {
         return this
@@ -51,8 +65,9 @@ class P3cConfig : PersistentStateComponent<P3cConfig> {
         XmlSerializerUtil.copyBean(state, this)
     }
 
+
     companion object {
-        val localeEn = "en"
-        val localeZh = "zh"
+        val localeEn = Locale.ENGLISH.language!!
+        val localeZh = Locale.CHINESE.language!!
     }
 }

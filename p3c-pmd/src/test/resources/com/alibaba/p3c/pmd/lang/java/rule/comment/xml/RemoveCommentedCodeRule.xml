@@ -103,4 +103,37 @@ public class Test {
         <code-ref id="example-in-javadoc" />
     </test-code>
 
+    <code-fragment id="code-without-pre-tag"><![CDATA[
+/**
+ * import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
+ */
+public class Test {
+}
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>Code without pre tag</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="code-without-pre-tag" />
+    </test-code>
+
+    <code-fragment id="code-in-pre-tag"><![CDATA[
+/**
+ * <pre>
+ * import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
+ * </pre>
+ */
+public class Test {
+}
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>Code in pre tag</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="code-in-pre-tag" />
+    </test-code>
+
 </test-data>

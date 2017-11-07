@@ -31,5 +31,19 @@
     </test-code>
 
 
+    <code-fragment id="PackageNamingRule2">
+        <![CDATA[
+        package ali88.ps.service;
+        public class SomeClass {
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Package Name should be lowercase</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="PackageNamingRule2" />
+    </test-code>
+
+
 
 </test-data>

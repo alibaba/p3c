@@ -21,8 +21,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * @author changle.lq
@@ -47,13 +48,17 @@ public class NameListServiceImpl implements NameListService {
 
     @Override
     public List<String> getNameList(String className, String name) {
-        return JSON.parseArray((String)PROPERTIES.get(className + SEPARATOR + name), String.class);
+        Gson gson = new Gson();
+        return gson.fromJson((String)PROPERTIES.get(className + SEPARATOR + name),
+            new TypeToken<List<String>>() {}.getType());
     }
 
     @Override
     public <K, V> Map<K, V> getNameMap(String className, String name, Class<K> kClass, Class<V> vClass) {
-        return JSON.parseObject((String)PROPERTIES.get(className + SEPARATOR + name),
-            new TypeReference<Map<K, V>>(kClass, vClass) {});
+        Gson gson = new Gson();
+        return gson.fromJson((String)PROPERTIES.get(className + SEPARATOR + name),
+            new TypeToken<Map<K, V>>() {
+            }.getType());
     }
 
     private static class LinkedProperties extends Properties {

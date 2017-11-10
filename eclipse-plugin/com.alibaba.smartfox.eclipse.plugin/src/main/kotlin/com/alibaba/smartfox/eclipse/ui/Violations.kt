@@ -33,6 +33,17 @@ data class LevelViolations(var level: String, var rules: List<RuleViolations>,
             it.removeMarkers()
         }
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (other !is LevelViolations) {
+            return false
+        }
+        return level == other.level
+    }
+
+    override fun hashCode(): Int {
+        return level.hashCode()
+    }
 }
 
 data class RuleViolations(var rule: String, var files: List<FileMarkers>,
@@ -42,11 +53,33 @@ data class RuleViolations(var rule: String, var files: List<FileMarkers>,
             it.removeMarkers()
         }
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (other !is RuleViolations) {
+            return false
+        }
+        return rule == other.rule
+    }
+
+    override fun hashCode(): Int {
+        return rule.hashCode()
+    }
 }
 
 data class FileMarkers(var file: IFile, var markers: List<MarkerViolation>) {
     fun removeMarkers() {
         MarkerUtil.removeAllMarkers(file)
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (other !is FileMarkers) {
+            return false
+        }
+        return file == other.file
+    }
+
+    override fun hashCode(): Int {
+        return file.hashCode()
     }
 }
 

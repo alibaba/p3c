@@ -46,7 +46,8 @@ open class CodeAnalysisHandler : AbstractHandler(), IElementUpdater {
         element.setTooltip(text)
     }
 
-    @Throws(ExecutionException::class) override fun execute(executionEvent: ExecutionEvent): Any? {
+    @Throws(ExecutionException::class)
+    override fun execute(executionEvent: ExecutionEvent): Any? {
         val selection = HandlerUtil.getCurrentSelectionChecked(executionEvent)
         val part = HandlerUtil.getActivePart(executionEvent)
         if (part is ViewPart) {

@@ -11,6 +11,7 @@ testdata/
 
 *.war
 *.ear
+*.gradle
 
 #hsf files
 configuration

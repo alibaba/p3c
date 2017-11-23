@@ -54,7 +54,6 @@ object MarkerUtil {
 
     @Throws(CoreException::class)
     fun addMarker(file: IFile, violation: RuleViolation): IMarker {
-
         val marker = file.createMarker(MARKER_TYPE)
         marker.setAttribute(IMarker.MESSAGE, violation.description)
         val severity = when (violation.rule.priority) {

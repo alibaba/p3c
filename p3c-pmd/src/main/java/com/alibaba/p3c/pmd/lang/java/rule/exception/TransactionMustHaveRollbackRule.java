@@ -37,7 +37,7 @@ public class TransactionMustHaveRollbackRule extends AbstractAliRule {
     private static final String TRANSACTIONAL_ANNOTATION_NAME = "Transactional";
     private static final String TRANSACTIONAL_FULL_NAME = "org.springframework.transaction.annotation."
         + TRANSACTIONAL_ANNOTATION_NAME;
-    private static final String ROLLBACK_FOR = "rollbackFor";
+    private static final String ROLLBACK_PREFIX = "rollback";
 
     private static final String XPATH_FOR_ROLLBACK = "//StatementExpression/PrimaryExpression"
         + "/PrimaryPrefix/Name[ends-with(@Image,'rollback')]";
@@ -82,7 +82,7 @@ public class TransactionMustHaveRollbackRule extends AbstractAliRule {
 
     private boolean rollbackAttrSet(List<ASTMemberValuePair> memberValuePairList) {
         for (ASTMemberValuePair pair : memberValuePairList) {
-            if (ROLLBACK_FOR.equals(pair.getImage())) {
+            if (pair.getImage() != null && pair.getImage().startsWith(ROLLBACK_PREFIX)) {
                 return true;
             }
         }

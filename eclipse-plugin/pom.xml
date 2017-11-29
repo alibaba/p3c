@@ -14,7 +14,7 @@
         <eclipse-repo.url>http://download.eclipse.org/releases/neon</eclipse-repo.url>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <ajdt-eclipse-repo.url>http://download.eclipse.org/tools/ajdt/46/dev/update</ajdt-eclipse-repo.url>
-        <kotlin.version>1.1.51</kotlin.version>
+        <kotlin.version>1.2.0</kotlin.version>
         <eclipse-release>juno</eclipse-release>
     </properties>
     <modules>

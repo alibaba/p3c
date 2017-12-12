@@ -76,7 +76,7 @@ Positive example 3：
     <rule name="AvoidManuallyCreateThreadRule"
           language="java"
           since="1.6"
-          message="java.concurrent.AvoidConcurrentCompetitionRandomRule.rule.msg"
+          message="java.concurrent.AvoidManuallyCreateThreadRule.rule.msg"
           dfa="true"
           class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.AvoidManuallyCreateThreadRule">
         <description>java.concurrent.AvoidManuallyCreateThreadRule.rule.desc</description>

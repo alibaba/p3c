@@ -37,6 +37,6 @@
     <rule name="MapOrSetKeyShouldOverrideHashCodeEqualsRule" message="rule.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsRule.msg"
           class="com.alibaba.smartfox.eclipse.pmd.rule.MapOrSetKeyShouldOverrideHashCodeEqualsRule">
         <description>rule.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsRule.desc</description>
-        <priority>1</priority>
+        <priority>2</priority>
     </rule>
 </ruleset>

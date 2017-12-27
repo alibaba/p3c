@@ -4,9 +4,7 @@
          xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
 
-    <rule ref="rulesets/java/ali-concurrent.xml">
-        <exclude name="AvoidCallStaticSimpleDateFormatRule"/>
-    </rule>
+    <rule ref="rulesets/java/ali-concurrent.xml"/>
     <rule ref="rulesets/java/ali-comment.xml"/>
     <rule ref="rulesets/java/ali-naming.xml">
         <exclude name="ArrayNamingShouldHaveBracketRule"/>

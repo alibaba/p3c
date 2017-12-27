@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.annotation.Generated;
+
 import com.alibaba.p3c.pmd.lang.java.util.NumberConstants;
 import com.alibaba.p3c.pmd.lang.java.util.StringAndCharConstants;
 
@@ -77,6 +79,7 @@ import net.sourceforge.pmd.lang.java.typeresolution.PMDASMClassLoader;
  * @author unknown
  * @date 2016/11/21
  */
+@Generated("from pmd")
 public class FixClassTypeResolver extends ClassTypeResolver {
 
     private static final Logger LOG = Logger.getLogger(FixClassTypeResolver.class.getName());

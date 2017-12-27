@@ -80,13 +80,11 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
     }
 
     private fun usesDFA(languageVersion: LanguageVersion, rootNode: Node, ruleSets: RuleSets) {
-        if (ruleSets.usesDFA(languageVersion.language)) {
-            val start = System.nanoTime()
-            val dataFlowFacade = languageVersion.languageVersionHandler.dataFlowFacade
-            dataFlowFacade.start(rootNode)
-            val end = System.nanoTime()
-            Benchmarker.mark(Benchmark.DFA, end - start, 0)
-        }
+        val start = System.nanoTime()
+        val dataFlowFacade = languageVersion.languageVersionHandler.dataFlowFacade
+        dataFlowFacade.start(rootNode)
+        val end = System.nanoTime()
+        Benchmarker.mark(Benchmark.DFA, end - start, 0)
     }
 
     private fun usesTypeResolution(languageVersion: LanguageVersion, rootNode: Node, ruleSets: RuleSets) {

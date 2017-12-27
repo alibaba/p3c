@@ -74,7 +74,6 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
                 AliAccessStaticViaInstanceInspection::class.java,
                 AliDeprecationInspection::class.java,
                 MapOrSetKeyShouldOverrideHashCodeEqualsInspection::class.java,
-                AliAccessToNonThreadSafeStaticFieldFromInstanceInspection::class.java,
                 AliArrayNamingShouldHaveBracketInspection::class.java,
                 AliControlFlowStatementWithoutBracesInspection::class.java,
                 AliEqualsAvoidNullInspection::class.java,

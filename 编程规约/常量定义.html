@@ -1,0 +1,614 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>（二）常量定义 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="代码格式.html" />
+    
+    
+    <link rel="prev" href="命名风格.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    一、编程规约
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="命名风格.html">
+            
+                <a href="命名风格.html">
+            
+                    
+                    （一）命名风格
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2" data-path="常量定义.html">
+            
+                <a href="常量定义.html">
+            
+                    
+                    （二）常量定义
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="代码格式.html">
+            
+                <a href="代码格式.html">
+            
+                    
+                    （三）代码格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="OOP规范.html">
+            
+                <a href="OOP规范.html">
+            
+                    
+                    （四）OOP规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="集合处理.html">
+            
+                <a href="集合处理.html">
+            
+                    
+                    （五）集合处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="并发处理.html">
+            
+                <a href="并发处理.html">
+            
+                    
+                    （六）并发处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="控制语句.html">
+            
+                <a href="控制语句.html">
+            
+                    
+                    （七）控制语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="注释规约.html">
+            
+                <a href="注释规约.html">
+            
+                    
+                    （八）注释规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    二、异常日志
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../异常日志/异常处理.html">
+            
+                <a href="../异常日志/异常处理.html">
+            
+                    
+                    （一）异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../异常日志/日志规约.html">
+            
+                <a href="../异常日志/日志规约.html">
+            
+                    
+                    （二）日志规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../异常日志/其他.html">
+            
+                <a href="../异常日志/其他.html">
+            
+                    
+                    （三）其他
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../单元测试.html">
+            
+                <a href="../单元测试.html">
+            
+                    
+                    三、单元测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../安全规约.html">
+            
+                <a href="../安全规约.html">
+            
+                    
+                    四、安全规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    五、MySQL数据库
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../MySQL数据库/建表规约.html">
+            
+                <a href="../MySQL数据库/建表规约.html">
+            
+                    
+                    （一）建表规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../MySQL数据库/索引规约.html">
+            
+                <a href="../MySQL数据库/索引规约.html">
+            
+                    
+                    （二）索引规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../MySQL数据库/SQL语句.html">
+            
+                <a href="../MySQL数据库/SQL语句.html">
+            
+                    
+                    （三）SQL语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../MySQL数据库/ORM映射.html">
+            
+                <a href="../MySQL数据库/ORM映射.html">
+            
+                    
+                    （四）ORM映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    六、工程结构
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../工程结构/应用分层.html">
+            
+                <a href="../工程结构/应用分层.html">
+            
+                    
+                    （一）应用分层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../工程结构/二方库依赖.html">
+            
+                <a href="../工程结构/二方库依赖.html">
+            
+                    
+                    （二）二方库依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../工程结构/服务器.html">
+            
+                <a href="../工程结构/服务器.html">
+            
+                    
+                    （三）服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../版本历史.html">
+            
+                <a href="../版本历史.html">
+            
+                    
+                    附1：版本历史 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../本手册专有名词.html">
+            
+                <a href="../本手册专有名词.html">
+            
+                    
+                    附2：本手册专有名词 
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >（二）常量定义</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#xFF08;&#x4E8C;&#xFF09;&#x5E38;&#x91CF;&#x5B9A;&#x4E49;">&#xFF08;&#x4E8C;&#xFF09;&#x5E38;&#x91CF;&#x5B9A;&#x4E49;</h2>
+<ol>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x4E0D;&#x5141;&#x8BB8;&#x4EFB;&#x4F55;&#x9B54;&#x6CD5;&#x503C;&#xFF08;&#x5373;&#x672A;&#x7ECF;&#x9884;&#x5148;&#x5B9A;&#x4E49;&#x7684;&#x5E38;&#x91CF;&#xFF09;&#x76F4;&#x63A5;&#x51FA;&#x73B0;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x3002;
+<br><span style="color:red">&#x53CD;&#x4F8B;</span>&#xFF1A;<pre class="language-"><code>String key = &quot;Id#taobao_&quot; + tradeId;       
+cache.put(key, value);
+</code></pre></li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;long&#x6216;&#x8005;Long&#x521D;&#x59CB;&#x8D4B;&#x503C;&#x65F6;&#xFF0C;&#x4F7F;&#x7528;&#x5927;&#x5199;&#x7684;L&#xFF0C;&#x4E0D;&#x80FD;&#x662F;&#x5C0F;&#x5199;&#x7684;l&#xFF0C;&#x5C0F;&#x5199;&#x5BB9;&#x6613;&#x8DDF;&#x6570;&#x5B57;1&#x6DF7;&#x6DC6;&#xFF0C;&#x9020;&#x6210;&#x8BEF;&#x89E3;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;<pre class="language-">Long a = 2l;</pre> &#x5199;&#x7684;&#x662F;&#x6570;&#x5B57;&#x7684;<code>21</code>&#xFF0C;&#x8FD8;&#x662F;Long&#x578B;&#x7684;<code>2</code>? </li>
+<li>&#x3010;&#x63A8;&#x8350;&#x3011;&#x4E0D;&#x8981;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x5E38;&#x91CF;&#x7C7B;&#x7EF4;&#x62A4;&#x6240;&#x6709;&#x5E38;&#x91CF;&#xFF0C;&#x6309;&#x5E38;&#x91CF;&#x529F;&#x80FD;&#x8FDB;&#x884C;&#x5F52;&#x7C7B;&#xFF0C;&#x5206;&#x5F00;&#x7EF4;&#x62A4;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x5927;&#x800C;&#x5168;&#x7684;&#x5E38;&#x91CF;&#x7C7B;&#xFF0C;&#x975E;&#x5F97;&#x4F7F;&#x7528;&#x67E5;&#x627E;&#x529F;&#x80FD;&#x624D;&#x80FD;&#x5B9A;&#x4F4D;&#x5230;&#x4FEE;&#x6539;&#x7684;&#x5E38;&#x91CF;&#xFF0C;&#x4E0D;&#x5229;&#x4E8E;&#x7406;&#x89E3;&#x548C;&#x7EF4;&#x62A4;&#x3002; 
+<br><span style="color:green">&#x6B63;&#x4F8B;</span>&#xFF1A;&#x7F13;&#x5B58;&#x76F8;&#x5173;&#x5E38;&#x91CF;&#x653E;&#x5728;&#x7C7B;CacheConsts&#x4E0B;&#xFF1B;&#x7CFB;&#x7EDF;&#x914D;&#x7F6E;&#x76F8;&#x5173;&#x5E38;&#x91CF;&#x653E;&#x5728;&#x7C7B;ConfigConsts&#x4E0B;&#x3002; </li>
+<li>&#x3010;&#x63A8;&#x8350;&#x3011;&#x5E38;&#x91CF;&#x7684;&#x590D;&#x7528;&#x5C42;&#x6B21;&#x6709;&#x4E94;&#x5C42;&#xFF1A;&#x8DE8;&#x5E94;&#x7528;&#x5171;&#x4EAB;&#x5E38;&#x91CF;&#x3001;&#x5E94;&#x7528;&#x5185;&#x5171;&#x4EAB;&#x5E38;&#x91CF;&#x3001;&#x5B50;&#x5DE5;&#x7A0B;&#x5185;&#x5171;&#x4EAB;&#x5E38;&#x91CF;&#x3001;&#x5305;&#x5185;&#x5171;&#x4EAB;&#x5E38;&#x91CF;&#x3001;&#x7C7B;&#x5185;&#x5171;&#x4EAB;&#x5E38;&#x91CF;&#x3002;<br>1&#xFF09; &#x8DE8;&#x5E94;&#x7528;&#x5171;&#x4EAB;&#x5E38;&#x91CF;&#xFF1A;&#x653E;&#x7F6E;&#x5728;&#x4E8C;&#x65B9;&#x5E93;&#x4E2D;&#xFF0C;&#x901A;&#x5E38;&#x662F;client.jar&#x4E2D;&#x7684;constant&#x76EE;&#x5F55;&#x4E0B;&#x3002;
+2&#xFF09; &#x5E94;&#x7528;&#x5185;&#x5171;&#x4EAB;&#x5E38;&#x91CF;&#xFF1A;&#x653E;&#x7F6E;&#x5728;&#x4E00;&#x65B9;&#x5E93;&#x4E2D;&#xFF0C;&#x901A;&#x5E38;&#x662F;&#x5B50;&#x6A21;&#x5757;&#x4E2D;&#x7684;constant&#x76EE;&#x5F55;&#x4E0B;&#x3002;
+<br><span style="color:red">&#x53CD;&#x4F8B;</span>&#xFF1A;&#x6613;&#x61C2;&#x53D8;&#x91CF;&#x4E5F;&#x8981;&#x7EDF;&#x4E00;&#x5B9A;&#x4E49;&#x6210;&#x5E94;&#x7528;&#x5185;&#x5171;&#x4EAB;&#x5E38;&#x91CF;&#xFF0C;&#x4E24;&#x4F4D;&#x653B;&#x57CE;&#x5E08;&#x5728;&#x4E24;&#x4E2A;&#x7C7B;&#x4E2D;&#x5206;&#x522B;&#x5B9A;&#x4E49;&#x4E86;&#x8868;&#x793A;&#x201C;&#x662F;&#x201D;&#x7684;&#x53D8;&#x91CF;&#xFF1A;<pre class="language-"><code> &#x7C7B;A&#x4E2D;&#xFF1A;public static final String YES = &quot;yes&quot;;
+ &#x7C7B;B&#x4E2D;&#xFF1A;public static final String YES = &quot;y&quot;;
+ A.YES.equals(B.YES) &#x9884;&#x671F;&#x662F;true&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x8FD4;&#x56DE;&#x4E3A;false&#xFF0C;&#x5BFC;&#x81F4;&#x7EBF;&#x4E0A;&#x95EE;&#x9898;&#x3002;
+</code></pre>3&#xFF09; &#x5B50;&#x5DE5;&#x7A0B;&#x5185;&#x90E8;&#x5171;&#x4EAB;&#x5E38;&#x91CF;&#xFF1A;&#x5373;&#x5728;&#x5F53;&#x524D;&#x5B50;&#x5DE5;&#x7A0B;&#x7684;constant&#x76EE;&#x5F55;&#x4E0B;&#x3002;<br>4&#xFF09; &#x5305;&#x5185;&#x5171;&#x4EAB;&#x5E38;&#x91CF;&#xFF1A;&#x5373;&#x5728;&#x5F53;&#x524D;&#x5305;&#x4E0B;&#x5355;&#x72EC;&#x7684;constant&#x76EE;&#x5F55;&#x4E0B;&#x3002;<br>5&#xFF09; &#x7C7B;&#x5185;&#x5171;&#x4EAB;&#x5E38;&#x91CF;&#xFF1A;&#x76F4;&#x63A5;&#x5728;&#x7C7B;&#x5185;&#x90E8;private static final&#x5B9A;&#x4E49;&#x3002; </li>
+<li>&#x3010;&#x63A8;&#x8350;&#x3011;&#x5982;&#x679C;&#x53D8;&#x91CF;&#x503C;&#x4EC5;&#x5728;&#x4E00;&#x4E2A;&#x56FA;&#x5B9A;&#x8303;&#x56F4;&#x5185;&#x53D8;&#x5316;&#x7528;enum&#x7C7B;&#x578B;&#x6765;&#x5B9A;&#x4E49;&#x3002; &#x8BF4;&#x660E;&#xFF1A;&#x5982;&#x679C;&#x5B58;&#x5728;&#x540D;&#x79F0;&#x4E4B;&#x5916;&#x7684;&#x5EF6;&#x4F38;&#x5C5E;&#x6027;&#x4F7F;&#x7528;enum&#x7C7B;&#x578B;&#xFF0C;&#x4E0B;&#x9762;&#x6B63;&#x4F8B;&#x4E2D;&#x7684;&#x6570;&#x5B57;&#x5C31;&#x662F;&#x5EF6;&#x4F38;&#x4FE1;&#x606F;&#xFF0C;&#x8868;&#x793A;&#x4E00;&#x5E74;&#x4E2D;&#x7684;&#x7B2C;&#x51E0;&#x4E2A;&#x5B63;&#x8282;&#x3002; 
+<br><span style="color:green">&#x6B63;&#x4F8B;</span>&#xFF1A; <pre class="language-"><code>public enum SeasonEnum {   
+       SPRING(1), SUMMER(2), AUTUMN(3), WINTER(4);
+       int seq; 
+       SeasonEnum(int seq){         
+           this.seq = seq;     
+       } 
+}
+</code></pre></li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="命名风格.html" class="navigation navigation-prev " aria-label="Previous page: （一）命名风格">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="代码格式.html" class="navigation navigation-next " aria-label="Next page: （三）代码格式">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"（二）常量定义","level":"1.2.2","depth":2,"next":{"title":"（三）代码格式","level":"1.2.3","depth":2,"path":"编程规约/代码格式.md","ref":"编程规约/代码格式.md","articles":[]},"previous":{"title":"（一）命名风格","level":"1.2.1","depth":2,"path":"编程规约/命名风格.md","ref":"编程规约/命名风格.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["book-summary-scroll-position-saver","github","prism","-sharing","-highlight"],"pluginsConfig":{"github":{"url":"https://github.com/alibaba/p3c"},"book-summary-scroll-position-saver":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css"}},"file":{"path":"编程规约/常量定义.md","mtime":"2018-01-13T07:52:52.584Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-15T14:41:43.583Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-book-summary-scroll-position-saver/book-summary-scroll-position-saver.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

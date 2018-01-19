@@ -1,0 +1,612 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>（二）索引规约 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="SQL语句.html" />
+    
+    
+    <link rel="prev" href="建表规约.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    一、编程规约
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../编程规约/命名风格.html">
+            
+                <a href="../编程规约/命名风格.html">
+            
+                    
+                    （一）命名风格
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../编程规约/常量定义.html">
+            
+                <a href="../编程规约/常量定义.html">
+            
+                    
+                    （二）常量定义
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../编程规约/代码格式.html">
+            
+                <a href="../编程规约/代码格式.html">
+            
+                    
+                    （三）代码格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../编程规约/OOP规范.html">
+            
+                <a href="../编程规约/OOP规范.html">
+            
+                    
+                    （四）OOP规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../编程规约/集合处理.html">
+            
+                <a href="../编程规约/集合处理.html">
+            
+                    
+                    （五）集合处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../编程规约/并发处理.html">
+            
+                <a href="../编程规约/并发处理.html">
+            
+                    
+                    （六）并发处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../编程规约/控制语句.html">
+            
+                <a href="../编程规约/控制语句.html">
+            
+                    
+                    （七）控制语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../编程规约/注释规约.html">
+            
+                <a href="../编程规约/注释规约.html">
+            
+                    
+                    （八）注释规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    二、异常日志
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../异常日志/异常处理.html">
+            
+                <a href="../异常日志/异常处理.html">
+            
+                    
+                    （一）异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../异常日志/日志规约.html">
+            
+                <a href="../异常日志/日志规约.html">
+            
+                    
+                    （二）日志规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../异常日志/其他.html">
+            
+                <a href="../异常日志/其他.html">
+            
+                    
+                    （三）其他
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../单元测试.html">
+            
+                <a href="../单元测试.html">
+            
+                    
+                    三、单元测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../安全规约.html">
+            
+                <a href="../安全规约.html">
+            
+                    
+                    四、安全规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    五、MySQL数据库
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="建表规约.html">
+            
+                <a href="建表规约.html">
+            
+                    
+                    （一）建表规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.2" data-path="索引规约.html">
+            
+                <a href="索引规约.html">
+            
+                    
+                    （二）索引规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="SQL语句.html">
+            
+                <a href="SQL语句.html">
+            
+                    
+                    （三）SQL语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="ORM映射.html">
+            
+                <a href="ORM映射.html">
+            
+                    
+                    （四）ORM映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    六、工程结构
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../工程结构/应用分层.html">
+            
+                <a href="../工程结构/应用分层.html">
+            
+                    
+                    （一）应用分层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../工程结构/二方库依赖.html">
+            
+                <a href="../工程结构/二方库依赖.html">
+            
+                    
+                    （二）二方库依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../工程结构/服务器.html">
+            
+                <a href="../工程结构/服务器.html">
+            
+                    
+                    （三）服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../版本历史.html">
+            
+                <a href="../版本历史.html">
+            
+                    
+                    附1：版本历史 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../本手册专有名词.html">
+            
+                <a href="../本手册专有名词.html">
+            
+                    
+                    附2：本手册专有名词 
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >（二）索引规约</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x4E8C;-&#x7D22;&#x5F15;&#x89C4;&#x7EA6;">(&#x4E8C;) &#x7D22;&#x5F15;&#x89C4;&#x7EA6;</h2>
+<ol>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x4E1A;&#x52A1;&#x4E0A;&#x5177;&#x6709;&#x552F;&#x4E00;&#x7279;&#x6027;&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x5373;&#x4F7F;&#x662F;&#x591A;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x7EC4;&#x5408;&#xFF0C;&#x4E5F;&#x5FC5;&#x987B;&#x5EFA;&#x6210;&#x552F;&#x4E00;&#x7D22;&#x5F15;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x4E0D;&#x8981;&#x4EE5;&#x4E3A;&#x552F;&#x4E00;&#x7D22;&#x5F15;&#x5F71;&#x54CD;&#x4E86;insert&#x901F;&#x5EA6;&#xFF0C;&#x8FD9;&#x4E2A;&#x901F;&#x5EA6;&#x635F;&#x8017;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#xFF0C;&#x4F46;&#x63D0;&#x9AD8;&#x67E5;&#x627E;&#x901F;&#x5EA6;&#x662F;&#x660E;&#x663E;&#x7684;&#xFF1B;&#x53E6;&#x5916;&#xFF0C;&#x5373;&#x4F7F;&#x5728;&#x5E94;&#x7528;&#x5C42;&#x505A;&#x4E86;&#x975E;&#x5E38;&#x5B8C;&#x5584;&#x7684;&#x6821;&#x9A8C;&#x63A7;&#x5236;&#xFF0C;&#x53EA;&#x8981;&#x6CA1;&#x6709;&#x552F;&#x4E00;&#x7D22;&#x5F15;&#xFF0C;&#x6839;&#x636E;&#x58A8;&#x83F2;&#x5B9A;&#x5F8B;&#xFF0C;&#x5FC5;&#x7136;&#x6709;&#x810F;&#x6570;&#x636E;&#x4EA7;&#x751F;&#x3002; </li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x8D85;&#x8FC7;&#x4E09;&#x4E2A;&#x8868;&#x7981;&#x6B62;join&#x3002;&#x9700;&#x8981;join&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x5FC5;&#x987B;&#x7EDD;&#x5BF9;&#x4E00;&#x81F4;&#xFF1B;&#x591A;&#x8868;&#x5173;&#x8054;&#x67E5;&#x8BE2;&#x65F6;&#xFF0C;&#x4FDD;&#x8BC1;&#x88AB;&#x5173;&#x8054;&#x7684;&#x5B57;&#x6BB5;&#x9700;&#x8981;&#x6709;&#x7D22;&#x5F15;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x5373;&#x4F7F;&#x53CC;&#x8868;join&#x4E5F;&#x8981;&#x6CE8;&#x610F;&#x8868;&#x7D22;&#x5F15;&#x3001;SQL&#x6027;&#x80FD;&#x3002; </li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x5728;varchar&#x5B57;&#x6BB5;&#x4E0A;&#x5EFA;&#x7ACB;&#x7D22;&#x5F15;&#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x6307;&#x5B9A;&#x7D22;&#x5F15;&#x957F;&#x5EA6;&#xFF0C;&#x6CA1;&#x5FC5;&#x8981;&#x5BF9;&#x5168;&#x5B57;&#x6BB5;&#x5EFA;&#x7ACB;&#x7D22;&#x5F15;&#xFF0C;&#x6839;&#x636E;&#x5B9E;&#x9645;&#x6587;&#x672C;&#x533A;&#x5206;&#x5EA6;&#x51B3;&#x5B9A;&#x7D22;&#x5F15;&#x957F;&#x5EA6;&#x5373;&#x53EF;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x7D22;&#x5F15;&#x7684;&#x957F;&#x5EA6;&#x4E0E;&#x533A;&#x5206;&#x5EA6;&#x662F;&#x4E00;&#x5BF9;&#x77DB;&#x76FE;&#x4F53;&#xFF0C;&#x4E00;&#x822C;&#x5BF9;&#x5B57;&#x7B26;&#x4E32;&#x7C7B;&#x578B;&#x6570;&#x636E;&#xFF0C;&#x957F;&#x5EA6;&#x4E3A;20&#x7684;&#x7D22;&#x5F15;&#xFF0C;&#x533A;&#x5206;&#x5EA6;&#x4F1A;&#x9AD8;&#x8FBE;90%&#x4EE5;&#x4E0A;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;count(distinct left(&#x5217;&#x540D;, &#x7D22;&#x5F15;&#x957F;&#x5EA6;))/count(*)&#x7684;&#x533A;&#x5206;&#x5EA6;&#x6765;&#x786E;&#x5B9A;&#x3002; </li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x9875;&#x9762;&#x641C;&#x7D22;&#x4E25;&#x7981;&#x5DE6;&#x6A21;&#x7CCA;&#x6216;&#x8005;&#x5168;&#x6A21;&#x7CCA;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x8BF7;&#x8D70;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x6765;&#x89E3;&#x51B3;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x7D22;&#x5F15;&#x6587;&#x4EF6;&#x5177;&#x6709;B-Tree&#x7684;&#x6700;&#x5DE6;&#x524D;&#x7F00;&#x5339;&#x914D;&#x7279;&#x6027;&#xFF0C;&#x5982;&#x679C;&#x5DE6;&#x8FB9;&#x7684;&#x503C;&#x672A;&#x786E;&#x5B9A;&#xFF0C;&#x90A3;&#x4E48;&#x65E0;&#x6CD5;&#x4F7F;&#x7528;&#x6B64;&#x7D22;&#x5F15;&#x3002;</li>
+<li>&#x3010;&#x63A8;&#x8350;&#x3011;&#x5982;&#x679C;&#x6709;order by&#x7684;&#x573A;&#x666F;&#xFF0C;&#x8BF7;&#x6CE8;&#x610F;&#x5229;&#x7528;&#x7D22;&#x5F15;&#x7684;&#x6709;&#x5E8F;&#x6027;&#x3002;order by &#x6700;&#x540E;&#x7684;&#x5B57;&#x6BB5;&#x662F;&#x7EC4;&#x5408;&#x7D22;&#x5F15;&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x5E76;&#x4E14;&#x653E;&#x5728;&#x7D22;&#x5F15;&#x7EC4;&#x5408;&#x987A;&#x5E8F;&#x7684;&#x6700;&#x540E;&#xFF0C;&#x907F;&#x514D;&#x51FA;&#x73B0;file_sort&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5F71;&#x54CD;&#x67E5;&#x8BE2;&#x6027;&#x80FD;&#x3002; 
+<br><span style="color:green">&#x6B63;&#x4F8B;</span>&#xFF1A;where a=? and b=? order by c; &#x7D22;&#x5F15;&#xFF1A;a_b_c 
+<br><span style="color:red">&#x53CD;&#x4F8B;</span>&#xFF1A;&#x7D22;&#x5F15;&#x4E2D;&#x6709;&#x8303;&#x56F4;&#x67E5;&#x627E;&#xFF0C;&#x90A3;&#x4E48;&#x7D22;&#x5F15;&#x6709;&#x5E8F;&#x6027;&#x65E0;&#x6CD5;&#x5229;&#x7528;&#xFF0C;&#x5982;&#xFF1A;WHERE a&gt;10 ORDER BY b; &#x7D22;&#x5F15;a_b&#x65E0;&#x6CD5;&#x6392;&#x5E8F;&#x3002; </li>
+<li>&#x3010;&#x63A8;&#x8350;&#x3011;&#x5229;&#x7528;&#x8986;&#x76D6;&#x7D22;&#x5F15;&#x6765;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x64CD;&#x4F5C;&#xFF0C;&#x907F;&#x514D;&#x56DE;&#x8868;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x5982;&#x679C;&#x4E00;&#x672C;&#x4E66;&#x9700;&#x8981;&#x77E5;&#x9053;&#x7B2C;11&#x7AE0;&#x662F;&#x4EC0;&#x4E48;&#x6807;&#x9898;&#xFF0C;&#x4F1A;&#x7FFB;&#x5F00;&#x7B2C;11&#x7AE0;&#x5BF9;&#x5E94;&#x7684;&#x90A3;&#x4E00;&#x9875;&#x5417;&#xFF1F;&#x76EE;&#x5F55;&#x6D4F;&#x89C8;&#x4E00;&#x4E0B;&#x5C31;&#x597D;&#xFF0C;&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x5C31;&#x662F;&#x8D77;&#x5230;&#x8986;&#x76D6;&#x7D22;&#x5F15;&#x7684;&#x4F5C;&#x7528;&#x3002; 
+<br><span style="color:green">&#x6B63;&#x4F8B;</span>&#xFF1A;&#x80FD;&#x591F;&#x5EFA;&#x7ACB;&#x7D22;&#x5F15;&#x7684;&#x79CD;&#x7C7B;&#x5206;&#x4E3A;&#x4E3B;&#x952E;&#x7D22;&#x5F15;&#x3001;&#x552F;&#x4E00;&#x7D22;&#x5F15;&#x3001;&#x666E;&#x901A;&#x7D22;&#x5F15;&#x4E09;&#x79CD;&#xFF0C;&#x800C;&#x8986;&#x76D6;&#x7D22;&#x5F15;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x67E5;&#x8BE2;&#x7684;&#x4E00;&#x79CD;&#x6548;&#x679C;&#xFF0C;&#x7528;explain&#x7684;&#x7ED3;&#x679C;&#xFF0C;extra&#x5217;&#x4F1A;&#x51FA;&#x73B0;&#xFF1A;using index&#x3002; </li>
+<li>&#x3010;&#x63A8;&#x8350;&#x3011;&#x5229;&#x7528;&#x5EF6;&#x8FDF;&#x5173;&#x8054;&#x6216;&#x8005;&#x5B50;&#x67E5;&#x8BE2;&#x4F18;&#x5316;&#x8D85;&#x591A;&#x5206;&#x9875;&#x573A;&#x666F;&#x3002; <br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;MySQL&#x5E76;&#x4E0D;&#x662F;&#x8DF3;&#x8FC7;offset&#x884C;&#xFF0C;&#x800C;&#x662F;&#x53D6;offset+N&#x884C;&#xFF0C;&#x7136;&#x540E;&#x8FD4;&#x56DE;&#x653E;&#x5F03;&#x524D;offset&#x884C;&#xFF0C;&#x8FD4;&#x56DE;N&#x884C;&#xFF0C;&#x90A3;&#x5F53;offset&#x7279;&#x522B;&#x5927;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6548;&#x7387;&#x5C31;&#x975E;&#x5E38;&#x7684;&#x4F4E;&#x4E0B;&#xFF0C;&#x8981;&#x4E48;&#x63A7;&#x5236;&#x8FD4;&#x56DE;&#x7684;&#x603B;&#x9875;&#x6570;&#xFF0C;&#x8981;&#x4E48;&#x5BF9;&#x8D85;&#x8FC7;&#x7279;&#x5B9A;&#x9608;&#x503C;&#x7684;&#x9875;&#x6570;&#x8FDB;&#x884C;SQL&#x6539;&#x5199;&#x3002; 
+<br><span style="color:green">&#x6B63;&#x4F8B;</span>&#xFF1A;&#x5148;&#x5FEB;&#x901F;&#x5B9A;&#x4F4D;&#x9700;&#x8981;&#x83B7;&#x53D6;&#x7684;id&#x6BB5;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x5173;&#x8054;&#xFF1A;       <pre class="language-">SELECT a.* FROM &#x8868;1 a, (select id from &#x8868;1 where &#x6761;&#x4EF6; LIMIT 100000,20 ) b where a.id=b.id </pre></li>
+<li>&#x3010;&#x63A8;&#x8350;&#x3011; SQL&#x6027;&#x80FD;&#x4F18;&#x5316;&#x7684;&#x76EE;&#x6807;&#xFF1A;&#x81F3;&#x5C11;&#x8981;&#x8FBE;&#x5230; range &#x7EA7;&#x522B;&#xFF0C;&#x8981;&#x6C42;&#x662F;ref&#x7EA7;&#x522B;&#xFF0C;&#x5982;&#x679C;&#x53EF;&#x4EE5;&#x662F;consts&#x6700;&#x597D;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;<br>1&#xFF09;consts &#x5355;&#x8868;&#x4E2D;&#x6700;&#x591A;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5339;&#x914D;&#x884C;&#xFF08;&#x4E3B;&#x952E;&#x6216;&#x8005;&#x552F;&#x4E00;&#x7D22;&#x5F15;&#xFF09;&#xFF0C;&#x5728;&#x4F18;&#x5316;&#x9636;&#x6BB5;&#x5373;&#x53EF;&#x8BFB;&#x53D6;&#x5230;&#x6570;&#x636E;&#x3002;<br>2&#xFF09;ref &#x6307;&#x7684;&#x662F;&#x4F7F;&#x7528;&#x666E;&#x901A;&#x7684;&#x7D22;&#x5F15;&#xFF08;normal index&#xFF09;&#x3002;<br>3&#xFF09;range &#x5BF9;&#x7D22;&#x5F15;&#x8FDB;&#x884C;&#x8303;&#x56F4;&#x68C0;&#x7D22;&#x3002; <br><span style="color:red">&#x53CD;&#x4F8B;</span>&#xFF1A;explain&#x8868;&#x7684;&#x7ED3;&#x679C;&#xFF0C;type=index&#xFF0C;&#x7D22;&#x5F15;&#x7269;&#x7406;&#x6587;&#x4EF6;&#x5168;&#x626B;&#x63CF;&#xFF0C;&#x901F;&#x5EA6;&#x975E;&#x5E38;&#x6162;&#xFF0C;&#x8FD9;&#x4E2A;index&#x7EA7;&#x522B;&#x6BD4;&#x8F83;range&#x8FD8;&#x4F4E;&#xFF0C;&#x4E0E;&#x5168;&#x8868;&#x626B;&#x63CF;&#x662F;&#x5C0F;&#x5DEB;&#x89C1;&#x5927;&#x5DEB;&#x3002; </li>
+<li>&#x3010;&#x63A8;&#x8350;&#x3011;&#x5EFA;&#x7EC4;&#x5408;&#x7D22;&#x5F15;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x533A;&#x5206;&#x5EA6;&#x6700;&#x9AD8;&#x7684;&#x5728;&#x6700;&#x5DE6;&#x8FB9;&#x3002; <br><span style="color:green">&#x6B63;&#x4F8B;</span>&#xFF1A;&#x5982;&#x679C;where a=? and b=? &#xFF0C;a&#x5217;&#x7684;&#x51E0;&#x4E4E;&#x63A5;&#x8FD1;&#x4E8E;&#x552F;&#x4E00;&#x503C;&#xFF0C;&#x90A3;&#x4E48;&#x53EA;&#x9700;&#x8981;&#x5355;&#x5EFA;idx_a&#x7D22;&#x5F15;&#x5373;&#x53EF;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x5B58;&#x5728;&#x975E;&#x7B49;&#x53F7;&#x548C;&#x7B49;&#x53F7;&#x6DF7;&#x5408;&#x5224;&#x65AD;&#x6761;&#x4EF6;&#x65F6;&#xFF0C;&#x5728;&#x5EFA;&#x7D22;&#x5F15;&#x65F6;&#xFF0C;&#x8BF7;&#x628A;&#x7B49;&#x53F7;&#x6761;&#x4EF6;&#x7684;&#x5217;&#x524D;&#x7F6E;&#x3002;&#x5982;&#xFF1A;where a&gt;? and b=? &#x90A3;&#x4E48;&#x5373;&#x4F7F;a&#x7684;&#x533A;&#x5206;&#x5EA6;&#x66F4;&#x9AD8;&#xFF0C;&#x4E5F;&#x5FC5;&#x987B;&#x628A;b&#x653E;&#x5728;&#x7D22;&#x5F15;&#x7684;&#x6700;&#x524D;&#x5217;&#x3002; </li>
+<li>&#x3010;&#x63A8;&#x8350;&#x3011;&#x9632;&#x6B62;&#x56E0;&#x5B57;&#x6BB5;&#x7C7B;&#x578B;&#x4E0D;&#x540C;&#x9020;&#x6210;&#x7684;&#x9690;&#x5F0F;&#x8F6C;&#x6362;&#xFF0C;&#x5BFC;&#x81F4;&#x7D22;&#x5F15;&#x5931;&#x6548;&#x3002; </li>
+<li>&#x3010;&#x53C2;&#x8003;&#x3011;&#x521B;&#x5EFA;&#x7D22;&#x5F15;&#x65F6;&#x907F;&#x514D;&#x6709;&#x5982;&#x4E0B;&#x6781;&#x7AEF;&#x8BEF;&#x89E3;&#xFF1A;  1&#xFF09;&#x5B81;&#x6EE5;&#x52FF;&#x7F3A;&#x3002;&#x8BA4;&#x4E3A;&#x4E00;&#x4E2A;&#x67E5;&#x8BE2;&#x5C31;&#x9700;&#x8981;&#x5EFA;&#x4E00;&#x4E2A;&#x7D22;&#x5F15;&#x3002;  2&#xFF09;&#x5B81;&#x7F3A;&#x52FF;&#x6EE5;&#x3002;&#x8BA4;&#x4E3A;&#x7D22;&#x5F15;&#x4F1A;&#x6D88;&#x8017;&#x7A7A;&#x95F4;&#x3001;&#x4E25;&#x91CD;&#x62D6;&#x6162;&#x66F4;&#x65B0;&#x548C;&#x65B0;&#x589E;&#x901F;&#x5EA6;&#x3002;  3&#xFF09;&#x62B5;&#x5236;&#x60DF;&#x4E00;&#x7D22;&#x5F15;&#x3002;&#x8BA4;&#x4E3A;&#x4E1A;&#x52A1;&#x7684;&#x60DF;&#x4E00;&#x6027;&#x4E00;&#x5F8B;&#x9700;&#x8981;&#x5728;&#x5E94;&#x7528;&#x5C42;&#x901A;&#x8FC7;&#x201C;&#x5148;&#x67E5;&#x540E;&#x63D2;&#x201D;&#x65B9;&#x5F0F;&#x89E3;&#x51B3;&#x3002; </li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="建表规约.html" class="navigation navigation-prev " aria-label="Previous page: （一）建表规约">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="SQL语句.html" class="navigation navigation-next " aria-label="Next page: （三）SQL语句">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"（二）索引规约","level":"1.6.2","depth":2,"next":{"title":"（三）SQL语句","level":"1.6.3","depth":2,"path":"MySQL数据库/SQL语句.md","ref":"MySQL数据库/SQL语句.md","articles":[]},"previous":{"title":"（一）建表规约","level":"1.6.1","depth":2,"path":"MySQL数据库/建表规约.md","ref":"MySQL数据库/建表规约.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["book-summary-scroll-position-saver","github","prism","-sharing","-highlight"],"pluginsConfig":{"github":{"url":"https://github.com/alibaba/p3c"},"book-summary-scroll-position-saver":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css"}},"file":{"path":"MySQL数据库/索引规约.md","mtime":"2018-01-13T07:52:52.580Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-15T14:41:43.583Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-book-summary-scroll-position-saver/book-summary-scroll-position-saver.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,608 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>（二）二方库依赖 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="服务器.html" />
+    
+    
+    <link rel="prev" href="应用分层.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    一、编程规约
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../编程规约/命名风格.html">
+            
+                <a href="../编程规约/命名风格.html">
+            
+                    
+                    （一）命名风格
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../编程规约/常量定义.html">
+            
+                <a href="../编程规约/常量定义.html">
+            
+                    
+                    （二）常量定义
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../编程规约/代码格式.html">
+            
+                <a href="../编程规约/代码格式.html">
+            
+                    
+                    （三）代码格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../编程规约/OOP规范.html">
+            
+                <a href="../编程规约/OOP规范.html">
+            
+                    
+                    （四）OOP规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../编程规约/集合处理.html">
+            
+                <a href="../编程规约/集合处理.html">
+            
+                    
+                    （五）集合处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../编程规约/并发处理.html">
+            
+                <a href="../编程规约/并发处理.html">
+            
+                    
+                    （六）并发处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../编程规约/控制语句.html">
+            
+                <a href="../编程规约/控制语句.html">
+            
+                    
+                    （七）控制语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../编程规约/注释规约.html">
+            
+                <a href="../编程规约/注释规约.html">
+            
+                    
+                    （八）注释规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    二、异常日志
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../异常日志/异常处理.html">
+            
+                <a href="../异常日志/异常处理.html">
+            
+                    
+                    （一）异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../异常日志/日志规约.html">
+            
+                <a href="../异常日志/日志规约.html">
+            
+                    
+                    （二）日志规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../异常日志/其他.html">
+            
+                <a href="../异常日志/其他.html">
+            
+                    
+                    （三）其他
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../单元测试.html">
+            
+                <a href="../单元测试.html">
+            
+                    
+                    三、单元测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../安全规约.html">
+            
+                <a href="../安全规约.html">
+            
+                    
+                    四、安全规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    五、MySQL数据库
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../MySQL数据库/建表规约.html">
+            
+                <a href="../MySQL数据库/建表规约.html">
+            
+                    
+                    （一）建表规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../MySQL数据库/索引规约.html">
+            
+                <a href="../MySQL数据库/索引规约.html">
+            
+                    
+                    （二）索引规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../MySQL数据库/SQL语句.html">
+            
+                <a href="../MySQL数据库/SQL语句.html">
+            
+                    
+                    （三）SQL语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../MySQL数据库/ORM映射.html">
+            
+                <a href="../MySQL数据库/ORM映射.html">
+            
+                    
+                    （四）ORM映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    六、工程结构
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="应用分层.html">
+            
+                <a href="应用分层.html">
+            
+                    
+                    （一）应用分层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7.2" data-path="二方库依赖.html">
+            
+                <a href="二方库依赖.html">
+            
+                    
+                    （二）二方库依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="服务器.html">
+            
+                <a href="服务器.html">
+            
+                    
+                    （三）服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../版本历史.html">
+            
+                <a href="../版本历史.html">
+            
+                    
+                    附1：版本历史 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../本手册专有名词.html">
+            
+                <a href="../本手册专有名词.html">
+            
+                    
+                    附2：本手册专有名词 
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >（二）二方库依赖</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x4E8C;-&#x4E8C;&#x65B9;&#x5E93;&#x4F9D;&#x8D56;">(&#x4E8C;) &#x4E8C;&#x65B9;&#x5E93;&#x4F9D;&#x8D56;</h2>
+<ol>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x5B9A;&#x4E49;GAV&#x9075;&#x4ECE;&#x4EE5;&#x4E0B;&#x89C4;&#x5219;&#xFF1A;<br>1&#xFF09; <code>G</code>roupID&#x683C;&#x5F0F;&#xFF1A;com.{&#x516C;&#x53F8;/BU }.&#x4E1A;&#x52A1;&#x7EBF;.[&#x5B50;&#x4E1A;&#x52A1;&#x7EBF;]&#xFF0C;&#x6700;&#x591A;4&#x7EA7;&#x3002;<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;{&#x516C;&#x53F8;/BU} &#x4F8B;&#x5982;&#xFF1A;alibaba/taobao/tmall/aliexpress&#x7B49;BU&#x4E00;&#x7EA7;&#xFF1B;&#x5B50;&#x4E1A;&#x52A1;&#x7EBF;&#x53EF;&#x9009;&#x3002;<br><span style="color:green">&#x6B63;&#x4F8B;</span>&#xFF1A;com.taobao.jstorm &#x6216; com.alibaba.dubbo.register
+<br>2&#xFF09; <code>A</code>rtifactID&#x683C;&#x5F0F;&#xFF1A;&#x4EA7;&#x54C1;&#x7EBF;&#x540D;-&#x6A21;&#x5757;&#x540D;&#x3002;&#x8BED;&#x4E49;&#x4E0D;&#x91CD;&#x590D;&#x4E0D;&#x9057;&#x6F0F;&#xFF0C;&#x5148;&#x5230;&#x4E2D;&#x592E;&#x4ED3;&#x5E93;&#x53BB;&#x67E5;&#x8BC1;&#x4E00;&#x4E0B;&#x3002;
+<br><span style="color:green">&#x6B63;&#x4F8B;</span>&#xFF1A;dubbo-client / fastjson-api / jstorm-tool<br>3&#xFF09; <code>V</code>ersion&#xFF1A;&#x8BE6;&#x7EC6;&#x89C4;&#x5B9A;&#x53C2;&#x8003;&#x4E0B;&#x65B9;&#x3002; </li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x4E8C;&#x65B9;&#x5E93;&#x7248;&#x672C;&#x53F7;&#x547D;&#x540D;&#x65B9;&#x5F0F;&#xFF1A;&#x4E3B;&#x7248;&#x672C;&#x53F7;.&#x6B21;&#x7248;&#x672C;&#x53F7;.&#x4FEE;&#x8BA2;&#x53F7;<br>1&#xFF09; <strong>&#x4E3B;&#x7248;&#x672C;&#x53F7;</strong>&#xFF1A;&#x4EA7;&#x54C1;&#x65B9;&#x5411;&#x6539;&#x53D8;&#xFF0C;&#x6216;&#x8005;&#x5927;&#x89C4;&#x6A21;API&#x4E0D;&#x517C;&#x5BB9;&#xFF0C;&#x6216;&#x8005;&#x67B6;&#x6784;&#x4E0D;&#x517C;&#x5BB9;&#x5347;&#x7EA7;&#x3002;<br>2&#xFF09; <strong>&#x6B21;&#x7248;&#x672C;&#x53F7;</strong>&#xFF1A;&#x4FDD;&#x6301;&#x76F8;&#x5BF9;&#x517C;&#x5BB9;&#x6027;&#xFF0C;&#x589E;&#x52A0;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#x7279;&#x6027;&#xFF0C;&#x5F71;&#x54CD;&#x8303;&#x56F4;&#x6781;&#x5C0F;&#x7684;API&#x4E0D;&#x517C;&#x5BB9;&#x4FEE;&#x6539;&#x3002;<br>3&#xFF09; <strong>&#x4FEE;&#x8BA2;&#x53F7;</strong>&#xFF1A;&#x4FDD;&#x6301;&#x5B8C;&#x5168;&#x517C;&#x5BB9;&#x6027;&#xFF0C;&#x4FEE;&#x590D;BUG&#x3001;&#x65B0;&#x589E;&#x6B21;&#x8981;&#x529F;&#x80FD;&#x7279;&#x6027;&#x7B49;&#x3002;<br>&#x8BF4;&#x660E;&#xFF1A;&#x6CE8;&#x610F;&#x8D77;&#x59CB;&#x7248;&#x672C;&#x53F7;&#x5FC5;&#x987B;&#x4E3A;&#xFF1A;<em>1.0.0</em>&#xFF0C;&#x800C;&#x4E0D;&#x662F;0.0.1   &#x6B63;&#x5F0F;&#x53D1;&#x5E03;&#x7684;&#x7C7B;&#x5E93;&#x5FC5;&#x987B;&#x5148;&#x53BB;&#x4E2D;&#x592E;&#x4ED3;&#x5E93;&#x8FDB;&#x884C;&#x67E5;&#x8BC1;&#xFF0C;&#x4F7F;&#x7248;&#x672C;&#x53F7;&#x6709;&#x5EF6;&#x7EED;&#x6027;&#xFF0C;&#x6B63;&#x5F0F;&#x7248;&#x672C;&#x53F7;&#x4E0D;&#x5141;&#x8BB8;&#x8986;&#x76D6;&#x5347;&#x7EA7;&#x3002;&#x5982;&#x5F53;&#x524D;&#x7248;&#x672C;&#xFF1A;1.3.3&#xFF0C;&#x90A3;&#x4E48;&#x4E0B;&#x4E00;&#x4E2A;&#x5408;&#x7406;&#x7684;&#x7248;&#x672C;&#x53F7;&#xFF1A;1.3.4 &#x6216; 1.4.0 &#x6216; 2.0.0 </li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x7EBF;&#x4E0A;&#x5E94;&#x7528;&#x4E0D;&#x8981;&#x4F9D;&#x8D56;SNAPSHOT&#x7248;&#x672C;&#xFF08;&#x5B89;&#x5168;&#x5305;&#x9664;&#x5916;&#xFF09;&#x3002;<br>
+<span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x4E0D;&#x4F9D;&#x8D56;SNAPSHOT&#x7248;&#x672C;&#x662F;&#x4FDD;&#x8BC1;&#x5E94;&#x7528;&#x53D1;&#x5E03;&#x7684;&#x5E42;&#x7B49;&#x6027;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x52A0;&#x5FEB;&#x7F16;&#x8BD1;&#x65F6;&#x7684;&#x6253;&#x5305;&#x6784;&#x5EFA;&#x3002;  </li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x4E8C;&#x65B9;&#x5E93;&#x7684;&#x65B0;&#x589E;&#x6216;&#x5347;&#x7EA7;&#xFF0C;&#x4FDD;&#x6301;&#x9664;&#x529F;&#x80FD;&#x70B9;&#x4E4B;&#x5916;&#x7684;&#x5176;&#x5B83;jar&#x5305;&#x4EF2;&#x88C1;&#x7ED3;&#x679C;&#x4E0D;&#x53D8;&#x3002;&#x5982;&#x679C;&#x6709;&#x6539;&#x53D8;&#xFF0C;&#x5FC5;&#x987B;&#x660E;&#x786E;&#x8BC4;&#x4F30;&#x548C;&#x9A8C;&#x8BC1;&#xFF0C;&#x5EFA;&#x8BAE;&#x8FDB;&#x884C;<code>dependency:resolve</code>&#x524D;&#x540E;&#x4FE1;&#x606F;&#x6BD4;&#x5BF9;&#xFF0C;&#x5982;&#x679C;&#x4EF2;&#x88C1;&#x7ED3;&#x679C;&#x5B8C;&#x5168;&#x4E0D;&#x4E00;&#x81F4;&#xFF0C;&#x90A3;&#x4E48;&#x901A;&#x8FC7;<code>dependency:tree</code>&#x547D;&#x4EE4;&#xFF0C;&#x627E;&#x51FA;&#x5DEE;&#x5F02;&#x70B9;&#xFF0C;&#x8FDB;&#x884C;<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>excludes</span><span class="token punctuation">&gt;</span></span></code>&#x6392;&#x9664;jar&#x5305;&#x3002; </li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x4E8C;&#x65B9;&#x5E93;&#x91CC;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#xFF0C;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#xFF0C;&#x4F46;&#x662F;&#x63A5;&#x53E3;&#x8FD4;&#x56DE;&#x503C;&#x4E0D;&#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#x6216;&#x8005;&#x5305;&#x542B;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#x7684;POJO&#x5BF9;&#x8C61;&#x3002; </li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x4F9D;&#x8D56;&#x4E8E;&#x4E00;&#x4E2A;&#x4E8C;&#x65B9;&#x5E93;&#x7FA4;&#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x7EDF;&#x4E00;&#x7684;&#x7248;&#x672C;&#x53D8;&#x91CF;&#xFF0C;&#x907F;&#x514D;&#x7248;&#x672C;&#x53F7;&#x4E0D;&#x4E00;&#x81F4;&#x3002; <br>
+<span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x4F9D;&#x8D56;springframework-core,-context,-beans&#xFF0C;&#x5B83;&#x4EEC;&#x90FD;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x7248;&#x672C;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x6765;&#x4FDD;&#x5B58;&#x7248;&#x672C;&#xFF1A;${spring.version}&#xFF0C;&#x5B9A;&#x4E49;&#x4F9D;&#x8D56;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5F15;&#x7528;&#x8BE5;&#x7248;&#x672C;&#x3002;</li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x7981;&#x6B62;&#x5728;&#x5B50;&#x9879;&#x76EE;&#x7684;pom&#x4F9D;&#x8D56;&#x4E2D;&#x51FA;&#x73B0;&#x76F8;&#x540C;&#x7684;GroupId&#xFF0C;&#x76F8;&#x540C;&#x7684;ArtifactId&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x540C;&#x7684;Version&#x3002;
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x5728;&#x672C;&#x5730;&#x8C03;&#x8BD5;&#x65F6;&#x4F1A;&#x4F7F;&#x7528;&#x5404;&#x5B50;&#x9879;&#x76EE;&#x6307;&#x5B9A;&#x7684;&#x7248;&#x672C;&#x53F7;&#xFF0C;&#x4F46;&#x662F;&#x5408;&#x5E76;&#x6210;&#x4E00;&#x4E2A;war&#xFF0C;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x7248;&#x672C;&#x53F7;&#x51FA;&#x73B0;&#x5728;&#x6700;&#x540E;&#x7684;lib&#x76EE;&#x5F55;&#x4E2D;&#x3002;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7EBF;&#x4E0B;&#x8C03;&#x8BD5;&#x662F;&#x6B63;&#x786E;&#x7684;&#xFF0C;&#x53D1;&#x5E03;&#x5230;&#x7EBF;&#x4E0A;&#x5374;&#x51FA;&#x6545;&#x969C;&#x7684;&#x95EE;&#x9898;&#x3002; </li>
+<li>&#x3010;&#x63A8;&#x8350;&#x3011;&#x6240;&#x6709;pom&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x4F9D;&#x8D56;&#x58F0;&#x660E;&#x653E;&#x5728;<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span></code>&#x8BED;&#x53E5;&#x5757;&#x4E2D;&#xFF0C;&#x6240;&#x6709;&#x7248;&#x672C;&#x4EF2;&#x88C1;&#x653E;&#x5728;<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencyManagement</span><span class="token punctuation">&gt;</span></span></code>&#x8BED;&#x53E5;&#x5757;&#x4E2D;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencyManagement</span><span class="token punctuation">&gt;</span></span></code>&#x91CC;&#x53EA;&#x662F;&#x58F0;&#x660E;&#x7248;&#x672C;&#xFF0C;&#x5E76;&#x4E0D;&#x5B9E;&#x73B0;&#x5F15;&#x5165;&#xFF0C;&#x56E0;&#x6B64;&#x5B50;&#x9879;&#x76EE;&#x9700;&#x8981;&#x663E;&#x5F0F;&#x7684;&#x58F0;&#x660E;&#x4F9D;&#x8D56;&#xFF0C;version&#x548C;scope&#x90FD;&#x8BFB;&#x53D6;&#x81EA;&#x7236;pom&#x3002;&#x800C;<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span></code>&#x6240;&#x6709;&#x58F0;&#x660E;&#x5728;&#x4E3B;pom&#x7684;<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span></code>&#x91CC;&#x7684;&#x4F9D;&#x8D56;&#x90FD;&#x4F1A;&#x81EA;&#x52A8;&#x5F15;&#x5165;&#xFF0C;&#x5E76;&#x9ED8;&#x8BA4;&#x88AB;&#x6240;&#x6709;&#x7684;&#x5B50;&#x9879;&#x76EE;&#x7EE7;&#x627F;&#x3002; </li>
+<li>&#x3010;&#x63A8;&#x8350;&#x3011;&#x4E8C;&#x65B9;&#x5E93;&#x4E0D;&#x8981;&#x6709;&#x914D;&#x7F6E;&#x9879;&#xFF0C;&#x6700;&#x4F4E;&#x9650;&#x5EA6;&#x4E0D;&#x8981;&#x518D;&#x589E;&#x52A0;&#x914D;&#x7F6E;&#x9879;&#x3002; </li>
+<li>&#x3010;&#x53C2;&#x8003;&#x3011;&#x4E3A;&#x907F;&#x514D;&#x5E94;&#x7528;&#x4E8C;&#x65B9;&#x5E93;&#x7684;&#x4F9D;&#x8D56;&#x51B2;&#x7A81;&#x95EE;&#x9898;&#xFF0C;&#x4E8C;&#x65B9;&#x5E93;&#x53D1;&#x5E03;&#x8005;&#x5E94;&#x5F53;&#x9075;&#x5FAA;&#x4EE5;&#x4E0B;&#x539F;&#x5219;&#xFF1A;<br> 
+1&#xFF09;&#x7CBE;&#x7B80;&#x53EF;&#x63A7;&#x539F;&#x5219;&#x3002;&#x79FB;&#x9664;&#x4E00;&#x5207;&#x4E0D;&#x5FC5;&#x8981;&#x7684;API&#x548C;&#x4F9D;&#x8D56;&#xFF0C;&#x53EA;&#x5305;&#x542B; Service API&#x3001;&#x5FC5;&#x8981;&#x7684;&#x9886;&#x57DF;&#x6A21;&#x578B;&#x5BF9;&#x8C61;&#x3001;Utils&#x7C7B;&#x3001;&#x5E38;&#x91CF;&#x3001;&#x679A;&#x4E3E;&#x7B49;&#x3002;&#x5982;&#x679C;&#x4F9D;&#x8D56;&#x5176;&#x5B83;&#x4E8C;&#x65B9;&#x5E93;&#xFF0C;&#x5C3D;&#x91CF;&#x662F;provided&#x5F15;&#x5165;&#xFF0C;&#x8BA9;&#x4E8C;&#x65B9;&#x5E93;&#x4F7F;&#x7528;&#x8005;&#x53BB;&#x4F9D;&#x8D56;&#x5177;&#x4F53;&#x7248;&#x672C;&#x53F7;&#xFF1B;&#x65E0;log&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#xFF0C;&#x53EA;&#x4F9D;&#x8D56;&#x65E5;&#x5FD7;&#x6846;&#x67B6;&#x3002;<br>
+2&#xFF09;&#x7A33;&#x5B9A;&#x53EF;&#x8FFD;&#x6EAF;&#x539F;&#x5219;&#x3002;&#x6BCF;&#x4E2A;&#x7248;&#x672C;&#x7684;&#x53D8;&#x5316;&#x5E94;&#x8BE5;&#x88AB;&#x8BB0;&#x5F55;&#xFF0C;&#x4E8C;&#x65B9;&#x5E93;&#x7531;&#x8C01;&#x7EF4;&#x62A4;&#xFF0C;&#x6E90;&#x7801;&#x5728;&#x54EA;&#x91CC;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x80FD;&#x65B9;&#x4FBF;&#x67E5;&#x5230;&#x3002;&#x9664;&#x975E;&#x7528;&#x6237;&#x4E3B;&#x52A8;&#x5347;&#x7EA7;&#x7248;&#x672C;&#xFF0C;&#x5426;&#x5219;&#x516C;&#x5171;&#x4E8C;&#x65B9;&#x5E93;&#x7684;&#x884C;&#x4E3A;&#x4E0D;&#x5E94;&#x8BE5;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x3002;  </li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="应用分层.html" class="navigation navigation-prev " aria-label="Previous page: （一）应用分层">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="服务器.html" class="navigation navigation-next " aria-label="Next page: （三）服务器">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"（二）二方库依赖","level":"1.7.2","depth":2,"next":{"title":"（三）服务器","level":"1.7.3","depth":2,"path":"工程结构/服务器.md","ref":"工程结构/服务器.md","articles":[]},"previous":{"title":"（一）应用分层","level":"1.7.1","depth":2,"path":"工程结构/应用分层.md","ref":"工程结构/应用分层.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["book-summary-scroll-position-saver","github","prism","-sharing","-highlight"],"pluginsConfig":{"github":{"url":"https://github.com/alibaba/p3c"},"book-summary-scroll-position-saver":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css"}},"file":{"path":"工程结构/二方库依赖.md","mtime":"2018-01-13T07:52:52.584Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-15T14:41:43.583Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-book-summary-scroll-position-saver/book-summary-scroll-position-saver.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

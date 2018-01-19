@@ -1,0 +1,659 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>（五）集合处理 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="并发处理.html" />
+    
+    
+    <link rel="prev" href="OOP规范.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    一、编程规约
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="命名风格.html">
+            
+                <a href="命名风格.html">
+            
+                    
+                    （一）命名风格
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="常量定义.html">
+            
+                <a href="常量定义.html">
+            
+                    
+                    （二）常量定义
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="代码格式.html">
+            
+                <a href="代码格式.html">
+            
+                    
+                    （三）代码格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="OOP规范.html">
+            
+                <a href="OOP规范.html">
+            
+                    
+                    （四）OOP规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.5" data-path="集合处理.html">
+            
+                <a href="集合处理.html">
+            
+                    
+                    （五）集合处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="并发处理.html">
+            
+                <a href="并发处理.html">
+            
+                    
+                    （六）并发处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="控制语句.html">
+            
+                <a href="控制语句.html">
+            
+                    
+                    （七）控制语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="注释规约.html">
+            
+                <a href="注释规约.html">
+            
+                    
+                    （八）注释规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    二、异常日志
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../异常日志/异常处理.html">
+            
+                <a href="../异常日志/异常处理.html">
+            
+                    
+                    （一）异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../异常日志/日志规约.html">
+            
+                <a href="../异常日志/日志规约.html">
+            
+                    
+                    （二）日志规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../异常日志/其他.html">
+            
+                <a href="../异常日志/其他.html">
+            
+                    
+                    （三）其他
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../单元测试.html">
+            
+                <a href="../单元测试.html">
+            
+                    
+                    三、单元测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../安全规约.html">
+            
+                <a href="../安全规约.html">
+            
+                    
+                    四、安全规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    五、MySQL数据库
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../MySQL数据库/建表规约.html">
+            
+                <a href="../MySQL数据库/建表规约.html">
+            
+                    
+                    （一）建表规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../MySQL数据库/索引规约.html">
+            
+                <a href="../MySQL数据库/索引规约.html">
+            
+                    
+                    （二）索引规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../MySQL数据库/SQL语句.html">
+            
+                <a href="../MySQL数据库/SQL语句.html">
+            
+                    
+                    （三）SQL语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../MySQL数据库/ORM映射.html">
+            
+                <a href="../MySQL数据库/ORM映射.html">
+            
+                    
+                    （四）ORM映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    六、工程结构
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../工程结构/应用分层.html">
+            
+                <a href="../工程结构/应用分层.html">
+            
+                    
+                    （一）应用分层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../工程结构/二方库依赖.html">
+            
+                <a href="../工程结构/二方库依赖.html">
+            
+                    
+                    （二）二方库依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../工程结构/服务器.html">
+            
+                <a href="../工程结构/服务器.html">
+            
+                    
+                    （三）服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../版本历史.html">
+            
+                <a href="../版本历史.html">
+            
+                    
+                    附1：版本历史 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../本手册专有名词.html">
+            
+                <a href="../本手册专有名词.html">
+            
+                    
+                    附2：本手册专有名词 
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >（五）集合处理</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x4E94;-&#x96C6;&#x5408;&#x5904;&#x7406;">(&#x4E94;) &#x96C6;&#x5408;&#x5904;&#x7406;</h2>
+<ol>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x5173;&#x4E8E;<code>hashCode</code>&#x548C;<code>equals</code>&#x7684;&#x5904;&#x7406;&#xFF0C;&#x9075;&#x5FAA;&#x5982;&#x4E0B;&#x89C4;&#x5219;&#xFF1A; 
+<br>1&#xFF09; &#x53EA;&#x8981;&#x91CD;&#x5199;<code>equals</code>&#xFF0C;&#x5C31;&#x5FC5;&#x987B;&#x91CD;&#x5199;<code>hashCode</code>&#x3002; 
+<br>2&#xFF09; &#x56E0;&#x4E3A;Set&#x5B58;&#x50A8;&#x7684;&#x662F;&#x4E0D;&#x91CD;&#x590D;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x4F9D;&#x636E;<code>hashCode</code>&#x548C;<code>equals</code>&#x8FDB;&#x884C;&#x5224;&#x65AD;&#xFF0C;&#x6240;&#x4EE5;Set&#x5B58;&#x50A8;&#x7684;&#x5BF9;&#x8C61;&#x5FC5;&#x987B;&#x91CD;&#x5199;&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x3002; 
+<br>3&#xFF09; &#x5982;&#x679C;&#x81EA;&#x5B9A;&#x4E49;&#x5BF9;&#x8C61;&#x4F5C;&#x4E3A;Map&#x7684;&#x952E;&#xFF0C;&#x90A3;&#x4E48;&#x5FC5;&#x987B;&#x91CD;&#x5199;<code>hashCode</code>&#x548C;<code>equals</code>&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;String&#x91CD;&#x5199;&#x4E86;hashCode&#x548C;equals&#x65B9;&#x6CD5;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x975E;&#x5E38;&#x6109;&#x5FEB;&#x5730;&#x4F7F;&#x7528;String&#x5BF9;&#x8C61;&#x4F5C;&#x4E3A;key&#x6765;&#x4F7F;&#x7528;&#x3002; </li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011; ArrayList&#x7684;subList&#x7ED3;&#x679C;&#x4E0D;&#x53EF;&#x5F3A;&#x8F6C;&#x6210;ArrayList&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x629B;&#x51FA;ClassCastException&#x5F02;&#x5E38;&#xFF0C;&#x5373;java.util.RandomAccessSubList cannot be cast to java.util.ArrayList. 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;subList &#x8FD4;&#x56DE;&#x7684;&#x662F; ArrayList &#x7684;&#x5185;&#x90E8;&#x7C7B; SubList&#xFF0C;&#x5E76;&#x4E0D;&#x662F; ArrayList &#xFF0C;&#x800C;&#x662F; ArrayList &#x7684;&#x4E00;&#x4E2A;&#x89C6;&#x56FE;&#xFF0C;&#x5BF9;&#x4E8E;SubList&#x5B50;&#x5217;&#x8868;&#x7684;&#x6240;&#x6709;&#x64CD;&#x4F5C;&#x6700;&#x7EC8;&#x4F1A;&#x53CD;&#x6620;&#x5230;&#x539F;&#x5217;&#x8868;&#x4E0A;&#x3002; </li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x5728;subList&#x573A;&#x666F;&#x4E2D;&#xFF0C;<strong>&#x9AD8;&#x5EA6;&#x6CE8;&#x610F;</strong>&#x5BF9;&#x539F;&#x96C6;&#x5408;&#x5143;&#x7D20;&#x4E2A;&#x6570;&#x7684;&#x4FEE;&#x6539;&#xFF0C;&#x4F1A;&#x5BFC;&#x81F4;&#x5B50;&#x5217;&#x8868;&#x7684;&#x904D;&#x5386;&#x3001;&#x589E;&#x52A0;&#x3001;&#x5220;&#x9664;&#x5747;&#x4F1A;&#x4EA7;&#x751F;ConcurrentModificationException &#x5F02;&#x5E38;&#x3002; </li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x4F7F;&#x7528;&#x96C6;&#x5408;&#x8F6C;&#x6570;&#x7EC4;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x96C6;&#x5408;&#x7684;toArray(T[] array)&#xFF0C;&#x4F20;&#x5165;&#x7684;&#x662F;&#x7C7B;&#x578B;&#x5B8C;&#x5168;&#x4E00;&#x6837;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x5927;&#x5C0F;&#x5C31;&#x662F;<code>list.size()</code>&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x4F7F;&#x7528;toArray&#x5E26;&#x53C2;&#x65B9;&#x6CD5;&#xFF0C;&#x5165;&#x53C2;&#x5206;&#x914D;&#x7684;&#x6570;&#x7EC4;&#x7A7A;&#x95F4;&#x4E0D;&#x591F;&#x5927;&#x65F6;&#xFF0C;toArray&#x65B9;&#x6CD5;&#x5185;&#x90E8;&#x5C06;&#x91CD;&#x65B0;&#x5206;&#x914D;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x65B0;&#x6570;&#x7EC4;&#x5730;&#x5740;&#xFF1B;&#x5982;&#x679C;&#x6570;&#x7EC4;&#x5143;&#x7D20;&#x4E2A;&#x6570;&#x5927;&#x4E8E;&#x5B9E;&#x9645;&#x6240;&#x9700;&#xFF0C;&#x4E0B;&#x6807;&#x4E3A;[ list.size() ]&#x7684;&#x6570;&#x7EC4;&#x5143;&#x7D20;&#x5C06;&#x88AB;&#x7F6E;&#x4E3A;null&#xFF0C;&#x5176;&#x5B83;&#x6570;&#x7EC4;&#x5143;&#x7D20;&#x4FDD;&#x6301;&#x539F;&#x503C;&#xFF0C;&#x56E0;&#x6B64;&#x6700;&#x597D;&#x5C06;&#x65B9;&#x6CD5;&#x5165;&#x53C2;&#x6570;&#x7EC4;&#x5927;&#x5C0F;&#x5B9A;&#x4E49;&#x4E0E;&#x96C6;&#x5408;&#x5143;&#x7D20;&#x4E2A;&#x6570;&#x4E00;&#x81F4;&#x3002; 
+<br><span style="color:green">&#x6B63;&#x4F8B;</span>&#xFF1A; <pre class="language-"><code>List<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>String</span><span class="token punctuation">&gt;</span></span> list = new ArrayList<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>String</span><span class="token punctuation">&gt;</span></span>(2);      
+list.add(&quot;guan&quot;);     
+list.add(&quot;bao&quot;);       
+String[] array = new String[list.size()];      
+array = list.toArray(array);
+</code></pre><span style="color:red">&#x53CD;&#x4F8B;</span>&#xFF1A;&#x76F4;&#x63A5;&#x4F7F;&#x7528;toArray&#x65E0;&#x53C2;&#x65B9;&#x6CD5;&#x5B58;&#x5728;&#x95EE;&#x9898;&#xFF0C;&#x6B64;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x503C;&#x53EA;&#x80FD;&#x662F;Object[]&#x7C7B;&#xFF0C;&#x82E5;&#x5F3A;&#x8F6C;&#x5176;&#x5B83;&#x7C7B;&#x578B;&#x6570;&#x7EC4;&#x5C06;&#x51FA;&#x73B0;ClassCastException&#x9519;&#x8BEF;&#x3002;</li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x4F7F;&#x7528;&#x5DE5;&#x5177;&#x7C7B;Arrays.asList()&#x628A;&#x6570;&#x7EC4;&#x8F6C;&#x6362;&#x6210;&#x96C6;&#x5408;&#x65F6;&#xFF0C;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x5176;&#x4FEE;&#x6539;&#x96C6;&#x5408;&#x76F8;&#x5173;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5B83;&#x7684;add/remove/clear&#x65B9;&#x6CD5;&#x4F1A;&#x629B;&#x51FA;UnsupportedOperationException&#x5F02;&#x5E38;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;asList&#x7684;&#x8FD4;&#x56DE;&#x5BF9;&#x8C61;&#x662F;&#x4E00;&#x4E2A;Arrays&#x5185;&#x90E8;&#x7C7B;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x96C6;&#x5408;&#x7684;&#x4FEE;&#x6539;&#x65B9;&#x6CD5;&#x3002;Arrays.asList&#x4F53;&#x73B0;&#x7684;&#x662F;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#xFF0C;&#x53EA;&#x662F;&#x8F6C;&#x6362;&#x63A5;&#x53E3;&#xFF0C;&#x540E;&#x53F0;&#x7684;&#x6570;&#x636E;&#x4ECD;&#x662F;&#x6570;&#x7EC4;&#x3002;<pre class="language-"><code>String[] str = new String[] { &quot;you&quot;, &quot;wu&quot; };     
+List list = Arrays.asList(str);
+</code></pre>&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;list.add(&quot;yangguanbao&quot;); &#x8FD0;&#x884C;&#x65F6;&#x5F02;&#x5E38;&#x3002;
+<br>&#x7B2C;&#x4E8C;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;str[0] = &quot;gujin&quot;; &#x90A3;&#x4E48;list.get(0)&#x4E5F;&#x4F1A;&#x968F;&#x4E4B;&#x4FEE;&#x6539;&#x3002;</li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x6CDB;&#x578B;&#x901A;&#x914D;&#x7B26;<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>?</span> <span class="token attr-name">extends</span> <span class="token attr-name">T</span><span class="token punctuation">&gt;</span></span></code>&#x6765;&#x63A5;&#x6536;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x6B64;&#x5199;&#x6CD5;&#x7684;&#x6CDB;&#x578B;&#x96C6;&#x5408;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;add&#x65B9;&#x6CD5;&#xFF0C;&#x800C;<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>?</span> <span class="token attr-name">super</span> <span class="token attr-name">T</span><span class="token punctuation">&gt;</span></span></code>&#x4E0D;&#x80FD;&#x4F7F;&#x7528;get&#x65B9;&#x6CD5;&#xFF0C;&#x4F5C;&#x4E3A;&#x63A5;&#x53E3;&#x8C03;&#x7528;&#x8D4B;&#x503C;&#x65F6;&#x6613;&#x51FA;&#x9519;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x6269;&#x5C55;&#x8BF4;&#x4E00;&#x4E0B;PECS(Producer Extends Consumer Super)&#x539F;&#x5219;&#xFF1A;&#x7B2C;&#x4E00;&#x3001;&#x9891;&#x7E41;&#x5F80;&#x5916;&#x8BFB;&#x53D6;&#x5185;&#x5BB9;&#x7684;&#xFF0C;&#x9002;&#x5408;&#x7528;&lt;? extends T&gt;&#x3002;&#x7B2C;&#x4E8C;&#x3001;&#x7ECF;&#x5E38;&#x5F80;&#x91CC;&#x63D2;&#x5165;&#x7684;&#xFF0C;&#x9002;&#x5408;&#x7528;<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>?</span> <span class="token attr-name">super</span> <span class="token attr-name">T</span><span class="token punctuation">&gt;</span></span></code>&#x3002; </li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011;&#x4E0D;&#x8981;&#x5728;foreach&#x5FAA;&#x73AF;&#x91CC;&#x8FDB;&#x884C;&#x5143;&#x7D20;&#x7684;remove/add&#x64CD;&#x4F5C;&#x3002;remove&#x5143;&#x7D20;&#x8BF7;&#x4F7F;&#x7528;Iterator&#x65B9;&#x5F0F;&#xFF0C;&#x5982;&#x679C;&#x5E76;&#x53D1;&#x64CD;&#x4F5C;&#xFF0C;&#x9700;&#x8981;&#x5BF9;Iterator&#x5BF9;&#x8C61;&#x52A0;&#x9501;&#x3002; 
+<br><span style="color:green">&#x6B63;&#x4F8B;</span>&#xFF1A; <pre class="language-"><code> Iterator<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>String</span><span class="token punctuation">&gt;</span></span> iterator = list.iterator();  while (iterator.hasNext()) {          
+       String item = iterator.next();                  
+             if (&#x5220;&#x9664;&#x5143;&#x7D20;&#x7684;&#x6761;&#x4EF6;) {                   
+                     iterator.remove();                 
+             }      
+ }
+</code></pre><span style="color:red">&#x53CD;&#x4F8B;</span>&#xFF1A;<pre class="language-"><code> List<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>String</span><span class="token punctuation">&gt;</span></span> list = new ArrayList<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>String</span><span class="token punctuation">&gt;</span></span>();      
+ list.add(&quot;1&quot;);      
+ list.add(&quot;2&quot;);      
+ for (String item : list) {        
+     if (&quot;1&quot;.equals(item)) {          
+           list.remove(item);         
+       }   
+ }
+</code></pre><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x4EE5;&#x4E0A;&#x4EE3;&#x7801;&#x7684;&#x6267;&#x884C;&#x7ED3;&#x679C;&#x80AF;&#x5B9A;&#x4F1A;&#x51FA;&#x4E4E;&#x5927;&#x5BB6;&#x7684;&#x610F;&#x6599;&#xFF0C;&#x90A3;&#x4E48;&#x8BD5;&#x4E00;&#x4E0B;&#x628A;&#x201C;1&#x201D;&#x6362;&#x6210;&#x201C;2&#x201D;&#xFF0C;&#x4F1A;&#x662F;&#x540C;&#x6837;&#x7684;&#x7ED3;&#x679C;&#x5417;&#xFF1F;</li>
+<li>&#x3010;&#x5F3A;&#x5236;&#x3011; &#x5728;JDK7&#x7248;&#x672C;&#x53CA;&#x4EE5;&#x4E0A;&#xFF0C;<code>Comparator</code>&#x8981;&#x6EE1;&#x8DB3;&#x5982;&#x4E0B;&#x4E09;&#x4E2A;&#x6761;&#x4EF6;&#xFF0C;&#x4E0D;&#x7136;<code>Arrays.sort</code>&#xFF0C;<code>Collections.sort</code>&#x4F1A;&#x62A5;IllegalArgumentException&#x5F02;&#x5E38;&#x3002;
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x4E09;&#x4E2A;&#x6761;&#x4EF6;&#x5982;&#x4E0B;&#xFF1A;
+<br>1&#xFF09; x&#xFF0C;y&#x7684;&#x6BD4;&#x8F83;&#x7ED3;&#x679C;&#x548C;y&#xFF0C;x&#x7684;&#x6BD4;&#x8F83;&#x7ED3;&#x679C;&#x76F8;&#x53CD;&#x3002;
+<br>2&#xFF09; x&gt;y&#xFF0C;y&gt;z&#xFF0C;&#x5219;x&gt;z&#x3002; 
+<br>3&#xFF09; x=y&#xFF0C;&#x5219;x&#xFF0C;z&#x6BD4;&#x8F83;&#x7ED3;&#x679C;&#x548C;y&#xFF0C;z&#x6BD4;&#x8F83;&#x7ED3;&#x679C;&#x76F8;&#x540C;&#x3002; 
+<br><span style="color:red">&#x53CD;&#x4F8B;</span>&#xFF1A;&#x4E0B;&#x4F8B;&#x4E2D;&#x6CA1;&#x6709;&#x5904;&#x7406;&#x76F8;&#x7B49;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5B9E;&#x9645;&#x4F7F;&#x7528;&#x4E2D;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x5F02;&#x5E38;&#xFF1A;<pre class="language-"><code> new Comparator<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Student</span><span class="token punctuation">&gt;</span></span>() {           
+       @Override          
+       public int compare(Student o1, Student o2) {              
+         return o1.getId() &gt; o2.getId() ? 1 : -1;       
+       }  
+ };
+</code></pre></li>
+<li>&#x3010;&#x63A8;&#x8350;&#x3011;&#x96C6;&#x5408;&#x521D;&#x59CB;&#x5316;&#x65F6;&#xFF0C;&#x6307;&#x5B9A;&#x96C6;&#x5408;&#x521D;&#x59CB;&#x503C;&#x5927;&#x5C0F;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;HashMap&#x4F7F;&#x7528;HashMap(int initialCapacity) &#x521D;&#x59CB;&#x5316;&#xFF0C; 
+<br><span style="color:green">&#x6B63;&#x4F8B;</span>&#xFF1A;initialCapacity = (&#x9700;&#x8981;&#x5B58;&#x50A8;&#x7684;&#x5143;&#x7D20;&#x4E2A;&#x6570; / &#x8D1F;&#x8F7D;&#x56E0;&#x5B50;) + 1&#x3002;&#x6CE8;&#x610F;&#x8D1F;&#x8F7D;&#x56E0;&#x5B50;&#xFF08;&#x5373;loader factor&#xFF09;&#x9ED8;&#x8BA4;&#x4E3A;0.75&#xFF0C;&#x5982;&#x679C;&#x6682;&#x65F6;&#x65E0;&#x6CD5;&#x786E;&#x5B9A;&#x521D;&#x59CB;&#x503C;&#x5927;&#x5C0F;&#xFF0C;&#x8BF7;&#x8BBE;&#x7F6E;&#x4E3A;16&#xFF08;&#x5373;&#x9ED8;&#x8BA4;&#x503C;&#xFF09;&#x3002; <br><span style="color:red">&#x53CD;&#x4F8B;</span>&#xFF1A;HashMap&#x9700;&#x8981;&#x653E;&#x7F6E;1024&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x7531;&#x4E8E;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;&#x5BB9;&#x91CF;&#x521D;&#x59CB;&#x5927;&#x5C0F;&#xFF0C;&#x968F;&#x7740;&#x5143;&#x7D20;&#x4E0D;&#x65AD;&#x589E;&#x52A0;&#xFF0C;&#x5BB9;&#x91CF;7&#x6B21;&#x88AB;&#x8FEB;&#x6269;&#x5927;&#xFF0C;resize&#x9700;&#x8981;&#x91CD;&#x5EFA;hash&#x8868;&#xFF0C;&#x4E25;&#x91CD;&#x5F71;&#x54CD;&#x6027;&#x80FD;&#x3002; </li>
+<li>&#x3010;&#x63A8;&#x8350;&#x3011;&#x4F7F;&#x7528;entrySet&#x904D;&#x5386;Map&#x7C7B;&#x96C6;&#x5408;KV&#xFF0C;&#x800C;&#x4E0D;&#x662F;keySet&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x904D;&#x5386;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;keySet&#x5176;&#x5B9E;&#x662F;&#x904D;&#x5386;&#x4E86;2&#x6B21;&#xFF0C;&#x4E00;&#x6B21;&#x662F;&#x8F6C;&#x4E3A;Iterator&#x5BF9;&#x8C61;&#xFF0C;&#x53E6;&#x4E00;&#x6B21;&#x662F;&#x4ECE;hashMap&#x4E2D;&#x53D6;&#x51FA;key&#x6240;&#x5BF9;&#x5E94;&#x7684;value&#x3002;&#x800C;entrySet&#x53EA;&#x662F;&#x904D;&#x5386;&#x4E86;&#x4E00;&#x6B21;&#x5C31;&#x628A;key&#x548C;value&#x90FD;&#x653E;&#x5230;&#x4E86;entry&#x4E2D;&#xFF0C;&#x6548;&#x7387;&#x66F4;&#x9AD8;&#x3002;&#x5982;&#x679C;&#x662F;JDK8&#xFF0C;&#x4F7F;&#x7528;Map.foreach&#x65B9;&#x6CD5;&#x3002; 
+<br><span style="color:green">&#x6B63;&#x4F8B;</span>&#xFF1A;values()&#x8FD4;&#x56DE;&#x7684;&#x662F;V&#x503C;&#x96C6;&#x5408;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;list&#x96C6;&#x5408;&#x5BF9;&#x8C61;&#xFF1B;keySet()&#x8FD4;&#x56DE;&#x7684;&#x662F;K&#x503C;&#x96C6;&#x5408;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;Set&#x96C6;&#x5408;&#x5BF9;&#x8C61;&#xFF1B;entrySet()&#x8FD4;&#x56DE;&#x7684;&#x662F;K-V&#x503C;&#x7EC4;&#x5408;&#x96C6;&#x5408;&#x3002; </li>
+<li><p>&#x3010;&#x63A8;&#x8350;&#x3011;&#x9AD8;&#x5EA6;&#x6CE8;&#x610F;Map&#x7C7B;&#x96C6;&#x5408;K/V&#x80FD;&#x4E0D;&#x80FD;&#x5B58;&#x50A8;null&#x503C;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5982;&#x4E0B;&#x8868;&#x683C;&#xFF1A;</p>
+<pre class="language-"><code>| &#x96C6;&#x5408;&#x7C7B;            | Key          | Value        | Super       | &#x8BF4;&#x660E;                   |
+|-------------------|--------------|--------------|-------------|------------------------|
+| Hashtable         | &#x4E0D;&#x5141;&#x8BB8;&#x4E3A;null | &#x4E0D;&#x5141;&#x8BB8;&#x4E3A;null | Dictionary  | &#x7EBF;&#x7A0B;&#x5B89;&#x5168;               |
+| ConcurrentHashMap | &#x4E0D;&#x5141;&#x8BB8;&#x4E3A;null | &#x4E0D;&#x5141;&#x8BB8;&#x4E3A;null | AbstractMap | &#x9501;&#x5206;&#x6BB5;&#x6280;&#x672F;&#xFF08;JDK8:CAS&#xFF09;  |
+| TreeMap           | &#x4E0D;&#x5141;&#x8BB8;&#x4E3A;null | &#x5141;&#x8BB8;&#x4E3A;null   | AbstractMap | &#x7EBF;&#x7A0B;&#x4E0D;&#x5B89;&#x5168;             |
+| HashMap           | &#x5141;&#x8BB8;&#x4E3A;null   | &#x5141;&#x8BB8;&#x4E3A;null   | AbstractMap | &#x7EBF;&#x7A0B;&#x4E0D;&#x5B89;&#x5168;             |
+</code></pre><p><span style="color:red">&#x53CD;&#x4F8B;</span>&#xFF1A; &#x7531;&#x4E8E;HashMap&#x7684;&#x5E72;&#x6270;&#xFF0C;&#x5F88;&#x591A;&#x4EBA;&#x8BA4;&#x4E3A;ConcurrentHashMap&#x662F;&#x53EF;&#x4EE5;&#x7F6E;&#x5165;null&#x503C;&#xFF0C;&#x800C;&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x5B58;&#x50A8;null&#x503C;&#x65F6;&#x4F1A;&#x629B;&#x51FA;NPE&#x5F02;&#x5E38;&#x3002;</p>
+</li>
+<li>&#x3010;&#x53C2;&#x8003;&#x3011;&#x5408;&#x7406;&#x5229;&#x7528;&#x597D;&#x96C6;&#x5408;&#x7684;&#x6709;&#x5E8F;&#x6027;(sort)&#x548C;&#x7A33;&#x5B9A;&#x6027;(order)&#xFF0C;&#x907F;&#x514D;&#x96C6;&#x5408;&#x7684;&#x65E0;&#x5E8F;&#x6027;(unsort)&#x548C;&#x4E0D;&#x7A33;&#x5B9A;&#x6027;(unorder)&#x5E26;&#x6765;&#x7684;&#x8D1F;&#x9762;&#x5F71;&#x54CD;&#x3002; 
+<br><span style="color:orange">&#x8BF4;&#x660E;</span>&#xFF1A;&#x6709;&#x5E8F;&#x6027;&#x662F;&#x6307;&#x904D;&#x5386;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x6309;&#x67D0;&#x79CD;&#x6BD4;&#x8F83;&#x89C4;&#x5219;&#x4F9D;&#x6B21;&#x6392;&#x5217;&#x7684;&#x3002;&#x7A33;&#x5B9A;&#x6027;&#x6307;&#x96C6;&#x5408;&#x6BCF;&#x6B21;&#x904D;&#x5386;&#x7684;&#x5143;&#x7D20;&#x6B21;&#x5E8F;&#x662F;&#x4E00;&#x5B9A;&#x7684;&#x3002;&#x5982;&#xFF1A;ArrayList&#x662F;order/unsort&#xFF1B;HashMap&#x662F;unorder/unsort&#xFF1B;TreeSet&#x662F;order/sort&#x3002; </li>
+<li>&#x3010;&#x53C2;&#x8003;&#x3011;&#x5229;&#x7528;Set&#x5143;&#x7D20;&#x552F;&#x4E00;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x53EF;&#x4EE5;&#x5FEB;&#x901F;&#x5BF9;&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#x8FDB;&#x884C;&#x53BB;&#x91CD;&#x64CD;&#x4F5C;&#xFF0C;&#x907F;&#x514D;&#x4F7F;&#x7528;List&#x7684;contains&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x904D;&#x5386;&#x3001;&#x5BF9;&#x6BD4;&#x3001;&#x53BB;&#x91CD;&#x64CD;&#x4F5C;&#x3002; </li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="OOP规范.html" class="navigation navigation-prev " aria-label="Previous page: （四）OOP规范">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="并发处理.html" class="navigation navigation-next " aria-label="Next page: （六）并发处理">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"（五）集合处理","level":"1.2.5","depth":2,"next":{"title":"（六）并发处理","level":"1.2.6","depth":2,"path":"编程规约/并发处理.md","ref":"编程规约/并发处理.md","articles":[]},"previous":{"title":"（四）OOP规范","level":"1.2.4","depth":2,"path":"编程规约/OOP规范.md","ref":"编程规约/OOP规范.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["book-summary-scroll-position-saver","github","prism","-sharing","-highlight"],"pluginsConfig":{"github":{"url":"https://github.com/alibaba/p3c"},"book-summary-scroll-position-saver":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css"}},"file":{"path":"编程规约/集合处理.md","mtime":"2018-01-13T07:52:52.584Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-15T14:41:43.583Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-book-summary-scroll-position-saver/book-summary-scroll-position-saver.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,612 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>（一）应用分层 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="二方库依赖.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    一、编程规约
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../编程规约/命名风格.html">
+            
+                <a href="../编程规约/命名风格.html">
+            
+                    
+                    （一）命名风格
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../编程规约/常量定义.html">
+            
+                <a href="../编程规约/常量定义.html">
+            
+                    
+                    （二）常量定义
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../编程规约/代码格式.html">
+            
+                <a href="../编程规约/代码格式.html">
+            
+                    
+                    （三）代码格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../编程规约/OOP规范.html">
+            
+                <a href="../编程规约/OOP规范.html">
+            
+                    
+                    （四）OOP规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../编程规约/集合处理.html">
+            
+                <a href="../编程规约/集合处理.html">
+            
+                    
+                    （五）集合处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../编程规约/并发处理.html">
+            
+                <a href="../编程规约/并发处理.html">
+            
+                    
+                    （六）并发处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../编程规约/控制语句.html">
+            
+                <a href="../编程规约/控制语句.html">
+            
+                    
+                    （七）控制语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../编程规约/注释规约.html">
+            
+                <a href="../编程规约/注释规约.html">
+            
+                    
+                    （八）注释规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    二、异常日志
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../异常日志/异常处理.html">
+            
+                <a href="../异常日志/异常处理.html">
+            
+                    
+                    （一）异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../异常日志/日志规约.html">
+            
+                <a href="../异常日志/日志规约.html">
+            
+                    
+                    （二）日志规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../异常日志/其他.html">
+            
+                <a href="../异常日志/其他.html">
+            
+                    
+                    （三）其他
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../单元测试.html">
+            
+                <a href="../单元测试.html">
+            
+                    
+                    三、单元测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../安全规约.html">
+            
+                <a href="../安全规约.html">
+            
+                    
+                    四、安全规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    五、MySQL数据库
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../MySQL数据库/建表规约.html">
+            
+                <a href="../MySQL数据库/建表规约.html">
+            
+                    
+                    （一）建表规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../MySQL数据库/索引规约.html">
+            
+                <a href="../MySQL数据库/索引规约.html">
+            
+                    
+                    （二）索引规约
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../MySQL数据库/SQL语句.html">
+            
+                <a href="../MySQL数据库/SQL语句.html">
+            
+                    
+                    （三）SQL语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../MySQL数据库/ORM映射.html">
+            
+                <a href="../MySQL数据库/ORM映射.html">
+            
+                    
+                    （四）ORM映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    六、工程结构
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.7.1" data-path="应用分层.html">
+            
+                <a href="应用分层.html">
+            
+                    
+                    （一）应用分层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="二方库依赖.html">
+            
+                <a href="二方库依赖.html">
+            
+                    
+                    （二）二方库依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="服务器.html">
+            
+                <a href="服务器.html">
+            
+                    
+                    （三）服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../版本历史.html">
+            
+                <a href="../版本历史.html">
+            
+                    
+                    附1：版本历史 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../本手册专有名词.html">
+            
+                <a href="../本手册专有名词.html">
+            
+                    
+                    附2：本手册专有名词 
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >（一）应用分层</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x516D;&#x3001;&#x5DE5;&#x7A0B;&#x7ED3;&#x6784;">&#x516D;&#x3001;&#x5DE5;&#x7A0B;&#x7ED3;&#x6784;</h1>
+<h2 id="&#x4E00;-&#x5E94;&#x7528;&#x5206;&#x5C42;">(&#x4E00;) &#x5E94;&#x7528;&#x5206;&#x5C42;</h2>
+<ol>
+<li><p>&#x3010;&#x63A8;&#x8350;&#x3011;&#x56FE;&#x4E2D;&#x9ED8;&#x8BA4;&#x4E0A;&#x5C42;&#x4F9D;&#x8D56;&#x4E8E;&#x4E0B;&#x5C42;&#xFF0C;&#x7BAD;&#x5934;&#x5173;&#x7CFB;&#x8868;&#x793A;&#x53EF;&#x76F4;&#x63A5;&#x4F9D;&#x8D56;&#xFF0C;&#x5982;&#xFF1A;&#x5F00;&#x653E;&#x63A5;&#x53E3;&#x5C42;&#x53EF;&#x4EE5;&#x4F9D;&#x8D56;&#x4E8E;Web&#x5C42;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F9D;&#x8D56;&#x4E8E;Service&#x5C42;&#xFF0C;&#x4F9D;&#x6B64;&#x7C7B;&#x63A8;&#xFF1A;
+<img src="../images/alibabaLevel.png" alt="&#x5E94;&#x7528;&#x5206;&#x5C42;"></p>
+<ul>
+<li>&#x5F00;&#x653E;&#x63A5;&#x53E3;&#x5C42;&#xFF1A;&#x53EF;&#x76F4;&#x63A5;&#x5C01;&#x88C5;Service&#x65B9;&#x6CD5;&#x66B4;&#x9732;&#x6210;RPC&#x63A5;&#x53E3;&#xFF1B;&#x901A;&#x8FC7;Web&#x5C01;&#x88C5;&#x6210;http&#x63A5;&#x53E3;&#xFF1B;&#x8FDB;&#x884C;&#x7F51;&#x5173;&#x5B89;&#x5168;&#x63A7;&#x5236;&#x3001;&#x6D41;&#x91CF;&#x63A7;&#x5236;&#x7B49;&#x3002; </li>
+<li>&#x7EC8;&#x7AEF;&#x663E;&#x793A;&#x5C42;&#xFF1A;&#x5404;&#x4E2A;&#x7AEF;&#x7684;&#x6A21;&#x677F;&#x6E32;&#x67D3;&#x5E76;&#x6267;&#x884C;&#x663E;&#x793A;&#x7684;&#x5C42;&#x3002;&#x5F53;&#x524D;&#x4E3B;&#x8981;&#x662F;velocity&#x6E32;&#x67D3;&#xFF0C;JS&#x6E32;&#x67D3;&#xFF0C;JSP&#x6E32;&#x67D3;&#xFF0C;&#x79FB;&#x52A8;&#x7AEF;&#x5C55;&#x793A;&#x7B49;&#x3002; </li>
+<li>Web&#x5C42;&#xFF1A;&#x4E3B;&#x8981;&#x662F;&#x5BF9;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x8FDB;&#x884C;&#x8F6C;&#x53D1;&#xFF0C;&#x5404;&#x7C7B;&#x57FA;&#x672C;&#x53C2;&#x6570;&#x6821;&#x9A8C;&#xFF0C;&#x6216;&#x8005;&#x4E0D;&#x590D;&#x7528;&#x7684;&#x4E1A;&#x52A1;&#x7B80;&#x5355;&#x5904;&#x7406;&#x7B49;&#x3002; </li>
+<li>Service&#x5C42;&#xFF1A;&#x76F8;&#x5BF9;&#x5177;&#x4F53;&#x7684;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x670D;&#x52A1;&#x5C42;&#x3002; </li>
+<li>Manager&#x5C42;&#xFF1A;&#x901A;&#x7528;&#x4E1A;&#x52A1;&#x5904;&#x7406;&#x5C42;&#xFF0C;&#x5B83;&#x6709;&#x5982;&#x4E0B;&#x7279;&#x5F81;&#xFF1A;
+<br>1&#xFF09; &#x5BF9;&#x7B2C;&#x4E09;&#x65B9;&#x5E73;&#x53F0;&#x5C01;&#x88C5;&#x7684;&#x5C42;&#xFF0C;&#x9884;&#x5904;&#x7406;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x53CA;&#x8F6C;&#x5316;&#x5F02;&#x5E38;&#x4FE1;&#x606F;&#xFF1B;
+<br>2&#xFF09; &#x5BF9;Service&#x5C42;&#x901A;&#x7528;&#x80FD;&#x529B;&#x7684;&#x4E0B;&#x6C89;&#xFF0C;&#x5982;&#x7F13;&#x5B58;&#x65B9;&#x6848;&#x3001;&#x4E2D;&#x95F4;&#x4EF6;&#x901A;&#x7528;&#x5904;&#x7406;&#xFF1B;
+<br>3&#xFF09; &#x4E0E;DAO&#x5C42;&#x4EA4;&#x4E92;&#xFF0C;&#x5BF9;&#x591A;&#x4E2A;DAO&#x7684;&#x7EC4;&#x5408;&#x590D;&#x7528;&#x3002;</li>
+<li>DAO&#x5C42;&#xFF1A;&#x6570;&#x636E;&#x8BBF;&#x95EE;&#x5C42;&#xFF0C;&#x4E0E;&#x5E95;&#x5C42;MySQL&#x3001;Oracle&#x3001;Hbase&#x7B49;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x4EA4;&#x4E92;&#x3002; </li>
+<li>&#x5916;&#x90E8;&#x63A5;&#x53E3;&#x6216;&#x7B2C;&#x4E09;&#x65B9;&#x5E73;&#x53F0;&#xFF1A;&#x5305;&#x62EC;&#x5176;&#x5B83;&#x90E8;&#x95E8;RPC&#x5F00;&#x653E;&#x63A5;&#x53E3;&#xFF0C;&#x57FA;&#x7840;&#x5E73;&#x53F0;&#xFF0C;&#x5176;&#x5B83;&#x516C;&#x53F8;&#x7684;HTTP&#x63A5;&#x53E3;&#x3002;</li>
+</ul>
+</li>
+<li><p>&#x3010;&#x53C2;&#x8003;&#x3011;&#xFF08;&#x5206;&#x5C42;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x89C4;&#x7EA6;&#xFF09;&#x5728;DAO&#x5C42;&#xFF0C;&#x4EA7;&#x751F;&#x7684;&#x5F02;&#x5E38;&#x7C7B;&#x578B;&#x6709;&#x5F88;&#x591A;&#xFF0C;&#x65E0;&#x6CD5;&#x7528;&#x7EC6;&#x7C92;&#x5EA6;&#x7684;&#x5F02;&#x5E38;&#x8FDB;&#x884C;catch&#xFF0C;&#x4F7F;&#x7528;catch(Exception e)&#x65B9;&#x5F0F;&#xFF0C;&#x5E76;throw new DAOException(e)&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x6253;&#x5370;&#x65E5;&#x5FD7;&#xFF0C;&#x56E0;&#x4E3A;&#x65E5;&#x5FD7;&#x5728;Manager/Service&#x5C42;&#x4E00;&#x5B9A;&#x9700;&#x8981;&#x6355;&#x83B7;&#x5E76;&#x6253;&#x5370;&#x5230;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x4E2D;&#x53BB;&#xFF0C;&#x5982;&#x679C;&#x540C;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x518D;&#x6253;&#x65E5;&#x5FD7;&#xFF0C;&#x6D6A;&#x8D39;&#x6027;&#x80FD;&#x548C;&#x5B58;&#x50A8;&#x3002;&#x5728;Service&#x5C42;&#x51FA;&#x73B0;&#x5F02;&#x5E38;&#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x8BB0;&#x5F55;&#x51FA;&#x9519;&#x65E5;&#x5FD7;&#x5230;&#x78C1;&#x76D8;&#xFF0C;&#x5C3D;&#x53EF;&#x80FD;&#x5E26;&#x4E0A;&#x53C2;&#x6570;&#x4FE1;&#x606F;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x4FDD;&#x62A4;&#x6848;&#x53D1;&#x73B0;&#x573A;&#x3002;&#x5982;&#x679C;Manager&#x5C42;&#x4E0E;Service&#x540C;&#x673A;&#x90E8;&#x7F72;&#xFF0C;&#x65E5;&#x5FD7;&#x65B9;&#x5F0F;&#x4E0E;DAO&#x5C42;&#x5904;&#x7406;&#x4E00;&#x81F4;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5355;&#x72EC;&#x90E8;&#x7F72;&#xFF0C;&#x5219;&#x91C7;&#x7528;&#x4E0E;Service&#x4E00;&#x81F4;&#x7684;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#x3002;Web&#x5C42;&#x7EDD;&#x4E0D;&#x5E94;&#x8BE5;&#x7EE7;&#x7EED;&#x5F80;&#x4E0A;&#x629B;&#x5F02;&#x5E38;&#xFF0C;&#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5904;&#x4E8E;&#x9876;&#x5C42;&#xFF0C;&#x5982;&#x679C;&#x610F;&#x8BC6;&#x5230;&#x8FD9;&#x4E2A;&#x5F02;&#x5E38;&#x5C06;&#x5BFC;&#x81F4;&#x9875;&#x9762;&#x65E0;&#x6CD5;&#x6B63;&#x5E38;&#x6E32;&#x67D3;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x5E94;&#x8BE5;&#x8DF3;&#x8F6C;&#x5230;&#x53CB;&#x597D;&#x9519;&#x8BEF;&#x9875;&#x9762;&#xFF0C;&#x52A0;&#x4E0A;&#x7528;&#x6237;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#x7684;&#x9519;&#x8BEF;&#x63D0;&#x793A;&#x4FE1;&#x606F;&#x3002;&#x5F00;&#x653E;&#x63A5;&#x53E3;&#x5C42;&#x8981;&#x5C06;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x6210;&#x9519;&#x8BEF;&#x7801;&#x548C;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x65B9;&#x5F0F;&#x8FD4;&#x56DE;&#x3002;</p>
+</li>
+<li><p>&#x3010;&#x53C2;&#x8003;&#x3011;&#x5206;&#x5C42;&#x9886;&#x57DF;&#x6A21;&#x578B;&#x89C4;&#x7EA6;&#xFF1A;</p>
+<ul>
+<li>DO&#xFF08;Data Object&#xFF09;&#xFF1A;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7ED3;&#x6784;&#x4E00;&#x4E00;&#x5BF9;&#x5E94;&#xFF0C;&#x901A;&#x8FC7;DAO&#x5C42;&#x5411;&#x4E0A;&#x4F20;&#x8F93;&#x6570;&#x636E;&#x6E90;&#x5BF9;&#x8C61;&#x3002;</li>
+<li>DTO&#xFF08;Data Transfer Object&#xFF09;&#xFF1A;&#x6570;&#x636E;&#x4F20;&#x8F93;&#x5BF9;&#x8C61;&#xFF0C;Service&#x6216;Manager&#x5411;&#x5916;&#x4F20;&#x8F93;&#x7684;&#x5BF9;&#x8C61;&#x3002;</li>
+<li>BO&#xFF08;Business Object&#xFF09;&#xFF1A;&#x4E1A;&#x52A1;&#x5BF9;&#x8C61;&#x3002;&#x7531;Service&#x5C42;&#x8F93;&#x51FA;&#x7684;&#x5C01;&#x88C5;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x7684;&#x5BF9;&#x8C61;&#x3002;</li>
+<li>AO&#xFF08;Application Object&#xFF09;&#xFF1A;&#x5E94;&#x7528;&#x5BF9;&#x8C61;&#x3002;&#x5728;Web&#x5C42;&#x4E0E;Service&#x5C42;&#x4E4B;&#x95F4;&#x62BD;&#x8C61;&#x7684;&#x590D;&#x7528;&#x5BF9;&#x8C61;&#x6A21;&#x578B;&#xFF0C;&#x6781;&#x4E3A;&#x8D34;&#x8FD1;&#x5C55;&#x793A;&#x5C42;&#xFF0C;&#x590D;&#x7528;&#x5EA6;&#x4E0D;&#x9AD8;&#x3002;</li>
+<li>VO&#xFF08;View Object&#xFF09;&#xFF1A;&#x663E;&#x793A;&#x5C42;&#x5BF9;&#x8C61;&#xFF0C;&#x901A;&#x5E38;&#x662F;Web&#x5411;&#x6A21;&#x677F;&#x6E32;&#x67D3;&#x5F15;&#x64CE;&#x5C42;&#x4F20;&#x8F93;&#x7684;&#x5BF9;&#x8C61;&#x3002;</li>
+<li>Query&#xFF1A;&#x6570;&#x636E;&#x67E5;&#x8BE2;&#x5BF9;&#x8C61;&#xFF0C;&#x5404;&#x5C42;&#x63A5;&#x6536;&#x4E0A;&#x5C42;&#x7684;&#x67E5;&#x8BE2;&#x8BF7;&#x6C42;&#x3002;&#x6CE8;&#x610F;&#x8D85;&#x8FC7;2&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x67E5;&#x8BE2;&#x5C01;&#x88C5;&#xFF0C;&#x7981;&#x6B62;&#x4F7F;&#x7528;Map&#x7C7B;&#x6765;&#x4F20;&#x8F93;&#x3002;</li>
+</ul>
+</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="二方库依赖.html" class="navigation navigation-next navigation-unique" aria-label="Next page: （二）二方库依赖">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"（一）应用分层","level":"1.7.1","depth":2,"next":{"title":"（二）二方库依赖","level":"1.7.2","depth":2,"path":"工程结构/二方库依赖.md","ref":"工程结构/二方库依赖.md","articles":[]},"previous":{"title":"六、工程结构","level":"1.7","depth":1,"ref":"","articles":[{"title":"（一）应用分层","level":"1.7.1","depth":2,"path":"工程结构/应用分层.md","ref":"工程结构/应用分层.md","articles":[]},{"title":"（二）二方库依赖","level":"1.7.2","depth":2,"path":"工程结构/二方库依赖.md","ref":"工程结构/二方库依赖.md","articles":[]},{"title":"（三）服务器","level":"1.7.3","depth":2,"path":"工程结构/服务器.md","ref":"工程结构/服务器.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["book-summary-scroll-position-saver","github","prism","-sharing","-highlight"],"pluginsConfig":{"github":{"url":"https://github.com/alibaba/p3c"},"book-summary-scroll-position-saver":{},"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css"}},"file":{"path":"工程结构/应用分层.md","mtime":"2018-01-13T07:52:52.584Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-15T14:41:43.583Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-book-summary-scroll-position-saver/book-summary-scroll-position-saver.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

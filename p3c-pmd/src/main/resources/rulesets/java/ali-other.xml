@@ -79,4 +79,22 @@ Positive example:
         </example>
     </rule>
 
+
+    <rule name="UseRightCaseForDateFormatRule" language="java"
+          message="java.other.UseRightCaseForDateFormatRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.other.UseRightCaseForDateFormatRule">
+        <priority>1</priority>
+        <example>
+            <![CDATA[
+Negative example:
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+ ]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss");
+]]>
+        </example>
+    </rule>
 </ruleset>

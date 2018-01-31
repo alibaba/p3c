@@ -15,7 +15,9 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.other;
 
+import net.sourceforge.pmd.Rule;
 import net.sourceforge.pmd.testframework.SimpleAggregatorTst;
+import org.junit.Test;
 
 /**
  * Test for other java rules.
@@ -34,5 +36,14 @@ public class OtherRulesTest extends SimpleAggregatorTst {
         addRule(RULESET, "AvoidNewDateGetTimeRule");
         addRule(RULESET, "AvoidPatternCompileInMethodRule");
         addRule(RULESET, "AvoidMissUseOfMathRandomRule");
+
+        addRule(RULESET,"UseRightCaseForDateFormatRule");
     }
+
+    @Test
+    public void testUseRightCaseForDateFormatRule() {
+        runTests(findRule(RULESET, "UseRightCaseForDateFormatRule"));
+    }
+
+
 }

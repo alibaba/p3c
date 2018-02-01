@@ -28,7 +28,7 @@ import org.junit.Test;
  */
 public class OtherRulesTest extends SimpleAggregatorTst {
 
-    private static final String RULESET = "java-ali-other";
+    public static final String RULESET = "java-ali-other";
 
     @Override
     public void setUp() {
@@ -37,7 +37,6 @@ public class OtherRulesTest extends SimpleAggregatorTst {
         addRule(RULESET, "AvoidPatternCompileInMethodRule");
         addRule(RULESET, "AvoidMissUseOfMathRandomRule");
 
-        addRule(RULESET,"UseRightCaseForDateFormatRule");
     }
 
     @Test

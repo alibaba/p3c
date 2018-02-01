@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.alibaba.smartfox.eclipse</groupId>
     <artifactId>smartfox-eclipse</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2017</inceptionYear>
     <properties>
@@ -14,7 +14,7 @@
         <eclipse-repo.url>http://download.eclipse.org/releases/neon</eclipse-repo.url>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <ajdt-eclipse-repo.url>http://download.eclipse.org/tools/ajdt/46/dev/update</ajdt-eclipse-repo.url>
-        <kotlin.version>1.2.0</kotlin.version>
+        <kotlin.version>1.2.21</kotlin.version>
         <eclipse-release>juno</eclipse-release>
     </properties>
     <modules>

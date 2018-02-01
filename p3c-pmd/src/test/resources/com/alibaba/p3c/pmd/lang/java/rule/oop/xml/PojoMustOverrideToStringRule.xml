@@ -121,7 +121,7 @@
 	<code-fragment id="lombok-pojo-4">
 		<![CDATA[
 	import lombok.*;
-	@ToString
+	@ToString(callSuper = true)
 	public class FooDO {
 		private String tom;
 	}

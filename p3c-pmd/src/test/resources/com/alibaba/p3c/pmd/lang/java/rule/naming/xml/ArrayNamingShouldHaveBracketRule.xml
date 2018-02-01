@@ -33,4 +33,30 @@
         <expected-problems>0</expected-problems>
         <code-ref id="ArrayTypeStyleTest1" />
     </test-code>
+
+    <code-fragment id="ArrayTypeStyleTest2">
+        <![CDATA[
+  public class ArrayTypeStyleTest{
+    public void ConfParse(String str){
+        TreeMap<String, String> mapConfKeyValue = new TreeMap<>();
+        String[] params = str.split("&");
+        for (String param : params) {
+            String fields[] = param.split("=");
+            if (fields.length != 2) {
+                continue;
+            }
+            String key = fields[0].trim();
+            String value = fields[1].trim();
+            mapConfKeyValue.put(key, value);
+        }
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>array should be array[]</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>6</expected-linenumbers>
+        <code-ref id="ArrayTypeStyleTest2" />
+    </test-code>
 </test-data>

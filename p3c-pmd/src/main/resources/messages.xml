@@ -30,7 +30,7 @@
         <![CDATA[变量名【%s】不符合lowerCamelCase命名风格]]>
     </entry>
     <entry key="java.naming.PackageNamingRule.violation.msg">
-        <![CDATA[包名【%s】应全部小写]]>
+        <![CDATA[包名【%s】应全部为小写字母和数字组成]]>
     </entry>
     <entry key="java.naming.ServiceOrDaoClassShouldEndWithImplRule.violation.msg">
         <![CDATA[类名【%s】应以Impl结尾]]>

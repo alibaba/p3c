@@ -35,7 +35,8 @@ class AvoidAccessStaticViaInstanceRule : AbstractEclipseRule() {
     override fun getVisitor(ast: CompilationUnit, ruleContext: RuleContext): ASTVisitor {
         return object : ASTVisitor() {
             override fun visit(node: QualifiedName?): Boolean {
-                if (node!!.parent !is MethodInvocation && node.parent !is VariableDeclarationFragment) {
+                val parent = node!!.parent
+                if (parent !is MethodInvocation && parent !is VariableDeclarationFragment) {
                     return false
                 }
                 val name = node.name
@@ -45,9 +46,25 @@ class AvoidAccessStaticViaInstanceRule : AbstractEclipseRule() {
                 }
                 val qualifier = node.qualifier
                 val typeBinding = qualifier.resolveTypeBinding()
-                if (qualifier.isSimpleName && typeBinding.name != qualifier.fullyQualifiedName) {
-                    violation(ruleContext, node, ast)
-                    return false
+                if (qualifier.isSimpleName) {
+                    when (parent) {
+                        is MethodInvocation -> {
+                            val methodBinding = parent.resolveMethodBinding()
+                            val methodTypeBinding = methodBinding.declaringClass
+                            if (methodBinding.modifiers and Modifier.STATIC != 0
+                                    && qualifier.fullyQualifiedName != methodTypeBinding.name
+                                    && methodTypeBinding == typeBinding && binding.name != typeBinding.name) {
+                                violation(ruleContext, parent, ast)
+                                return false
+                            }
+                        }
+                        else -> {
+                        }
+                    }
+                    if (typeBinding.name != qualifier.fullyQualifiedName) {
+                        violation(ruleContext, node, ast)
+                        return false
+                    }
                 }
                 if (qualifier.isQualifiedName) {
                     val qualifiedName = qualifier as QualifiedName

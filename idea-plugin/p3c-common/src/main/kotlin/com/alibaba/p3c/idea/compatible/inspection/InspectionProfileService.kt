@@ -15,6 +15,7 @@
  */
 package com.alibaba.p3c.idea.compatible.inspection
 
+import com.alibaba.p3c.idea.inspection.AliBaseInspection
 import com.alibaba.smartfox.idea.common.util.PluginVersions
 import com.google.common.collect.Sets
 import com.intellij.codeInspection.ex.GlobalInspectionContextImpl
@@ -112,5 +113,15 @@ object InspectionProfileService {
 
     fun getProjectInspectionProfile(project: Project): InspectionProfileImpl {
         return InspectionProjectProfileManager.getInstance(project).inspectionProfile as InspectionProfileImpl
+    }
+
+    fun isProjectInspectionClosed(project: Project): Boolean {
+        val profile = getProjectInspectionProfile(project)
+        val tools = Inspections.aliInspections(project) {
+            it.tool is AliBaseInspection
+        }
+        return !tools.any {
+            profile.getToolDefaultState(it.tool.shortName, project).isEnabled
+        }
     }
 }

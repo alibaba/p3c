@@ -41,14 +41,15 @@ class ToggleProjectInspectionAction : AnAction() {
         val tools = Inspections.aliInspections(project) {
             it.tool is AliBaseInspection
         }
-        InspectionProfileService.toggleInspection(project, tools, smartFoxConfig.projectInspectionClosed)
-        smartFoxConfig.projectInspectionClosed = !smartFoxConfig.projectInspectionClosed
+        val closed = InspectionProfileService.isProjectInspectionClosed(project)
+        InspectionProfileService.toggleInspection(project, tools, closed)
     }
 
     override fun update(e: AnActionEvent?) {
         val project = e!!.project ?: return
         val smartFoxConfig = ServiceManager.getService(project, SmartFoxProjectConfig::class.java)
-        e.presentation.text = if (smartFoxConfig.projectInspectionClosed) {
+        val closed = InspectionProfileService.isProjectInspectionClosed(project)
+        e.presentation.text = if (closed) {
             e.presentation.icon = P3cIcons.PROJECT_INSPECTION_ON
             P3cBundle.getMessage("$textKey.open")
         } else {

@@ -1,0 +1,17 @@
+针对：必须回收自定义的ThreadLocal变量，尤其在线程池场景下，线程经常会被复用，如果不清理自定义的 ThreadLocal变量，可能会影响后续业务逻辑和造成内存泄露等问题。尽量在代理中使用try-finally块进行回收。
+
+疑问：
+1、官方jdk说明，自动回收，原理是使用了弱引用：
+ * <p>Each thread holds an implicit reference to its copy of a thread-local
+ * variable as long as the thread is alive and the {@code ThreadLocal}
+ * instance is accessible; after a thread goes away, all of its copies of
+ * thread-local instances are subject to garbage collection (unless other
+ * references to these copies exist).
+ *
+ * @author  Josh Bloch and Doug Lea
+ * @since   1.2
+ */
+ 
+ 2、至于业务逻辑问题，使用前先set再get即可
+ 
+ 

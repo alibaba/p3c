@@ -5,6 +5,11 @@
 
     <change-notes>
         <![CDATA[
+          <ul>
+        1.0.4
+         <li>fix https://github.com/alibaba/p3c/issues/217</li>
+        <li>fix https://github.com/alibaba/p3c/issues/208</li>
+        <li>fix https://github.com/alibaba/p3c/issues/195</li>
          <ul>
         1.0.3
         <li>fix <a href="https://github.com/alibaba/p3c/issues/191">https://github.com/alibaba/p3c/issues/191</a></li>

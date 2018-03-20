@@ -1,146 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test-data>
-	<code-fragment id="switch-no-default-1">
-		<![CDATA[
-	public class Example {
-	    public void fn() {
-	    	int i;
-	    	switch (i) {
-	    	    case 0:
-	    	    	break;
-	    	    case 1:
-	    	    	int j;
-	    	    	switch (j) {
-	    	    		case 0:
-	    	    			break;
-	    	    		default:	// nested switch has default blocks
-	    	    			return;
-	    	    	}
-	    	    	break;
-	    	    // missing default statement
-	    	}
-	    }
-	}
-		]]>
-	</code-fragment>
-	<test-code>
-		<description>switch statement in outer class has no default block</description>
-		<expected-problems>1</expected-problems>
-		<expected-linenumbers>4</expected-linenumbers>
-		<code-ref id="switch-no-default-1" />
-	</test-code>
+    <code-fragment id="switch-no-default-1">
+        <![CDATA[
+    public class Example {
+        public void fn() {
+            int i;
+            switch (i) {
+                case 0:
+                    break;
+                case 1:
+                    int j;
+                    switch (j) {
+                        case 0:
+                            break;
+                        default:    // nested switch has default blocks
+                            return;
+                    }
+                    break;
+                // missing default statement
+            }
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>switch statement in outer class has no default block</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>4</expected-linenumbers>
+        <code-ref id="switch-no-default-1" />
+    </test-code>
 
     <!-- ====================================================================== -->
 
-	<code-fragment id="switch-no-default-2">
-		<![CDATA[
-	public class Foo {
-	    public void bar() {
-	    	int i;
-	    	switch (i) {
-	    	    case 0:
-	    	    	break;
-	    	    case 1:
-	    	    	int j;
-	    	    	switch (j) {
-	    	    		case 0:
-	    	    			break;
-	    	    		// nested switch has no default block
-	    	    	}
-	    	    	break;
-	    	    default:
-	    	    	return;
-	    	}
-	    }
-	}
-		]]>
-	</code-fragment>
-	<test-code>
-		<description>nested switch has no default block</description>
-		<expected-problems>1</expected-problems>
-		<expected-linenumbers>9</expected-linenumbers>
-		<code-ref id="switch-no-default-2" />
-	</test-code>
+    <code-fragment id="switch-no-default-2">
+        <![CDATA[
+    public class Foo {
+        public void bar() {
+            int i;
+            switch (i) {
+                case 0:
+                    break;
+                case 1:
+                    int j;
+                    switch (j) {
+                        case 0:
+                            break;
+                        // nested switch has no default block
+                    }
+                    break;
+                default:
+                    return;
+            }
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>nested switch has no default block</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>9</expected-linenumbers>
+        <code-ref id="switch-no-default-2" />
+    </test-code>
 
     <!-- ====================================================================== -->
 
-	<code-fragment id="switch-case-no-break">
-		<![CDATA[
-	public class Foo {
-	    public void bar() {
-	    	int i;
-	    	switch (i) {
-	    	    case 0:
-	    	    	int j =1;
-	    	    	// missing break,return and continue
-	    	    case 1:
-	    	    	break;
-	    	    case 2:
-	    	    	continue;
-	    	    case 3:		// OK
-	    	    default:
-	    	    	return;
-	    	}
-	    }
-	}
-		]]>
-	</code-fragment>
-	<test-code>
-		<description>case statement without break</description>
-		<expected-problems>1</expected-problems>
-		<expected-linenumbers>4</expected-linenumbers>
-		<code-ref id="switch-case-no-break" />
-	</test-code>
+    <code-fragment id="switch-case-no-break">
+        <![CDATA[
+    public class Foo {
+        public void bar() {
+            int i;
+            switch (i) {
+                case 0:
+                    int j =1;
+                    // missing break,return and continue
+                case 1:
+                    break;
+                case 2:
+                    continue;
+                case 3:        // OK
+                default:
+                    int k = 1;
+                    return;
+            }
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>case statement without break</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>4</expected-linenumbers>
+        <code-ref id="switch-case-no-break" />
+    </test-code>
 
     <!-- ====================================================================== -->
 
-	<code-fragment id="default-no-break">
-		<![CDATA[
-	public class Foo {
-	    public void bar() {
-	    	int i;
-	    	switch (i) {
-	    	    case 0:
-	    	    	int j =1;
-	    	    	break;
-	    	    case 1:
-	    	    case 2:
-	    	    	continue;
-	    	    default:    // OK
-	    	}
-	    }
-	}
-		]]>
-	</code-fragment>
-	<test-code>
-		<description>default statement has no break</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="default-no-break" />
-	</test-code>
+    <code-fragment id="default-no-break">
+        <![CDATA[
+    public class Foo {
+        public void bar() {
+            int i;
+            switch (i) {
+                case 0:
+                    int j =1;
+                    break;
+                case 1:
+                case 2:
+                    continue;
+                default:    // OK
+            }
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>default statement has no break</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="default-no-break" />
+    </test-code>
 
-	<!-- ====================================================================== -->
+    <!-- ====================================================================== -->
 
 
     <code-fragment id="multi-case-no-statement">
         <![CDATA[
-	public class Foo {
-	    public void bar() {
-	    	int i;
-	    	switch (i) {
-	    	    case 0:
-	    	    case 1:
-	    	    case 2:
-	    	    	// do something
-	    	    	break;
-	    	}
-	    }
-	}
-		]]>
+    public class Foo {
+        public void bar() {
+            int i;
+            switch (i) {
+                case 0:
+                case 1:
+                case 2:
+                    // do something
+                    break;
+            }
+        }
+    }
+        ]]>
     </code-fragment>
     <test-code>
         <description>multiple continuous blank case</description>
         <expected-problems>1</expected-problems>
-		<expected-linenumbers>4</expected-linenumbers>
+        <expected-linenumbers>4</expected-linenumbers>
         <code-ref id="multi-case-no-statement" />
     </test-code>
 </test-data>

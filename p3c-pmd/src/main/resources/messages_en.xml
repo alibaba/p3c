@@ -462,6 +462,10 @@ Note: In order to get a more accurate time, use System.nanoTime(). In JDK8, use 
         <![CDATA[The return type of Math.random() is double, value range is 0<=x<1 (0 is possible). If a random integer is required, do not multiply x by 10 then round the result. The correct way is to use nextInt or nextLong method which belong to Random Object.]]>
     </entry>
 
+    <entry key="java.other.UseRightCaseForDateFormatRule.rule.msg">
+        <![CDATA[Use right case to format date.]]>
+    </entry>
+
     <!--other -->
     <entry key="vm.other.UseQuietReferenceNotationRule.rule.msg">
         <![CDATA[Variables must add exclamatory mark when passing to velocity engine from backend, ${var}--add '!' after '$'.]]>

@@ -549,8 +549,8 @@
         <!--Java:BINARY_OPERATION_SIGN_ON_NEXT_LINE-->
         <setting id="org.eclipse.jdt.core.formatter.wrap_before_binary_operator" value="true"/>
 
-        <!--ASSIGNMENT_WRAP 需要设置为 WRAP_AS_NEEDED  WRAP_AS_NEEDED-->
-        <setting id="org.eclipse.jdt.core.formatter.wrap_before_assignment_operator" value="true"/>
+        <!--ASSIGNMENT_WRAP 需要设置为 WRAP_AS_NEEDED  WRAP_AS_NEEDED . Add in jdt.core-3.12，it's not work in previous version -->
+        <setting id="org.eclipse.jdt.core.formatter.wrap_before_assignment_operator" value="false"/>
 
         <!--IDEA无配置项，Eclipse使用对应值即可-->
         <setting id="org.eclipse.jdt.core.formatter.wrap_before_or_operator_multicatch" value="true"/>

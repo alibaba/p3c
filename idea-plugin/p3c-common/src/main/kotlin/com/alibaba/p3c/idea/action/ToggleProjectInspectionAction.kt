@@ -20,9 +20,12 @@ import com.alibaba.p3c.idea.compatible.inspection.Inspections
 import com.alibaba.p3c.idea.config.SmartFoxProjectConfig
 import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.p3c.idea.inspection.AliBaseInspection
+import com.intellij.codeInspection.ex.InspectionToolWrapper
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.components.ServiceManager
+import com.intellij.openapi.diagnostic.Logger
+import com.intellij.openapi.project.Project
 import icons.P3cIcons
 
 /**
@@ -38,22 +41,37 @@ class ToggleProjectInspectionAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
         val smartFoxConfig = ServiceManager.getService(project, SmartFoxProjectConfig::class.java)
-        val tools = Inspections.aliInspections(project) {
-            it.tool is AliBaseInspection
+        val closed = InspectionProfileService.isProjectInspectionClosed(project)
+        val tools = if (closed) {
+            if(smartFoxConfig.lastCloseAliInspectionTools.isNotEmpty()) {
+                smartFoxConfig.lastCloseAliInspectionTools
+            } else {
+                Inspections.aliInspections(project) { it.tool is AliBaseInspection }
+                        .map { it.tool.shortName }
+            }
+        } else {
+            getEnabledTools(project)
         }
-        InspectionProfileService.toggleInspection(project, tools, smartFoxConfig.projectInspectionClosed)
-        smartFoxConfig.projectInspectionClosed = !smartFoxConfig.projectInspectionClosed
+        smartFoxConfig.lastCloseAliInspectionTools = tools
+        InspectionProfileService.toggleInspectionWithName(project, tools, closed)
     }
 
     override fun update(e: AnActionEvent?) {
         val project = e!!.project ?: return
-        val smartFoxConfig = ServiceManager.getService(project, SmartFoxProjectConfig::class.java)
-        e.presentation.text = if (smartFoxConfig.projectInspectionClosed) {
+        val closed = InspectionProfileService.isProjectInspectionClosed(project)
+        e.presentation.text = if (closed) {
             e.presentation.icon = P3cIcons.PROJECT_INSPECTION_ON
             P3cBundle.getMessage("$textKey.open")
         } else {
             e.presentation.icon = P3cIcons.PROJECT_INSPECTION_OFF
             P3cBundle.getMessage("$textKey.close")
         }
+    }
+
+    private fun getEnabledTools(project: Project): List<String> {
+        val profile = InspectionProfileService.getProjectInspectionProfile(project)
+        return Inspections.aliInspections(project) { it.tool is AliBaseInspection }
+                .filter { profile.getToolDefaultState(it.tool.shortName, project).isEnabled }
+                .map { it.tool.shortName }
     }
 }

@@ -15,6 +15,7 @@
  */
 package com.alibaba.p3c.idea.compatible.inspection
 
+import com.alibaba.p3c.idea.inspection.AliBaseInspection
 import com.alibaba.smartfox.idea.common.util.PluginVersions
 import com.google.common.collect.Sets
 import com.intellij.codeInspection.ex.GlobalInspectionContextImpl
@@ -37,7 +38,7 @@ import java.util.LinkedHashSet
  */
 object InspectionProfileService {
     fun createSimpleProfile(toolWrapperList: List<InspectionToolWrapper<*, *>>,
-            managerEx: InspectionManagerEx, psiElement: PsiElement?): InspectionProfileImpl {
+                            managerEx: InspectionManagerEx, psiElement: PsiElement?): InspectionProfileImpl {
         val profile = getProjectInspectionProfile(managerEx.project)
         val allWrappers: LinkedHashSet<InspectionToolWrapper<*, *>> = Sets.newLinkedHashSet()
         allWrappers.addAll(toolWrapperList)
@@ -84,12 +85,9 @@ object InspectionProfileService {
         return model
     }
 
-    fun toggleInspection(project: Project, aliInspections: List<InspectionToolWrapper<*, *>>, closed: Boolean) {
+    fun toggleInspectionWithName(project: Project, inspectionShortNames: List<String>, closed: Boolean) {
         val profile = getProjectInspectionProfile(project)
-        val shortNames = aliInspections.map {
-            it.tool.shortName
-        }
-        profile.removeScopes(shortNames, "AlibabaCodeAnalysis", project)
+        profile.removeScopes(inspectionShortNames, "AlibabaCodeAnalysis", project)
         val method = profile.javaClass.methods.first {
             it.name == if (closed) {
                 "enableToolsByDefault"
@@ -97,13 +95,20 @@ object InspectionProfileService {
                 "disableToolByDefault"
             }
         }
-        method.invoke(profile, shortNames, project)
+        method.invoke(profile, inspectionShortNames, project)
         profile.profileChanged()
         profile.scopesChanged()
     }
 
+    fun toggleInspection(project: Project, aliInspections: List<InspectionToolWrapper<*, *>>, closed: Boolean) {
+        val shortNames = aliInspections.map {
+            it.tool.shortName
+        }
+        toggleInspectionWithName(project, shortNames, closed)
+    }
+
     fun setExternalProfile(profile: InspectionProfileImpl,
-            inspectionContext: GlobalInspectionContextImpl) {
+                           inspectionContext: GlobalInspectionContextImpl) {
         val method = inspectionContext.javaClass.methods.first {
             it.name == "setExternalProfile" && it.parameterTypes.size == 1 && it.parameterTypes.first().isAssignableFrom(InspectionProfileImpl::class.java)
         }
@@ -112,5 +117,15 @@ object InspectionProfileService {
 
     fun getProjectInspectionProfile(project: Project): InspectionProfileImpl {
         return InspectionProjectProfileManager.getInstance(project).inspectionProfile as InspectionProfileImpl
+    }
+
+    fun isProjectInspectionClosed(project: Project): Boolean {
+        val profile = getProjectInspectionProfile(project)
+        val tools = Inspections.aliInspections(project) {
+            it.tool is AliBaseInspection
+        }
+        return !tools.any {
+            profile.getToolDefaultState(it.tool.shortName, project).isEnabled
+        }
     }
 }

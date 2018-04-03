@@ -33,7 +33,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 class SmartFoxProjectConfig : PersistentStateComponent<SmartFoxProjectConfig> {
     var inspectionProfileModifiedSet = Sets.newHashSet<String>()!!
 
-    var projectInspectionClosed = false
+    var lastCloseAliInspectionTools : List<String> = ArrayList()
 
     override fun getState(): SmartFoxProjectConfig? {
         return this

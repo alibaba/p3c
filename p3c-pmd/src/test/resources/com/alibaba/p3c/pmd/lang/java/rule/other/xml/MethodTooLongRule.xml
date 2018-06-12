@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+
+    <code-fragment id="method-equal-to-80-lines"><![CDATA[
+public class MethodTooLongRule {
+    @Test
+    public void test() {
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        // 77 lines of comment
+        int i = 1;
+    }
+}
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>Method equal to 80 lines</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="method-equal-to-80-lines" />
+    </test-code>
+
+
+    <code-fragment id="method-more-than-80-lines"><![CDATA[
+public class MethodTooLongRule {
+    public void test() {
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        // 78 lines of comment
+        int i = 1;
+    }
+}
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>Method more than 80 lines</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>2</expected-linenumbers>
+        <code-ref id="method-more-than-80-lines" />
+    </test-code>
+
+
+    <code-fragment id="method-less-than-80-lines"><![CDATA[
+public class MethodTooLongRule {
+    public void test() {
+        int i = 1;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Method less than 80 lines</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="method-less-than-80-lines" />
+    </test-code>
+
+    <code-fragment id="interface-method"><![CDATA[
+interface printable{
+    void print();
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Interface method</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="interface-method" />
+    </test-code>
+
+
+    <code-fragment id="method-signature-multi-lines"><![CDATA[
+public class MethodTooLongRule {
+    public
+    void
+    test() {
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        int i = 1;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Method signature multi lines</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>4</expected-linenumbers>
+        <code-ref id="method-signature-multi-lines" />
+    </test-code>
+
+
+    <code-fragment id="method-signature-with-annotation-multi-lines"><![CDATA[
+public class MethodTooLongRule {
+    @Test public
+    void
+    test() {
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        // 76 lines of comment
+        int i = 1;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Method signature with annotation multi lines</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>4</expected-linenumbers>
+        <code-ref id="method-signature-with-annotation-multi-lines" />
+    </test-code>
+
+</test-data>

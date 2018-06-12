@@ -133,18 +133,18 @@
 		<code-ref id="lombok-pojo-4" />
 	</test-code>
 
-	<!-- ====================================================================== -->
+    <!-- ====================================================================== -->
 
-	<code-fragment id="interface-with-pojo-surfix">
-		<![CDATA[
+    <code-fragment id="interface-with-pojo-surfix">
+        <![CDATA[
 	public interface FooDO {
 	}
 		]]>
-	</code-fragment>
-	<test-code>
-		<description>interface with POJO surfix</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="interface-with-pojo-surfix" />
-	</test-code>
+    </code-fragment>
+    <test-code>
+        <description>interface with POJO surfix</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="interface-with-pojo-surfix" />
+    </test-code>
 
 </test-data>

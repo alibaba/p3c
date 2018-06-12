@@ -29,7 +29,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  * @date 2017/04/16
  */
 public class PackageNamingRule extends AbstractXpathRule {
-    private static final String XPATH = "//PackageDeclaration/Name\n"
+    private static final String XPATH = "//PackageDeclaration/Name"
         + "[not (matches(@Image, '^[a-z0-9]+(\\.[a-z][a-z0-9]*)*$'))]";
 
     public PackageNamingRule() {

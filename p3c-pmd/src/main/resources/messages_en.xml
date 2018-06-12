@@ -209,6 +209,16 @@ Note: Below are the problems created by usage of Executors for thread pool creat
         <![CDATA[Note: Logic within many if statements are very complicated. Readers need to analyze the final results of the conditional expression to decide what statement is to be executed in certain conditions.]]>
     </entry>
 
+    <entry key="java.flowcontrol.AvoidNegationOperatorRule.violation.msg">
+        <![CDATA[The negation operator is not easy to be quickly understood.]]>
+    </entry>
+    <entry key="java.flowcontrol.AvoidNegationOperatorRule.rule.msg">
+        <![CDATA[Avoid using the negation operator '!'.]]>
+    </entry>
+    <entry key="java.flowcontrol.AvoidNegationOperatorRule.rule.desc">
+        <![CDATA[Note: The negation operator is not easy to be quickly understood. There must be a positive way to represent the same logic.]]>
+    </entry>
+
     <!-- set -->
     <entry key="java.set.ClassCastExceptionWithSubListToArrayListRule.violation.msg">
         <![CDATA[The result of [%s] can't cast in class ArrayList]]>
@@ -411,7 +421,7 @@ The format of date is 'yyyy/MM/dd'.
         <![CDATA[All enumeration type fields should be commented as Javadoc style.]]>
     </entry>
     <entry key="java.comment.EnumConstantsMustHaveCommentRule.violation.msg">
-        <![CDATA[enum [%s] should have javadoc]]>
+        <![CDATA[fields of enum [%s] should have javadoc]]>
     </entry>
 
     <entry key="java.comment.RemoveCommentedCodeRule.rule.msg">
@@ -461,6 +471,29 @@ Note: In order to get a more accurate time, use System.nanoTime(). In JDK8, use 
     <entry key="java.other.AvoidMissUseOfMathRandomRule.rule.msg">
         <![CDATA[The return type of Math.random() is double, value range is 0<=x<1 (0 is possible). If a random integer is required, do not multiply x by 10 then round the result. The correct way is to use nextInt or nextLong method which belong to Random Object.]]>
     </entry>
+
+    <entry key="java.other.MethodTooLongRule.rule.msg">
+        <![CDATA[The total number of lines for a method should not be more than 80.]]>
+    </entry>
+
+    <entry key="java.other.MethodTooLongRule.rule.desc">
+        <![CDATA[
+Note: The total number of lines, including the method signature, closing brace, codes, comments, blank lines, line breaks and any invisible lines, should not be more than 80.
+        ]]>
+    </entry>
+
+    <entry key="java.other.MethodTooLongRule.violation.msg">
+        <![CDATA[The total number of lines for method [%s] should not be more than 80.]]>
+    </entry>
+
+    <entry key="java.other.UseRightCaseForDateFormatRule.rule.msg">
+        <![CDATA[Date format string [%s] is error,When doing date formatting, 'y' should be written in lowercase for 'year'.]]>
+    </entry>
+    <entry key="java.other.UseRightCaseForDateFormatRule.rule.desc">
+        <![CDATA[When doing date formatting, "yyyy" represents the day in which year, while "YYYY" represents the week in which
+ * year (a concept introduced in JDK7). If a week is across two years, the returning "YYYY"represents the next year.]]>
+    </entry>
+
 
     <!--other -->
     <entry key="vm.other.UseQuietReferenceNotationRule.rule.msg">

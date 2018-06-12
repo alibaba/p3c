@@ -64,4 +64,30 @@ Positive example:
         </example>
     </rule>
 
+    <rule name="AvoidNegationOperatorRule"
+          language="java"
+          message="java.flowcontrol.AvoidNegationOperatorRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.flowcontrol.AvoidNegationOperatorRule">
+        <description>java.flowcontrol.AvoidNegationOperatorRule.rule.desc</description>
+        <priority>3</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+    // Use `if (!(x >= 628))` to represent that x is less than 628.
+    if (!(x >= 628)) {
+        // ...
+    }
+			]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+    // Use `if (x < 628)` to represent that x is less than 628.
+    if (x < 628)) {
+        // ...
+    }
+			]]>
+        </example>
+    </rule>
 </ruleset>

@@ -7,6 +7,15 @@
         <![CDATA[
           <ul>
         1.0.5
+        <li>
+        Add rule [Recommended] The total number of lines for a method should not be more than 80.
+        </li>
+        <li>
+        Add rule [Recommended] Avoid using the negation operator '!'.
+        </li>
+        <li>
+        Add rule [Mandatory] When doing date formatting, "y" should be written in lowercase for "year" in a pattern statement
+        </li>
          <li>https://github.com/alibaba/p3c/issues/264</li>
          </ul>
           <ul>

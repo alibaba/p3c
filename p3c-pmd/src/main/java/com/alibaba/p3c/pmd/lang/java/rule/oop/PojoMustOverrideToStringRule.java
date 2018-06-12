@@ -59,6 +59,10 @@ public class PojoMustOverrideToStringRule extends AbstractPojoRule {
 
     @Override
     public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+        if (node.isInterface()) {
+            return super.visit(node, data);
+        }
+
         if (!isPojo(node)) {
             return super.visit(node, data);
         }

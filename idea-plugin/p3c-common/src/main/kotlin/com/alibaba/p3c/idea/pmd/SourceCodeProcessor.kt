@@ -57,6 +57,8 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
             throw PMDException("Error while parsing " + ctx.sourceCodeFilename, pe)
         } catch (e: Exception) {
             throw PMDException("Error while processing " + ctx.sourceCodeFilename, e)
+        } catch (error: Error) {
+            throw PMDException("Error while processing ${ctx.sourceCodeFilename} ${error.message}")
         } finally {
             IOUtils.closeQuietly(sourceCode)
         }

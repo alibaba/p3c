@@ -13,35 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.p3c.pmd.lang.java.rule.naming;
+package com.alibaba.p3c.pmd.lang.java.rule.flowcontrol;
 
-import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
 
 /**
- * [Mandatory] All Service and DAO classes must be interface based on SOA principle. Implementation class names
- * should be ended with Impl.
+ * [Recommended] Avoid using the negation operator '!'.
+ * Note: The negation operator is not easy to be quickly understood. There must be a positive
+ * way to represent the same logic.
  *
- * @author changle.lq
- * @date 2017/04/16
+ * @author zenghou.fw
+ * @date 2017/11/21
  */
-public class ServiceOrDaoClassShouldEndWithImplRule extends AbstractXpathRule {
-    private static final String XPATH = "//ClassOrInterfaceDeclaration"
-        + "[ .[@Interface='false'] and .[@Abstract='false'] and ./ImplementsList/ClassOrInterfaceType[ ends-with(@Image, 'Service') or "
-        + "ends-with(@Image, 'DAO')]]"
-        + "[not(.[ ends-with(@Image, 'Impl')])]";
+public class AvoidNegationOperatorRule extends AbstractXpathRule {
+    private static final String XPATH = "//UnaryExpressionNotPlusMinus[child::PrimaryExpression"
+        + "//PrimaryPrefix/Expression/RelationalExpression]"
+        + "|//UnaryExpressionNotPlusMinus[child::PrimaryExpression"
+        + "//PrimaryPrefix/Expression/EqualityExpression]";
 
-    public ServiceOrDaoClassShouldEndWithImplRule() {
+    public AvoidNegationOperatorRule() {
         setXPath(XPATH);
     }
 
     @Override
     public void addViolation(Object data, Node node, String arg) {
         ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-            I18nResources.getMessage("java.naming.ServiceOrDaoClassShouldEndWithImplRule.violation.msg",
-                node.getImage()));
+            "java.flowcontrol.AvoidNegationOperatorRule.violation.msg");
     }
 }

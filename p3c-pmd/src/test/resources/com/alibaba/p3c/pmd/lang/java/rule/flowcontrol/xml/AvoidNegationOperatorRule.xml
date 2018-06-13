@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+    <code-fragment id="unnecessary-not-expression">
+        <![CDATA[
+    public class Example {
+        public int foo(int a, int b) {
+            if (!(a > b)) {
+                return -1;
+            }
+            if (!(a == b)) {
+                return -1;
+            }
+            if (!(a != b)) {
+                return -1;
+            }
+            if (!(a > 0 && b > 0)) {
+                return 1;
+            }
+            if (!(a == 0 && b >= 0)) {
+                return 1;
+            }
+            return 0;
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>unnecessary not operator can be removed</description>
+        <expected-problems>3</expected-problems>
+        <expected-linenumbers>3,6,9</expected-linenumbers>
+        <code-ref id="unnecessary-not-expression"/>
+    </test-code>
+</test-data>

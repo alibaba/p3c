@@ -29,8 +29,8 @@ import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
  * @date 2017/04/16
  */
 public class AbstractClassShouldStartWithAbstractNamingRule extends AbstractXpathRule {
-    private static final String XPATH = "//ClassOrInterfaceDeclaration\n"
-        + " [@Abstract='true' and @Interface='false']\n" + " [not (matches(@Image,'^(Abstract|Base).*'))]";
+    private static final String XPATH = "//ClassOrInterfaceDeclaration"
+        + " [@Abstract='true' and @Interface='false'][not (matches(@Image,'^(Abstract|Base).*'))]";
 
     public AbstractClassShouldStartWithAbstractNamingRule() {
         setXPath(XPATH);

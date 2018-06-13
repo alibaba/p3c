@@ -11,7 +11,7 @@ public enum Level {
 	<test-code>
 		<description>Enum without Comment.</description>
 		<expected-problems>1</expected-problems>
-		<expected-linenumbers>2</expected-linenumbers>
+		<expected-linenumbers>1</expected-linenumbers>
 		<code-ref id="enum-without-comment" />
 	</test-code>
 

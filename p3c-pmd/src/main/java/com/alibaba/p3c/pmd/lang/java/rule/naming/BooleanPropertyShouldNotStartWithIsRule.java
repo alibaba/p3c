@@ -30,10 +30,10 @@ import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
  * @date 2017/04/16
  */
 public class BooleanPropertyShouldNotStartWithIsRule extends AbstractXpathRule {
-    private static final String XPATH = "//VariableDeclaratorId\n" + "[(ancestor::ClassOrInterfaceDeclaration)[\n"
-        + "@Interface='false'\n" + "and\n" + "( ends-with(@Image, 'DO')\n" + "or ends-with(@Image, 'DTO')\n"
-        + "or ends-with(@Image, 'VO')\n" + "or ends-with(@Image, 'DAO')\n" + ")\n" + "]]\n"
-        + "[../../../FieldDeclaration/Type/PrimitiveType[@Image = 'boolean']]\n" + "[.[ starts-with(@Image, 'is')]]";
+    private static final String XPATH = "//VariableDeclaratorId[(ancestor::ClassOrInterfaceDeclaration)["
+        + "@Interface='false' and ( ends-with(@Image, 'DO') or ends-with(@Image, 'DTO')"
+        + " or ends-with(@Image, 'VO') or ends-with(@Image, 'DAO'))]]"
+        + "[../../../FieldDeclaration/Type/PrimitiveType[@Image = 'boolean']][.[ starts-with(@Image, 'is')]]";
 
     public BooleanPropertyShouldNotStartWithIsRule() {
         setXPath(XPATH);

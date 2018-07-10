@@ -27,6 +27,11 @@
             <add-to-group group-id="ChangesViewPopupMenu" anchor="last"/>
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
+        <action class="com.alibaba.p3c.idea.action.IrregularCommitAction"
+                id="IrregularCommitAction"
+                popup="true"
+                text="不允许不规范代码提交">
+        </action>
         <action class="com.alibaba.p3c.idea.action.SwitchLanguageAction"
                 id="com.alibaba.p3c.idea.action.SwitchLanguageAction"
                 icon="P3cIcons.LANGUAGE">
@@ -35,6 +40,7 @@
             <reference ref="AliP3CInspectionAction"/>
             <reference ref="ToggleProjectInspectionAction"/>
             <reference ref="com.alibaba.p3c.idea.action.SwitchLanguageAction"/>
+            <reference ref="IrregularCommitAction"/>
             <add-to-group group-id="ToolsMenu" anchor="last"/>
         </group>
     </actions>
@@ -45,6 +51,7 @@
     </extensionPoints>
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.alibaba.p3c.idea.config.P3cConfig"/>
+        <applicationService serviceImplementation="com.alibaba.p3c.idea.config.IrregularCommitConfig"/>
         <projectService serviceImplementation="com.alibaba.p3c.idea.config.SmartFoxProjectConfig"/>
         <checkinHandlerFactory implementation="com.alibaba.p3c.idea.vcs.AliCodeAnalysisCheckinHandlerFactory"
                                order="first"/>

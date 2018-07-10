@@ -17,6 +17,7 @@ package com.alibaba.p3c.idea.vcs
 
 import com.alibaba.p3c.idea.action.AliInspectionAction
 import com.alibaba.p3c.idea.compatible.inspection.Inspections
+import com.alibaba.p3c.idea.config.IrregularCommitConfig
 import com.alibaba.p3c.idea.config.P3cConfig
 import com.alibaba.p3c.idea.inspection.AliBaseInspection
 import com.alibaba.smartfox.idea.common.util.BalloonNotifications
@@ -106,16 +107,21 @@ class AliCodeAnalysisCheckinHandler(
         return ServiceManager.getService(P3cConfig::class.java)
     }
 
+    private fun enableIrregularCommit(): Boolean {
+        val irregularCommitConfig = ServiceManager.getService(IrregularCommitConfig::class.java)
+        return irregularCommitConfig.disableCommitOnIrregular
+    }
+
 
     override fun beforeCheckin(executor: CommitExecutor?,
-            additionalDataConsumer: PairConsumer<Any, Any>): CheckinHandler.ReturnResult {
+                               additionalDataConsumer: PairConsumer<Any, Any>): CheckinHandler.ReturnResult {
         if (!getSettings().analysisBeforeCheckin) {
             return CheckinHandler.ReturnResult.COMMIT
         }
         if (DumbService.getInstance(myProject).isDumb) {
             if (Messages.showOkCancelDialog(myProject,
-                    "Code analysis is impossible until indices are up-to-date", dialogTitle,
-                    waitingText, commitText, null) == Messages.OK) {
+                            "Code analysis is impossible until indices are up-to-date", dialogTitle,
+                            waitingText, commitText, null) == Messages.OK) {
                 return CheckinHandler.ReturnResult.CANCEL
             }
             return CheckinHandler.ReturnResult.COMMIT
@@ -128,12 +134,17 @@ class AliCodeAnalysisCheckinHandler(
                     myProject, "Analyze Finished")
             return CheckinHandler.ReturnResult.COMMIT
         }
-        if (Messages.showOkCancelDialog(myProject, "Found suspicious code,continue commit？",
-                dialogTitle, commitText, cancelText, null) == Messages.OK) {
-            return CheckinHandler.ReturnResult.COMMIT
+        if (enableIrregularCommit()) {
+            Messages.showErrorDialog("Found suspicious code", dialogTitle)
+            return CheckinHandler.ReturnResult.CANCEL
         } else {
-            doAnalysis(myProject, virtualFiles.toTypedArray())
-            return CheckinHandler.ReturnResult.CLOSE_WINDOW
+            if (Messages.showOkCancelDialog(myProject, "Found suspicious code,continue commit？",
+                            dialogTitle, commitText, cancelText, null) == Messages.OK) {
+                return CheckinHandler.ReturnResult.COMMIT
+            } else {
+                doAnalysis(myProject, virtualFiles.toTypedArray())
+                return CheckinHandler.ReturnResult.CLOSE_WINDOW
+            }
         }
     }
 
@@ -161,8 +172,7 @@ class AliCodeAnalysisCheckinHandler(
                             val inspectionManager = InspectionManager.getInstance(project)
                             val psiManager = PsiManager.getInstance(project)
                             val count = AtomicInteger(0)
-                            val hasViolation = virtualFiles.asSequence().any {
-                                file ->
+                            val hasViolation = virtualFiles.asSequence().any { file ->
                                 ApplicationManager.getApplication().runReadAction(Computable {
                                     val psiFile = psiManager.findFile(file) ?: return@Computable false
                                     val curCount = count.incrementAndGet()

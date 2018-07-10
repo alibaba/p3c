@@ -117,3 +117,9 @@ Alt+Enter键可呼出Intention菜单，不同的规则会提示不同信息的Qu
    ![](https://gw.alicdn.com/tfscom/TB1u_ZZjamgSKJjSspiXXXyJFXa.png)
 2. 如果有违反手册的地方会提示是否继续提交，选择取消后会自动对修改的代码进行扫描
    ![](https://gw.alicdn.com/tfscom/TB1r5PUXbb85uJjSZFmXXcgsFXa.png)
+
+3. 如果选择了禁止不规范代码提交，代码将不会提交
+
+    ![forbid irregular code commit](doc/images/forbid_commit.png)
+    
+     ![forbid irregular code commit](doc/images/forbid_commit_2.png)

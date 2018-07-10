@@ -65,6 +65,12 @@ compile 'com.alibaba.p3c.idea:p3c-common:1.0.0'
 	
 	![Before Checkin](doc/images/analyze_before_checkin.png) 
 
+    <font color="blue">If ticked forbid irregular code commit, we will forbid commit.</font>
+    
+    ![forbid irregular code commit](doc/images/forbid_commit.png)
+    
+     ![forbid irregular code commit](doc/images/forbid_commit_2.png)
+
 ## <font color="green">Other</font>
 1. <font color="blue">[中文乱码解决方法](https://github.com/alibaba/p3c/issues/32#issuecomment-336762512)</font>
 

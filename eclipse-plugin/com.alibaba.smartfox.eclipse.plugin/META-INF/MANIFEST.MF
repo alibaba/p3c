@@ -51,7 +51,6 @@ Bundle-Localization: plugin
 Export-Package: com.alibaba.smartfox.eclipse,
  com.alibaba.smartfox.eclipse.handler,
  com.alibaba.smartfox.eclipse.job,
- com.alibaba.smartfox.eclipse.marker,
  com.alibaba.smartfox.eclipse.pmd,
  com.alibaba.smartfox.eclipse.pmd.rule,
  com.alibaba.smartfox.eclipse.ui,

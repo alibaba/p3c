@@ -21,6 +21,7 @@ import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
+import net.sourceforge.pmd.lang.java.ast.ASTAnnotationTypeDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclarator;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
@@ -56,12 +57,17 @@ public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
     }
 
     @Override
-
     public Object visit(ASTMethodDeclarator node, Object data) {
         if (!(pattern.matcher(node.getImage()).matches())) {
             ViolationUtils.addViolationWithPrecisePosition(this, node, data,
                 I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".method", node.getImage()));
         }
         return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTAnnotationTypeDeclaration node, Object data) {
+        //对所有注解内的内容不做检查
+        return null;
     }
 }

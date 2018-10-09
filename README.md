@@ -1,4 +1,4 @@
-![](https://img.alicdn.com/tfs/TB1fJAjcirpK1RjSZFhXXXSdXXa-7068-1201.jpg)
+<a href="https://detail.tmall.com/item.htm?spm=a1zb6.8232479.0.0.17f533e9VNZxB2&id=575107529181&cm_id=140105335569ed55e27b&abbucket=15"><img src="https://img.alicdn.com/tfs/TB1fJAjcirpK1RjSZFhXXXSdXXa-7068-1201.jpg"></a>
 2018年9月22日，在2018杭州云栖大会上，召开《码出高效：Java 开发手册》新书发布会，并宣布将图书所有收益均捐赠于技术公益项目“83行代码计划”。
 
 阿里巴巴正式在2018杭州云栖大会《开发者生态峰会》上，由阿里巴巴高年级同学中间件负责人林昊、阿里巴巴研究员刘湘雯、阿里巴研究员刘国华，OpenJDK社区Committer杨晓峰，全栈视障工程师蔡勇斌，电子工业出版社博文视点出版公司总经理郭立以及两位图书作者杨冠宝（孤尽）和高海慧（鸣莎）重磅大咖联合发布新书[《码出高效：Java开发手册》（跳转至天猫书店）](https://detail.tmall.com/item.htm?spm=a1zb6.8232479.0.0.17f533e9VNZxB2&id=575107529181&cm_id=140105335569ed55e27b&abbucket=15)，并宣布将图书所有收益均捐赠于技术公益项目“83行代码计划”，第一个“83行代码计划”行动，将围绕着帮助盲人工程师，开发更多无障碍化产品，让盲人上网更便捷。未来，我们会坚持用技术为公益行业赋能，也希望更多人成为技术受益者<

@@ -16,7 +16,7 @@
 package com.alibaba.smartfox.eclipse.ui
 
 import com.alibaba.smartfox.eclipse.SmartfoxActivator
-import com.alibaba.smartfox.eclipse.job.P3CMutex
+import com.alibaba.smartfox.eclipse.job.P3cMutex
 import com.alibaba.smartfox.eclipse.util.MarkerUtil
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IMarker
@@ -133,7 +133,7 @@ class InspectionResultView : ViewPart() {
                         return Status.OK_STATUS
                     }
                 }
-                job.rule = P3CMutex
+                job.rule = P3cMutex
                 job.schedule()
             }
         }

@@ -121,7 +121,7 @@
 	<code-fragment id="lombok-pojo-4">
 		<![CDATA[
 	import lombok.*;
-	@ToString
+	@ToString(callSuper = true)
 	public class FooDO {
 		private String tom;
 	}
@@ -132,4 +132,19 @@
 		<expected-problems>0</expected-problems>
 		<code-ref id="lombok-pojo-4" />
 	</test-code>
+
+    <!-- ====================================================================== -->
+
+    <code-fragment id="interface-with-pojo-surfix">
+        <![CDATA[
+	public interface FooDO {
+	}
+		]]>
+    </code-fragment>
+    <test-code>
+        <description>interface with POJO surfix</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="interface-with-pojo-surfix" />
+    </test-code>
+
 </test-data>

@@ -5,40 +5,9 @@
   <parent>
     <groupId>com.alibaba.smartfox.eclipse</groupId>
     <artifactId>smartfox-eclipse</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
   </parent>
   <artifactId>com.alibaba.smartfox.eclipse.updatesite</artifactId>
   <packaging>eclipse-repository</packaging>
   <inceptionYear>2017</inceptionYear>
-  <profiles>
-    <profile>
-      <id>publish-to-update-site</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.eclipse.tycho.extras</groupId>
-            <artifactId>tycho-p2-extras-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>publish</id>
-                <phase>install</phase>
-                <goals>
-                  <goal>mirror</goal>
-                </goals>
-                <configuration>
-                  <source>
-                    <repository>
-                      <url>${project.build.directory}/repository</url>
-                    </repository>
-                  </source>
-                  <append>true</append>
-                  <destination>${eclipse.updatesite.path}</destination>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>

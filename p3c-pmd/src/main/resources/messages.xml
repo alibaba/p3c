@@ -207,6 +207,16 @@
         <![CDATA[说明：很多if语句内的逻辑相当复杂，阅读者需要分析条件表达式的最终结果，才能明确什么样的条件执行什么样的语句，那么，如果阅读者分析逻辑表达式错误呢？]]>
     </entry>
 
+    <entry key="java.flowcontrol.AvoidNegationOperatorRule.violation.msg">
+        <![CDATA["!"运算符不利于快速理解。]]>
+    </entry>
+    <entry key="java.flowcontrol.AvoidNegationOperatorRule.rule.msg">
+        <![CDATA[避免采用取反逻辑运算符。]]>
+    </entry>
+    <entry key="java.flowcontrol.AvoidNegationOperatorRule.rule.desc">
+        <![CDATA[说明: 取反逻辑不利于快速理解，并且取反逻辑写法必然存在对应的正向逻辑写法。]]>
+    </entry>
+
     <!-- set -->
     <entry key="java.set.ClassCastExceptionWithSubListToArrayListRule.violation.msg">
         <![CDATA[【%s】的结果不可强转成ArrayList]]>
@@ -411,7 +421,7 @@
         <![CDATA[所有的枚举类型字段必须要有注释，说明每个数据项的用途。]]>
     </entry>
     <entry key="java.comment.EnumConstantsMustHaveCommentRule.violation.msg">
-        <![CDATA[枚举字段【%s】缺少注释信息]]>
+        <![CDATA[枚举【%s】的字段缺少注释信息]]>
     </entry>
 
     <entry key="java.comment.RemoveCommentedCodeRule.rule.msg">
@@ -459,6 +469,27 @@
 
     <entry key="java.other.AvoidMissUseOfMathRandomRule.rule.msg">
         <![CDATA[注意 Math.random() 这个方法返回是double类型，注意取值的范围[0,1)（能够取到零值，注意除零异常），如果想获取整数类型的随机数，不要将x放大10的若干倍然后取整，直接使用Random对象的nextInt或者nextLong方法。]]>
+    </entry>
+
+    <entry key="java.other.MethodTooLongRule.rule.msg">
+        <![CDATA[单个方法的总行数不超过80行。]]>
+    </entry>
+
+    <entry key="java.other.MethodTooLongRule.rule.desc">
+        <![CDATA[
+说明：包括方法签名、结束右大括号、方法内代码、注释、空行、回车及任何不可见字符的总行数不超过80行。
+        ]]>
+    </entry>
+
+    <entry key="java.other.MethodTooLongRule.violation.msg">
+        <![CDATA[方法【%s】的总行数不要超过80行。]]>
+    </entry>
+
+    <entry key="java.other.UseRightCaseForDateFormatRule.rule.msg">
+        <![CDATA[日期格式化字符串[%s]使用错误，应注意使用小写‘y’表示当天所在的年，大写‘Y’代表week in which year。]]>
+    </entry>
+    <entry key="java.other.UseRightCaseForDateFormatRule.rule.desc">
+        <![CDATA[日期格式化时，yyyy表示当天所在的年，而大写的YYYY代表是week in which year（JDK7之后引入的概念），意思是当天所在的周属于的年份，一周从周日开始，周六结束，只要本周跨年，返回的YYYY就是下一年。]]>
     </entry>
 
     <!-- other -->

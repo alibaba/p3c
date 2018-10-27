@@ -15,7 +15,6 @@
  */
 package com.alibaba.smartfox.eclipse.job
 
-import org.eclipse.core.resources.IResource
 import org.eclipse.core.runtime.jobs.ISchedulingRule
 
 /**
@@ -24,12 +23,12 @@ import org.eclipse.core.runtime.jobs.ISchedulingRule
  * @author caikang
  * @date 2017/06/14
  */
-object P3CMutex : ISchedulingRule {
+object P3cMutex : ISchedulingRule {
     override fun contains(rule: ISchedulingRule?): Boolean {
         return isConflicting(rule)
     }
 
     override fun isConflicting(rule: ISchedulingRule?): Boolean {
-        return rule == this || rule is IResource
+        return rule == this
     }
 }

@@ -57,6 +57,8 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
             throw PMDException("Error while parsing " + ctx.sourceCodeFilename, pe)
         } catch (e: Exception) {
             throw PMDException("Error while processing " + ctx.sourceCodeFilename, e)
+        } catch (error: Error) {
+            throw PMDException("Error while processing ${ctx.sourceCodeFilename} ${error.message}")
         } finally {
             IOUtils.closeQuietly(sourceCode)
         }
@@ -80,13 +82,11 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
     }
 
     private fun usesDFA(languageVersion: LanguageVersion, rootNode: Node, ruleSets: RuleSets) {
-        if (ruleSets.usesDFA(languageVersion.language)) {
-            val start = System.nanoTime()
-            val dataFlowFacade = languageVersion.languageVersionHandler.dataFlowFacade
-            dataFlowFacade.start(rootNode)
-            val end = System.nanoTime()
-            Benchmarker.mark(Benchmark.DFA, end - start, 0)
-        }
+        val start = System.nanoTime()
+        val dataFlowFacade = languageVersion.languageVersionHandler.dataFlowFacade
+        dataFlowFacade.start(rootNode)
+        val end = System.nanoTime()
+        Benchmarker.mark(Benchmark.DFA, end - start, 0)
     }
 
     private fun usesTypeResolution(languageVersion: LanguageVersion, rootNode: Node, ruleSets: RuleSets) {

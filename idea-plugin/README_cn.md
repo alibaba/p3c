@@ -28,7 +28,7 @@
 
 ### [中文乱码解决方法](https://github.com/alibaba/p3c/issues/32#issuecomment-336762512)
 
-1. 修改字体——Appearance&Behavior -> Appearance -> UI Options -> Name 里面设置成微软雅黑（microsoft yahei light）
+1. 修改字体——Appearance&Behavior -> Appearance -> UI Options -> Name 里面设置成中文字体——如微软雅黑（microsoft yahei light）、文泉驿(linux)
 
 	![](https://gw.alicdn.com/tfscom/TB14wTmm3oQMeJjy0FoXXcShVXa.png) 
 

@@ -79,4 +79,29 @@ Positive example:
         </example>
     </rule>
 
+    <rule name="MethodTooLongRule" language="java"
+          message="java.other.MethodTooLongRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.other.MethodTooLongRule">
+        <description>java.other.MethodTooLongRule.rule.desc</description>
+        <priority>3</priority>
+    </rule>
+
+    <rule name="UseRightCaseForDateFormatRule" language="java"
+          message="java.other.UseRightCaseForDateFormatRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.other.UseRightCaseForDateFormatRule">
+        <description>java.other.UseRightCaseForDateFormatRule.rule.desc</description>
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+Negative example:
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+ ]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss");
+]]>
+        </example>
+    </rule>
 </ruleset>

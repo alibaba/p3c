@@ -27,6 +27,8 @@ import net.sourceforge.pmd.lang.java.ast.ASTForStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTIfStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTLiteral;
 import net.sourceforge.pmd.lang.java.ast.ASTWhileStatement;
+import net.sourceforge.pmd.util.StringUtil;
+
 import org.jaxen.JaxenException;
 
 /**
@@ -64,9 +66,9 @@ public class UndefineMagicConstantRule extends AbstractAliRule {
                 for (ASTLiteral literal : literals) {
                     if (inBlackList(literal) && !currentLiterals.contains(literal)) {
                         currentLiterals.add(literal);
+                        String imageReplace =  StringUtil.replaceString(literal.getImage(), "{", "'{");
                         addViolationWithMessage(data, literal,
-                            "java.constant.UndefineMagicConstantRule.violation.msg",
-                            new Object[] {literal.getImage()});
+                            "java.constant.UndefineMagicConstantRule.violation.msg", new Object[] {imageReplace});
                     }
                 }
             }

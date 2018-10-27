@@ -1,0 +1,19 @@
+{
+  "styles": {
+    "website": "styles/website.css"
+  },
+
+  "plugins": [
+    "book-summary-scroll-position-saver",
+    "github",
+    "prism",
+    "-sharing",
+    "-highlight"
+  ],
+  
+  "pluginsConfig": {
+    "github": {
+      "url": "https://github.com/alibaba/p3c"
+    }
+  }
+}

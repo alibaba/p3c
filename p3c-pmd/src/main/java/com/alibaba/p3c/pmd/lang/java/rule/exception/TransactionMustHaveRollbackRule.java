@@ -37,7 +37,9 @@ public class TransactionMustHaveRollbackRule extends AbstractAliRule {
     private static final String TRANSACTIONAL_ANNOTATION_NAME = "Transactional";
     private static final String TRANSACTIONAL_FULL_NAME = "org.springframework.transaction.annotation."
         + TRANSACTIONAL_ANNOTATION_NAME;
-    private static final String ROLLBACK_FOR = "rollbackFor";
+    private static final String ROLLBACK_PREFIX = "rollback";
+
+    private static final String PROPAGATION_NOT_SUPPORTED = "Propagation.NOT_SUPPORTED";
 
     private static final String XPATH_FOR_ROLLBACK = "//StatementExpression/PrimaryExpression"
         + "/PrimaryPrefix/Name[ends-with(@Image,'rollback')]";
@@ -53,7 +55,7 @@ public class TransactionMustHaveRollbackRule extends AbstractAliRule {
             return super.visit(node, data);
         }
         List<ASTMemberValuePair> memberValuePairList = node.findDescendantsOfType(ASTMemberValuePair.class);
-        if (rollbackAttrSet(memberValuePairList)) {
+        if (shouldSkip(memberValuePairList)) {
             return super.visit(node, data);
         }
 
@@ -80,9 +82,16 @@ public class TransactionMustHaveRollbackRule extends AbstractAliRule {
         return super.visit(node, data);
     }
 
-    private boolean rollbackAttrSet(List<ASTMemberValuePair> memberValuePairList) {
+    private boolean shouldSkip(List<ASTMemberValuePair> memberValuePairList) {
         for (ASTMemberValuePair pair : memberValuePairList) {
-            if (ROLLBACK_FOR.equals(pair.getImage())) {
+            if (pair.getImage() == null) {
+                continue;
+            }
+            if (pair.getImage().startsWith(ROLLBACK_PREFIX)) {
+                return true;
+            }
+            ASTName name = pair.getFirstDescendantOfType(ASTName.class);
+            if (name != null && PROPAGATION_NOT_SUPPORTED.equals(name.getImage())) {
                 return true;
             }
         }

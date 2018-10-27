@@ -28,7 +28,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  * @date 2017/04/16
  */
 public class ArrayNamingShouldHaveBracketRule extends AbstractXpathRule {
-    private static final String XPATH = "//VariableDeclaratorId\n" + "[../..[@Array = 'true']]\n"
+    private static final String XPATH = "//VariableDeclaratorId[../..[@Array = 'true']]"
         + "[../../Type/ReferenceType[@Array != 'true']]";
 
     public ArrayNamingShouldHaveBracketRule() {

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.alibaba.smartfox.eclipse</groupId>
     <artifactId>smartfox-eclipse</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2017</inceptionYear>
     <properties>
@@ -14,7 +14,7 @@
         <eclipse-repo.url>http://download.eclipse.org/releases/neon</eclipse-repo.url>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <ajdt-eclipse-repo.url>http://download.eclipse.org/tools/ajdt/46/dev/update</ajdt-eclipse-repo.url>
-        <kotlin.version>1.1.51</kotlin.version>
+        <kotlin.version>1.2.21</kotlin.version>
         <eclipse-release>juno</eclipse-release>
     </properties>
     <modules>
@@ -40,18 +40,24 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <!--<repositories>
+    <repositories>
         <repository>
-            <id>neon</id>
-            <url>${eclipse-repo.url}</url>
+            <id>juno</id>
             <layout>p2</layout>
+            <url>http://mirrors.ustc.edu.cn/eclipse/releases/juno/</url>
         </repository>
         <repository>
-            <id>ajdt</id>
-            <url>${ajdt-eclipse-repo.url}</url>
-            <layout>p2</layout>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
-    </repositories>-->
+    </repositories>
     <build>
         <plugins>
             <plugin>
@@ -189,150 +195,4 @@
             </plugins>
         </pluginManagement>
     </build>
-    <profiles>
-
-        <profile>
-            <id>macosx-jvm-flags</id>
-            <activation>
-                <os>
-                    <family>mac</family>
-                </os>
-            </activation>
-            <properties>
-                <!-- tycho-surefire-plugin needs -XstartOnFirstThread on mac os -->
-                <os-jvm-flags>-XstartOnFirstThread</os-jvm-flags>
-            </properties>
-        </profile>
-
-       <!-- <profile>
-            <id>eclipse-indigo</id>
-            <activation>
-                <property>
-                    <name>!eclipse-release</name>
-                </property>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>indigo</id>
-                    <layout>p2</layout>
-                    <url>http://download.eclipse.org/releases/indigo/</url>
-                </repository>
-                <repository>
-                    <id>swtbot</id>
-                    <layout>p2</layout>
-                    <url>http://download.eclipse.org/technology/swtbot/releases/2.2.1/</url>
-                </repository>
-            </repositories>
-        </profile>
--->
-        <profile>
-            <id>eclipse-juno</id>
-            <activation>
-                <property>
-                    <name>!eclipse-release</name>
-                </property>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>juno</id>
-                    <layout>p2</layout>
-                    <url>http://mirrors.ustc.edu.cn/eclipse/releases/juno/</url>
-                </repository>
-                <repository>
-                    <id>swtbot</id>
-                    <layout>p2</layout>
-                    <url>http://mirrors.ustc.edu.cn/eclipse/technology/swtbot/releases/2.5.0/</url>
-                </repository>
-            </repositories>
-        </profile>
-
-        <profile>
-            <id>eclipse-kepler</id>
-            <activation>
-                <property>
-                    <name>eclipse-release</name>
-                    <value>kepler</value>
-                </property>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>kepler</id>
-                    <layout>p2</layout>
-                    <url>http://download.eclipse.org/releases/kepler/</url>
-                </repository>
-                <repository>
-                    <id>swtbot</id>
-                    <layout>p2</layout>
-                    <url>http://download.eclipse.org/technology/swtbot/releases/2.3.0/</url>
-                </repository>
-            </repositories>
-        </profile>
-
-        <profile>
-            <id>eclipse-luna</id>
-            <activation>
-                <property>
-                    <name>eclipse-release</name>
-                    <value>luna</value>
-                </property>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>luna</id>
-                    <layout>p2</layout>
-                    <url>http://download.eclipse.org/releases/luna/</url>
-                </repository>
-                <repository>
-                    <id>swtbot</id>
-                    <layout>p2</layout>
-                    <url>http://download.eclipse.org/technology/swtbot/releases/2.3.0/</url>
-                </repository>
-            </repositories>
-        </profile>
-
-        <profile>
-            <id>eclipse-mars</id>
-            <activation>
-                <property>
-                    <name>eclipse-release</name>
-                    <value>mars</value>
-                </property>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>mars</id>
-                    <layout>p2</layout>
-                    <url>http://download.eclipse.org/releases/mars/</url>
-                </repository>
-                <repository>
-                    <id>swtbot</id>
-                    <layout>p2</layout>
-                    <url>http://download.eclipse.org/technology/swtbot/releases/2.3.0/</url>
-                </repository>
-            </repositories>
-        </profile>
-
-        <profile>
-            <id>eclipse-neon</id>
-            <activation>
-                <property>
-                    <name>eclipse-release</name>
-                    <value>neon</value>
-                </property>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>neon</id>
-                    <layout>p2</layout>
-                    <url>http://download.eclipse.org/releases/neon/</url>
-                </repository>
-                <repository>
-                    <id>swtbot</id>
-                    <layout>p2</layout>
-                    <url>http://download.eclipse.org/technology/swtbot/releases/2.3.0/</url>
-                </repository>
-            </repositories>
-        </profile>
-
-    </profiles>
 </project>

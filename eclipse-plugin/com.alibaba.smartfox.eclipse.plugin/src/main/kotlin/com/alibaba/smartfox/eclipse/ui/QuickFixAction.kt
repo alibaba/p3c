@@ -19,7 +19,7 @@ import com.alibaba.p3c.pmd.lang.java.rule.flowcontrol.NeedBraceRule
 import com.alibaba.smartfox.eclipse.RunWithoutViewRefresh
 import com.alibaba.smartfox.eclipse.SmartfoxActivator
 import com.alibaba.smartfox.eclipse.job.CodeAnalysis
-import com.alibaba.smartfox.eclipse.job.P3CMutex
+import com.alibaba.smartfox.eclipse.job.P3cMutex
 import com.alibaba.smartfox.eclipse.pmd.rule.MissingOverrideAnnotationRule
 import com.alibaba.smartfox.eclipse.util.CleanUps
 import com.alibaba.smartfox.eclipse.util.getResolution
@@ -57,7 +57,7 @@ class QuickFixAction(val view: InspectionResultView) : Action("Quick Fix") {
     }
 
     private fun runJob() {
-        val job = object : Job("Perform Quick Fix") {
+        val job = object : Job("Perform P3C Quick Fix") {
             override fun run(monitor: IProgressMonitor): IStatus {
                 val subMonitor = SubMonitor.convert(monitor, markers.size)
                 monitor.setTaskName("Process File")
@@ -81,8 +81,14 @@ class QuickFixAction(val view: InspectionResultView) : Action("Quick Fix") {
                 return Status.OK_STATUS
             }
         }
-        job.rule = P3CMutex
-        job.schedule()
+        val outJob = object:Job("P3C Quick Fix Wait analysis finish"){
+            override fun run(monitor: IProgressMonitor?): IStatus {
+                job.schedule()
+                return Status.OK_STATUS
+            }
+        }
+        outJob.rule = P3cMutex
+        outJob.schedule()
 
     }
 

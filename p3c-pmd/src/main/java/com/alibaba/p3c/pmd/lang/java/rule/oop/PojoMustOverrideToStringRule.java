@@ -47,15 +47,22 @@ public class PojoMustOverrideToStringRule extends AbstractPojoRule {
         + "[not(ancestor::Expression/ConditionalAndExpression//EqualityExpression[@Image='!=']//NullLiteral)]"
         + "[not(ancestor::Expression/ConditionalOrExpression//EqualityExpression[@Image='==']//NullLiteral)]";
 
-    private static final String LOMBOK_XPATH = "../Annotation/MarkerAnnotation/Name["
+    private static final String LOMBOK_NAME_XPATH = "/Name["
         + "(@Image='Data' and //ImportDeclaration[@ImportedName='lombok.Data' or @ImportedName='lombok'])"
         + " or (@Image='ToString' and //ImportDeclaration[@ImportedName='lombok.ToString' or @ImportedName='lombok'])"
         + " or (@Image='lombok.Data') or (@Image='lombok.ToString')]";
+
+    private static final String LOMBOK_XPATH = "../Annotation/MarkerAnnotation" + LOMBOK_NAME_XPATH
+        + "|../Annotation/NormalAnnotation" + LOMBOK_NAME_XPATH;
 
     private static final String MESSAGE_KEY_PREFIX = "java.oop.PojoMustOverrideToStringRule.violation.msg";
 
     @Override
     public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+        if (node.isInterface()) {
+            return super.visit(node, data);
+        }
+
         if (!isPojo(node)) {
             return super.visit(node, data);
         }

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: com.alibaba.smartfox.eclipse.plugin
 Bundle-SymbolicName: com.alibaba.smartfox.eclipse.plugin;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.5.qualifier
 Bundle-Activator: com.alibaba.smartfox.eclipse.SmartfoxActivator
 Bundle-Vendor: Alibaba
 Require-Bundle: org.eclipse.ui,
@@ -44,7 +44,6 @@ Bundle-ClassPath: target/lib/antlr-runtime.jar,
  target/lib/p3c-pmd.jar,
  target/lib/kotlin-stdlib.jar,
   target/lib/statistics-client.jar,
-  target/lib/fastjson.jar,
     target/lib/guava.jar,
  target/classes/,
  .
@@ -52,7 +51,6 @@ Bundle-Localization: plugin
 Export-Package: com.alibaba.smartfox.eclipse,
  com.alibaba.smartfox.eclipse.handler,
  com.alibaba.smartfox.eclipse.job,
- com.alibaba.smartfox.eclipse.marker,
  com.alibaba.smartfox.eclipse.pmd,
  com.alibaba.smartfox.eclipse.pmd.rule,
  com.alibaba.smartfox.eclipse.ui,

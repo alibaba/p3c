@@ -73,4 +73,10 @@ public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
         }
         return super.visit(node, data);
     }
+
+    @Override
+    public Object visit(ASTAnnotationTypeDeclaration node, Object data) {
+        //对所有注解内的内容不做检查
+        return null;
+    }
 }

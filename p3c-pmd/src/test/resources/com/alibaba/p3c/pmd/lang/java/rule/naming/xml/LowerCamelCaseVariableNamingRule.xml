@@ -140,6 +140,60 @@ public interface BizConstants {
         <expected-problems>0</expected-problems>
         <code-ref id="LowerCamelCaseVariableNamingRuleTest8" />
     </test-code>
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest8">
+        <![CDATA[
+        public @interface TYPE {
+            int DO_NO_THING = 0;
+            int DO_ONE_START_TO_END_ROUTE = 1;
+            int DO_ONE_CAR_TO_START_ROUTE = 2;
+            int DO_TWO_ROUTE = 3;
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase8</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest8" />
+    </test-code>
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest9">
+        <![CDATA[
+        @Document
+        @Retention(RetentionPolicy.RUNTIME)
+        @Target(ElementType.ANNOTATION_TYPE)
+        public @interface TYPE {
+            int DO_NO_THING = 0;
+            int DO_ONE_START_TO_END_ROUTE = 1;
+            int DO_ONE_CAR_TO_START_ROUTE = 2;
+            int DO_TWO_ROUTE = 3;
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase9</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest9" />
+    </test-code>
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest10">
+        <![CDATA[
+        @Document
+        @Retention(RetentionPolicy.RUNTIME)
+        @Target(ElementType.ANNOTATION_TYPE)
+        public class Type {
+            int DO_NO_THING = 0;
+            int DO_ONE_START_TO_END_ROUTE = 1;
+            int DO_ONE_CAR_TO_START_ROUTE = 2;
+            int DO_TWO_ROUTE = 3;
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase10</description>
+        <expected-problems>4</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest10" />
+    </test-code>
 </test-data>
 
 

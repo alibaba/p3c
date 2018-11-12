@@ -5,7 +5,7 @@
 
     <change-notes>
         <![CDATA[
-        <ul>
+        <ul>1.0.6
             <li>fix <a href="https://github.com/alibaba/p3c/issues/337">https://github.com/alibaba/p3c/issues/337</a>  do not check annotation </li>
             <li>PojoMustOverrideToStringRule do not check interface </li>
             <li>Performance improvement</li>

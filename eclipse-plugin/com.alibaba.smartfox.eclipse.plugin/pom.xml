@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.alibaba.smartfox.eclipse</groupId>
     <artifactId>smartfox-eclipse</artifactId>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.6-SNAPSHOT</version>
   </parent>
   <artifactId>com.alibaba.smartfox.eclipse.plugin</artifactId>
   <packaging>eclipse-plugin</packaging>

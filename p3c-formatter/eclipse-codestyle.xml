@@ -411,10 +411,6 @@
         <!--org.eclipse.jdt.core.formatter.enabling_tag=FORMATTER_ON_TAG-->
         <setting id="org.eclipse.jdt.core.formatter.enabling_tag" value="@formatter:on"/>
 
-        <!--use default do not insert-->
-        <setting id="org.eclipse.jdt.core.formatter.comment.insert_new_line_for_parameter" value="do not insert"/>
-
-
         <!--下面的没有IDEA对应项，在代码里面对IDEA中使用默认值即可,LINE_COMMENT_AT_FIRST_COLUMN BLOCK_COMMENT_AT_FIRST_COLUMN设置为false-->
         <setting id="org.eclipse.jdt.core.formatter.never_indent_block_comments_on_first_column" value="false"/>
         <setting id="org.eclipse.jdt.core.formatter.comment.insert_new_line_before_root_tags" value="insert"/>
@@ -433,7 +429,9 @@
         <setting id="org.eclipse.jdt.core.formatter.comment.format_html" value="true"/>
 
         <setting id="org.eclipse.jdt.core.formatter.join_lines_in_comments" value="true"/>
-        <setting id="org.eclipse.jdt.core.formatter.comment.indent_parameter_description" value="false"/>
+        <!--和IDEA保持一致，注释换行-->
+        <setting id="org.eclipse.jdt.core.formatter.comment.indent_parameter_description" value="true"/>
+        <setting id="org.eclipse.jdt.core.formatter.comment.insert_new_line_for_parameter" value="insert"/>
 
 
         <!--comment end-->

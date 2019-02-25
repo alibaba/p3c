@@ -104,7 +104,7 @@
 		<code-ref id="assign-variable-out-of-loop" />
 	</test-code>
 
-	======================================================================
+	<!-- ====================================================================== -->
 	<code-fragment id="assign-variable-in-loop">
 		<![CDATA[
 	import java.util.List;

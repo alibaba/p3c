@@ -1,0 +1,49 @@
+#!/bin/sh
+# p3c check
+P3cVersion="p3c-pmd-1.3.6"
+TMP_DIR="/tmp/p3c"
+PmdJar="${P3cVersion}-jar-with-dependencies.jar"
+Rules="rulesets/java/ali-comment.xml,rulesets/java/ali-concurrent.xml,rulesets/java/ali-constant.xml,rulesets/java/ali-exception.xml,rulesets/java/ali-flowcontrol.xml,rulesets/java/ali-naming.xml,rulesets/java/ali-oop.xml,rulesets/java/ali-orm.xml,rulesets/java/ali-other.xml,rulesets/java/ali-set.xml"
+
+while read oldrev newrev refname; do
+    if [ "${oldrev}" = "0000000000000000000000000000000000000000" ];then
+        oldrev="${newrev}^"
+    fi
+
+    files=$(git diff --name-only ${oldrev} ${newrev})
+    if [ -n "${files}" ]; then
+        echo "[P3C代码检查] URL: https://github.com/alibaba/p3c"
+        echo "oldrev : ${oldrev}"
+        echo "newrev : ${newrev}"
+        echo "refname: ${refname}"
+
+        TmpCodeDir="${TMP_DIR}/${newrev}";
+        for file in ${files}; do
+            mkdir -p "${TmpCodeDir}/`dirname ${file}`" >/dev/null
+            git show ${newrev}:${file} > ${TmpCodeDir}/${file}
+        done;
+
+        PmdJarFile="/${TMP_DIR}/${PmdJar}"
+        if [ ! -e "${PmdJarFile}" ]; then
+            wget -O ${PmdJarFile} "https://github.com/qycloud/p3c/releases/download/${P3cVersion}-cli/${PmdJar}"
+        fi
+
+        sh -c "cd ${TmpCodeDir} && java -Dfile.encoding=utf-8 -jar ${PmdJarFile} -d ${TmpCodeDir} -R ${Rules} -f textcolor"
+        REJECT=$?
+
+        rm -rf ${TmpCodeDir}
+        if [ "0" -eq ${REJECT} ]; then
+            SuccessMsg="Congratulations 代码已通过格式检测";
+            if command -v cowsay > /dev/null 2>&1; then
+                animal=$(cowsay -l | sed -e '1d' -e 's/\s/\n/g' | shuf -n 1)
+                cowsay -f ${animal} ${SuccessMsg}
+            else
+                echo ${SuccessMsg}
+            fi
+          else
+            echo "P3C: 请根据以上提示，尽快修改不符合要求的代码!!! ORZ"
+        fi
+    fi
+done
+
+exit $REJECT

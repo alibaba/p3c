@@ -146,7 +146,7 @@ public class IbatisMethodQueryForListRule extends AbstractAliRule {
             }
             //method parameters not match
             List<Node> literals = node.findChildNodesWithXPath(PRIMARY_METHOD_ARGUMENT_XPATH);
-            if (!(literals != null && (literals.size() == 3))) {
+            if (!methodHasThreeParameters(literals)) {
                 continue;
             }
             boolean firstMethodArgumentString = "java.lang.String".equals(
@@ -163,6 +163,10 @@ public class IbatisMethodQueryForListRule extends AbstractAliRule {
             }
 
         }
+    }
+
+    private boolean methodHasThreeParameters(List<Node> argumentNodes) {
+        return argumentNodes != null && argumentNodes.size() == 3;
     }
 
     /**

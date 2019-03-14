@@ -129,4 +129,41 @@
 		<expected-problems>0</expected-problems>
 		<code-ref id="caller-is-constant" />
 	</test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="string-literal-equals-constant">
+		<![CDATA[
+	public class Test {
+		private static final String VERSION = System.getProperty("v");
+		public boolean isJava6(){
+			return "1.6".equals(VERSION);
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>string literal equals constant</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="string-literal-equals-constant" />
+	</test-code>
+
+	<!-- ====================================================================== -->
+
+	<code-fragment id="string-literal-equals-literal">
+		<![CDATA[
+	public class Test {
+		public boolean isJava6(){
+			return "1.6".equals("1.6");
+		}
+	}
+		]]>
+	</code-fragment>
+	<test-code>
+		<description>string literal equals string literal</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="string-literal-equals-literal" />
+	</test-code>
+
+	<!-- ====================================================================== -->
 </test-data>

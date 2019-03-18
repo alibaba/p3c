@@ -13,9 +13,9 @@
     </code-fragment>
     <test-code>
         <description>Variable name should be lowerCamelCase</description>
-        <expected-problems>1</expected-problems>
+        <expected-problems>2</expected-problems>
         <code-ref id="LowerCamelCaseVariableNamingRuleTest" />
-        <expected-linenumbers>3</expected-linenumbers>
+        <expected-linenumbers>2,3</expected-linenumbers>
     </test-code>
 
     <code-fragment id="LowerCamelCaseVariableNamingRuleTest1">
@@ -116,12 +116,12 @@ public interface BizConstants {
      public class MockTest{
         @Mock
         void $clinit(){}
-     }   
+     }
     ]]>
     </code-fragment>
     <test-code>
         <description>Variable name should be lowerCamelCase7</description>
-        <expected-problems>0</expected-problems>
+        <expected-problems>1</expected-problems>
         <code-ref id="LowerCamelCaseVariableNamingRuleTest7" />
     </test-code>
 

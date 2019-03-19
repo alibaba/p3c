@@ -98,7 +98,7 @@
         <version>3.8</version>
         <configuration>
           <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
-          <targetJdk>1.8</targetJdk>
+          <targetJdk>${maven.compiler.target}</targetJdk>
           <printFailingErrors>true</printFailingErrors>
           <rulesets>
             <ruleset>rulesets/java/ali-comment.xml</ruleset>

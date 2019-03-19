@@ -21,7 +21,7 @@ compile 'com.alibaba.p3c:p3c-pmd:1.3.6'
 
 ## <font color="green">Rules</font>
 
-P3C-PMD implements 49 rules involved in *Alibaba Java Coding Guidelines*, based on PMD ([https://github.com/pmd/pmd](https://github.com/pmd/pmd)).
+P3C-PMD implements 54 rules involved in *Alibaba Java Coding Guidelines*, based on PMD ([https://github.com/pmd/pmd](https://github.com/pmd/pmd)).
 
 ### <font color="green">Concurrency</font>
 * 1 ``[Mandatory]`` Customized ThreadLocal variables must be recycled, especially when using thread pools in which threads are often reused. Otherwise, it may affect subsequent business logic and cause unexpected problems such as memory leak.

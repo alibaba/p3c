@@ -13,9 +13,9 @@
     </code-fragment>
     <test-code>
         <description>Variable name should be lowerCamelCase</description>
-        <expected-problems>1</expected-problems>
+        <expected-problems>2</expected-problems>
         <code-ref id="LowerCamelCaseVariableNamingRuleTest" />
-        <expected-linenumbers>3</expected-linenumbers>
+        <expected-linenumbers>2,3</expected-linenumbers>
     </test-code>
 
     <code-fragment id="LowerCamelCaseVariableNamingRuleTest1">
@@ -116,7 +116,7 @@ public interface BizConstants {
      public class MockTest{
         @Mock
         void $clinit(){}
-     }   
+     }
     ]]>
     </code-fragment>
     <test-code>
@@ -194,6 +194,22 @@ public interface BizConstants {
         <expected-problems>4</expected-problems>
         <code-ref id="LowerCamelCaseVariableNamingRuleTest10" />
     </test-code>
+
+    <code-fragment id="VariableNamingStartOrEndWithDollarAndUnderLine">
+        <![CDATA[
+        public class Example {
+            public void test(){
+                String $myName = "zhangsan";
+                int _myAge = 18;
+                String myHome$ = "beijing";
+                boolean flag_ = true;
+            }
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable Naming Start Or End With Dollar And UnderLine</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="VariableNamingStartOrEndWithDollarAndUnderLine" />
+    </test-code>
 </test-data>
-
-

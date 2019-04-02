@@ -86,8 +86,6 @@ public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
 
     private boolean variableNamingStartOrEndWithDollarAndUnderLine(String variable) {
         return variable.startsWith(StringAndCharConstants.DOLLAR)
-                || variable.startsWith(StringAndCharConstants.UNDERSCORE)
-                || variable.endsWith(StringAndCharConstants.DOLLAR)
-                || variable.endsWith(StringAndCharConstants.UNDERSCORE);
+                || variable.startsWith(StringAndCharConstants.UNDERSCORE);
     }
 }

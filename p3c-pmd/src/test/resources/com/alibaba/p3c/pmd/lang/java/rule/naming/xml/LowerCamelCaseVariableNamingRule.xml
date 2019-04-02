@@ -201,8 +201,6 @@ public interface BizConstants {
             public void test(){
                 String $myName = "zhangsan";
                 int _myAge = 18;
-                String myHome$ = "beijing";
-                boolean flag_ = true;
             }
         }
     ]]>

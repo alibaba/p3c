@@ -157,6 +157,10 @@ public class FixClassTypeResolver extends ClassTypeResolver {
 
     // FUTURE ASTCompilationUnit should not be a TypeNode. Clean this up
     // accordingly.
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Object visit(ASTCompilationUnit node, Object data) {
         String className = null;

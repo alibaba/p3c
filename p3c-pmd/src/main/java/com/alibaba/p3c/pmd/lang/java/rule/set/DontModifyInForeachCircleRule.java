@@ -15,15 +15,14 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.set;
 
-import java.util.List;
-
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTForStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTName;
 import org.jaxen.JaxenException;
+
+import java.util.List;
 
 /**
  * [Mandatory] Do not remove or add elements to a collection in a foreach loop. Please use Iterator to remove an item.
@@ -38,8 +37,7 @@ public class DontModifyInForeachCircleRule extends AbstractAliRule {
     private final static String REMOVE = ".remove";
     private final static String CLEAR = ".clear";
     private final static String XPATH = "//ForStatement/Expression/PrimaryExpression/PrimaryPrefix/Name";
-    private final static String CHILD_XPATH
-        = "Statement/Block/BlockStatement/Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name";
+    private final static String CHILD_XPATH_FORMAT = "Statement//Name[starts-with(@Image,'%s.')]";
 
     @Override
     public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
@@ -57,7 +55,7 @@ public class DontModifyInForeachCircleRule extends AbstractAliRule {
                     continue;
                 }
                 ASTForStatement forStatement = item.getFirstParentOfType(ASTForStatement.class);
-                List<Node> blockNodes = forStatement.findChildNodesWithXPath(CHILD_XPATH);
+                List<Node> blockNodes = forStatement.findChildNodesWithXPath(String.format(CHILD_XPATH_FORMAT, variableName));
                 for (Node blockItem : blockNodes) {
                     if (!(blockItem instanceof ASTName)) {
                         continue;

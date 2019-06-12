@@ -63,7 +63,7 @@
     </change-notes>
     <vendor>alibaba</vendor>
     <version>2.0.0</version>
-    <idea-version since-build="141.0"/>
+    <idea-version since-build="145.0"/>
     <depends optional="true">com.intellij.velocity</depends>
     <depends optional="true" config-file="p3c.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>

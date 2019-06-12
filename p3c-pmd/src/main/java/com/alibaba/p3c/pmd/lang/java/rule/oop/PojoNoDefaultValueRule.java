@@ -19,6 +19,7 @@ import java.util.List;
 
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractPojoRule;
+import com.alibaba.p3c.pmd.lang.java.util.VariableUtils;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -54,7 +55,7 @@ public class PojoNoDefaultValueRule extends AbstractPojoRule {
                 }
                 ViolationUtils.addViolationWithPrecisePosition(this, field, data,
                     I18nResources.getMessage("java.oop.PojoNoDefaultValueRule.violation.msg",
-                        field.getVariableName()));
+                        VariableUtils.getVariableName(field)));
             }
         } catch (JaxenException e) {
             throw new RuntimeException(e.getMessage(), e);

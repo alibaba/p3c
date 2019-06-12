@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
+    <code-fragment id="bigdecimal-initialization">
+        <![CDATA[
+    public class Foo {
+        public void bar() {
+            BigDecimal a = new BigDecimal(0.1);
+            BigDecimal b = new BigDecimal("0.1");
+            BigDecimal c = BigDecimal.valueOf(0.1);
+
+            Double d = Double.parseDouble("0.1");
+            BigDecimal e = new BigDecimal(d);
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>BigDicimal initializer allocation</description>
+        <expected-problems>2</expected-problems>
+        <expected-linenumbers>3,8</expected-linenumbers>
+        <code-ref id="bigdecimal-initialization"/>
+    </test-code>
+
+
+    <!-- ====================================================================== -->
+</test-data>

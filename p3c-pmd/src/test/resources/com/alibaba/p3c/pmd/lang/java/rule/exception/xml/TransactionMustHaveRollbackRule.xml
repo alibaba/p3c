@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
     <test-code>
         <description>TransactionMustHaveRollbackRule</description>
         <expected-problems>1</expected-problems>
@@ -20,6 +22,33 @@ public class TestTransactional {
     private ResourceTransactionManager manager;
 
     @Transactional
+    @Override
+    public void test(){
+        //manager.rollback(new SimpleTransactionStatus());
+    }
+}
+        ]]></code>
+    </test-code>
+
+    <test-code>
+        <description>readOnly</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+package com.alibaba.p3c.example.concurrent;
+
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.ResourceTransactionManager;
+import org.springframework.transaction.support.SimpleTransactionStatus;
+
+/**
+ * @author caikang
+ * @date 2017/03/29
+ */
+public class TestTransactional {
+    private ResourceTransactionManager manager;
+
+    @Transactional(readOnly = true)
     @Override
     public void test(){
         //manager.rollback(new SimpleTransactionStatus());

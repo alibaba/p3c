@@ -162,11 +162,11 @@
     </entry>
     <entry key="java.concurrent.ThreadPoolCreationRule.rule.desc">
         <![CDATA[
-说明：Executors各个方法的弊端：
-1）newFixedThreadPool和newSingleThreadExecutor:
-  主要问题是堆积的请求处理队列可能会耗费非常大的内存，甚至OOM。
-2）newCachedThreadPool和newScheduledThreadPool:
-  主要问题是线程数最大数是Integer.MAX_VALUE，可能会创建数量非常多的线程，甚至OOM。]]>
+说明：Executors返回的线程池对象的弊端如下：
+1）FixedThreadPool和SingleThreadPool:
+  允许的请求队列长度为Integer.MAX_VALUE，可能会堆积大量的请求，从而导致OOM。
+2）CachedThreadPool:
+  允许的创建线程数量为Integer.MAX_VALUE，可能会创建大量的线程，从而导致OOM。]]>
     </entry>
 
     <entry key="java.concurrent.ThreadShouldSetNameRule.violation.msg.ThreadPoolExecutor">
@@ -275,7 +275,6 @@
     </entry>
 
 
-
     <!-- oop -->
     <entry key="java.oop.EqualsAvoidNullRule.violation.msg">
         <![CDATA[【%s】应该作为equals的参数，而不是调用方]]>
@@ -337,6 +336,16 @@
     </entry>
     <entry key="java.oop.StringConcatRule.rule.msg.desc">
         <![CDATA[说明：反编译出的字节码文件显示每次循环都会new出一个StringBuilder对象，然后进行append操作，最后通过toString方法返回String对象，造成内存资源浪费。]]>
+    </entry>
+
+    <entry key="java.oop.BigDecimalAvoidDoubleConstructorRule.violation.msg">
+        <![CDATA[使用了new BigDecimal(double)构造函数]]>
+    </entry>
+    <entry key="java.oop.BigDecimalAvoidDoubleConstructorRule.rule.msg">
+        <![CDATA[禁止使用构造方法BigDecimal(double)的方式把double值转化为BigDecimal对象]]>
+    </entry>
+    <entry key="java.oop.BigDecimalAvoidDoubleConstructorRule.rule.msg.desc">
+        <![CDATA[说明：BigDecimal(double)存在精度损失风险，在精确计算或值比较的场景中可能会导致业务逻辑异常。]]>
     </entry>
 
     <!-- comment -->
@@ -477,7 +486,7 @@
 
     <entry key="java.other.MethodTooLongRule.rule.desc">
         <![CDATA[
-说明：包括方法签名、结束右大括号、方法内代码、注释、空行、回车及任何不可见字符的总行数不超过80行。
+说明：除注释之外的方法签名、结束右大括号、方法内代码、空行、回车及任何不可见字符的总行数不超过80行。
         ]]>
     </entry>
 
@@ -505,5 +514,36 @@
         <![CDATA[变量【%s】使用的时候应在$后加感叹号]]>
     </entry>
 
+    <entry key="java.other.AvoidDoubleOrFloatEqualCompareRule.rule.msg">
+        <![CDATA[浮点数之间的等值判断，基本数据类型不能用==来比较，包装数据类型不能用equals来判断]]>
+    </entry>
+    <entry key="java.other.AvoidDoubleOrFloatEqualCompareRule.rule.desc">
+        <![CDATA[
+浮点数采用“尾数+阶码”的编码方式，类似于科学计数法的“有效数字+指数”的表示方式。二进制无法精确表示大部分的十进制小数，具体原理参考《码出高效》
+改进方式:
+1）指定一个误差范围，两个浮点数的差值在此范围之内，则认为是相等的
+    float a = 1.0f - 0.9f;
+    float b = 0.9f - 0.8f;
+    float diff = 1e-6f;
+
+    if (Math.abs(a - b) < diff) {
+        System.out.println("true");
+    }
+2) 使用BigDecimal来定义值，再进行浮点数的运算操作
+    BigDecimal a = new BigDecimal("1.0");
+    BigDecimal b = new BigDecimal("0.9");
+    BigDecimal c = new BigDecimal("0.8");
+
+    BigDecimal x = a.subtract(b);
+    BigDecimal y = b.subtract(c);
+
+    if (x.equals(y)) {
+        System.out.println("true");
+    }
+        ]]>
+    </entry>
+    <entry key="java.other.AvoidDoubleOrFloatEqualCompareRule.rule.msg">
+        <![CDATA[浮点数之间的等值判断，基本数据类型不能用==来比较，包装数据类型不能用equals来判断。]]>
+    </entry>
 
 </properties>

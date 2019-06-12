@@ -88,13 +88,13 @@ class AliDeprecationInspection : DeprecationInspection, AliBaseInspection {
             holder.manager, holder.file, onTheFly) {
 
         override fun registerProblem(psiElement: PsiElement,
-                @Nls(capitalization = Nls.Capitalization.Sentence) descriptionTemplate: String,
+                @Nls descriptionTemplate: String,
                 fixes: Array<LocalQuickFix>?) {
             holder.registerProblem(psiElement, getMessage(descriptionTemplate), *(fixes ?: emptyArray()))
         }
 
         override fun registerProblem(psiElement: PsiElement,
-                @Nls(capitalization = Nls.Capitalization.Sentence) descriptionTemplate: String,
+                @Nls descriptionTemplate: String,
                 highlightType: ProblemHighlightType, fixes: Array<LocalQuickFix>?) {
             holder.registerProblem(psiElement, getMessage(descriptionTemplate), highlightType, *(fixes ?: emptyArray()))
         }

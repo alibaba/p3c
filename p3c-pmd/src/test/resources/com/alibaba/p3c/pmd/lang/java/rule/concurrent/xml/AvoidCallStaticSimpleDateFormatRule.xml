@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
     <test-code>
         <description>AvoidCallStaticSimpleDateFormatRule</description>
         <expected-problems>4</expected-problems>
-        <expected-linenumbers>30,22,18,45</expected-linenumbers>
+        <expected-linenumbers>18,22,30,45</expected-linenumbers>
         <code><![CDATA[
 package com.alibaba.idea.pmd.rule.calendar;
 

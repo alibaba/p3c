@@ -21,7 +21,7 @@ import com.alibaba.p3c.idea.ep.InspectionActionExtensionPoint
 import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.p3c.idea.inspection.AliBaseInspection
 import com.alibaba.p3c.idea.util.NumberConstants
-import com.beust.jcommander.internal.Lists
+import com.google.common.collect.Lists
 import com.intellij.analysis.AnalysisScope
 import com.intellij.analysis.AnalysisUIOptions
 import com.intellij.analysis.BaseAnalysisActionDialog

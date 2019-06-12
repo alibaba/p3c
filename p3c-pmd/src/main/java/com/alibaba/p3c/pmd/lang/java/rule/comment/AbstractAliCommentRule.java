@@ -18,7 +18,7 @@ package com.alibaba.p3c.pmd.lang.java.rule.comment;
 import com.alibaba.p3c.pmd.I18nResources;
 
 import net.sourceforge.pmd.lang.ast.Node;
-import net.sourceforge.pmd.lang.java.rule.comments.AbstractCommentRule;
+import net.sourceforge.pmd.lang.java.rule.documentation.AbstractCommentRule;
 
 /**
  * @author caikang

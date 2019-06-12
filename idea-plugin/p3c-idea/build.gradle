@@ -1,5 +1,5 @@
 plugins {
-    id "org.jetbrains.intellij" version '0.2.17'
+    id "org.jetbrains.intellij" version '0.4.5'
 }
 apply plugin: 'kotlin'
 apply plugin: 'idea'
@@ -16,7 +16,6 @@ version plugin_version
 
 dependencies {
     compile group: 'org.freemarker', name: 'freemarker', version: '2.3.25-incubating'
-    //compile 'com.alibaba.p3c.idea:p3c-common:1.0.0'
     compile project(':p3c-common')
     compile group: 'org.javassist', name: 'javassist', version: '3.21.0-GA'
 }

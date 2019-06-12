@@ -67,7 +67,7 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
     override fun buildFix(vararg infos: Any): InspectionGadgetsFix? {
         val fix = super.buildFix(*infos) ?: return null
         return DecorateInspectionGadgetsFix(fix,
-                P3cBundle.getMessage("com.alibaba.p3c.idea.quickfix.standalone.AliMissingOverrideAnnotationInspection"))
+            P3cBundle.getMessage("com.alibaba.p3c.idea.quickfix.standalone.AliMissingOverrideAnnotationInspection"))
     }
 
     override fun manualBuildFix(psiElement: PsiElement, isOnTheFly: Boolean): LocalQuickFix? = buildFix(psiElement)

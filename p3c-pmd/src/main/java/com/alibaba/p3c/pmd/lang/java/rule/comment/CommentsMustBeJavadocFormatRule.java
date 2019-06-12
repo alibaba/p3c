@@ -25,6 +25,7 @@ import java.util.TreeMap;
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.util.NodeSortUtils;
 
+import com.alibaba.p3c.pmd.lang.java.util.VariableUtils;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTAnnotation;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceBodyDeclaration;
@@ -56,76 +57,53 @@ public class CommentsMustBeJavadocFormatRule extends AbstractAliCommentRule {
 
     @Override
     public Object visit(final ASTClassOrInterfaceDeclaration decl, Object data) {
-        checkComment(decl, data, new MessageMaker() {
-            @Override
-            public String make() {
-                return I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".class",
-                    decl.getImage());
-            }
-        });
+        checkComment(decl, data, () -> I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".class",
+            decl.getImage()));
         return super.visit(decl, data);
     }
 
     @Override
     public Object visit(final ASTConstructorDeclaration decl, Object data) {
-        checkComment(decl, data, new MessageMaker() {
-            @Override
-            public String make() {
-                String constructorName = ((Token)decl.jjtGetFirstToken()).image;
-                if (decl.getParameters().getParameterCount() == 0) {
-                    return I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".constructor.default",
-                        constructorName);
-                }
-                List<ASTFormalParameter> formalParameters = decl.getParameters()
-                    .findChildrenOfType(ASTFormalParameter.class);
-                List<String> strings = new ArrayList<>(formalParameters.size());
-
-                for (ASTFormalParameter formalParameter : formalParameters) {
-                    strings.add(formalParameter.jjtGetFirstToken().toString() + " "
-                        + formalParameter.jjtGetLastToken().toString());
-                }
-                return I18nResources
-                    .getMessage(MESSAGE_KEY_PREFIX + ".constructor.parameter",
-                        constructorName,
-                        StringUtils.join(strings, ","));
+        checkComment(decl, data, () -> {
+            String constructorName = ((Token)decl.jjtGetFirstToken()).image;
+            if (decl.getFormalParameters().getParameterCount() == 0) {
+                return I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".constructor.default",
+                    constructorName);
             }
+            List<ASTFormalParameter> formalParameters = decl.getFormalParameters()
+                .findChildrenOfType(ASTFormalParameter.class);
+            List<String> strings = new ArrayList<>(formalParameters.size());
+
+            for (ASTFormalParameter formalParameter : formalParameters) {
+                strings.add(formalParameter.jjtGetFirstToken().toString() + " "
+                    + formalParameter.jjtGetLastToken().toString());
+            }
+            return I18nResources
+                .getMessage(MESSAGE_KEY_PREFIX + ".constructor.parameter",
+                    constructorName,
+                    StringUtils.join(strings, ","));
         });
         return super.visit(decl, data);
     }
 
     @Override
     public Object visit(final ASTMethodDeclaration decl, Object data) {
-        checkComment(decl, data, new MessageMaker() {
-            @Override
-            public String make() {
-                return I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".method",
-                    decl.getMethodName());
-            }
-        });
+        checkComment(decl, data, () -> I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".method",
+            decl.getMethodName()));
         return super.visit(decl, data);
     }
 
     @Override
     public Object visit(final ASTFieldDeclaration decl, Object data) {
-        checkComment(decl, data, new MessageMaker() {
-            @Override
-            public String make() {
-                return I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".field",
-                    decl.getVariableName());
-            }
-        });
+        checkComment(decl, data, () -> I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".field",
+            VariableUtils.getVariableName(decl)));
         return super.visit(decl, data);
     }
 
     @Override
     public Object visit(final ASTEnumDeclaration decl, Object data) {
-        checkComment(decl, data, new MessageMaker() {
-            @Override
-            public String make() {
-                return I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".enum",
-                    decl.getImage());
-            }
-        });
+        checkComment(decl, data, () -> I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".enum",
+            decl.getImage()));
         return super.visit(decl, data);
     }
 

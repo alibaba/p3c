@@ -19,6 +19,8 @@ import java.util.List;
 
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
+import com.alibaba.p3c.pmd.lang.java.rule.util.NodeUtils;
+import com.alibaba.p3c.pmd.lang.java.util.VariableUtils;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -30,9 +32,9 @@ import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
 import org.jaxen.JaxenException;
 
 /**
- * [Mandatory] Customized ThreadLocal variables must be recycled,
- * especially when using thread pools in which threads are often reused.
- * Otherwise, it may affect subsequent business logic and cause unexpected problems such as memory leak.
+ * [Mandatory] Customized ThreadLocal variables must be recycled, especially when using thread pools in which threads
+ * are often reused. Otherwise, it may affect subsequent business logic and cause unexpected problems such as memory
+ * leak.
  *
  * @author caikang
  * @date 2017/03/29
@@ -52,7 +54,7 @@ public class ThreadLocalShouldRemoveRule extends AbstractAliRule {
             return super.visit(node, data);
         }
         for (ASTFieldDeclaration fieldDeclaration : fieldDeclarations) {
-            if (fieldDeclaration.getType() == ThreadLocal.class) {
+            if (NodeUtils.getNodeType(fieldDeclaration) == ThreadLocal.class) {
                 if (checkThreadLocalWithInitalValue(fieldDeclaration)) { continue; }
                 checkThreadLocal(fieldDeclaration, node, data);
             }
@@ -66,9 +68,11 @@ public class ThreadLocalShouldRemoveRule extends AbstractAliRule {
         if (variableDeclarator == null) {
             return false;
         }
-        ASTMethodDeclarator initialValueMethod = variableDeclarator.getFirstDescendantOfType(ASTMethodDeclarator.class);
-        if (initialValueMethod != null && METHOD_INITIAL_VALUE.equals(initialValueMethod.getImage())) {
-            return true;
+        // ASTClassOrInterfaceBodyDeclaration.isFindBoundary=true，使用getFirstDescendantOfType不能继续向方法内部查询
+        List<ASTMethodDeclarator> astMethodDeclaratorList = variableDeclarator.findDescendantsOfType(
+            ASTMethodDeclarator.class, true);
+        if (!astMethodDeclaratorList.isEmpty()) {
+            return METHOD_INITIAL_VALUE.equals(astMethodDeclaratorList.get(0).getImage());
         }
         ASTName name = variableDeclarator.getFirstDescendantOfType(ASTName.class);
         return name != null && WITH_INITIAL.equals(name.getImage());
@@ -76,12 +80,13 @@ public class ThreadLocalShouldRemoveRule extends AbstractAliRule {
 
     private void checkThreadLocal(ASTFieldDeclaration fieldDeclaration, ASTCompilationUnit node, Object data) {
         try {
+            String variableName = VariableUtils.getVariableName(fieldDeclaration);
             List<Node> nodes = node.findChildNodesWithXPath(String.format(XPATH_TPL,
-                fieldDeclaration.getVariableName()));
+                variableName));
             if (nodes == null || nodes.isEmpty()) {
                 ViolationUtils.addViolationWithPrecisePosition(this, fieldDeclaration, data,
                     I18nResources.getMessage("java.concurrent.ThreadLocalShouldRemoveRule.violation.msg",
-                        fieldDeclaration.getVariableName()));
+                        variableName));
             }
         } catch (JaxenException ignore) {
         }

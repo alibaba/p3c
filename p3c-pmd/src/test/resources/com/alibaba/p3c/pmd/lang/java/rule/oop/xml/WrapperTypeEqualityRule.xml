@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
 	<code-fragment id="wrap-type-not-use-equal">
 		<![CDATA[
@@ -32,8 +34,8 @@
 	    	if (a == Inner.FLAG) {
 	    		// do nothing
 	    	}
-	    	// PMD can not resolve the type of Integer.valueOf("2")
-	    	if (a == Integer.valueOf("2")) {
+	    	// After upgrade pmd version, can resolve
+	    	if (a == Integer.valueOf("2")) { //BAD
 	    		// do nothing
 	    	}
 	    	if (a == new Integer("2")) {	// BAD
@@ -49,8 +51,8 @@
 	</code-fragment>
 	<test-code>
 		<description>compare wrapper type objects without equals</description>
-		<expected-problems>3</expected-problems>
-		<expected-linenumbers>11,23,34</expected-linenumbers>
+		<expected-problems>4</expected-problems>
+		<expected-linenumbers>11,23,31,34</expected-linenumbers>
 		<code-ref id="wrap-type-not-use-equal" />
 	</test-code>
 

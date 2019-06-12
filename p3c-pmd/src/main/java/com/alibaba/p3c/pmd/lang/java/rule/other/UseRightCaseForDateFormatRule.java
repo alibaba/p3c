@@ -1,10 +1,17 @@
 package com.alibaba.p3c.pmd.lang.java.rule.other;
 
+import java.util.List;
+
 import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
 
 import net.sourceforge.pmd.lang.ast.Node;
+import net.sourceforge.pmd.lang.java.ast.ASTAllocationExpression;
+import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType;
 import net.sourceforge.pmd.lang.java.ast.ASTLiteral;
+import net.sourceforge.pmd.lang.java.ast.ASTName;
 import org.apache.commons.lang3.StringUtils;
+import org.jaxen.JaxenException;
 
 /**
  * [Mandatory] When doing date formatting, "y" should be written in lowercase for "year" in a pattern statement.

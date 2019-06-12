@@ -26,4 +26,6 @@ public final class StringAndCharConstants {
     }
 
     public static final char DOT = '.';
+    public static final String DOLLAR = "$";
+    public static final String UNDERSCORE = "_";
 }

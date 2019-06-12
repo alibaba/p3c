@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
 	<code-fragment id="sets-ok"><![CDATA[
-	    public class Foo {   
-            private void method() {  
+	    public class Foo {
+            private void method() {
                List<String> originList = new ArrayList<String>();
                originList.add("22");
-               for (String item : originList) {  
-                    
-               } 
+               for (String item : originList) {
+
+               }
                originList.add("bb");
-             } 
+             }
         }
     ]]>
 	</code-fragment>
@@ -20,18 +22,18 @@
 		<expected-problems>0</expected-problems>
 		<code-ref id="sets-ok" />
 	</test-code>
- 
+
 	<code-fragment id="sets-warn"><![CDATA[
-  	  public class Foo {   
-            private void method(long aLong) {  
+  	  public class Foo {
+            private void method(long aLong) {
                 List<String> originList = new ArrayList<String>();
                 originList.add("22");
-                for (String item : originList) {  
+                for (String item : originList) {
                      originList.add("bb");
                      originList.remove("cc");
                      originList.clear();
-                } 	   
-             } 
+                }
+             }
         }
     ]]>
 	</code-fragment>

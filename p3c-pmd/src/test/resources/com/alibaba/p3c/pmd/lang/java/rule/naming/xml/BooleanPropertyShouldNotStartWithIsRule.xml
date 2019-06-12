@@ -1,4 +1,6 @@
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
     <code-fragment id="boolean-property-in-POJO-class">
         <![CDATA[
   public class BooleanPropertyNamingRuleTestDO{
@@ -15,8 +17,8 @@
     <test-code>
         <description>issuccess should not contain is</description>
         <expected-problems>2</expected-problems>
+        <expected-linenumbers>2,3</expected-linenumbers>
         <code-ref id="boolean-property-in-POJO-class" />
-        <expected-problems>2,3</expected-problems>
     </test-code>
 
 

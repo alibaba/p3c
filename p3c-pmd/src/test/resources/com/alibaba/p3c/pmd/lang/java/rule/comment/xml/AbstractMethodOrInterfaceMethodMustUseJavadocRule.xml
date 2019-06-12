@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 	<code-fragment id="non-abstract-method-in-abstract-class"><![CDATA[
 public abstract class AbstractClassOrInterfaceMethodMustUseJavadoc {
     public String getName(String firstName, String secondName) throws XPathException, IOException {
@@ -40,7 +42,7 @@ public abstract class AbstractClassOrInterfaceMethodMustUseJavadoc {
 			function, return, parameters and exceptions.
 		</description>
 		<expected-problems>6</expected-problems>
-		<expected-linenumbers>4</expected-linenumbers>
+		<expected-linenumbers>4,4,4,4,4,4</expected-linenumbers>
 		<code-ref id="abstract-method-with-part-of-comment-in-abstract-class" />
 	</test-code>
 
@@ -50,10 +52,10 @@ public abstract class AbstractClassOrInterfaceMethodMustUseJavadoc {
      * only function comment.
      */
     public abstract void getFistName();
-    
+
     /**
      * function comment
-     * 
+     *
      * @param firstName first name
      * @param secondName second name
      * @return full name
@@ -115,7 +117,7 @@ public interface AbstractClassOrInterfaceMethodMustUseJavadoc {
 			function, return, parameters and exceptions.
 		</description>
 		<expected-problems>6</expected-problems>
-		<expected-linenumbers>4</expected-linenumbers>
+		<expected-linenumbers>4,4,4,4,4,4</expected-linenumbers>
 		<code-ref id="method-in-interface-with-part-of-comment" />
 	</test-code>
 

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
 	<code-fragment id="sets-CollectionInitShouldAssignCapacityRule-ok"><![CDATA[
-	    public class Foo {   
-	    	Map<String,  String> map = new HashMap<String,  String>(); 
-            private void method(long aLong) {  
+	    public class Foo {
+	    	Map<String,  String> map = new HashMap<String,  String>();
+            private void method(long aLong) {
                Map<String,  String> map2 = new HashMap<String,  String>(16);
                Map<String,  String> map3 = new ConcurrentHashMap<String,  String>(16);
                List<String> originList = new ArrayList<String>(2048);
-            } 
+            }
         }
     ]]>
 	</code-fragment>
@@ -18,13 +20,13 @@
 		<expected-problems>0</expected-problems>
 		<code-ref id="sets-CollectionInitShouldAssignCapacityRule-ok" />
 	</test-code>
- 
+
 	<code-fragment id="sets-CollectionInitShouldAssignCapacityRule-warn"><![CDATA[
-  	  public class Foo {   
-           private void method1() {  
+  	  public class Foo {
+           private void method1() {
 		       Map<String,  String> map = new HashMap<String,  String>();
 		       Map<String,  String> map3 = new ConcurrentHashMap<String,  String>();
-           }  
+           }
       }
     ]]>
 	</code-fragment>

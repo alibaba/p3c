@@ -20,6 +20,7 @@ import java.util.concurrent.ThreadFactory;
 
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
 
+import com.alibaba.p3c.pmd.lang.java.rule.util.NodeUtils;
 import net.sourceforge.pmd.lang.java.ast.ASTAllocationExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTBlockStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
@@ -68,12 +69,12 @@ public class AvoidManuallyCreateThreadRule extends AbstractAliRule {
         }
         ASTFieldDeclaration fieldDeclaration = node.getFirstParentOfType(ASTFieldDeclaration.class);
         //field declaration with thread allocated
-        if (fieldDeclaration != null && fieldDeclaration.getType() == Thread.class) {
+        if (fieldDeclaration != null && NodeUtils.getNodeType(fieldDeclaration) == Thread.class) {
             return addViolationAndReturn(node, data);
         }
         //Declare thread factory field use lambda
         if (node.getDataFlowNode() == null && node.getFirstParentOfType(ASTLambdaExpression.class) != null) {
-            if (fieldDeclaration == null || fieldDeclaration.getType() != ThreadFactory.class) {
+            if (fieldDeclaration == null || NodeUtils.getNodeType(fieldDeclaration) != ThreadFactory.class) {
                 return addViolationAndReturn(node, data);
             }
             return super.visit(node, data);

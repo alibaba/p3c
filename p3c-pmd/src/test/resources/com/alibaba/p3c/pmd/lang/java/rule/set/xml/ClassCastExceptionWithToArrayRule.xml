@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
 	<code-fragment id="sets-ClassCastExceptionWithToArray-ok"><![CDATA[
-	    public class Foo {   
-            private void method(long aLong) {  
+	    public class Foo {
+            private void method(long aLong) {
               Integer[] b = (Integer [])c.toArray(new Integer[c.size()]);
-             } 
+             }
         }
     ]]>
 	</code-fragment>
@@ -15,12 +17,12 @@
 		<expected-problems>0</expected-problems>
 		<code-ref id="sets-ClassCastExceptionWithToArray-ok" />
 	</test-code>
- 
+
 	<code-fragment id="sets-ClassCastExceptionWithToArray-warn"><![CDATA[
-  	  public class Foo {   
-            private void method(long aLong) { 
-              Integer[] a = (Integer [])c.toArray(); 
-             } 
+  	  public class Foo {
+            private void method(long aLong) {
+              Integer[] a = (Integer [])c.toArray();
+             }
         }
     ]]>
 	</code-fragment>

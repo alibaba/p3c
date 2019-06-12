@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
 	<code-fragment id="pojo-field-has-primitive-type">
 		<![CDATA[
@@ -26,9 +28,9 @@
 		]]>
 	</code-fragment>
 	<test-code>
-		<description>POJO has primitive type fileds</description>
+		<description>POJO has primitive type fields</description>
 		<expected-problems>3</expected-problems>
-		<expected-linenumbers>14,4,5</expected-linenumbers>
+		<expected-linenumbers>4,5,14</expected-linenumbers>
 		<code-ref id="pojo-field-has-primitive-type" />
 	</test-code>
 

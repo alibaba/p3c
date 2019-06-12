@@ -20,7 +20,7 @@ import org.junit.Test;
 
 /**
  * Test for other java rules.
- * 
+ *
  * @author keriezhang
  * @date 2017/06/18
  *
@@ -37,12 +37,10 @@ public class OtherRulesTest extends SimpleAggregatorTst {
         addRule(RULESET, "AvoidMissUseOfMathRandomRule");
         addRule(RULESET, "MethodTooLongRule");
         addRule(RULESET,"UseRightCaseForDateFormatRule");
+        addRule(RULESET,"AvoidDoubleOrFloatEqualCompareRule");
     }
 
-    @Test
-    public void testUseRightCaseForDateFormatRule() {
-        runTests(findRule(RULESET, "UseRightCaseForDateFormatRule"));
-    }
+
 
 
 }

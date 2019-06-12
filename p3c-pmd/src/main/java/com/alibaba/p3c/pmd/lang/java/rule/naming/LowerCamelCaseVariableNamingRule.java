@@ -15,10 +15,9 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.naming;
 
-import java.util.regex.Pattern;
-
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
+import com.alibaba.p3c.pmd.lang.java.util.StringAndCharConstants;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -27,6 +26,8 @@ import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclarator;
 import net.sourceforge.pmd.lang.java.ast.ASTTypeDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
+
+import java.util.regex.Pattern;
 
 /**
  * [Mandatory] Method names, parameter names, member variable names, and local variable names should be written in
@@ -38,10 +39,14 @@ import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
 public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
 
     private static final String MESSAGE_KEY_PREFIX = "java.naming.LowerCamelCaseVariableNamingRule.violation.msg";
-    private Pattern pattern = Pattern.compile("^[a-z|$][a-z0-9]*([A-Z][a-z0-9]*)*(DO|DTO|VO|DAO)?$");
+    private Pattern pattern = Pattern.compile("^[a-z][a-z0-9]*([A-Z][a-z0-9]+)*(DO|DTO|VO|DAO)?$");
 
     @Override
     public Object visit(final ASTVariableDeclaratorId node, Object data) {
+        //避免与 AvoidStartWithDollarAndUnderLineNamingRule 重复判断(例: $myTest)
+        if (variableNamingStartOrEndWithDollarAndUnderLine(node.getImage())) {
+            return super.visit(node, data);
+        }
         // Constant named does not apply to this rule
         ASTTypeDeclaration typeDeclaration = node.getFirstParentOfType(ASTTypeDeclaration.class);
         Node jjtGetChild = typeDeclaration.jjtGetChild(0);
@@ -65,11 +70,12 @@ public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
     }
 
     @Override
-
     public Object visit(ASTMethodDeclarator node, Object data) {
-        if (!(pattern.matcher(node.getImage()).matches())) {
-            ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-                I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".method", node.getImage()));
+        if (!variableNamingStartOrEndWithDollarAndUnderLine(node.getImage())) {
+            if (!(pattern.matcher(node.getImage()).matches())) {
+                ViolationUtils.addViolationWithPrecisePosition(this, node, data,
+                    I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".method", node.getImage()));
+            }
         }
         return super.visit(node, data);
     }
@@ -78,5 +84,10 @@ public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
     public Object visit(ASTAnnotationTypeDeclaration node, Object data) {
         //对所有注解内的内容不做检查
         return null;
+    }
+
+    private boolean variableNamingStartOrEndWithDollarAndUnderLine(String variable) {
+        return variable.startsWith(StringAndCharConstants.DOLLAR)
+            || variable.startsWith(StringAndCharConstants.UNDERSCORE);
     }
 }

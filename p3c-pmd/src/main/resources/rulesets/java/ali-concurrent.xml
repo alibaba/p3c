@@ -3,6 +3,7 @@
          xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+    <description>AlibabaJavaConcurrent</description>
 
     <rule name="ThreadPoolCreationRule"
           language="java"
@@ -116,10 +117,8 @@ Positive example 3：
         <example>
             <![CDATA[
     public class TimerTaskThread extends Thread {
-        public TimerTaskThread() {
-            super.setName("TimerTaskThread");
-            // do something
-        }
+        public TimerTaskThread(){
+        super.setName("TimerTaskThread"); …
     }
        ]]>
         </example>
@@ -136,9 +135,9 @@ Positive example 3：
             <![CDATA[
 Positive example 1：
     private static final String FORMAT = "yyyy-MM-dd HH:mm:ss";
-    public String getFormat(Date date) {
+    public String getFormat(Date date){
         SimpleDateFormat dateFormat = new SimpleDateFormat(FORMAT);
-        return dateFormat.format(date);
+        return sdf.format(date);
     }
         ]]>
         </example>
@@ -146,11 +145,10 @@ Positive example 1：
             <![CDATA[
 Positive example 2：
     private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    public void getFormat() {
-        synchronized(SIMPLE_DATE_FORMAT) {
-            SIMPLE_DATE_FORMAT.format(new Date());
-            // do something
-        }
+    public void getFormat(){
+        synchronized (sdf){
+        sdf.format(new Date());
+        ….;
     }
         ]]>
         </example>

@@ -24,8 +24,8 @@ import net.sourceforge.pmd.lang.java.ast.ASTStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTWhileStatement;
 
 /**
- * [Mandatory] Braces are used with if, else, for, do and while statements, even if the body contains only
- * a single statement. Avoid using the following example:
+ * [Mandatory] Braces are used with if, else, for, do and while statements, even if the body contains only a single
+ * statement. Avoid using the following example:
  * <pre>
  * if (condition) statements;
  * </pre>
@@ -49,7 +49,7 @@ public class NeedBraceRule extends AbstractAliRule {
             // IfStatement with else have 2 expression blocks, should never throws NPE
             ASTStatement elseStms = node.findChildrenOfType(ASTStatement.class).get(1);
 
-            if (!elseStms.hasDecendantOfAnyType(ASTBlock.class, ASTIfStatement.class)) {
+            if (!elseStms.hasDescendantOfAnyType(ASTBlock.class, ASTIfStatement.class)) {
                 addViolationWithMessage(data, elseStms, MESSAGE_KEY, new Object[] {"else"});
             }
         }

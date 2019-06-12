@@ -39,6 +39,8 @@ public class TransactionMustHaveRollbackRule extends AbstractAliRule {
         + TRANSACTIONAL_ANNOTATION_NAME;
     private static final String ROLLBACK_PREFIX = "rollback";
 
+    private static final String READ_ONLY = "readOnly";
+
     private static final String PROPAGATION_NOT_SUPPORTED = "Propagation.NOT_SUPPORTED";
 
     private static final String XPATH_FOR_ROLLBACK = "//StatementExpression/PrimaryExpression"
@@ -84,10 +86,11 @@ public class TransactionMustHaveRollbackRule extends AbstractAliRule {
 
     private boolean shouldSkip(List<ASTMemberValuePair> memberValuePairList) {
         for (ASTMemberValuePair pair : memberValuePairList) {
-            if (pair.getImage() == null) {
+            String image = pair.getImage();
+            if (image == null) {
                 continue;
             }
-            if (pair.getImage().startsWith(ROLLBACK_PREFIX)) {
+            if (image.startsWith(ROLLBACK_PREFIX) || image.startsWith(READ_ONLY)) {
                 return true;
             }
             ASTName name = pair.getFirstDescendantOfType(ASTName.class);

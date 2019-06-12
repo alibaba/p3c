@@ -16,7 +16,6 @@
 package com.alibaba.p3c.idea.quickfix
 
 import com.alibaba.p3c.idea.i18n.P3cBundle
-import com.google.common.base.Joiner
 import com.google.common.base.Splitter
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
@@ -46,16 +45,13 @@ object LowerCamelCaseVariableNamingQuickFix : AliQuickFix {
     }
 
     private fun toLowerCamelCase(identifier: String): String {
-        val list = Splitter.onPattern("[^a-z0-9A-Z]+").trimResults().omitEmptyStrings().splitToList(identifier)
+        val list = Splitter.onPattern("[^a-z0-9A-Z]+").trimResults()
+            .omitEmptyStrings().split(identifier).toList()
         val result = list.mapIndexed { i, s ->
-            if (i == 0) {
-                s.toLowerCase()
-            } else {
-                val charArray = s.toLowerCase().toCharArray()
-                charArray[0] = charArray[0].toUpperCase()
-                String(charArray)
-            }
+            val charArray = s.toCharArray()
+            charArray[0] = if (i == 0) charArray[0].toLowerCase() else charArray[0].toUpperCase()
+            String(charArray)
         }
-        return Joiner.on("").join(result)
+        return result.joinToString("")
     }
 }

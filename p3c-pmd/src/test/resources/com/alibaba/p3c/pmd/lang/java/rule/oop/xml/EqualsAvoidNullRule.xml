@@ -1,169 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
-	<code-fragment id="argument-is-string-literal">
-		<![CDATA[
-	public class Foo {
-		private String alias;
+    <code-fragment id="argument-is-string-literal">
+        <![CDATA[
+    public class Foo {
+        private String alias;
 
-		public void bar() {
-			String name;
-			if (name.equals("tom")) {	// BAD
-				return;
-			};
+        public void bar() {
+            String name;
+            if (name.equals("tom")) {    // BAD
+                return;
+            };
 
-			if (name.toString().equals("tom")) { // BAD
-			    return;
-			}
+            if (name.toString().equals("tom")) { // BAD
+                return;
+            }
 
-			if (this.alias.equals("tom")) { // BAD
-			    return;
-			}
+            if (this.alias.equals("tom")) { // BAD
+                return;
+            }
 
-			Integer a;
-			if (a.equals(3)) { // OK, literal number has no equals method
-			    return;
-			}
-		}
-	}
-		]]>
-	</code-fragment>
-	<test-code>
-		<description>argument of equals is string literal</description>
-		<expected-problems>3</expected-problems>
-		<expected-linenumbers>6,10,14</expected-linenumbers>
-		<code-ref id="argument-is-string-literal" />
-	</test-code>
+            Integer a;
+            if (a.equals(3)) { // OK, literal number has no equals method
+                return;
+            }
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>argument of equals is string literal</description>
+        <expected-problems>3</expected-problems>
+        <expected-linenumbers>6,10,14</expected-linenumbers>
+        <code-ref id="argument-is-string-literal"/>
+    </test-code>
 
-	<!-- ====================================================================== -->
+    <!-- ====================================================================== -->
 
-	<code-fragment id="argument-is-constant">
-		<![CDATA[
-	public class Foo {
-		private static final String TOM = "tom";
+    <code-fragment id="argument-is-constant">
+        <![CDATA[
+    public class Foo {
+        private static final String TOM = "tom";
 
-		public void bar() {
-			String label;
-			//"abc".equals(label);			// OK
-			//"abc".equals(label.toString()); // OK
-			if (label.equals(TOM)) {		// BAD
-				return;
-			};
-		}
-	}
-		]]>
-	</code-fragment>
-	<test-code>
-		<description>argument of equals is constant</description>
-		<expected-problems>1</expected-problems>
-		<expected-linenumbers>8</expected-linenumbers>
-		<code-ref id="argument-is-constant" />
-	</test-code>
+        public void bar() {
+            String label;
+            //"abc".equals(label);            // OK
+            //"abc".equals(label.toString()); // OK
+            if (label.equals(TOM)) {        // BAD
+                return;
+            };
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>argument of equals is constant</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>8</expected-linenumbers>
+        <code-ref id="argument-is-constant"/>
+    </test-code>
 
-	<!-- ====================================================================== -->
+    <!-- ====================================================================== -->
 
-	<code-fragment id="both-object-equals">
-		<![CDATA[
-	public class Foo {
-		public void bar() {
-			String name;
-			String label;
-			if (name.equals(label)) {	// OK
-				return;
-			};
-		}
-	}
-		]]>
-	</code-fragment>
-	<test-code>
-		<description>non literal with equals</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="both-object-equals" />
-	</test-code>
+    <code-fragment id="both-object-equals">
+        <![CDATA[
+    public class Foo {
+        public void bar() {
+            String name;
+            String label;
+            if (name.equals(label)) {    // OK
+                return;
+            };
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>non literal with equals</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="both-object-equals"/>
+    </test-code>
 
-	<!-- ====================================================================== -->
+    <!-- ====================================================================== -->
 
-	<code-fragment id="equals-in-nested-class">
-		<![CDATA[
-	public class Foo {
-		public static class Inner1 {
-			public void bar() {
-				String name;
-				if (name.equals("")) {
-					return;
-				};
-			}
-		}
-		public static class Inner2 {
-			public void bar() {
-				String name;
-				if (name.equals("")) {
-					return;
-				};
-			}
-		}
-	}
-		]]>
-	</code-fragment>
-	<test-code>
-		<description>multiple nested class</description>
-		<expected-problems>2</expected-problems>
-		<code-ref id="equals-in-nested-class" />
-	</test-code>
+    <code-fragment id="equals-in-nested-class">
+        <![CDATA[
+    public class Foo {
+        public static class Inner1 {
+            public void bar() {
+                String name;
+                if (name.equals("")) {
+                    return;
+                };
+            }
+        }
+        public static class Inner2 {
+            public void bar() {
+                String name;
+                if (name.equals("")) {
+                    return;
+                };
+            }
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>multiple nested class</description>
+        <expected-problems>2</expected-problems>
+        <code-ref id="equals-in-nested-class"/>
+    </test-code>
 
-	<!-- ====================================================================== -->
+    <!-- ====================================================================== -->
 
-	<code-fragment id="caller-is-constant">
-		<![CDATA[
-	public class Foo {
-		private static final ThreadLocal<Boolean> LOCAL_TEST_FLAG = new ThreadLocal<Boolean>();
+    <code-fragment id="caller-is-constant">
+        <![CDATA[
+    public class Foo {
+        private static final ThreadLocal<Boolean> LOCAL_TEST_FLAG = new ThreadLocal<Boolean>();
 
-		public static boolean isLoadTestFlag() {
-			return Boolean.TRUE.equals(LOCAL_TEST_FLAG.get());
-		}
-	}
-		]]>
-	</code-fragment>
-	<test-code>
-		<description>caller of equals is constant</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="caller-is-constant" />
-	</test-code>
+        public static boolean isLoadTestFlag() {
+            return Boolean.TRUE.equals(LOCAL_TEST_FLAG.get());
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>caller of equals is constant</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="caller-is-constant"/>
+    </test-code>
 
-	<!-- ====================================================================== -->
+    <!-- ====================================================================== -->
 
-	<code-fragment id="string-literal-equals-constant">
-		<![CDATA[
-	public class Test {
-		private static final String VERSION = System.getProperty("v");
-		public boolean isJava6(){
-			return "1.6".equals(VERSION);
-		}
-	}
-		]]>
-	</code-fragment>
-	<test-code>
-		<description>string literal equals constant</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="string-literal-equals-constant" />
-	</test-code>
+    <code-fragment id="string-literal-equals-constant">
+        <![CDATA[
+    public class Test {
+        private static final String VERSION = System.getProperty("v");
+        public boolean isJava6(){
+            return "1.6".equals(VERSION);
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>string literal equals constant</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="string-literal-equals-constant"/>
+    </test-code>
 
-	<!-- ====================================================================== -->
+    <!-- ====================================================================== -->
 
-	<code-fragment id="string-literal-equals-literal">
-		<![CDATA[
-	public class Test {
-		public boolean isJava6(){
-			return "1.6".equals("1.6");
-		}
-	}
-		]]>
-	</code-fragment>
-	<test-code>
-		<description>string literal equals string literal</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="string-literal-equals-literal" />
-	</test-code>
+    <code-fragment id="string-literal-equals-literal">
+        <![CDATA[
+    public class Test {
+        public boolean isJava6(){
+            return "1.6".equals("1.6");
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>string literal equals string literal</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="string-literal-equals-literal"/>
+    </test-code>
 
-	<!-- ====================================================================== -->
+    <!-- ====================================================================== -->
 </test-data>

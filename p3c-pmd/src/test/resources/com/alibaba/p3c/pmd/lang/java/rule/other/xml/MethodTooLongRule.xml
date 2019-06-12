@@ -1,88 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
     <code-fragment id="method-equal-to-80-lines"><![CDATA[
 public class MethodTooLongRule {
     @Test
     public void test() {
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
-        // 77 lines of comment
         int i = 1;
+        i = 2;
+        i = 3;
+        i = 4;
+        i = 5;
+        i = 6;
+        i = 7;
+        i = 8;
+        i = 9;
+        i = 10;
+        i = 11;
+        i = 12;
+        i = 13;
+        i = 14;
+        i = 15;
+        i = 16;
+        i = 17;
+        i = 18;
+        i = 19;
+        i = 20;
+        i = 21;
+        i = 22;
+        i = 23;
+        i = 24;
+        i = 25;
+        i = 26;
+        i = 27;
+        i = 28;
+        i = 29;
+        i = 30;
+        i = 31;
+        i = 32;
+        i = 33;
+        i = 34;
+        i = 35;
+        i = 36;
+        i = 37;
+        i = 38;
+        i = 39;
+        i = 40;
+        i = 41;
+        i = 42;
+        i = 43;
+        i = 44;
+        i = 45;
+        i = 46;
+        i = 47;
+        i = 48;
+        i = 49;
+        i = 50;
+        i = 51;
+        i = 52;
+        i = 53;
+        i = 54;
+        i = 55;
+        i = 56;
+        i = 57;
+        i = 58;
+        i = 59;
+        i = 60;
+        i = 61;
+        i = 62;
+        i = 63;
+        i = 64;
+        i = 65;
+        i = 66;
+        i = 67;
+        i = 68;
+        i = 69;
+        i = 70;
+        i = 71;
+        i = 72;
+        i = 73;
+        i = 74;
+        i = 75;
+        i = 76;
+        i = 77;
+        i = 78;
     }
 }
     ]]>
@@ -98,85 +100,85 @@ public class MethodTooLongRule {
     <code-fragment id="method-more-than-80-lines"><![CDATA[
 public class MethodTooLongRule {
     public void test() {
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
-        // 78 lines of comment
         int i = 1;
+        i = 2;
+        i = 3;
+        i = 4;
+        i = 5;
+        i = 6;
+        i = 7;
+        i = 8;
+        i = 9;
+        i = 10;
+        i = 11;
+        i = 12;
+        i = 13;
+        i = 14;
+        i = 15;
+        i = 16;
+        i = 17;
+        i = 18;
+        i = 19;
+        i = 20;
+        i = 21;
+        i = 22;
+        i = 23;
+        i = 24;
+        i = 25;
+        i = 26;
+        i = 27;
+        i = 28;
+        i = 29;
+        i = 30;
+        i = 31;
+        i = 32;
+        i = 33;
+        i = 34;
+        i = 35;
+        i = 36;
+        i = 37;
+        i = 38;
+        i = 39;
+        i = 40;
+        i = 41;
+        i = 42;
+        i = 43;
+        i = 44;
+        i = 45;
+        i = 46;
+        i = 47;
+        i = 48;
+        i = 49;
+        i = 50;
+        i = 51;
+        i = 52;
+        i = 53;
+        i = 54;
+        i = 55;
+        i = 56;
+        i = 57;
+        i = 58;
+        i = 59;
+        i = 60;
+        i = 61;
+        i = 62;
+        i = 63;
+        i = 64;
+        i = 65;
+        i = 66;
+        i = 67;
+        i = 68;
+        i = 69;
+        i = 70;
+        i = 71;
+        i = 72;
+        i = 73;
+        i = 74;
+        i = 75;
+        i = 76;
+        i = 77;
+        i = 78;
+        i = 79;
     }
 }
     ]]>
@@ -222,83 +224,83 @@ public class MethodTooLongRule {
     public
     void
     test() {
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
         int i = 1;
+        i = 2;
+        i = 3;
+        i = 4;
+        i = 5;
+        i = 6;
+        i = 7;
+        i = 8;
+        i = 9;
+        i = 10;
+        i = 11;
+        i = 12;
+        i = 13;
+        i = 14;
+        i = 15;
+        i = 16;
+        i = 17;
+        i = 18;
+        i = 19;
+        i = 20;
+        i = 21;
+        i = 22;
+        i = 23;
+        i = 24;
+        i = 25;
+        i = 26;
+        i = 27;
+        i = 28;
+        i = 29;
+        i = 30;
+        i = 31;
+        i = 32;
+        i = 33;
+        i = 34;
+        i = 35;
+        i = 36;
+        i = 37;
+        i = 38;
+        i = 39;
+        i = 40;
+        i = 41;
+        i = 42;
+        i = 43;
+        i = 44;
+        i = 45;
+        i = 46;
+        i = 47;
+        i = 48;
+        i = 49;
+        i = 50;
+        i = 51;
+        i = 52;
+        i = 53;
+        i = 54;
+        i = 55;
+        i = 56;
+        i = 57;
+        i = 58;
+        i = 59;
+        i = 60;
+        i = 61;
+        i = 62;
+        i = 63;
+        i = 64;
+        i = 65;
+        i = 66;
+        i = 67;
+        i = 68;
+        i = 69;
+        i = 70;
+        i = 71;
+        i = 72;
+        i = 73;
+        i = 74;
+        i = 75;
+        i = 76;
+        i = 77;
     }
 }
     ]]>
@@ -316,83 +318,83 @@ public class MethodTooLongRule {
     @Test public
     void
     test() {
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
-        // 76 lines of comment
         int i = 1;
+        i = 2;
+        i = 3;
+        i = 4;
+        i = 5;
+        i = 6;
+        i = 7;
+        i = 8;
+        i = 9;
+        i = 10;
+        i = 11;
+        i = 12;
+        i = 13;
+        i = 14;
+        i = 15;
+        i = 16;
+        i = 17;
+        i = 18;
+        i = 19;
+        i = 20;
+        i = 21;
+        i = 22;
+        i = 23;
+        i = 24;
+        i = 25;
+        i = 26;
+        i = 27;
+        i = 28;
+        i = 29;
+        i = 30;
+        i = 31;
+        i = 32;
+        i = 33;
+        i = 34;
+        i = 35;
+        i = 36;
+        i = 37;
+        i = 38;
+        i = 39;
+        i = 40;
+        i = 41;
+        i = 42;
+        i = 43;
+        i = 44;
+        i = 45;
+        i = 46;
+        i = 47;
+        i = 48;
+        i = 49;
+        i = 50;
+        i = 51;
+        i = 52;
+        i = 53;
+        i = 54;
+        i = 55;
+        i = 56;
+        i = 57;
+        i = 58;
+        i = 59;
+        i = 60;
+        i = 61;
+        i = 62;
+        i = 63;
+        i = 64;
+        i = 65;
+        i = 66;
+        i = 67;
+        i = 68;
+        i = 69;
+        i = 70;
+        i = 71;
+        i = 72;
+        i = 73;
+        i = 74;
+        i = 75;
+        i = 76;
+        i = 77;
     }
 }
     ]]>
@@ -402,6 +404,393 @@ public class MethodTooLongRule {
         <expected-problems>1</expected-problems>
         <expected-linenumbers>4</expected-linenumbers>
         <code-ref id="method-signature-with-annotation-multi-lines" />
+    </test-code>
+
+    <code-fragment id="method-equal-to-80-lines-with-formal-comment"><![CDATA[
+public class MethodTooLongRule {
+    @Test
+    public void test() {
+        /**
+         * a java doc comment
+         */
+        int i = 1;
+        i = 2;
+        i = 3;
+        /**
+         * another java doc comment
+         */
+        i = 4;
+        i = 5;
+        i = 6;
+        i = 7;
+        i = 8;
+        i = 9;
+        i = 10;
+        i = 11;
+        i = 12;
+        i = 13;
+        i = 14;
+        i = 15;
+        i = 16;
+        i = 17;
+        i = 18;
+        i = 19;
+        i = 20;
+        i = 21;
+        i = 22;
+        i = 23;
+        i = 24;
+        i = 25;
+        i = 26;
+        i = 27;
+        i = 28;
+        i = 29;
+        i = 30;
+        i = 31;
+        i = 32;
+        i = 33;
+        i = 34;
+        i = 35;
+        i = 36;
+        i = 37;
+        i = 38;
+        i = 39;
+        i = 40;
+        i = 41;
+        i = 42;
+        i = 43;
+        i = 44;
+        i = 45;
+        i = 46;
+        i = 47;
+        i = 48;
+        i = 49;
+        i = 50;
+        i = 51;
+        i = 52;
+        i = 53;
+        i = 54;
+        i = 55;
+        i = 56;
+        i = 57;
+        i = 58;
+        i = 59;
+        i = 60;
+        i = 61;
+        i = 62;
+        i = 63;
+        i = 64;
+        i = 65;
+        i = 66;
+        i = 67;
+        i = 68;
+        i = 69;
+        i = 70;
+        i = 71;
+        i = 72;
+        i = 73;
+        i = 74;
+        i = 75;
+        i = 76;
+        i = 77;
+        i = 78;
+    }
+}
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>Method equal to 80 lines with formal comment</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="method-equal-to-80-lines-with-formal-comment" />
+    </test-code>
+
+
+    <code-fragment id="method-equal-to-80-lines-with-multi-line-comment"><![CDATA[
+public class MethodTooLongRule {
+    @Test
+    public void test() {
+        /* test */
+        int i = 1;
+        /* test
+         test
+         test */
+        i = 2;
+        i = 3;
+        i = 4;
+        i = 5;
+        i = 6;
+        i = 7;
+        i = 8;
+        i = 9;
+        i = 10;
+        i = 11;
+        i = 12;
+        i = 13;
+        i = 14;
+        i = 15;
+        i = 16;
+        i = 17;
+        i = 18;
+        i = 19;
+        i = 20;
+        i = 21;
+        i = 22;
+        i = 23;
+        i = 24;
+        i = 25;
+        i = 26;
+        i = 27;
+        i = 28;
+        i = 29;
+        i = 30;
+        i = 31;
+        i = 32;
+        i = 33;
+        i = 34;
+        i = 35;
+        i = 36;
+        i = 37;
+        i = 38;
+        i = 39;
+        i = 40;
+        i = 41;
+        i = 42;
+        i = 43;
+        i = 44;
+        i = 45;
+        i = 46;
+        i = 47;
+        i = 48;
+        i = 49;
+        i = 50;
+        i = 51;
+        i = 52;
+        i = 53;
+        i = 54;
+        i = 55;
+        i = 56;
+        i = 57;
+        i = 58;
+        i = 59;
+        i = 60;
+        i = 61;
+        i = 62;
+        i = 63;
+        i = 64;
+        i = 65;
+        i = 66;
+        i = 67;
+        i = 68;
+        i = 69;
+        i = 70;
+        i = 71;
+        i = 72;
+        i = 73;
+        i = 74;
+        i = 75;
+        i = 76;
+        i = 77;
+        i = 78;
+        /* test */
+    }
+}
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>Method equal to 80 lines with multi-line comment</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="method-equal-to-80-lines-with-multi-line-comment" />
+    </test-code>
+
+    <code-fragment id="method-equal-to-80-lines-with-single-line-comment"><![CDATA[
+public class MethodTooLongRule {
+    @Test
+    public void test() {
+        // test
+        int i = 1;
+        // test
+        i = 2;
+        i = 3;
+        i = 4;
+        i = 5;
+        i = 6;
+        i = 7;
+        i = 8;
+        i = 9;
+        i = 10;
+        i = 11;
+        i = 12;
+        i = 13;
+        i = 14;
+        i = 15;
+        i = 16;
+        i = 17;
+        i = 18;
+        i = 19;
+        i = 20;
+        i = 21;
+        i = 22;
+        i = 23;
+        i = 24;
+        i = 25;
+        i = 26;
+        i = 27;
+        i = 28;
+        i = 29;
+        i = 30;
+        i = 31;
+        i = 32;
+        i = 33;
+        i = 34;
+        i = 35;
+        i = 36;
+        i = 37;
+        i = 38;
+        i = 39;
+        i = 40;
+        i = 41;
+        i = 42;
+        i = 43;
+        i = 44;
+        i = 45;
+        i = 46;
+        i = 47;
+        i = 48;
+        i = 49;
+        i = 50;
+        i = 51;
+        i = 52;
+        i = 53;
+        i = 54;
+        i = 55;
+        i = 56;
+        i = 57;
+        i = 58;
+        i = 59;
+        i = 60;
+        i = 61;
+        i = 62;
+        i = 63;
+        i = 64;
+        i = 65;
+        i = 66;
+        i = 67;
+        i = 68;
+        i = 69;
+        i = 70;
+        i = 71;
+        i = 72;
+        i = 73;
+        i = 74;
+        i = 75;
+        i = 76;
+        i = 77;
+        i = 78;
+        // test
+    }
+}
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>Method equal to 80 lines with single-line comment</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="method-equal-to-80-lines-with-single-line-comment" />
+    </test-code>
+
+    <code-fragment id="method-equal-to-80-lines-with-comment-after-expression"><![CDATA[
+public class MethodTooLongRule {
+    @Test
+    public void test() { // test
+        int i = 1; // test
+        i = 2;
+        i = 3;
+        i = 4; // test
+        i = 5;
+        i = 6;
+        i = 7;
+        i = 8;
+        i = 9;
+        i = 10;
+        i = 11;
+        i = 12;
+        i = 13;
+        i = 14;
+        i = 15;
+        i = 16;
+        i = 17;
+        i = 18;
+        i = 19;
+        i = 20;
+        i = 21;
+        i = 22;
+        i = 23;
+        i = 24;
+        i = 25;
+        i = 26;
+        i = 27;
+        i = 28;
+        i = 29;
+        i = 30;
+        i = 31;
+        i = 32;
+        i = 33;
+        i = 34;
+        i = 35;
+        i = 36;
+        i = 37;
+        i = 38;
+        i = 39;
+        i = 40;
+        i = 41;
+        i = 42;
+        i = 43;
+        i = 44;
+        i = 45;
+        i = 46;
+        i = 47;
+        i = 48;
+        i = 49;
+        i = 50;
+        i = 51;
+        i = 52;
+        i = 53;
+        i = 54;
+        i = 55;
+        i = 56;
+        i = 57;
+        i = 58;
+        i = 59;
+        i = 60;
+        i = 61;
+        i = 62;
+        i = 63;
+        i = 64;
+        i = 65;
+        i = 66;
+        i = 67;
+        i = 68;
+        i = 69;
+        i = 70;
+        i = 71;
+        i = 72;
+        i = 73;
+        i = 74;
+        i = 75;
+        i = 76;
+        i = 77;
+        i = 78; // test
+    }
+}
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>Method equal to 80 lines with comment after expression</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="method-equal-to-80-lines-with-comment-after-expression" />
     </test-code>
 
 </test-data>

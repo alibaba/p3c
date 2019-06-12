@@ -46,7 +46,7 @@ class AliPmdInspectionInvoker(
         private val manager: InspectionManager,
         private val rule: Rule
 ) {
-    val logger = Logger.getInstance(javaClass)
+    private val logger = Logger.getInstance(javaClass)
 
     private var violations: List<RuleViolation> = emptyList()
 

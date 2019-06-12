@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+		   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		   xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
+	<code-fragment id="float-value-compare">
+		<![CDATA[
+public class Test {
+    public static void main(String[] args) {
+       	float g = 0.7f-0.6f;
+        float h = 0.8f-0.7f;
+        if (g == h) {
+            System.out.println("true");
+        }
+    }
+}
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>float value compare</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>5</expected-linenumbers>
+		<code-ref id="float-value-compare" />
+	</test-code>
+
+
+	<code-fragment id="float-value-compare1"><![CDATA[
+		public class Test {
+			public void test(float g, float h) {
+				if (g == h) {
+					System.out.println("true");
+				}
+			}
+		}
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>float value compare</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>3</expected-linenumbers>
+		<code-ref id="float-value-compare1" />
+	</test-code>
+
+	<code-fragment id="float-value-compare2"><![CDATA[
+		public class Test {
+			public void test(double g, double h) {
+				if (g == h) {
+					System.out.println("true");
+				}
+			}
+		}
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>float value compare</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>3</expected-linenumbers>
+		<code-ref id="float-value-compare2" />
+	</test-code>
+
+
+	<code-fragment id="float-value-compare3"><![CDATA[
+		public class Test {
+			public static void main(String[] args) {
+				double g = 0.7d-0.6d;
+				double h = 0.8d-0.7d;
+				if (g == h) {
+					System.out.println("true");
+				}
+			}
+		}
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>float value compare</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>5</expected-linenumbers>
+		<code-ref id="float-value-compare3" />
+	</test-code>
+
+
+	<code-fragment id="compare"><![CDATA[
+		public class Test {
+			public static void main(String[] args) {
+				double dis = 1e-6;
+				double d1 = 0.0000001d;
+				double d2 = 0d;
+				System.out.println(Math.abs(d1 - d2) < dis);
+			}
+		}
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>compare</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="compare" />
+	</test-code>
+
+</test-data>

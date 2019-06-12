@@ -15,20 +15,33 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.other;
 
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
+import com.alibaba.p3c.pmd.lang.java.rule.util.NodeSortUtils;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTAnnotation;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceBodyDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
+import net.sourceforge.pmd.lang.java.ast.ASTExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
+import net.sourceforge.pmd.lang.java.ast.AbstractJavaNode;
+import net.sourceforge.pmd.lang.java.ast.Comment;
+import net.sourceforge.pmd.lang.java.ast.FormalComment;
+import net.sourceforge.pmd.lang.java.ast.MultiLineComment;
+import net.sourceforge.pmd.lang.java.ast.SingleLineComment;
 import net.sourceforge.pmd.lang.java.ast.Token;
 
 /**
  * [Recommended] The total number of lines for a method should not be more than 80.
- * Note: The total number of lines, including the method signature, closing brace, codes, comments,
- * blank lines, line breaks and any invisible lines, should not be more than 80.
+ * Note: The total number of lines, including the method signature, closing brace, codes, blank lines,
+ * line breaks and any invisible lines, should not be more than 80 (comments are not included).
  *
  * @author keriezhang
  * @date 2018/1/9
@@ -37,6 +50,17 @@ public class MethodTooLongRule extends AbstractAliRule {
 
     private static final int MAX_LINE_COUNT = 80;
     private static final String ANNOTATION_PREFIX = "@";
+
+    /**
+     * sortedMap will be reinitialized for each source file.
+     */
+    private SortedMap<Integer, Node> sortedNodeAndComment;
+
+    @Override
+    public Object visit(ASTCompilationUnit cUnit, Object data) {
+        sortedNodeAndComment = orderedCommentsAndExpressions(cUnit);
+        return super.visit(cUnit, data);
+    }
 
     @Override
     public Object visit(ASTMethodDeclaration node, Object data) {
@@ -62,10 +86,68 @@ public class MethodTooLongRule extends AbstractAliRule {
             }
         }
 
-        if (endLine - startLine + 1 > MAX_LINE_COUNT) {
+        // Get comment line count.
+        int commentLineCount = getCommentLineCount(node);
+
+        if (endLine - startLine - commentLineCount + 1 > MAX_LINE_COUNT) {
             ViolationUtils.addViolationWithPrecisePosition(this, node, data,
                 I18nResources.getMessage("java.other.MethodTooLongRule.violation.msg", node.getName()));
         }
-        return super.visit(node, data);
+        return data;
+    }
+
+    /**
+     * Order comments and expressions.
+     *
+     * @param cUnit compilation unit
+     * @return sorted comments and expressions
+     */
+    protected SortedMap<Integer, Node> orderedCommentsAndExpressions(ASTCompilationUnit cUnit) {
+
+        SortedMap<Integer, Node> itemsByLineNumber = new TreeMap<>();
+
+        // expression nodes
+        List<ASTExpression> expressionNodes = cUnit.findDescendantsOfType(ASTExpression.class);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, expressionNodes);
+
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, cUnit.getComments());
+
+        return itemsByLineNumber;
+    }
+
+    /**
+     * Get number of comment lines
+     *
+     * @param methodDecl
+     * @return
+     */
+    private int getCommentLineCount(ASTMethodDeclaration methodDecl) {
+        int lineCount = 0;
+        AbstractJavaNode lastNode = null;
+
+        for (Entry<Integer, Node> entry : sortedNodeAndComment.entrySet()) {
+            Node value = entry.getValue();
+            if (value.getBeginLine() <= methodDecl.getBeginLine()) {
+                continue;
+            }
+            if (value.getBeginLine() > methodDecl.getEndLine()) {
+                break;
+            }
+
+            // value should be either expression or comment.
+            if (value instanceof AbstractJavaNode) {
+                lastNode = (AbstractJavaNode)value;
+            } else if (value instanceof FormalComment || value instanceof MultiLineComment) {
+                Comment comment = (Comment)value;
+                lineCount += comment.getEndLine() - comment.getBeginLine() + 1;
+            } else if (value instanceof SingleLineComment) {
+                SingleLineComment singleLineComment = (SingleLineComment)value;
+                // Comment may in the same line with node.
+                if (lastNode == null || singleLineComment.getBeginLine() != lastNode.getBeginLine()) {
+                    lineCount += 1;
+                }
+            }
+        }
+        return lineCount;
     }
 }

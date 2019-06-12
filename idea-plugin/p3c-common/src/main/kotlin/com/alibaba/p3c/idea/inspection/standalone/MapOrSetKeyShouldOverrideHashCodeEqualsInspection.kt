@@ -15,12 +15,12 @@
  */
 package com.alibaba.p3c.idea.inspection.standalone
 
-import com.alibaba.p3c.idea.util.NumberConstants
-import com.alibaba.p3c.idea.util.ObjectConstants
 import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.p3c.idea.inspection.AliBaseInspection
 import com.alibaba.p3c.idea.util.HighlightDisplayLevels
-import com.beust.jcommander.internal.Sets
+import com.alibaba.p3c.idea.util.NumberConstants
+import com.alibaba.p3c.idea.util.ObjectConstants
+import com.google.common.collect.Sets
 import com.intellij.codeHighlighting.HighlightDisplayLevel
 import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.psi.CommonClassNames

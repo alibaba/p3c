@@ -1,25 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
     <code-fragment id="complex-condition">
         <![CDATA[
-	public class Example {
-	    public int fn1(int a, int b, int c) {
-	    	if (a == 0 || (b !=0 && c > 0)) {
-	    	    return 1;
-	    	}
-	    	return 0;
-	    }
+    public class Example {
+        public int fn1(int a, int b, int c) {
+            if (a == 0 || (b !=0 && c > 0)) {
+                return 1;
+            }
+            return 0;
+        }
 
-	    public int fn2(int a, int b, int c) {
-	    	return (a == 0 || b != 0 && c > 0) ? 1 : 0;
-	    }
-	}
-		]]>
+        public int fn2(int a, int b, int c) {
+            return (a == 0 || b != 0 && c > 0) ? 1 : 0;
+        }
+
+        public int fn3(int a, int b, int c) {
+            if (a == 0 || b !=0 || c > 0) {
+                return 1;
+            }
+            return 0;
+        }
+
+        public int fn4(int a, int b, int c) {
+            return (a == 0 && b != 0 && c > 0) ? 1 : 0;
+        }
+
+        public int fn5(int a, int b, boolean c) {
+            return (a == 0 && b != 0 && c) ? 1 : 0;
+        }
+    }
+        ]]>
     </code-fragment>
     <test-code>
         <description>complex conditional expression in if condition</description>
         <expected-problems>2</expected-problems>
-        <expected-linenumbers>3,10</expected-linenumbers>                                                                             0    0      ˘                                          0      /expected-linenumbers>
+        <expected-linenumbers>3,10</expected-linenumbers>
         <code-ref id="complex-condition"/>
     </test-code>
 
@@ -27,13 +45,13 @@
 
     <code-fragment id="extract-condition-as-variable">
         <![CDATA[
-	public class Example {
-	    public int fn3(int a, int b, int c) {
-	    	boolean flag = (a == 0 || b != 0 && c > 0);
-	    	return flag ? 1 : 0;
-	    }
-	}
-		]]>
+    public class Example {
+        public int fn3(int a, int b, int c) {
+            boolean flag = (a == 0 || b != 0 && c > 0);
+            return flag ? 1 : 0;
+        }
+    }
+        ]]>
     </code-fragment>
     <test-code>
         <description>complex conditional expression extracted as variable</description>
@@ -45,15 +63,15 @@
 
     <code-fragment id="simple-condition">
         <![CDATA[
-	public class Example {
-	    public int fn() {
-	    	List<Integer> ids = new ArrayList<>();
-	    	if (ids.size() > 0) {
+    public class Example {
+        public int fn() {
+            List<Integer> ids = new ArrayList<>();
+            if (ids.size() > 0) {
 
-	    	}
-	    }
-	}
-		]]>
+            }
+        }
+    }
+        ]]>
     </code-fragment>
     <test-code>
         <description>simple conditional expression</description>

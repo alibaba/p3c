@@ -104,7 +104,7 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
                 val virtualFile = file.virtualFile
                 val index = ProjectRootManager.getInstance(file.project).fileIndex
                 return index.isInSource(virtualFile)
-                        && !index.isInTestSourceContent(virtualFile)
+//                        && !index.isInTestSourceContent(virtualFile)
                         && !index.isInLibraryClasses(virtualFile)
                         && !index.isInLibrarySource(virtualFile)
             }

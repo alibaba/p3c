@@ -96,7 +96,7 @@ class AliInspectionAction : AnAction() {
             return
         }
         val element = psiFile ?: psiElement
-        analysisScope.isIncludeTestSource = false
+        analysisScope.isIncludeTestSource = true
         analysisScope.setSearchInLibraries(true)
         createContext(toolWrappers, managerEx, element,
                 projectDir).doInspections(analysisScope)

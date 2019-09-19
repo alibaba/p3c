@@ -74,11 +74,13 @@ object ClassMustHaveAuthorQuickFix : InspectionGadgetsFix(), AliQuickFix {
         }
 
         if (document.tags.isNotEmpty()) {
+            document.addBefore(factory.createDocTagFromText(dateTag), document.tags[0])
             document.addBefore(factory.createDocTagFromText(authorTag), document.tags[0])
             return
         }
 
         document.add(factory.createDocTagFromText(authorTag))
+        document.add(factory.createDocTagFromText(dateTag))
     }
 
     override val ruleName: String

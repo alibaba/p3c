@@ -36,10 +36,10 @@ object ClassMustHaveAuthorQuickFix : InspectionGadgetsFix(), AliQuickFix {
     private var dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
 
     private val authorTag = "@author ${System.getProperty("user.name") ?: System.getenv("USER")}"
-    private val dateTag = "@date ${LocalDate.now().format(dateFormatter)}"
 
     override fun doFix(project: Project?, descriptor: ProblemDescriptor?) {
         descriptor ?: return
+        val dateTag = "@date ${LocalDate.now().format(dateFormatter)}"
         val psiClass = descriptor.psiElement as? PsiClass ?: descriptor.psiElement?.parent as? PsiClass ?: return
 
         val document = psiClass.docComment

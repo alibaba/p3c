@@ -30,8 +30,9 @@ import net.sourceforge.pmd.lang.ast.Node;
  */
 public class AvoidApacheBeanUtilsCopyRule extends AbstractXpathRule {
     private static final String XPATH =
-            "//PrimaryPrefix/Name[@Image='BeanUtils.copyProperties' and "
-            + "//ImportDeclaration[@ImportedName='org.apache.commons.beanutils.BeanUtils']]";
+            "//PrimaryPrefix/Name[(@Image='BeanUtils.copyProperties' and "
+                + "//ImportDeclaration[@ImportedName='org.apache.commons.beanutils.BeanUtils']) or "
+                + "starts-with(@Image,'org.apache.commons.beanutils.BeanUtils.')]";
 
     public AvoidApacheBeanUtilsCopyRule() {
         setXPath(XPATH);

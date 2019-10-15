@@ -1,6 +1,6 @@
 ---
 name: Rule issue template
-about: Describe this issue template's purpose here.
+about: Rule issue please use this template.
 title: ''
 labels: ''
 assignees: ''

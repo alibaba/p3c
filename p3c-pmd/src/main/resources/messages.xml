@@ -260,6 +260,9 @@
     <entry key="java.set.UnsupportedExceptionWithModifyAsListRule.rule.msg">
         <![CDATA[ 使用工具类Arrays.asList()把数组转换成集合时，不能使用其修改集合相关的方法，它的add/remove/clear方法会抛出UnsupportedOperationException异常。 ]]>
     </entry>
+    <entry key="java.set.EqualsHashCodeRule.rule.msg">
+        <![CDATA[只要覆写equals，就必须覆写hashCode。]]>
+    </entry>
     <!-- constant -->
     <entry key="java.constant.UndefineMagicConstantRule.violation.msg">
         <![CDATA[ 魔法值【%s】]]>
@@ -348,6 +351,9 @@
         <![CDATA[说明：BigDecimal(double)存在精度损失风险，在精确计算或值比较的场景中可能会导致业务逻辑异常。]]>
     </entry>
 
+    <entry key="java.oop.VarargsParameterRule.rule.msg">
+        <![CDATA[相同参数类型，相同业务含义，才可以使用 Java 的可变参数，避免使用 Object。]]>
+    </entry>
     <!-- comment -->
     <entry key="java.comment.CommentsMustBeJavadocFormatRule.rule.msg">
         <![CDATA[类、类属性、类方法的注释必须使用javadoc规范，使用/**内容*/格式，不得使用//xxx方式和/*xxx*/方式。]]>

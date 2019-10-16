@@ -129,5 +129,23 @@ Negative example:
          ]]>
       </example>
     </rule>
+    <rule name="EqualsHashCodeRule" language="java"
+          message="java.set.EqualsHashCodeRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.set.EqualsHashCodeRule">
+        <priority>1</priority>
+        <example>
+            <![CDATA[
+Positive example:
+    @Override
+    public int hashCode() {
+        return ...;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        return ...;
+    }
+         ]]>
+        </example>
+    </rule>
 </ruleset>

@@ -270,6 +270,9 @@ Explain 3: It is possible that when implementing the lock() method in Lock objec
     <entry key="java.set.UnsupportedExceptionWithModifyAsListRule.rule.msg">
         <![CDATA[Do not use methods which will modify the list after using Arrays.asList to convert array to list, otherwise methods like add/remove/clear will throw UnsupportedOperationException. ]]>
     </entry>
+    <entry key="java.set.EqualsHashCodeRule.rule.msg">
+        <![CDATA[Equals method must be with hashCode() method.]]>
+    </entry>
     <!-- constant -->
     <entry key="java.constant.UndefineMagicConstantRule.violation.msg">
         <![CDATA[Magic value [%s] ]]>
@@ -355,6 +358,9 @@ Explain 3: It is possible that when implementing the lock() method in Lock objec
     </entry>
     <entry key="java.oop.BigDecimalAvoidDoubleConstructorRule.rule.msg.desc">
         <![CDATA[Note：Use the constructor BigDecimal(String) or valueOf method of BigDecimal. Inside valueOf the toString of Double is executed, which truncate the mantissa according to the precision of double.]]>
+    </entry>
+    <entry key="java.oop.VarargsParameterRule.rule.msg">
+        <![CDATA[Use detail Class for Varargs, do not use Object。]]>
     </entry>
 
     <!-- comment -->

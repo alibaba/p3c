@@ -50,7 +50,7 @@
     </entry>
 
     <entry key="java.exception.MethodReturnWrapperTypeRule.violation.msg">
-        <![CDATA[the return type is primitive【%s】，return a value of wrapper class【%s】，may cause NullPointerException]]>
+        <![CDATA[the return type is primitive[%s], return a value of wrapper class[%s], may cause NullPointerException]]>
     </entry>
 
     <entry key="java.exception.MethodReturnWrapperTypeRule.rule.msg">
@@ -130,7 +130,7 @@ Note: In JDK8, Instant can be used to replace Date, Calendar is replaced by Loca
     </entry>
 
     <entry key="java.concurrent.AvoidManuallyCreateThreadRule.violation.msg">
-        <![CDATA[Explicitly creating threads is not allowed，use thread pool instead.]]>
+        <![CDATA[Explicitly creating threads is not allowed, use thread pool instead.]]>
     </entry>
     <entry key="java.concurrent.AvoidManuallyCreateThreadRule.rule.msg">
         <![CDATA[Threads should be provided by thread pools. Explicitly creating threads is not allowed.]]>
@@ -167,7 +167,7 @@ Note: In JDK8, Instant can be used to replace Date, Calendar is replaced by Loca
 Note: Below are the problems created by usage of Executors for thread pool creation:
 1) FixedThreadPool and SingleThreadPool:
  Maximum request queue size Integer.MAX_VALUE. A large number of requests might cause OOM.
-2) CachedThreadPool and ScheduledThreadPool:
+2) CachedThreadPool:
  The number of threads which are allowed to be created is Integer.MAX_VALUE. Creating too many threads might lead to OOM.]]>
     </entry>
 
@@ -227,7 +227,7 @@ Note: Below are the problems created by usage of Executors for thread pool creat
         <![CDATA[Do not cast subList in class ArrayList, otherwise ClassCastException will be thrown. ]]>
     </entry>
     <entry key="java.set.ClassCastExceptionWithSubListToArrayListRule.rule.msg.desc">
-        <![CDATA[Note:Do not cast, if you have to do，please use new Conllection(sublist result). ]]>
+        <![CDATA[Note:Do not cast, if you have to do, please use new Conllection(sublist result). ]]>
     </entry>
     <entry key="java.set.ClassCastExceptionWithToArrayRule.violation.msg">
         <![CDATA[[%s] should use arguments with  array size.]]>
@@ -337,6 +337,16 @@ Note: Below are the problems created by usage of Executors for thread pool creat
     </entry>
     <entry key="java.oop.StringConcatRule.rule.msg.desc">
         <![CDATA[Note: According to the decompiled bytecode file, for each loop, it allocates a StringBuilder object, appends a string, and finally returns a String object via the toString method. This is a tremendous waste of memory.]]>
+    </entry>
+
+    <entry key="java.oop.BigDecimalAvoidDoubleConstructorRule.violation.msg">
+        <![CDATA[Constructor BigDecimal(double) is invoked]]>
+    </entry>
+    <entry key="java.oop.BigDecimalAvoidDoubleConstructorRule.rule.msg">
+        <![CDATA[Avoid using the constructor BigDecimal(double) to convert double value to a BigDecimal object.]]>
+    </entry>
+    <entry key="java.oop.BigDecimalAvoidDoubleConstructorRule.rule.msg.desc">
+        <![CDATA[Note：Use the constructor BigDecimal(String) or valueOf method of BigDecimal. Inside valueOf the toString of Double is executed, which truncate the mantissa according to the precision of double.]]>
     </entry>
 
     <!-- comment -->
@@ -478,7 +488,7 @@ Note: In order to get a more accurate time, use System.nanoTime(). In JDK8, use 
 
     <entry key="java.other.MethodTooLongRule.rule.desc">
         <![CDATA[
-Note: The total number of lines, including the method signature, closing brace, codes, comments, blank lines, line breaks and any invisible lines, should not be more than 80.
+Note: The total number of lines, including the method signature, closing brace, codes, blank lines, line breaks and any invisible lines, should not be more than 80 (comments are not included).
         ]]>
     </entry>
 
@@ -506,6 +516,40 @@ Note: If attribute is null or does not exist, ${var} will be shown directly on w
     </entry>
     <entry key="vm.other.UseQuietReferenceNotationRule.violation.msg">
         <![CDATA[variable [%s] should add ! after $]]>
+    </entry>
+
+    <entry key="java.other.AvoidDoubleOrFloatEqualCompareRule.rule.msg">
+        <![CDATA[To judge the equivalence of floating-point numbers, == cannot be used for primitive types, while equals cannot be used for wrapper classes.]]>
+    </entry>
+    <entry key="java.other.AvoidDoubleOrFloatEqualCompareRule.rule.desc">
+        <![CDATA[
+Floating-point numbers are composed by mantissa and exponent, which is similar to the coefficient and exponent of scientific notation. Most decimal fractions cannot be represented precisely by binary. For more details please refer to "Easy Coding".
+Positive example:
+1) Specify an error range. Consider two floating-pointing numbers as equal if the difference between them is within this range.
+
+    float a = 1.0f - 0.9f;
+    float b = 0.9f - 0.8f;
+    float diff = 1e-6f;
+
+    if (Math.abs(a - b) < diff) {
+        System.out.println("true");
+    }
+2) Use BigDecimal to operate.
+
+    BigDecimal a = new BigDecimal("1.0");
+    BigDecimal b = new BigDecimal("0.9");
+    BigDecimal c = new BigDecimal("0.8");
+
+    BigDecimal x = a.subtract(b);
+    BigDecimal y = b.subtract(c);
+
+    if (x.equals(y)) {
+        System.out.println("true");
+    }
+        ]]>
+    </entry>
+    <entry key="java.other.AvoidDoubleOrFloatEqualCompareRule.rule.msg">
+        <![CDATA[To judge the equivalence of floating-point numbers, == cannot be used for primitive types, while equals cannot be used for wrapper classes.]]>
     </entry>
 
 </properties>

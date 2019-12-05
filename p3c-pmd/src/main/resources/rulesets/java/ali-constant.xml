@@ -3,7 +3,7 @@
 <ruleset name="AlibabaJavaConstants" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
-
+    <description>AlibabaJavaConstants</description>
 
     <rule name="UpperEllRule"
         message="java.constant.UpperEllRule.rule.msg"
@@ -15,7 +15,7 @@ Negative example:
     //It is hard to tell whether it is number 11 or Long 1.
     Long warn = 1l;
        ]]>
-        </example> 
+        </example>
         <example>
         <![CDATA[
 Positive example:
@@ -23,14 +23,14 @@ Positive example:
         ]]>
          </example>
     </rule>
-    
+
     <rule name="UndefineMagicConstantRule"
         message="java.constant.UndefineMagicConstantRule.rule.msg"
         class="com.alibaba.p3c.pmd.lang.java.rule.constant.UndefineMagicConstantRule">
         <priority>3</priority>
 
         <example>
-        <![CDATA[    
+        <![CDATA[
 Negative example:
     //Magic values, except for predefined, are forbidden in coding.
     if (key.equals("Id#taobao_1")) {
@@ -39,9 +39,9 @@ Negative example:
          ]]>
         </example>
         <example>
-        <![CDATA[ 
+        <![CDATA[
 Positive example:
-    String KEY_PRE = "Id#taobao_1";  
+    String KEY_PRE = "Id#taobao_1";
     if (KEY_PRE.equals(key)) {
             //...
     }

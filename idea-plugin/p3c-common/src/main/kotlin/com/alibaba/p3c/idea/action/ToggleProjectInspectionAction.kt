@@ -45,8 +45,8 @@ class ToggleProjectInspectionAction : AnAction() {
         smartFoxConfig.projectInspectionClosed = !smartFoxConfig.projectInspectionClosed
     }
 
-    override fun update(e: AnActionEvent?) {
-        val project = e!!.project ?: return
+    override fun update(e: AnActionEvent) {
+        val project = e.project ?: return
         val smartFoxConfig = ServiceManager.getService(project, SmartFoxProjectConfig::class.java)
         e.presentation.text = if (smartFoxConfig.projectInspectionClosed) {
             e.presentation.icon = P3cIcons.PROJECT_INSPECTION_ON

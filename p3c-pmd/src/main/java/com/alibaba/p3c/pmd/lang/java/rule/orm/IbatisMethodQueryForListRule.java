@@ -22,6 +22,7 @@ import java.util.Set;
 
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
+import com.alibaba.p3c.pmd.lang.java.util.VariableUtils;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -52,6 +53,7 @@ public class IbatisMethodQueryForListRule extends AbstractAliRule {
     private static final String PRIMARY_METHOD_ARGUMENT_XPATH
         = "PrimarySuffix/Arguments/ArgumentList/Expression/PrimaryExpression/PrimaryPrefix/Literal";
     private static final String FIELDS_XPATH = "ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/FieldDeclaration";
+    private static final int LITERALS_SIZE = 3;
 
     @Override
     public Object visit(ASTCompilationUnit node, Object data) {
@@ -65,12 +67,12 @@ public class IbatisMethodQueryForListRule extends AbstractAliRule {
             return super.visit(node, data);
         }
         for (ASTClassOrInterfaceDeclaration classOrInterfaceDeclaration : classOrInterfaceDeclarations) {
-            visitASTClassOrInterfaceDeclaration(classOrInterfaceDeclaration, data);
+            visitAstClassOrInterfaceDeclaration(classOrInterfaceDeclaration, data);
         }
         return super.visit(node, data);
     }
 
-    private void visitASTClassOrInterfaceDeclaration(ASTClassOrInterfaceDeclaration classOrInterfaceDeclaration,
+    private void visitAstClassOrInterfaceDeclaration(ASTClassOrInterfaceDeclaration classOrInterfaceDeclaration,
         Object data) {
         try {
             List<Node> fieldDeclarations = classOrInterfaceDeclaration.findChildNodesWithXPath(FIELDS_XPATH);
@@ -95,7 +97,7 @@ public class IbatisMethodQueryForListRule extends AbstractAliRule {
         for (Node node : fieldDeclarations) {
             ASTFieldDeclaration fieldDeclaration = (ASTFieldDeclaration)node;
             if (sqlMapClientField(fieldDeclaration)) {
-                set.add(fieldDeclaration.getVariableName());
+                set.add(VariableUtils.getVariableName(fieldDeclaration));
             }
         }
         return set;
@@ -146,7 +148,7 @@ public class IbatisMethodQueryForListRule extends AbstractAliRule {
             }
             //method parameters not match
             List<Node> literals = node.findChildNodesWithXPath(PRIMARY_METHOD_ARGUMENT_XPATH);
-            if (!(literals != null && (literals.size() == 3))) {
+            if (literals == null || (literals.size() != LITERALS_SIZE)) {
                 continue;
             }
             boolean firstMethodArgumentString = "java.lang.String".equals(

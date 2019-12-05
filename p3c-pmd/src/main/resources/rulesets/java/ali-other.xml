@@ -3,6 +3,7 @@
 <ruleset name="AlibabaJavaOthers" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+    <description>AlibabaJavaOthers</description>
 
     <rule name="AvoidPatternCompileInMethodRule" language="java"
         message="java.other.AvoidPatternCompileInMethodRule.rule.msg"
@@ -52,7 +53,7 @@
             long a = System.currentTimeMillis();
             // Negative example:
             long b = new Date().getTime();
-    
+
             System.out.println(a);
             System.out.println(b);
         }
@@ -101,6 +102,32 @@ Negative example:
             <![CDATA[
 Positive example:
         SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss");
+]]>
+        </example>
+    </rule>
+
+    <rule name="AvoidDoubleOrFloatEqualCompareRule" language="java"
+          message="java.other.AvoidDoubleOrFloatEqualCompareRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.other.AvoidDoubleOrFloatEqualCompareRule">
+        <description>java.other.AvoidDoubleOrFloatEqualCompareRule.rule.desc</description>
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+Negative example:
+        float g = 0.7f-0.6f;
+        float h = 0.8f-0.7f;
+        if (g == h) {
+            System.out.println("true");
+        }
+ ]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+        double dis = 1e-6;
+        double d1 = 0.0000001d;
+        double d2 = 0d;
+        System.out.println(Math.abs(d1 - d2) < dis);
 ]]>
         </example>
     </rule>

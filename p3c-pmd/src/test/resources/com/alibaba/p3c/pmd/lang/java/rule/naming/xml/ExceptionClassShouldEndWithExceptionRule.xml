@@ -1,4 +1,6 @@
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
     <code-fragment id="ExceptionNamingRuleTest1">
         <![CDATA[
 public class EndWithExceptionRuleTest extends Exception {
@@ -8,8 +10,8 @@ public class EndWithExceptionRuleTest extends Exception {
     <test-code>
         <description>Exception class name should end with Exception</description>
         <expected-problems>1</expected-problems>
-        <code-ref id="ExceptionNamingRuleTest1" />
         <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="ExceptionNamingRuleTest1" />
     </test-code>
 
     <code-fragment id="ExceptionNamingRuleTest2">

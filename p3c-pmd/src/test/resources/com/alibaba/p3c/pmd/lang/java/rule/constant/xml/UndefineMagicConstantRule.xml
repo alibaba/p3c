@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
     <code-fragment id="constants-ok"><![CDATA[
     public class Foo {
         private final static  String notWarn = "666l";
-        } 
+        }
     ]]>
     </code-fragment>
 
@@ -59,13 +61,13 @@
     </test-code>
 
     <code-fragment id="constants-err-2"><![CDATA[
-	 public class Foo {        
+	 public class Foo {
         private void method(String path) {
 	         if (null == path || !path.startsWith("/home/admin/leveldb/")
-	                || path.split("/").length <= 5) { 
+	                || path.split("/").length <= 5) {
 	         }
 	    }
-	 }        
+	 }
     ]]>
     </code-fragment>
 

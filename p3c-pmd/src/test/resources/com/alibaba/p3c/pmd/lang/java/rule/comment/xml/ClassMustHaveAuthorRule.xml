@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
 	<code-fragment id="class-without-author"><![CDATA[
 public class ClassMustHaveAuthorRule {}
@@ -27,7 +29,7 @@ public class ClassMustHaveAuthorRule {}
 		<expected-problems>0</expected-problems>
 		<code-ref id="class-with-author" />
 	</test-code>
-	
+
 	<code-fragment id="class-with-date"><![CDATA[
 /**
  * @date 2016/12/14
@@ -41,7 +43,7 @@ public class ClassMustHaveAuthorRule {}
 		<expected-linenumbers>4</expected-linenumbers>
 		<code-ref id="class-with-date" />
 	</test-code>
-	
+
 	<code-fragment id="class-with-author-and-date"><![CDATA[
 /**
  * @author keriezhang
@@ -162,6 +164,67 @@ public interface Vehicle {
 		<description>Uppercase author annotation</description>
 		<expected-problems>0</expected-problems>
 		<code-ref id="upper-case-author-annotation" />
+	</test-code>
+
+	<code-fragment id="annotation-type-without-author"><![CDATA[
+public @interface Vehicle {
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Annotation type without author</description>
+		<expected-problems>1</expected-problems>
+		<expected-linenumbers>1</expected-linenumbers>
+		<code-ref id="annotation-type-without-author" />
+	</test-code>
+
+	<code-fragment id="annotation-type-with-author"><![CDATA[
+/**
+ * @author keriezhang
+ * @date 2018/11/07
+ */
+public @interface Vehicle {
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Annotation type with author</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="annotation-type-with-author" />
+	</test-code>
+
+	<code-fragment id="annotation-type-inside-class"><![CDATA[
+/**
+ * @author keriezhang
+ * @date 2018/11/07
+ */
+public class NotEmpty {
+    public @interface List {
+    }
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Annotation type inside class</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="annotation-type-inside-class" />
+	</test-code>
+
+	<code-fragment id="non-public-class"><![CDATA[
+/**
+ * @author keriezhang
+ * @date 2018/11/07
+ */
+public class One {
+}
+class Two {
+}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Non public class</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="non-public-class" />
 	</test-code>
 
 </test-data>

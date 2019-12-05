@@ -2,7 +2,7 @@
 <feature
         id="com.alibaba.smartfox.eclipse.feature"
         label="%feature.label"
-        version="1.0.5.qualifier"
+        version="2.0.0.qualifier"
         provider-name="%feature.provider_name"
         plugin="com.alibaba.smartfox.eclipse.plugin"
         image="smartfox.png">

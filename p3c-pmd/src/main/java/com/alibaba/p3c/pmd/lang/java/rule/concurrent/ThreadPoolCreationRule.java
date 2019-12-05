@@ -44,12 +44,14 @@ public class ThreadPoolCreationRule extends AbstractAliRule {
     private static final String EXECUTORS_NEW = Executors.class.getSimpleName() + DOT + NEW;
     private static final String FULL_EXECUTORS_NEW = Executors.class.getName() + DOT + NEW;
     private static final String BRACKETS = "()";
+    private static final String NEW_SCHEDULED = "newScheduledThreadPool";
+    private static final String NEW_SINGLE_SCHEDULED = "newSingleThreadScheduledExecutor";
 
     @Override
     public Object visit(ASTCompilationUnit node, Object data) {
         Object superResult = super.visit(node, data);
-
         Info info = new Info();
+
         List<ASTImportDeclaration> importDeclarations = node.findChildrenOfType(ASTImportDeclaration.class);
         for (ASTImportDeclaration importDeclaration : importDeclarations) {
             ASTName name = importDeclaration.getFirstChildOfType(ASTName.class);
@@ -75,6 +77,10 @@ public class ThreadPoolCreationRule extends AbstractAliRule {
 
     private boolean checkInitStatement(Token token, Info info) {
         String fullAssignStatement = getFullAssignStatement(token);
+        // do not check newScheduledThreadPool and newSingleThreadScheduledExecutor
+        if (NEW_SCHEDULED.equals(fullAssignStatement) || NEW_SINGLE_SCHEDULED.equals(fullAssignStatement)) {
+            return true;
+        }
         if (fullAssignStatement.startsWith(EXECUTORS_NEW)) {
             return false;
         }

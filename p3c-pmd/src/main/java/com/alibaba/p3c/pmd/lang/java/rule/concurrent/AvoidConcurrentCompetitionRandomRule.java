@@ -20,6 +20,8 @@ import java.util.Random;
 
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
 
+import com.alibaba.p3c.pmd.lang.java.rule.util.NodeUtils;
+import com.alibaba.p3c.pmd.lang.java.util.VariableUtils;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType;
@@ -67,7 +69,7 @@ public class AvoidConcurrentCompetitionRandomRule extends AbstractAliRule {
             return super.visit(node, data);
         }
         for (ASTFieldDeclaration fieldDeclaration : fieldDeclarations) {
-            if (fieldDeclaration.getType() == Random.class
+            if (NodeUtils.getNodeType(fieldDeclaration) == Random.class
                 && fieldDeclaration.isStatic()) {
                 checkRandom(fieldDeclaration, methodDeclarations, data);
             }
@@ -101,7 +103,7 @@ public class AvoidConcurrentCompetitionRandomRule extends AbstractAliRule {
         for (ASTMethodDeclaration methodDeclaration : methodDeclarations) {
             try {
                 List<Node> nodes = methodDeclaration.findChildNodesWithXPath(String.format(XPATH_TPL,
-                    fieldDeclaration.getVariableName()));
+                    VariableUtils.getVariableName(fieldDeclaration)));
                 if (nodes == null || nodes.isEmpty()) {
                     continue;
                 }

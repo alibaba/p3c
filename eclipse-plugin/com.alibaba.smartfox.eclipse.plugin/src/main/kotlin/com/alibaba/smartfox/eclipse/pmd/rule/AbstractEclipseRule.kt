@@ -78,9 +78,9 @@ abstract class AbstractEclipseRule : AbstractJavaRule() {
         return data
     }
 
-    override fun setDescription(description: String) {
+    override fun setDescription(description: String?) {
         try {
-            super.setDescription(P3cBundle.getMessage(description))
+            super.setDescription(P3cBundle.getMessage(description ?: ""))
         } catch (e: MissingResourceException) {
             super.setMessage(description)
         }

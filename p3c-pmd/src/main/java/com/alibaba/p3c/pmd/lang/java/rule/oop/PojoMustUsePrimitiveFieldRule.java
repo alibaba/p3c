@@ -19,6 +19,8 @@ import java.util.List;
 
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractPojoRule;
 
+import com.alibaba.p3c.pmd.lang.java.rule.util.NodeUtils;
+import com.alibaba.p3c.pmd.lang.java.util.VariableUtils;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
@@ -53,12 +55,12 @@ public class PojoMustUsePrimitiveFieldRule extends AbstractPojoRule {
                 if (!shouldProcess) {
                     continue;
                 }
-                Class type = field.getType();
+                Class type = NodeUtils.getNodeType(field);
                 // TODO works only in current compilation file, by crossing files will be null
                 if (type != null && type.isPrimitive()) {
                     addViolationWithMessage(data, field.getFirstDescendantOfType(ASTType.class),
                         "java.oop.PojoMustUsePrimitiveFieldRule.violation.msg",
-                        new Object[] {field.getVariableName()});
+                        new Object[] {VariableUtils.getVariableName(field)});
                 }
             }
         } catch (JaxenException e) {

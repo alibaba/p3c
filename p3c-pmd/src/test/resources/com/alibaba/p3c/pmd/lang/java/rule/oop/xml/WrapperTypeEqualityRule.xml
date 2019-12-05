@@ -1,151 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
-	<code-fragment id="wrap-type-not-use-equal">
-		<![CDATA[
-	public class Foo {
-		private static final int x = 3;
-	    public void bar() {
-	    	Integer a = 2;
-	    	int b = 2;
-	    	Integer c = 3;
+    <code-fragment id="wrap-type-not-use-equal">
+        <![CDATA[
+    public class Foo {
+        private static final int x = 3;
+        public void bar() {
+            Integer a = 2;
+            int b = 2;
+            Integer c = 3;
 
-	    	if (a == b) {	// OK
-	    		// do nothing
-	    	}
-	    	if (a == c) {	// BAD
-	    		// do nothing
-	    	}
-	    	if (a != null) {	// OK
-	    		// do nothing
-	    	}
-	    	if (a == -6) {	// OK
-	    		// do nothing
-	    	}
-	    	if (a == x) {	// OK
-	    		// do nothing
-	    	}
-	    	if (a == Integer.MAX_VALUE) {	// BAD
-	    		// do nothing
-	    	}
-	    	// PMD can not resolve type of Inner.FLAG
-	    	if (a == Inner.FLAG) {
-	    		// do nothing
-	    	}
-	    	// PMD can not resolve the type of Integer.valueOf("2")
-	    	if (a == Integer.valueOf("2")) {
-	    		// do nothing
-	    	}
-	    	if (a == new Integer("2")) {	// BAD
-	    		// do nothing
-	    	}
-	    }
+            if (a == b) {    // OK
+                // do nothing
+            }
+            if (a == c) {    // BAD
+                // do nothing
+            }
+            if (a != null) {    // OK
+                // do nothing
+            }
+            if (a == -6) {    // OK
+                // do nothing
+            }
+            if (a == x) {    // OK
+                // do nothing
+            }
+            if (a == Integer.MAX_VALUE) {    // BAD
+                // do nothing
+            }
+            // PMD can not resolve type of Inner.FLAG
+            if (a == Inner.FLAG) {
+                // do nothing
+            }
+            // After upgrade pmd version, can resolve
+            if (a == Integer.valueOf("2")) { //BAD
+                // do nothing
+            }
+            if (a == new Integer("2")) {    // BAD
+                // do nothing
+            }
+        }
 
-	    private static class Inner {
-	    	public static final Integer FLAG = 3;
-	    }
-	}
-		]]>
-	</code-fragment>
-	<test-code>
-		<description>compare wrapper type objects without equals</description>
-		<expected-problems>3</expected-problems>
-		<expected-linenumbers>11,23,34</expected-linenumbers>
-		<code-ref id="wrap-type-not-use-equal" />
-	</test-code>
+        private static class Inner {
+            public static final Integer FLAG = 3;
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>compare wrapper type objects without equals</description>
+        <expected-problems>4</expected-problems>
+        <expected-linenumbers>11,23,31,34</expected-linenumbers>
+        <code-ref id="wrap-type-not-use-equal" />
+    </test-code>
 
-	<!-- ====================================================================== -->
+    <!-- ====================================================================== -->
 
-	<code-fragment id="wrong-result-fix">
-		<![CDATA[
-	package com.alibaba.p3c.pmd.lang.java.rule.concurrent;
+    <code-fragment id="wrong-result-fix">
+        <![CDATA[
+    package com.alibaba.p3c.pmd.lang.java.rule.concurrent;
 
-	import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
-	import net.sourceforge.pmd.lang.java.ast.ASTName;
-	import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
-	import net.sourceforge.pmd.lang.java.ast.Token;
-	import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
+    import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
+    import net.sourceforge.pmd.lang.java.ast.ASTName;
+    import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
+    import net.sourceforge.pmd.lang.java.ast.Token;
+    import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 
-	import java.util.HashSet;
-	import java.util.Set;
-	import java.util.concurrent.Executors;
+    import java.util.HashSet;
+    import java.util.Set;
+    import java.util.concurrent.Executors;
 
-	public class ThreadPoolCreationRule extends AbstractJavaRule {
+    public class ThreadPoolCreationRule extends AbstractJavaRule {
 
-		private static final String DOT = ".";
-		private static final String COLON = ";";
-		private static final String NEW = "new";
-		private static final String EXECUTORS_NEW = Executors.class.getSimpleName() + DOT + NEW;
-		private static final String FULL_EXECUTORS_NEW = Executors.class.getName() + DOT + NEW;
-		private static final String BRACKETS = "()";
-		private boolean executorsUsed;
-		private Set<String> importedExecutorsMethods = new HashSet<>();
+        private static final String DOT = ".";
+        private static final String COLON = ";";
+        private static final String NEW = "new";
+        private static final String EXECUTORS_NEW = Executors.class.getSimpleName() + DOT + NEW;
+        private static final String FULL_EXECUTORS_NEW = Executors.class.getName() + DOT + NEW;
+        private static final String BRACKETS = "()";
+        private boolean executorsUsed;
+        private Set<String> importedExecutorsMethods = new HashSet<>();
 
-		@Override
-		public Object visit(ASTPrimaryExpression node, Object data) {
-			if (!executorsUsed && importedExecutorsMethods.isEmpty()) {
-				return super.visit(node, data);
-			}
+        @Override
+        public Object visit(ASTPrimaryExpression node, Object data) {
+            if (!executorsUsed && importedExecutorsMethods.isEmpty()) {
+                return super.visit(node, data);
+            }
 
-			Token initToken = (Token) node.jjtGetFirstToken();
-			if (!checkInitStatement(initToken)) {
-				addViolation(data, node);
-			}
-			return super.visit(node, data);
-		}
+            Token initToken = (Token) node.jjtGetFirstToken();
+            if (!checkInitStatement(initToken)) {
+                addViolation(data, node);
+            }
+            return super.visit(node, data);
+        }
 
-		private boolean checkInitStatement(Token token) {
-			String fullAssignStatement = getFullAssignStatement(token);
-			if (fullAssignStatement.startsWith(EXECUTORS_NEW)) {
-				return false;
-			}
-			if (!fullAssignStatement.startsWith(NEW) && !fullAssignStatement.startsWith(FULL_EXECUTORS_NEW)) {
-				return true;
-			}
-			// in case of lambda
-			int index = fullAssignStatement.indexOf(BRACKETS);
-			if (index == -1) {
-				return true;
-			}
-			fullAssignStatement = fullAssignStatement.substring(0, index);
+        private boolean checkInitStatement(Token token) {
+            String fullAssignStatement = getFullAssignStatement(token);
+            if (fullAssignStatement.startsWith(EXECUTORS_NEW)) {
+                return false;
+            }
+            if (!fullAssignStatement.startsWith(NEW) && !fullAssignStatement.startsWith(FULL_EXECUTORS_NEW)) {
+                return true;
+            }
+            // in case of lambda
+            int index = fullAssignStatement.indexOf(BRACKETS);
+            if (index == -1) {
+                return true;
+            }
+            fullAssignStatement = fullAssignStatement.substring(0, index);
 
-			// avoid java.util.concurrent.Executors.newxxxx
-			if (importedExecutorsMethods.contains(fullAssignStatement)) {
-				return false;
-			}
-			// static import
-			return !importedExecutorsMethods.contains(Executors.class.getName() + DOT + fullAssignStatement);
-		}
+            // avoid java.util.concurrent.Executors.newxxxx
+            if (importedExecutorsMethods.contains(fullAssignStatement)) {
+                return false;
+            }
+            // static import
+            return !importedExecutorsMethods.contains(Executors.class.getName() + DOT + fullAssignStatement);
+        }
 
-		private String getFullAssignStatement(final Token token) {
-			if (token == null) {
-				return "";
-			}
-			StringBuilder sb = new StringBuilder(48);
-			Token next = token;
-			while (next.next != null && !COLON.equals(next.image)) {
-				sb.append(next.image);
-				next = next.next;
-			}
-			return sb.toString();
-		}
+        private String getFullAssignStatement(final Token token) {
+            if (token == null) {
+                return "";
+            }
+            StringBuilder sb = new StringBuilder(48);
+            Token next = token;
+            while (next.next != null && !COLON.equals(next.image)) {
+                sb.append(next.image);
+                next = next.next;
+            }
+            return sb.toString();
+        }
 
-		@Override
-		public Object visit(ASTImportDeclaration node, Object data) {
-			ASTName name = node.getFirstChildOfType(ASTName.class);
-			// in case of static import
-			executorsUsed = executorsUsed || name.getType() == Executors.class;
-			if (name.getImage().startsWith(Executors.class.getName() + DOT)) {
-				importedExecutorsMethods.add(name.getImage());
-			}
-			return super.visit(node, data);
-		}
-	}
-		]]>
-	</code-fragment>
-	<test-code>
-		<description>bugfix</description>
-		<expected-problems>0</expected-problems>
-		<code-ref id="wrong-result-fix" />
-	</test-code>
+        @Override
+        public Object visit(ASTImportDeclaration node, Object data) {
+            ASTName name = node.getFirstChildOfType(ASTName.class);
+            // in case of static import
+            executorsUsed = executorsUsed || name.getType() == Executors.class;
+            if (name.getImage().startsWith(Executors.class.getName() + DOT)) {
+                importedExecutorsMethods.add(name.getImage());
+            }
+            return super.visit(node, data);
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>bugfix</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="wrong-result-fix" />
+    </test-code>
+
+    <!-- ====================================================================== -->
+
+    <code-fragment id="array-length-equals">
+        <![CDATA[
+    public class Test {
+        public void foo(){
+            Integer[] a;
+            Integer[] b;
+            if (a.length == b.length) {
+                return;
+            };
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>array length equals</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="array-length-equals"/>
+    </test-code>
+
+    <!-- ====================================================================== -->
+
 </test-data>

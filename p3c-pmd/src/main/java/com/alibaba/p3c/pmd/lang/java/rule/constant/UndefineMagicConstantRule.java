@@ -29,6 +29,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTLiteral;
 import net.sourceforge.pmd.lang.java.ast.ASTWhileStatement;
 import net.sourceforge.pmd.util.StringUtil;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jaxen.JaxenException;
 
 /**
@@ -66,7 +67,7 @@ public class UndefineMagicConstantRule extends AbstractAliRule {
                 for (ASTLiteral literal : literals) {
                     if (inBlackList(literal) && !currentLiterals.contains(literal)) {
                         currentLiterals.add(literal);
-                        String imageReplace =  StringUtil.replaceString(literal.getImage(), "{", "'{");
+                        String imageReplace = StringUtils.replace(literal.getImage(), "{", "'{");
                         addViolationWithMessage(data, literal,
                             "java.constant.UndefineMagicConstantRule.violation.msg", new Object[] {imageReplace});
                     }
@@ -101,10 +102,7 @@ public class UndefineMagicConstantRule extends AbstractAliRule {
         if (ifStatement != null && lineNum == ifStatement.getBeginLine()) {
             ASTForStatement forStatement = ifStatement.getFirstParentOfType(ASTForStatement.class);
             ASTWhileStatement whileStatement = ifStatement.getFirstParentOfType(ASTWhileStatement.class);
-            if (forStatement != null || whileStatement != null) {
-                return false;
-            }
-            return true;
+            return forStatement == null && whileStatement == null;
         }
 
         // judge magic value belongs to  for statement 

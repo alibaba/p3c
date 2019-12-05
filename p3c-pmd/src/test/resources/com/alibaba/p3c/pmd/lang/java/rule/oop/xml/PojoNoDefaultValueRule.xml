@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
 	<code-fragment id="pojo-field-has-default-value">
 		<![CDATA[
@@ -26,7 +28,7 @@
 	<test-code>
 		<description>POJO has fields with default value</description>
 		<expected-problems>3</expected-problems>
-		<expected-linenumbers>12,3,5</expected-linenumbers>
+		<expected-linenumbers>3,5,12</expected-linenumbers>
 		<code-ref id="pojo-field-has-default-value" />
 	</test-code>
 
@@ -83,7 +85,7 @@
 	<test-code>
 		<description>not check static, transient or public fields</description>
 		<expected-problems>2</expected-problems>
-		<expected-linenumbers>12,3</expected-linenumbers>
+		<expected-linenumbers>3,12</expected-linenumbers>
 		<code-ref id="pojo-feild-exclusion" />
 	</test-code>
 

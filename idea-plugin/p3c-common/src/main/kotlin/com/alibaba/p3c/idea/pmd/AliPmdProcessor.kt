@@ -25,11 +25,11 @@ import net.sourceforge.pmd.PMDException
 import net.sourceforge.pmd.Report
 import net.sourceforge.pmd.Rule
 import net.sourceforge.pmd.RuleContext
-import net.sourceforge.pmd.RuleSet
 import net.sourceforge.pmd.RuleSetFactory
 import net.sourceforge.pmd.RuleSets
 import net.sourceforge.pmd.RuleViolation
 import net.sourceforge.pmd.RulesetsFactoryUtils
+import net.sourceforge.pmd.util.ResourceLoader
 import java.io.IOException
 import java.io.StringReader
 
@@ -42,38 +42,39 @@ class AliPmdProcessor(val rule: Rule) {
     private val configuration = PMDConfiguration()
 
     init {
-        ruleSetFactory = RulesetsFactoryUtils.getRulesetFactory(configuration)
+        ruleSetFactory = RulesetsFactoryUtils.getRulesetFactory(configuration, ResourceLoader())
     }
 
     fun processFile(psiFile: PsiFile): List<RuleViolation> {
-        configuration.sourceEncoding = psiFile.virtualFile.charset.name()
+        configuration.setSourceEncoding(psiFile.virtualFile.charset.name())
         configuration.inputPaths = psiFile.virtualFile.canonicalPath
         val document = FileDocumentManager.getInstance().getDocument(psiFile.virtualFile) ?: return emptyList()
+        if (document.lineCount > 10000) {
+            return emptyList()
+        }
         val ctx = RuleContext()
         val processor = SourceCodeProcessor(configuration)
         val niceFileName = psiFile.virtualFile.canonicalPath!!
         val report = Report.createReport(ctx, niceFileName)
         val ruleSets = RuleSets()
-        val ruleSet = RuleSet()
-        ruleSet.addRule(rule)
+
+        val ruleSet = ruleSetFactory.createSingleRuleRuleSet(rule)
         ruleSets.addRuleSet(ruleSet)
         LOG.debug("Processing " + ctx.sourceCodeFilename)
-        ruleSets.start(ctx)
         try {
             ctx.languageVersion = null
             processor.processSourceCode(StringReader(document.text), ruleSets, ctx)
         } catch (pmde: PMDException) {
-            LOG.debug("Error while processing file: " + niceFileName, pmde.cause)
-            report.addError(Report.ProcessingError(pmde.message, niceFileName))
+            LOG.debug("Error while processing file: $niceFileName", pmde.cause)
+            report.addError(Report.ProcessingError(pmde, niceFileName))
         } catch (ioe: IOException) {
-            LOG.error("Unable to read source file: " + niceFileName, ioe)
+            LOG.error("Unable to read source file: $niceFileName", ioe)
         } catch (re: RuntimeException) {
             val root = Throwables.getRootCause(re)
             if (root !is ApplicationUtil.CannotRunReadActionException) {
-                LOG.error("RuntimeException while processing file: " + niceFileName, re)
+                LOG.error("RuntimeException while processing file: $niceFileName", re)
             }
         }
-        ruleSets.end(ctx)
         return ctx.report.toList()
     }
 

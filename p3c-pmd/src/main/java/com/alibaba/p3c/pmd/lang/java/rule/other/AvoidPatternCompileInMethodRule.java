@@ -17,6 +17,7 @@ package com.alibaba.p3c.pmd.lang.java.rule.other;
 
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.java.util.VariableUtils;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -51,7 +52,7 @@ public class AvoidPatternCompileInMethodRule extends AbstractXpathRule {
         } else {
             ViolationUtils.addViolationWithPrecisePosition(this, node, data,
                 I18nResources.getMessage("java.other.AvoidPatternCompileInMethodRule.violation.msg",
-                    localVariableDeclaration.getVariableName()));
+                    VariableUtils.getVariableName(localVariableDeclaration)));
         }
     }
 }

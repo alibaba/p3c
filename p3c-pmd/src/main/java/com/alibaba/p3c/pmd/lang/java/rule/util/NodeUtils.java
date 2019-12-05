@@ -18,6 +18,7 @@ package com.alibaba.p3c.pmd.lang.java.rule.util;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
+import net.sourceforge.pmd.lang.java.ast.AbstractJavaAccessTypeNode;
 import net.sourceforge.pmd.lang.java.typeresolution.TypeHelper;
 
 /**
@@ -58,5 +59,9 @@ public class NodeUtils {
 
     public static boolean isConstant(ASTFieldDeclaration field) {
         return field != null && field.isStatic() && field.isFinal();
+    }
+
+    public static Class<?> getNodeType(AbstractJavaAccessTypeNode node) {
+        return node == null ? null : node.getType();
     }
 }

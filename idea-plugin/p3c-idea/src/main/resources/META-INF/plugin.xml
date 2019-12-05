@@ -5,6 +5,22 @@
 
     <change-notes>
         <![CDATA[
+        <ul>
+        2.0.0
+        <li>supported min idea version 2016.1(145.258.11)</li>
+        <li>supported min jdk version 1.8</li>
+        <li>fix persistent compatibility issue</li>
+        <li>fix https://github.com/alibaba/p3c/issues/430</li>
+        <li>fix https://github.com/alibaba/p3c/issues/454</li>
+        <li>fix https://github.com/alibaba/p3c/issues/409</li>
+        <li>add rule To judge the equivalence of floating-point numbers.</li>
+        <li>add annotation process for rule ClassMustHaveAuthorRule</li>
+        </ul>
+        <ul>1.0.6
+            <li>fix <a href="https://github.com/alibaba/p3c/issues/337">https://github.com/alibaba/p3c/issues/337</a>  do not check annotation </li>
+            <li>PojoMustOverrideToStringRule do not check interface </li>
+            <li>Performance improvement</li>
+        </ul>
           <ul>
         1.0.5
         <li>
@@ -46,8 +62,8 @@
         ]]>
     </change-notes>
     <vendor>alibaba</vendor>
-    <version>1.0.0</version>
-    <idea-version since-build="141.0"/>
+    <version>2.0.0</version>
+    <idea-version since-build="145.0"/>
     <depends optional="true">com.intellij.velocity</depends>
     <depends optional="true" config-file="p3c.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>

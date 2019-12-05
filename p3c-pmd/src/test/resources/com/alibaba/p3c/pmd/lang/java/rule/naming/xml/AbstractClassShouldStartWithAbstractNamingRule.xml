@@ -1,4 +1,7 @@
-<test-data>
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
     <code-fragment id="AbstractNamingRuleStartWithabstract">
         <![CDATA[
 public abstract class abstractNameRuleTest {
@@ -8,8 +11,8 @@ public abstract class abstractNameRuleTest {
     <test-code>
         <description>abstract class name should start with Abstract or Base</description>
         <expected-problems>1</expected-problems>
-        <code-ref id="AbstractNamingRuleStartWithabstract" />
         <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="AbstractNamingRuleStartWithabstract" />
     </test-code>
 
     <code-fragment id="AbstractNamingRuleStartWithAbstract">
@@ -45,7 +48,7 @@ public abstract class baseAbstractNameRuleTest {
     <test-code>
         <description>abstract class name should start with Abstract or Base</description>
         <expected-problems>1</expected-problems>
-        <code-ref id="AbstractNamingRuleStartWithbase" />
         <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="AbstractNamingRuleStartWithbase" />
     </test-code>
 </test-data>

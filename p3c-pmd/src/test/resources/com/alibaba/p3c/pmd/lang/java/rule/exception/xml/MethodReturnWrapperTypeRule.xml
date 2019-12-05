@@ -1,4 +1,6 @@
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
     <code-fragment id="MethodReturnWrapperTypeRule">
         <![CDATA[
@@ -54,7 +56,7 @@ public class Add{
     <test-code>
         <description>If the return type is primitive, return a value of wrapper class may cause NullPointerException</description>
         <expected-problems>8</expected-problems>
-        <code-ref id="MethodReturnWrapperTypeRule"/>
         <expected-linenumbers>11,19,23,27,31,35,39,43</expected-linenumbers>
+        <code-ref id="MethodReturnWrapperTypeRule"/>
     </test-code>
 </test-data>

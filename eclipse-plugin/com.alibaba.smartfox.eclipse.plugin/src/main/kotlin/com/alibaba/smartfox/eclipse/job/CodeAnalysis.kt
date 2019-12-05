@@ -104,7 +104,7 @@ object CodeAnalysis {
 
     private fun processFile(file: IFile): List<RuleViolation> {
         val configuration = PMDConfiguration()
-        configuration.sourceEncoding = file.charset ?: Charsets.UTF_8.name()
+        configuration.setSourceEncoding(file.charset ?: Charsets.UTF_8.name())
         configuration.inputPaths = file.fullPath.toPortableString()
         val ctx = RuleContext()
         ctx.setAttribute("eclipseFile", file)
@@ -120,7 +120,7 @@ object CodeAnalysis {
             }
         } catch (pmde: PMDException) {
             log.debug("Error while processing file: " + niceFileName, pmde.cause)
-            report.addError(Report.ProcessingError(pmde.message, niceFileName))
+            report.addError(Report.ProcessingError(pmde, niceFileName))
         } catch (ioe: IOException) {
             log.error("Unable to read source file: " + niceFileName, ioe)
         } catch (re: RuntimeException) {

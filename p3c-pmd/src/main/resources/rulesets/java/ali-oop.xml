@@ -3,6 +3,7 @@
 <ruleset name="AlibabaJavaOop" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+    <description>AlibabaJavaOop</description>
 
     <rule name="EqualsAvoidNullRule"
           language="java"
@@ -18,7 +19,7 @@
             System.out.println("hello world");
         }
     }
-			]]>
+            ]]>
         </example>
     </rule>
 
@@ -36,7 +37,7 @@
     if (a.equals(b)) {
         // code
     }
-			]]>
+            ]]>
         </example>
     </rule>
 
@@ -53,7 +54,7 @@
         String str;
         Integer a;
     }
-			]]>
+            ]]>
         </example>
     </rule>
 
@@ -69,7 +70,7 @@
         String str;
         Integer a;
     }
-			]]>
+            ]]>
         </example>
     </rule>
 
@@ -99,7 +100,7 @@
             return "Super{" + "firstName=" + firstName + '\'' + '}';
         }
     }
-			]]>
+            ]]>
         </example>
     </rule>
 
@@ -127,6 +128,28 @@ Positive example:
         stringBuilder.append(string);
     }
     String result = stringBuilder.toString();
+]]>
+        </example>
+    </rule>
+
+    <rule name="BigDecimalAvoidDoubleConstructorRule"
+          language="java"
+          message="java.oop.BigDecimalAvoidDoubleConstructorRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.oop.BigDecimalAvoidDoubleConstructorRule">
+        <description>java.oop.StringConcatRule.rule.msg.desc</description>
+        <priority>3</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+    BigDecimal good1 = new BigDecimal(0.1);
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+    BigDecimal good1 = new BigDecimal("0.1");
+    BigDecimal good2 = BigDecimal.valueOf(0.1);
 ]]>
         </example>
     </rule>

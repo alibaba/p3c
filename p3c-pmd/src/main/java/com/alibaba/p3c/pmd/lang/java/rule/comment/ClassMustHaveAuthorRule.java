@@ -15,11 +15,16 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.comment;
 
+import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
+import net.sourceforge.pmd.lang.ast.Node;
+import net.sourceforge.pmd.lang.java.ast.ASTAnnotationTypeDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
 import net.sourceforge.pmd.lang.java.ast.ASTEnumDeclaration;
@@ -39,21 +44,21 @@ public class ClassMustHaveAuthorRule extends AbstractAliCommentRule {
 
     private static final String MESSAGE_KEY_PREFIX = "java.comment.ClassMustHaveAuthorRule.violation.msg";
 
+    /**
+     * Immediately return after visiting class/interface/enum/annotation,
+     * so that we don't need to deal with inner class/interface/enum/annotation declarations.
+     *
+     * @param decl
+     * @param data
+     * @return
+     */
     @Override
     public Object visit(ASTClassOrInterfaceDeclaration decl, Object data) {
-        // Exclude nested classes
-        if (decl.isNested()) {
-            return super.visit(decl, data);
+        // If a CompilationUnit has multi class definition, only the public one will be checked.
+        if (decl.isPublic()) {
+            checkAuthorComment(decl, data);
         }
-
-        // Exclude inner classes
-        if (!decl.isPublic()) {
-            return super.visit(decl, data);
-        }
-
-        checkAuthorComment(decl, data);
-
-        return super.visit(decl, data);
+        return data;
     }
 
     @Override
@@ -70,8 +75,13 @@ public class ClassMustHaveAuthorRule extends AbstractAliCommentRule {
         }
 
         checkAuthorComment(decl, data);
+        return data;
+    }
 
-        return super.visit(decl, data);
+    @Override
+    public Object visit(ASTAnnotationTypeDeclaration decl, Object data) {
+        checkAuthorComment(decl, data);
+        return data;
     }
 
     @Override
@@ -79,6 +89,32 @@ public class ClassMustHaveAuthorRule extends AbstractAliCommentRule {
         assignCommentsToDeclarations(cUnit);
 
         return super.visit(cUnit, data);
+    }
+
+    @Override
+    protected SortedMap<Integer, Node> orderedCommentsAndDeclarations(ASTCompilationUnit cUnit) {
+        SortedMap<Integer, Node> itemsByLineNumber = new TreeMap<>();
+
+        List<ASTClassOrInterfaceDeclaration> packageDecl = cUnit
+            .findDescendantsOfType(ASTClassOrInterfaceDeclaration.class);
+        addDeclarations(itemsByLineNumber, packageDecl);
+
+        List<ASTEnumDeclaration> enumDecl = cUnit.findDescendantsOfType(ASTEnumDeclaration.class);
+        addDeclarations(itemsByLineNumber, enumDecl);
+
+        List<ASTAnnotationTypeDeclaration> annotationDecl = cUnit
+            .findDescendantsOfType(ASTAnnotationTypeDeclaration.class);
+        addDeclarations(itemsByLineNumber, annotationDecl);
+
+        addDeclarations(itemsByLineNumber, cUnit.getComments());
+
+        return itemsByLineNumber;
+    }
+
+    private void addDeclarations(SortedMap<Integer, Node> map, List<? extends Node> nodes) {
+        for (Node node : nodes) {
+            map.put((node.getBeginLine() << 16) + node.getBeginColumn(), node);
+        }
     }
 
     /**

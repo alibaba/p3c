@@ -119,7 +119,7 @@ public interface BizConstants {
      public class MockTest{
         @Mock
         void $clinit(){}
-     }
+     }   
     ]]>
     </code-fragment>
     <test-code>

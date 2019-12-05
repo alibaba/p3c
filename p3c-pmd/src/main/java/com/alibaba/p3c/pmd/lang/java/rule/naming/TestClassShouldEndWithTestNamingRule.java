@@ -23,7 +23,7 @@ import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
-import net.sourceforge.pmd.lang.java.rule.junit.AbstractJUnitRule;
+import net.sourceforge.pmd.lang.java.rule.AbstractJUnitRule;
 
 /**
  * [Mandatory] Test cases shall be started with the class names to be tested and ended with Test.

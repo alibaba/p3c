@@ -1,4 +1,6 @@
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
     <code-fragment id="ServiceClassNamingRule">
         <![CDATA[
 public class ServiceNameRuleTest implements TestDAO{
@@ -17,8 +19,8 @@ public class ServiceNameRuleTest implements TestDAO{
     <test-code>
         <description>Service Class Name should be end with Impl</description>
         <expected-problems>2</expected-problems>
-        <code-ref id="ServiceClassNamingRule" />
         <expected-linenumbers>1,2</expected-linenumbers>
+        <code-ref id="ServiceClassNamingRule" />
     </test-code>
 
 

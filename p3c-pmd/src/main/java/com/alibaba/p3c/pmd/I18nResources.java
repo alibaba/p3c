@@ -58,7 +58,15 @@ public class I18nResources {
     }
 
     public static String getMessage(String key) {
-        return resourceBundle.getString(key).trim();
+        if (key == null) {
+            // 暂时返回空字符串
+            return "";
+        }
+        try {
+            return resourceBundle.getString(key).trim();
+        } catch (MissingResourceException e) {
+            return key;
+        }
     }
 
     public static String getMessage(String key, Object... params) {
@@ -70,6 +78,10 @@ public class I18nResources {
     }
 
     public static String getMessageWithExceptionHandled(String key) {
+        if (key == null) {
+            // 暂时返回空字符串
+            return "";
+        }
         try {
             return resourceBundle.getString(key).trim();
         } catch (MissingResourceException e) {

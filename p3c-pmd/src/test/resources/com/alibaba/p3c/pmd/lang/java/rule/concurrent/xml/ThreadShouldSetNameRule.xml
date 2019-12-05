@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
     <test-code>
         <description>ThreadShouldSetNameRule</description>
         <expected-problems>3</expected-problems>
@@ -59,6 +61,29 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 public class TestScheduledExecutorService {
     public static final ScheduledExecutorService EXECUTOR_SERVICE = new ScheduledThreadPoolExecutor(3);
 }
+        ]]></code>
+    </test-code>
+    <test-code>
+        <description>right</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+
+/**
+ * @author caikang
+ * @date 2017/03/07
+ */
+public class Main {
+
+    public static void main(String[] args) {
+        new ScheduledThreadPoolExecutor(1, (Runnable r) -> {
+            Thread thread = new Thread();
+            thread.setName("111");
+            return thread;
+        });
+    }
+}
+
         ]]></code>
     </test-code>
     <test-code>

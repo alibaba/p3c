@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test-data>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
 	<code-fragment id="constants-uppercase-L"><![CDATA[
 	    public class Foo { 
@@ -16,7 +18,7 @@
 		<expected-problems>0</expected-problems>
 		<code-ref id="constants-uppercase-L" />
 	</test-code>
- 
+
 	<code-fragment id="constants-lowercase-l"><![CDATA[
   	  public class Foo { 
             private static final long IGNORE = 666l + 666L;   

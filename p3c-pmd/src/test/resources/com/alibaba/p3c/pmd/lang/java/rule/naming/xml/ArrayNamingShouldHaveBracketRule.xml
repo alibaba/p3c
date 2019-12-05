@@ -1,4 +1,7 @@
-<test-data>
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
     <code-fragment id="ArrayTypeStyleTest">
         <![CDATA[
   public class ArrayTypeStyleTest{
@@ -14,8 +17,8 @@
     <test-code>
         <description>array should be array[]</description>
         <expected-problems>2</expected-problems>
-        <code-ref id="ArrayTypeStyleTest" />
         <expected-linenumbers>2,6</expected-linenumbers>
+        <code-ref id="ArrayTypeStyleTest" />
     </test-code>
 
     <code-fragment id="ArrayTypeStyleTest1">

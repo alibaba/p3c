@@ -3,17 +3,18 @@
 <ruleset name="AlibabaJavaSets" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
- 
+    <description>AlibabaJavaSets</description>
+
     <rule name="ClassCastExceptionWithToArrayRule"
         message="java.set.ClassCastExceptionWithToArrayRule.rule.msg"
         class="com.alibaba.p3c.pmd.lang.java.rule.set.ClassCastExceptionWithToArrayRule">
         <priority>2</priority>
         <example>
-        <![CDATA[    
+        <![CDATA[
 Negative example:  
    Integer[] a = (Integer [])c.toArray();
         ]]>
-        </example> 
+        </example>
         <example>
         <![CDATA[
 Positive example： 
@@ -27,7 +28,7 @@ Positive example：
         class="com.alibaba.p3c.pmd.lang.java.rule.set.UnsupportedExceptionWithModifyAsListRule">
         <priority>2</priority>
         <example>
-       <![CDATA[ 
+       <![CDATA[
 Positive example:
    List<String> t   = Arrays.asList("a","b","c"); 
    //warn
@@ -46,7 +47,7 @@ Positive example:
         <description>java.set.ClassCastExceptionWithSubListToArrayListRule.rule.msg.desc</description>
         <priority>2</priority>
         <example>
-        <![CDATA[ 
+        <![CDATA[
 Negative example:
    List<String> list = new ArrayList<String>();
    list.add("22");
@@ -55,7 +56,7 @@ Negative example:
          ]]>
         </example>
         <example>
-        <![CDATA[ 
+        <![CDATA[
 Positive example:
    List<String> list2 = new ArrayList<String>(list.subList(0, 1));
          ]]>
@@ -85,7 +86,7 @@ Negative example:
         <priority>1</priority>
 
         <example>
-        <![CDATA[ 
+        <![CDATA[
  Negative example:   
    List<String> originList = new ArrayList<String>();
    originList.add("22");
@@ -94,9 +95,9 @@ Negative example:
       list.add("bb");
    }  
         ]]>
-       </example> 
+       </example>
       <example>
-       <![CDATA[ 
+       <![CDATA[
  Positive example: 
    Iterator<Integer> it=b.iterator();		 
    while(it.hasNext()){                      
@@ -115,14 +116,14 @@ Negative example:
         <description>java.set.CollectionInitShouldAssignCapacityRule.rule.msg.desc</description>
         <priority>3</priority>
         <example>
-        <![CDATA[ 
+        <![CDATA[
  Negative example:   
    Map<String, String> map = new HashMap<String, String>();
     
         ]]>
-       </example> 
+       </example>
       <example>
-       <![CDATA[ 
+       <![CDATA[
  Positive example: 
    Map<String, String> map = new HashMap<String, String>(16);
          ]]>

@@ -29,6 +29,8 @@ import net.sourceforge.pmd.lang.java.ast.ASTAllocationExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTArgumentList;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTExpression;
+import net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;
+import net.sourceforge.pmd.lang.java.ast.ASTFormalParameters;
 import net.sourceforge.pmd.lang.java.ast.ASTLambdaExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTName;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
@@ -37,7 +39,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
  * [Mandatory] A meaningful thread name is helpful to trace the error information,
  * so assign a name when creating threads or thread pools.
  *
- * Detection rule  //TODO should review
+ * Detection rule
  * 1. Use specific constructor while create thread pool
  * 2. Use Executors.defaultThreadFactory() is not allowed
  *
@@ -78,6 +80,9 @@ public class ThreadShouldSetNameRule extends AbstractAliRule {
 
     private Object checkThreadPoolExecutor(ASTAllocationExpression node, Object data) {
         ASTArgumentList argumentList = node.getFirstDescendantOfType(ASTArgumentList.class);
+        if (argumentList.jjtGetNumChildren() > ARGUMENT_LENGTH_6) {
+            return true;
+        }
         if (argumentList.jjtGetNumChildren() < ARGUMENT_LENGTH_6
             || !checkThreadFactoryArgument((ASTExpression)argumentList.jjtGetChild(ARGUMENT_LENGTH_6 - INDEX_1))) {
             addViolationWithMessage(data, node, MESSAGE_KEY_PREFIX + ".ThreadPoolExecutor");
@@ -87,6 +92,9 @@ public class ThreadShouldSetNameRule extends AbstractAliRule {
 
     private Object checkSchedulePoolExecutor(ASTAllocationExpression node, Object data) {
         ASTArgumentList argumentList = node.getFirstDescendantOfType(ASTArgumentList.class);
+        if (argumentList.jjtGetNumChildren() > ARGUMENT_LENGTH_2) {
+            return true;
+        }
         if (argumentList.jjtGetNumChildren() < ARGUMENT_LENGTH_2
             || !checkThreadFactoryArgument((ASTExpression)argumentList.jjtGetChild(ARGUMENT_LENGTH_2 - INDEX_1))) {
             addViolationWithMessage(data, node, MESSAGE_KEY_PREFIX + ".ScheduledThreadPoolExecutor");
@@ -104,15 +112,35 @@ public class ThreadShouldSetNameRule extends AbstractAliRule {
         }
         ASTLambdaExpression lambdaExpression = expression.getFirstDescendantOfType(ASTLambdaExpression.class);
         if (lambdaExpression != null) {
-            List<ASTVariableDeclaratorId> variableDeclaratorIds =
-                lambdaExpression.findChildrenOfType(ASTVariableDeclaratorId.class);
-            if (variableDeclaratorIds == null || variableDeclaratorIds.size() != SINGLE_LENGTH) {
-                return false;
-            }
+            return isThreadFactoryLambda(lambdaExpression);
         } else if (expression.getType() != null
             && RejectedExecutionHandler.class.isAssignableFrom(expression.getType())) {
             return false;
         }
         return true;
+    }
+
+    private boolean isThreadFactoryLambda(ASTLambdaExpression lambdaExpression) {
+        List<ASTVariableDeclaratorId> variableDeclaratorIds =
+            lambdaExpression.findChildrenOfType(ASTVariableDeclaratorId.class);
+        if (variableDeclaratorIds != null && !variableDeclaratorIds.isEmpty()) {
+            return variableDeclaratorIds.size() == SINGLE_LENGTH;
+        }
+
+        // like (Runnable r) ->
+        ASTFormalParameters parameters = lambdaExpression.getFirstChildOfType(ASTFormalParameters.class);
+        if (parameters == null) {
+            return false;
+        }
+
+        ASTFormalParameter parameter = parameters.getFirstChildOfType(ASTFormalParameter.class);
+        if (parameter == null) {
+            return false;
+        }
+        ASTVariableDeclaratorId variableDeclaratorId = parameter.getFirstChildOfType(ASTVariableDeclaratorId.class);
+        if (variableDeclaratorId == null) {
+            return false;
+        }
+        return Runnable.class == variableDeclaratorId.getType();
     }
 }

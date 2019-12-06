@@ -33,7 +33,6 @@ import com.intellij.codeInspection.ui.InspectionResultsView
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.intellij.openapi.actionSystem.DataKeys
 import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.module.Module
@@ -60,9 +59,9 @@ class AliInspectionAction : AnAction() {
         val toolWrappers = Inspections.aliInspections(project) {
             it.tool is AliBaseInspection
         }
-        val psiElement = e.getData<PsiElement>(DataKeys.PSI_ELEMENT)
-        val psiFile = e.getData<PsiFile>(DataKeys.PSI_FILE)
-        val virtualFile = e.getData<VirtualFile>(DataKeys.VIRTUAL_FILE)
+        val psiElement = e.getData<PsiElement>(CommonDataKeys.PSI_ELEMENT)
+        val psiFile = e.getData<PsiFile>(CommonDataKeys.PSI_FILE)
+        val virtualFile = e.getData<VirtualFile>(CommonDataKeys.VIRTUAL_FILE)
         val virtualFiles = e.getData<Array<VirtualFile>>(CommonDataKeys.VIRTUAL_FILE_ARRAY)
         var analysisScope: AnalysisScope? = null
         var projectDir = false

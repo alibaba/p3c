@@ -46,8 +46,8 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiManager
 import com.intellij.ui.NonFocusableCheckBox
+import com.intellij.util.ExceptionUtil
 import com.intellij.util.PairConsumer
-import com.intellij.vcsUtil.Rethrow
 import java.awt.BorderLayout
 import java.util.ArrayList
 import java.util.Arrays
@@ -190,7 +190,7 @@ class AliCodeAnalysisCheckinHandler(
                 })
         if (!exception.isNull) {
             val t = exception.get()
-            Rethrow.reThrowRuntime(t)
+            ExceptionUtil.rethrowAllAsUnchecked(t)
         }
 
         return result.get()

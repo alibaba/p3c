@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.alibaba.smartfox.eclipse</groupId>
     <artifactId>smartfox-eclipse</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>2.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>com.alibaba.smartfox.eclipse.plugin</artifactId>
   <packaging>eclipse-plugin</packaging>
@@ -22,7 +22,7 @@
     <dependency>
       <groupId>com.alibaba.p3c</groupId>
       <artifactId>p3c-pmd</artifactId>
-      <version>2.0.0</version>
+      <version>2.0.1</version>
     </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>

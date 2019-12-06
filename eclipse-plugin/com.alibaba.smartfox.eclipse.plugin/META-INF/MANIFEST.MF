@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: com.alibaba.smartfox.eclipse.plugin
 Bundle-SymbolicName: com.alibaba.smartfox.eclipse.plugin;singleton:=true
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.0.1.qualifier
 Bundle-Activator: com.alibaba.smartfox.eclipse.SmartfoxActivator
 Bundle-Vendor: Alibaba
 Require-Bundle: org.eclipse.ui,

@@ -180,7 +180,15 @@ Note: Below are the problems created by usage of Executors for thread pool creat
     <entry key="java.concurrent.ThreadShouldSetNameRule.rule.msg">
         <![CDATA[A meaningful thread name is helpful to trace the error information,so assign a name when creating threads or thread pools.]]>
     </entry>
-
+    <entry key="java.concurrent.LockShouldWithTryFinallyRule.violation.msg">
+        <![CDATA[Lock operation [%s] must immediately follow by try block, and unlock operation must be placed in the first line of finally block.]]>
+    </entry>
+    <entry key="java.concurrent.LockShouldWithTryFinallyRule.rule.msg">
+        <![CDATA[When getting the lock by blocking methods, such as waiting in the blocking queue, lock() must be put outside the try block. Besides, make sure there is no method that throws Exception between the lock() and try block, in case the lock won't be released in the finally block.
+Explain 1: If there was any Exception thrown between the lock() and try block, it won't be able to release the lock, causing that the other threads cannot get the lock.
+Explain 2: If there was lock() in the try block and a method that throw Exception between the try block and lock(), it is possible that unlock() won't work. Then AQS(AbstractQueuedSynchronizer) method will be called(depends on the implementation of the class) and IllegalMonitorStateException will be thrown.
+Explain 3: It is possible that when implementing the lock() method in Lock object, it would throw unchecked Exception, resulting in the same outcome of the Explain 2.]]>
+    </entry>
     <!-- flowcontrol -->
     <entry key="java.flowcontrol.SwitchStatementRule.violation.nodefault">
         <![CDATA[missing default statement in switch block]]>

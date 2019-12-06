@@ -65,4 +65,5 @@ public class WrapperTypeEqualityRule extends AbstractAliRule {
         return "length".equals(expression.jjtGetLastToken().getImage())
             && ".".equals(expression.jjtGetFirstToken().getNext().getImage());
     }
+
 }

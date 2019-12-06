@@ -69,6 +69,7 @@ configuration/**
 # sass gitignore#
 .sass-cache
 .idea
+.vscode
 
 # tcc_coverage
 coverage.ec
@@ -88,3 +89,4 @@ hsf.configuration/
 
 #hsf test
 *.instance
+/target/

@@ -38,5 +38,6 @@ public class OopRuleTest extends SimpleAggregatorTst {
         addRule(RULESET, "PojoMustOverrideToStringRule");
         addRule(RULESET, "StringConcatRule");
         addRule(RULESET, "BigDecimalAvoidDoubleConstructorRule");
+        addRule(RULESET, "VarargsParameterRule");
     }
 }

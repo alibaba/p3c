@@ -159,8 +159,12 @@ Positive example:
         <priority>1</priority>
         <example>
             <![CDATA[
+Positive example:
+   private void method(int a, int b, int... varargs) {
+
+   }
 Negative example:
-   private void method(Param a, Param b, Object... objs) {
+   private void method(int a, int b, Object... varargs) {
 
    }
          ]]>

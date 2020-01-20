@@ -136,14 +136,35 @@ Negative example:
         <example>
             <![CDATA[
 Positive example:
-    @Override
-    public int hashCode() {
-        return ...;
+    public class Foo {
+
+        @Override
+        public boolean equals(Object o) {
+            // ...
+        }
+
+        @Override
+        public int hashCode() {
+            // ...
+        }
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return ...;
+Negative example 1:
+    public class Foo {
+
+        @Override
+        public boolean equals(Object o) {
+            // ...
+        }
+    }
+
+Negative example 2:
+    public class Foo {
+
+        @Override
+        public int hashCode() {
+            // ...
+        }
     }
          ]]>
         </example>

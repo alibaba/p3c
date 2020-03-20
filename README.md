@@ -40,3 +40,9 @@ If you have any questions or comments, please contact junlie by email at caikang
 Please follow our WeChat official account as ali_yunxiao below:
 
 ![](https://gw.alicdn.com/tfscom/TB1TrNcXjv85uJjSZFNXXcJApXa.png)
+
+### 2020 阿里春季招聘—欢迎投递简历
+
+[校招详情](https://www.nowcoder.com/discuss/385514)
+
+[社招详情](https://job.alibaba.com/zhaopin/position_detail.htm?trace=qrcode_share&positionCode=GP605219)

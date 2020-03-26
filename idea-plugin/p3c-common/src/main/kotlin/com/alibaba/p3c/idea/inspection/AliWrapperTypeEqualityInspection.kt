@@ -45,6 +45,7 @@ import org.jetbrains.annotations.NonNls
  */
 class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
     constructor()
+
     /**
      * For Javassist
      */
@@ -125,7 +126,7 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
 
     }
 
-    private class ArrayEqualityFix(private val deepEquals: Boolean) : InspectionGadgetsFix() {
+    private inner class ArrayEqualityFix(private val deepEquals: Boolean) : InspectionGadgetsFix() {
 
         override fun getName(): String {
             if (deepEquals) {
@@ -136,7 +137,7 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
         }
 
         override fun getFamilyName(): String {
-            return familyName
+            return this@AliWrapperTypeEqualityInspection.familyName
         }
 
         @Throws(IncorrectOperationException::class)

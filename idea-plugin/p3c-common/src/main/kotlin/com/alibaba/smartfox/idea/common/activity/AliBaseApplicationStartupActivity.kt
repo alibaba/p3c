@@ -13,10 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.smartfox.idea.common.component
+package com.alibaba.smartfox.idea.common.activity
 
-import com.alibaba.smartfox.idea.common.util.PluginVersions
-import com.intellij.openapi.components.ApplicationComponent
+import com.intellij.openapi.startup.StartupActivity
 
 /**
  *
@@ -24,14 +23,5 @@ import com.intellij.openapi.components.ApplicationComponent
  * @author caikang
  * @date 2017/05/11
  */
-interface AliBaseApplicationComponent : ApplicationComponent {
-    override fun getComponentName(): String {
-        return "${PluginVersions.pluginId.idString}-${javaClass.name}"
-    }
-
-    override fun disposeComponent() {
-    }
-
-    override fun initComponent() {
-    }
+interface AliBaseApplicationStartupActivity : StartupActivity {
 }

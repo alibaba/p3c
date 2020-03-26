@@ -1,10 +1,4 @@
 <idea-plugin>
-    <application-components>
-        <component>
-            <implementation-class>com.alibaba.p3c.idea.component.CommonSettingsApplicationComponent
-            </implementation-class>
-        </component>
-    </application-components>
     <project-components>
         <component>
             <implementation-class>com.alibaba.p3c.idea.component.AliProjectComponent</implementation-class>
@@ -44,10 +38,16 @@
                         interface="com.alibaba.p3c.idea.ep.InspectionActionExtensionPoint"/>
     </extensionPoints>
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.alibaba.p3c.idea.config.P3cConfig"/>
-        <projectService serviceImplementation="com.alibaba.p3c.idea.config.SmartFoxProjectConfig"/>
-        <checkinHandlerFactory implementation="com.alibaba.p3c.idea.vcs.AliCodeAnalysisCheckinHandlerFactory"
-                               order="first"/>
-        <inspectionToolProvider implementation="com.alibaba.p3c.idea.inspection.AliLocalInspectionToolProvider"/>
+        <applicationService
+                serviceImplementation="com.alibaba.p3c.idea.config.P3cConfig"/>
+        <projectService
+                serviceImplementation="com.alibaba.p3c.idea.config.SmartFoxProjectConfig"/>
+        <checkinHandlerFactory
+                implementation="com.alibaba.p3c.idea.vcs.AliCodeAnalysisCheckinHandlerFactory"
+                order="first"/>
+        <inspectionToolProvider
+                implementation="com.alibaba.p3c.idea.inspection.AliLocalInspectionToolProvider"/>
+        <postStartupActivity
+                implementation="com.alibaba.p3c.idea.activity.CommonSettingsApplicationStartupActivity"/>
     </extensions>
 </idea-plugin>

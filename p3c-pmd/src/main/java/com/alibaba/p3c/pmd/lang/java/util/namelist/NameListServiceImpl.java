@@ -61,7 +61,7 @@ public class NameListServiceImpl implements NameListService {
     }
 
     private static class LinkedProperties extends Properties {
-        private LinkedHashSet<Object> linkedKeys = new LinkedHashSet<>();
+        private final LinkedHashSet<Object> linkedKeys = new LinkedHashSet<>();
 
         @Override
         public Object put(Object key, Object value) {

@@ -7,7 +7,7 @@ This project here is forked from original [alibaba/p3c](https://github.com/aliba
 
 Follows Apache license described in [license](license.txt)
 
-This fork aims to help maintain alibaba/p3c, fix bugs, and add improvements,as the original developer is too busy to handle them.
+This fork aims to help maintain alibaba/p3c, fix bugs, and add improvements, as the original developer is too busy to handle them.
 
 This fork here is also used as public test for p3c.
 

@@ -156,7 +156,7 @@ Positive example:
     <rule name="VarargsParameterRule" language="java"
           message="java.oop.VarargsParameterRule.rule.msg"
           class="com.alibaba.p3c.pmd.lang.java.rule.oop.VarargsParameterRule">
-        <priority>1</priority>
+        <priority>3</priority>
         <example>
             <![CDATA[
 Positive example:

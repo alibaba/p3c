@@ -11,9 +11,9 @@
     <properties>
         <tycho.version>1.0.0</tycho.version>
         <tycho-extras.version>${tycho.version}</tycho-extras.version>
-        <eclipse-repo.url>http://download.eclipse.org/releases/neon</eclipse-repo.url>
+        <eclipse-repo.url>https://download.eclipse.org/releases/neon</eclipse-repo.url>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <ajdt-eclipse-repo.url>http://download.eclipse.org/tools/ajdt/46/dev/update</ajdt-eclipse-repo.url>
+        <ajdt-eclipse-repo.url>https://download.eclipse.org/tools/ajdt/46/dev/update</ajdt-eclipse-repo.url>
         <kotlin.version>1.3.30</kotlin.version>
         <eclipse-release>juno</eclipse-release>
     </properties>

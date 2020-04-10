@@ -3,21 +3,19 @@
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 ## <font color="green">Notice</font>
-This project here is forked from original [alibaba/p3c](https://github.com/alibaba/p3c)
+This Third-party maintenance(TPM) here is forked from original [alibaba/p3c](https://github.com/alibaba/p3c)
 
 Follows Apache license described in [license](license.txt)
 
-This fork aims to help maintain alibaba/p3c, fix bugs, and add improvements, as the original developer is too busy to handle them.
+This TPM aims to help maintain alibaba/p3c, fix bugs, and add improvements, as the original developer is too busy to handle them.
 
-This fork here is also used as public test for p3c.
+This TPM is NOT created, or maintained, or controled by any alibaba employee, in other words it is not a TPM, not an official branch.
 
-This fork is NOT created, or maintained, or controled by any alibaba employee, but by XenoAmess.
+TPM maintainer XenoAmess is not interested in changing the grammar/rules in p3c guidelines (by now).
 
-XenoAmess is not interested in changing the grammar/rules in p3c guidelines.
+TPM maintainer XenoAmess have no knowledge with eclipse plugin development.
 
-XenoAmess have no knowledge with eclipse plugin development.
-
-XenoAmess suggest you only create pr for module idea-plugin and p3c-pmd, unless you really have a reason.
+TPM maintainer XenoAmess suggest you only create pr for module idea-plugin and p3c-pmd, unless you really have a strong reason.
 
 ## <font color="green">Preface</font>
 > We are pleased to present Alibaba Java Coding Guidelines which consolidates the best programming practices over the years from Alibaba Group's technical teams. A vast number of Java programming teams impose demanding requirements on code quality across projects as we encourage reuse and better understanding of each other's programs. We have seen many programming problems in the past. For example, defective database table structures and index designs may cause software architecture flaws and performance risks. Another example is confusing code structures being difficult to maintain. Furthermore, vulnerable code without authentication is prone to hackers’ attacks. To address these kinds of problems, we developed this document for Java developers at Alibaba.

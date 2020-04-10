@@ -23,6 +23,7 @@ import com.intellij.openapi.progress.ProcessCanceledException
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManager
 import com.intellij.openapi.ui.Messages
+import org.apache.http.MethodNotSupportedException
 import java.awt.Component
 import java.net.UnknownHostException
 
@@ -34,10 +35,10 @@ import java.net.UnknownHostException
  */
 object BalloonNotifications {
     val displayId = "SmartFox Intellij IDEA Balloon Notification"
-    val balloonGroup = NotificationGroup(displayId, NotificationDisplayType.BALLOON, true)
+    val balloonGroup = buildNotificationGroup(displayId, NotificationDisplayType.BALLOON, true)
 
     val stickyBalloonDisplayId = "SmartFox Intellij IDEA Notification"
-    val stickyBalloonGroup = NotificationGroup(stickyBalloonDisplayId, NotificationDisplayType.STICKY_BALLOON, true)
+    val stickyBalloonGroup = buildNotificationGroup(stickyBalloonDisplayId, NotificationDisplayType.STICKY_BALLOON, true)
     val TITLE = "SmartFox Intellij IDEA Plugin"
 
     fun showInfoDialog(component: Component, title: String, message: String) {
@@ -56,29 +57,29 @@ object BalloonNotifications {
     }
 
     fun showSuccessNotification(message: String, project: Project? = ProjectManager.getInstance().defaultProject,
-            title: String = TITLE, sticky: Boolean = false) {
+                                title: String = TITLE, sticky: Boolean = false) {
         showNotification(message, project, title, NotificationType.INFORMATION, null, sticky)
     }
 
     fun showWarnNotification(message: String, project: Project? = ProjectManager.getInstance().defaultProject,
-            title: String = TITLE, sticky: Boolean = false) {
+                             title: String = TITLE, sticky: Boolean = false) {
         showNotification(message, project, title, NotificationType.WARNING, null, sticky)
     }
 
     fun showErrorNotification(message: String, project: Project? = ProjectManager.getInstance().defaultProject,
-            title: String = TITLE, sticky: Boolean = false) {
+                              title: String = TITLE, sticky: Boolean = false) {
         showNotification(message, project, title, NotificationType.ERROR, null, sticky)
     }
 
     fun showSuccessNotification(message: String, project: Project?,
-            notificationListener: NotificationListener, title: String = TITLE, sticky: Boolean = false) {
+                                notificationListener: NotificationListener, title: String = TITLE, sticky: Boolean = false) {
         showNotification(message, project, title, NotificationType.INFORMATION, notificationListener, sticky)
     }
 
     fun showNotification(message: String, project: Project? = ProjectManager.getInstance().defaultProject,
-            title: String = TITLE,
-            notificationType: NotificationType = NotificationType.INFORMATION,
-            notificationListener: NotificationListener? = null, sticky: Boolean = false) {
+                         title: String = TITLE,
+                         notificationType: NotificationType = NotificationType.INFORMATION,
+                         notificationListener: NotificationListener? = null, sticky: Boolean = false) {
         val group = if (sticky) {
             stickyBalloonGroup
         } else {
@@ -100,7 +101,8 @@ object BalloonNotifications {
 }
 
 object LogNotifications {
-    val group = NotificationGroup(BalloonNotifications.displayId, NotificationDisplayType.NONE, true)
+
+    val group = buildNotificationGroup(displayId = BalloonNotifications.displayId, displayType = NotificationDisplayType.NONE, isLogByDefault = true);
 
     fun log(message: String, project: Project? = ProjectManager.getInstance().defaultProject,
             title: String = BalloonNotifications.TITLE,
@@ -108,4 +110,16 @@ object LogNotifications {
             notificationListener: NotificationListener? = null) {
         group.createNotification(title, message, notificationType, notificationListener).notify(project)
     }
+}
+
+
+fun buildNotificationGroup(displayId: String, displayType: NotificationDisplayType, isLogByDefault: Boolean): NotificationGroup {
+    var notificationGroupClass = Class.forName("com.intellij.notification.NotificationGroup")
+    notificationGroupClass.constructors.forEach {
+        if (it.parameters.size == 3) {
+            return it.newInstance(displayId, displayType, isLogByDefault)
+                    as NotificationGroup;
+        }
+    }
+    throw MethodNotSupportedException("cannot find a suitable constructor for NotificationGroup who accepts [String,NotificationDisplayType,Boolean]");
 }

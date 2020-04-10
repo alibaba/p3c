@@ -178,9 +178,67 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>${maven-javadoc-plugin.version}</version>
+                        <configuration>
+                            <locale>en</locale>
+                            <show>private</show>
+                            <reportOutputDirectory>../javadocs</reportOutputDirectory>
+                            <encoding>${project.build.sourceEncoding}</encoding>
+                            <docencoding>${project.reporting.outputEncoding}
+                            </docencoding>
+                            <additionalJOption>-J-Duser.language=en_US
+                            </additionalJOption>
+
+                            <tags>
+                                <tag>
+                                    <name>date</name>
+                                </tag>
+                                <tag>
+                                    <name>apiNote</name>
+                                    <placement>a</placement>
+                                    <head>API Note:</head>
+                                </tag>
+                                <tag>
+                                    <name>implSpec</name>
+                                    <placement>a</placement>
+                                    <head>Implementation Requirements:</head>
+                                </tag>
+                                <tag>
+                                    <name>implNote</name>
+                                    <placement>a</placement>
+                                    <head>Implementation Note:</head>
+                                </tag>
+                                <tag>
+                                    <name>param</name>
+                                </tag>
+                                <tag>
+                                    <name>return</name>
+                                </tag>
+                                <tag>
+                                    <name>throws</name>
+                                </tag>
+                                <tag>
+                                    <name>since</name>
+                                </tag>
+                                <tag>
+                                    <name>version</name>
+                                </tag>
+                                <tag>
+                                    <name>serialData</name>
+                                </tag>
+                                <tag>
+                                    <name>see</name>
+                                </tag>
+                            </tags>
+
+                            <source>${maven.compiler.source}
+                            </source>
+                            <!--                    <javadocExecutable>${java.home}/bin/javadoc.exe-->
+                            <!--                    </javadocExecutable>-->
+                        </configuration>
+
                         <executions>
                             <execution>
-                                <id>attach-javadocs</id>
+                                <phase>package</phase>
                                 <goals>
                                     <goal>jar</goal>
                                 </goals>
@@ -344,21 +402,72 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <locale>en</locale>
+                    <show>private</show>
+                    <reportOutputDirectory>../javadocs</reportOutputDirectory>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <docencoding>${project.reporting.outputEncoding}
+                    </docencoding>
+                    <additionalJOption>-J-Duser.language=en_US
+                    </additionalJOption>
+
+                    <tags>
+                        <tag>
+                            <name>date</name>
+                        </tag>
+                        <tag>
+                            <name>apiNote</name>
+                            <placement>a</placement>
+                            <head>API Note:</head>
+                        </tag>
+                        <tag>
+                            <name>implSpec</name>
+                            <placement>a</placement>
+                            <head>Implementation Requirements:</head>
+                        </tag>
+                        <tag>
+                            <name>implNote</name>
+                            <placement>a</placement>
+                            <head>Implementation Note:</head>
+                        </tag>
+                        <tag>
+                            <name>param</name>
+                        </tag>
+                        <tag>
+                            <name>return</name>
+                        </tag>
+                        <tag>
+                            <name>throws</name>
+                        </tag>
+                        <tag>
+                            <name>since</name>
+                        </tag>
+                        <tag>
+                            <name>version</name>
+                        </tag>
+                        <tag>
+                            <name>serialData</name>
+                        </tag>
+                        <tag>
+                            <name>see</name>
+                        </tag>
+                    </tags>
+
+                    <source>${maven.compiler.source}
+                    </source>
+                    <!--                    <javadocExecutable>${java.home}/bin/javadoc.exe-->
+                    <!--                    </javadocExecutable>-->
+                </configuration>
+
                 <executions>
                     <execution>
-                        <id>attach-javadocs</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <tags>
-                        <tag>
-                            <name>date</name>
-                        </tag>
-                    </tags>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -96,7 +96,6 @@ public class ConcurrentExceptionWithModifyOriginSubListRule extends AbstractAliR
      * @param variableName
      * @param item
      * @return
-     * @throws JaxenException
      */
     private boolean checkBlockNodesValid(String variableName, Node item) {
         if (item instanceof ASTName) {

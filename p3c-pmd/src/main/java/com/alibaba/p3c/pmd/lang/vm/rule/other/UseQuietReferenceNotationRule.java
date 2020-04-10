@@ -15,18 +15,19 @@
  */
 package com.alibaba.p3c.pmd.lang.vm.rule.other;
 
-import java.util.List;
-import java.util.regex.Pattern;
-
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
-
 import net.sourceforge.pmd.RuleContext;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.vm.ast.ASTDirective;
 import net.sourceforge.pmd.lang.vm.ast.AbstractVmNode;
 import net.sourceforge.pmd.lang.vm.ast.Token;
 import net.sourceforge.pmd.lang.vm.ast.VmParserConstants;
+
+import java.util.List;
+import java.util.regex.Pattern;
+
+import static net.sourceforge.pmd.lang.rule.xpath.XPathRuleQuery.XPATH_1_0;
 
 /**
  * [Mandatory] Variables must add exclamatory mark when passing to velocity engine from backend, like $!{var}.
@@ -48,10 +49,11 @@ public class UseQuietReferenceNotationRule extends AbstractXpathRule {
      * Check reference between two text nodes. Exclude references scan in method.
      */
     private static final String XPATH =
-        "//Reference[matches(@literal, \"^\\$[^!]+\") and ./preceding-sibling::Text and ./following-sibling::Text]";
+            "//Reference[matches(@literal, \"^\\$[^!]+\") and ./preceding-sibling::Text and ./following-sibling::Text]";
 
     public UseQuietReferenceNotationRule() {
         setXPath(XPATH);
+        this.setVersion(XPATH_1_0);
     }
 
     @Override
@@ -74,7 +76,7 @@ public class UseQuietReferenceNotationRule extends AbstractXpathRule {
 
     @Override
     public void addViolation(Object data, Node node, String arg) {
-        String name = getIdentifyName((AbstractVmNode)node);
+        String name = getIdentifyName((AbstractVmNode) node);
         String text = I18nResources.getMessage("vm.other.UseQuietReferenceNotationRule.violation.msg", name);
         addViolationWithMessage(data, node, text);
     }

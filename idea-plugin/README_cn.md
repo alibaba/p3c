@@ -93,7 +93,7 @@ Alt+Enter键可呼出Intention菜单，不同的规则会提示不同信息的Qu
    ![](https://gw.alicdn.com/tfscom/TB1ObqXifxNTKJjy0FjXXX6yVXa.png)
    
 #### 扫描结果  
-检测结果直接使用IDEA Run Inspection By Name功能的结果界面，插件的检测结果分级为Blocker、Critical、Major。默认按等级分组，方便统计每个级别错误的数量。
+检测结果直接使用IDEA Run Inspection By Name功能的结果界面，插件的检测结果分级为Blocker、Critical、Major、Warning、Weak Warning。默认按等级分组，方便统计每个级别错误的数量。
 
 ![](https://gw.alicdn.com/tfscom/TB1aC1yifJNTKJjSspoXXc6mpXa.png)
 

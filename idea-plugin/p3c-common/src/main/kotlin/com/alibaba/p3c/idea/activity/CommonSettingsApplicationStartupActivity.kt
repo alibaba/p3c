@@ -42,6 +42,8 @@ class CommonSettingsApplicationStartupActivity : AliBaseApplicationStartupActivi
         SeverityRegistrar.registerStandard(HighlightInfoTypes.BLOCKER, HighlightSeverities.BLOCKER)
         SeverityRegistrar.registerStandard(HighlightInfoTypes.CRITICAL, HighlightSeverities.CRITICAL)
         SeverityRegistrar.registerStandard(HighlightInfoTypes.MAJOR, HighlightSeverities.MAJOR)
+        SeverityRegistrar.registerStandard(HighlightInfoTypes.WARNING, HighlightSeverities.WARNING)
+        SeverityRegistrar.registerStandard(HighlightInfoTypes.WEAK_WARNING, HighlightSeverities.WEAK_WARNING)
 
         I18nResources.changeLanguage(p3cConfig.locale)
         val analyticsGroup = ActionManager.getInstance().getAction(analyticsGroupId)

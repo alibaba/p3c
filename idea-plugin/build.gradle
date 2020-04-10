@@ -1,13 +1,13 @@
 buildscript {
     repositories {
+        mavenCentral()
+        mavenLocal()
         maven {
             url "https://oss.sonatype.org/content/repositories/snapshots/"
         }
         maven {
             url 'http://dl.bintray.com/jetbrains/intellij-plugin-service'
         }
-        mavenCentral()
-
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -26,8 +26,9 @@ allprojects {
         resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     }
     repositories {
-        jcenter()
         mavenCentral()
+        mavenLocal()
+        jcenter()
     }
 
     dependencies {

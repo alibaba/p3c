@@ -29,7 +29,7 @@
     <change-notes>
         <![CDATA[
         <ul>
-        2.0.1.1x
+        2.0.1.2x-SNAPSHOT
         <li>Fix idea 2020.1 compatibility issue</li>
         <li>fix javadoc in p3c-cmd</li>
         <li>fix clinic dependency in p3c-cmd</li>

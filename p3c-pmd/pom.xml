@@ -217,6 +217,7 @@
                     </sourceEncoding>
                     <targetJdk>${maven.compiler.target}</targetJdk>
                     <printFailingErrors>true</printFailingErrors>
+                    <failurePriority>2</failurePriority>
                     <rulesets>
                         <ruleset>rulesets/java/ali-comment.xml</ruleset>
                         <ruleset>rulesets/java/ali-concurrent.xml</ruleset>

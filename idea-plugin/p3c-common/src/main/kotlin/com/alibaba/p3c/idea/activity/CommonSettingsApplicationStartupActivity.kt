@@ -31,7 +31,7 @@ import com.intellij.openapi.project.Project
  * @author caikang
  * @date 2017/06/19
  */
-class CommonSettingsApplicationStartupActivity() : AliBaseApplicationStartupActivity {
+class CommonSettingsApplicationStartupActivity : AliBaseApplicationStartupActivity {
     companion object {
         val analyticsGroupId = "com.alibaba.p3c.analytics.action_group"
         val analyticsGroupText = "$analyticsGroupId.text"

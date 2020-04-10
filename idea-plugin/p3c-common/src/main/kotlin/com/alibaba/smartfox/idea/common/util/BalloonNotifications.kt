@@ -102,7 +102,7 @@ object BalloonNotifications {
 
 object LogNotifications {
 
-    val group = buildNotificationGroup(displayId = BalloonNotifications.displayId, displayType = NotificationDisplayType.NONE, isLogByDefault = true);
+    val group = buildNotificationGroup(displayId = BalloonNotifications.displayId, displayType = NotificationDisplayType.NONE, isLogByDefault = true)
 
     fun log(message: String, project: Project? = ProjectManager.getInstance().defaultProject,
             title: String = BalloonNotifications.TITLE,
@@ -118,8 +118,8 @@ fun buildNotificationGroup(displayId: String, displayType: NotificationDisplayTy
     notificationGroupClass.constructors.forEach {
         if (it.parameters.size == 3) {
             return it.newInstance(displayId, displayType, isLogByDefault)
-                    as NotificationGroup;
+                    as NotificationGroup
         }
     }
-    throw MethodNotSupportedException("cannot find a suitable constructor for NotificationGroup who accepts [String,NotificationDisplayType,Boolean]");
+    throw MethodNotSupportedException("cannot find a suitable constructor for NotificationGroup who accepts [String,NotificationDisplayType,Boolean]")
 }

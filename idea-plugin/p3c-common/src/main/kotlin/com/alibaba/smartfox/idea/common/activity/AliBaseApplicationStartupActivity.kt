@@ -23,5 +23,4 @@ import com.intellij.openapi.startup.StartupActivity
  * @author caikang
  * @date 2017/05/11
  */
-interface AliBaseApplicationStartupActivity : StartupActivity {
-}
+interface AliBaseApplicationStartupActivity : StartupActivity

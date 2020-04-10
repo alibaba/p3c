@@ -37,11 +37,11 @@ import java.util.ResourceBundle.Control;
 public class I18nResources {
     private static final String XML_LITERAL = "xml";
 
-    private static final String lang = System.getProperty("pmd.language", "zh");
+    private static final String LANG = System.getProperty("pmd.language", "zh");
 
     private static Locale currentLocale;
 
-    private static ResourceBundle resourceBundle = changeLanguage(lang);
+    private static ResourceBundle resourceBundle = changeLanguage(LANG);
 
     public static ResourceBundle changeLanguage(String language) {
         Locale locale = Locale.CHINESE.getLanguage().equals(language) ? Locale.CHINESE : Locale.ENGLISH;

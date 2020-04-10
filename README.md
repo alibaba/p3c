@@ -9,7 +9,7 @@ Follows Apache license described in [license](license.txt)
 
 This TPM aims to help maintain alibaba/p3c, fix bugs, and add improvements, as the original developer is too busy to handle them.
 
-This TPM is NOT created, or maintained, or controled by any alibaba employee, in other words it is not a TPM, not an official branch.
+This TPM is NOT created, or maintained, or controled by any alibaba employee, in other words it is a TPM, but not an official branch.
 
 TPM maintainer XenoAmess is not interested in changing the grammar/rules in p3c guidelines (by now).
 

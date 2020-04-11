@@ -3,6 +3,7 @@ sudo: true
 dist: trusty
 before_install:
   - chmod +x mvnw
+  - chmod +x idea-plugin/gradlew
 git:
   depth: false
 cache:
@@ -39,9 +40,9 @@ script:
   - "cd ../"
   - "cd ./idea-plugin"
   - "cd ./p3c-common"
-  - "../gradlew build --scan -s"
+  - "../gradlew publishToMavenLocal --scan -s"
   - "cd ../"
   - "cd ./p3c-idea"
-  - "../gradlew build --scan -s"
+  - "../gradlew publishToMavenLocal --scan -s"
   - "cd ../"
   - "./gradlew buildPlugin --scan -s"

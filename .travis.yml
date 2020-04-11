@@ -33,7 +33,7 @@ matrix:
     - jdk: openjdk-ea
 script:
   - "cd ./p3c-pmd"
-  - "../mvnw clean install site -U -Dmaven.javadoc.skip=false -e"
+  - "../mvnw clean install -U -Dmaven.javadoc.skip=false -e"
   - "cd ../"
   - "cd ./idea-plugin"
   - "cd ./p3c-common"

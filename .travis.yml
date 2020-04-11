@@ -1,0 +1,45 @@
+language: java
+sudo: true
+dist: trusty
+before_install:
+  - chmod +x mvnw
+git:
+  depth: false
+cache:
+  directories:
+    - "$HOME/.m2"
+install: true
+matrix:
+  include:
+    - os: linux
+      jdk: openjdk8
+    - os: linux
+      jdk: openjdk9
+    - os: linux
+      jdk: openjdk10
+    - os: linux
+      jdk: openjdk11
+    - os: linux
+      jdk: openjdk12
+    - os: linux
+      jdk: openjdk13
+    - os: linux
+      jdk: openjdk14
+    - os: linux
+      jdk: openjdk-ea
+  allow_failures:
+    - jdk: openjdk14
+    - jdk: openjdk9
+    - jdk: openjdk-ea
+script:
+  - "cd ./p3c-pmd"
+  - "../mvnw clean install site -U -Dmaven.javadoc.skip=false -e"
+  - "cd ../"
+  - "cd ./idea-plugin"
+  - "cd ./p3c-common"
+  - "call ../gradlew publishToMavenLocal"
+  - "cd ../"
+  - "cd ./p3c-idea"
+  - "call ../gradlew publishToMavenLocal"
+  - "cd ../"
+  - "call ./gradlew buildPlugin"

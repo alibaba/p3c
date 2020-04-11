@@ -25,8 +25,8 @@ import com.intellij.codeHighlighting.HighlightDisplayLevel
  */
 object HighlightDisplayLevels {
     val BLOCKER = HighlightDisplayLevel(HighlightSeverities.BLOCKER, HighlightDisplayLevel.ERROR.icon)
-    val CRITICAL = HighlightDisplayLevel(HighlightSeverities.CRITICAL, HighlightDisplayLevel.ERROR.icon)
-    val MAJOR = HighlightDisplayLevel(HighlightSeverities.MAJOR, HighlightDisplayLevel.WARNING.icon)
+    val CRITICAL = HighlightDisplayLevel(HighlightSeverities.CRITICAL, HighlightDisplayLevel.WARNING.icon)
+    val MAJOR = HighlightDisplayLevel(HighlightSeverities.MAJOR, HighlightDisplayLevel.WEAK_WARNING.icon)
     val WARNING = HighlightDisplayLevel(HighlightSeverities.WARNING, HighlightDisplayLevel.WEAK_WARNING.icon)
     val WEAK_WARNING = HighlightDisplayLevel(HighlightSeverities.WEAK_WARNING, HighlightDisplayLevel.INFO.icon)
 }

@@ -7,7 +7,7 @@ git:
   depth: false
 cache:
   directories:
-    - "$HOME/.m2"
+    - $HOME/.m2
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 install: true

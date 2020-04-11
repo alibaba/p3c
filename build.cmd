@@ -1,5 +1,5 @@
 cd ./p3c-pmd
-call mvn clean install -Dmaven.javadoc.skip=false -e
+call mvn clean install -Dmaven.javadoc.skip=false -e -X
 cd ../
 cd ./idea-plugin
 

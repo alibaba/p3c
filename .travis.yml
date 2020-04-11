@@ -8,6 +8,8 @@ git:
 cache:
   directories:
     - "$HOME/.m2"
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
 install: true
 matrix:
   include:
@@ -37,9 +39,9 @@ script:
   - "cd ../"
   - "cd ./idea-plugin"
   - "cd ./p3c-common"
-  - "../gradlew publishToMavenLocal"
+  - "../gradlew build --scan -s"
   - "cd ../"
   - "cd ./p3c-idea"
-  - "../gradlew publishToMavenLocal"
+  - "../gradlew build --scan -s"
   - "cd ../"
-  - "./gradlew buildPlugin"
+  - "./gradlew buildPlugin --scan -s"

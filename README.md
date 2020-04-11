@@ -1,7 +1,7 @@
 # P3C
 
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
-
+[![Build Status](https://travis-ci.org/XenoAmess/p3c.svg?branch=xenoamess_maintain_fork)](https://travis-ci.org/XenoAmess/p3c)
 ## <font color="green">Notice</font>
 This Third-party maintenance(TPM) here is forked from original [alibaba/p3c](https://github.com/alibaba/p3c)
 

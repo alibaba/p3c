@@ -31,7 +31,7 @@ import com.intellij.openapi.project.Project
  * @author caikang
  * @date 2017/06/19
  */
-class CommonSettingsApplicationStartupActivity() : AliBaseApplicationStartupActivity {
+class CommonSettingsApplicationStartupActivity : AliBaseApplicationStartupActivity {
     companion object {
         val analyticsGroupId = "com.alibaba.p3c.analytics.action_group"
         val analyticsGroupText = "$analyticsGroupId.text"
@@ -42,6 +42,8 @@ class CommonSettingsApplicationStartupActivity() : AliBaseApplicationStartupActi
         SeverityRegistrar.registerStandard(HighlightInfoTypes.BLOCKER, HighlightSeverities.BLOCKER)
         SeverityRegistrar.registerStandard(HighlightInfoTypes.CRITICAL, HighlightSeverities.CRITICAL)
         SeverityRegistrar.registerStandard(HighlightInfoTypes.MAJOR, HighlightSeverities.MAJOR)
+        SeverityRegistrar.registerStandard(HighlightInfoTypes.WARNING, HighlightSeverities.WARNING)
+        SeverityRegistrar.registerStandard(HighlightInfoTypes.WEAK_WARNING, HighlightSeverities.WEAK_WARNING)
 
         I18nResources.changeLanguage(p3cConfig.locale)
         val analyticsGroup = ActionManager.getInstance().getAction(analyticsGroupId)

@@ -113,11 +113,10 @@ public class ThreadShouldSetNameRule extends AbstractAliRule {
         ASTLambdaExpression lambdaExpression = expression.getFirstDescendantOfType(ASTLambdaExpression.class);
         if (lambdaExpression != null) {
             return isThreadFactoryLambda(lambdaExpression);
-        } else if (expression.getType() != null
-            && RejectedExecutionHandler.class.isAssignableFrom(expression.getType())) {
-            return false;
+        } else {
+            return expression.getType() == null
+                    || !RejectedExecutionHandler.class.isAssignableFrom(expression.getType());
         }
-        return true;
     }
 
     private boolean isThreadFactoryLambda(ASTLambdaExpression lambdaExpression) {

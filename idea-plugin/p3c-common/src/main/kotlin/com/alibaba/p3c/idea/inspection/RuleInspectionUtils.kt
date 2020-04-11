@@ -95,7 +95,9 @@ object RuleInspectionUtils {
         when (rulePriority) {
             RulePriority.HIGH -> return HighlightDisplayLevels.BLOCKER
             RulePriority.MEDIUM_HIGH -> return HighlightDisplayLevels.CRITICAL
-            else -> return HighlightDisplayLevels.MAJOR
+            RulePriority.MEDIUM -> return HighlightDisplayLevels.MAJOR
+            RulePriority.MEDIUM_LOW -> return HighlightDisplayLevels.WARNING
+            else -> return HighlightDisplayLevels.WEAK_WARNING
         }
     }
 
@@ -110,8 +112,7 @@ object RuleInspectionUtils {
             map.put("message", StringUtils.trimToEmpty(rule.message))
             map.put("description", StringUtils.trimToEmpty(rule.description))
             val examples = rule.examples.map {
-                it?.trim {
-                    c ->
+                it?.trim { c ->
                     c == '\n'
                 }
             }

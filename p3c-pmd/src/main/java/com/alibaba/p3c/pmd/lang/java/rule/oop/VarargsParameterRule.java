@@ -1,3 +1,5 @@
+package com.alibaba.p3c.pmd.lang.java.rule.oop;
+
 /*
  * Copyright 1999-2017 Alibaba Group.
  *
@@ -13,33 +15,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.p3c.pmd.lang.java.rule.other;
 
+import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 
 /**
- * Avoid using *Apache Beanutils* to copy attributes.
- * Note: *Spring BeanUtils* and *Cglib BeanCopier* are recommended to be used, which have better performance.
- * 
- * @author keriezhang
- * @date 2016/12/14
+ * [Mandatory]
  *
+ * @author leonard99559
+ * @date 2019/10/16
  */
-public class AvoidApacheBeanUtilsCopyRule extends AbstractXpathRule {
-    private static final String XPATH =
-            "//PrimaryPrefix/Name[(@Image='BeanUtils.copyProperties' and "
-                + "//ImportDeclaration[@ImportedName='org.apache.commons.beanutils.BeanUtils']) or "
-                + "starts-with(@Image,'org.apache.commons.beanutils.BeanUtils.copyProperties')]";
+public class VarargsParameterRule extends AbstractXpathRule {
+    private static final String XPATH = "//FormalParameter[@Varargs = 'true' and ./Type[@TypeImage = 'Object']]";
 
-    public AvoidApacheBeanUtilsCopyRule() {
+    public VarargsParameterRule() {
         setXPath(XPATH);
     }
 
     @Override
     public void addViolation(Object data, Node node, String arg) {
-        ViolationUtils.addViolationWithPrecisePosition(this, node, data);
+        ViolationUtils.addViolationWithPrecisePosition(this, node, data,
+                I18nResources.getMessage("java.oop.VarargsParameterRule.rule.msg",
+                        node.getImage()));
     }
+
 }

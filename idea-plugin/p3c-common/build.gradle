@@ -50,9 +50,9 @@ version '2.0.1'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 dependencies {
-    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.25-incubating'
-    compile 'com.alibaba.p3c:p3c-pmd:2.0.1.1x'
-    compile group: 'org.javassist', name: 'javassist', version: '3.21.0-GA'
+    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
+    compile 'com.alibaba.p3c:p3c-pmd:2.0.1.2x-SNAPSHOT'
+    compile group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
 }
 
 uploadArchives {

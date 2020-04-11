@@ -29,7 +29,7 @@
     <change-notes>
         <![CDATA[
         <ul>
-        2.0.1.1x
+        2.0.1.2x-SNAPSHOT
         <li>Fix idea 2020.1 compatibility issue</li>
         <li>fix javadoc in p3c-cmd</li>
         <li>fix clinic dependency in p3c-cmd</li>
@@ -104,8 +104,8 @@
 
     <idea-version since-build="145.0"/>
 
-    <depends optional="true">com.intellij.velocity</depends>
-    <depends optional="true" config-file="p3c.xml">com.intellij.modules.java</depends>
+    <depends optional="true" config-file="pluginWithVelocity.xml">com.intellij.velocity</depends>
+    <depends optional="true" config-file="pluginWithJava.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.vcs</depends>

@@ -35,5 +35,6 @@ public class SetRulesTest extends SimpleAggregatorTst {
         addRule(RULESET, "ConcurrentExceptionWithModifyOriginSubListRule");
         addRule(RULESET, "DontModifyInForeachCircleRule");
         addRule(RULESET, "UnsupportedExceptionWithModifyAsListRule");
+        addRule(RULESET, "EqualsHashCodeRule");
     }
 }

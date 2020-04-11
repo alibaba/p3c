@@ -2,6 +2,13 @@
 
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![Build Status](https://travis-ci.org/XenoAmess/p3c.svg?branch=xenoamess_maintain_fork)](https://travis-ci.org/XenoAmess/p3c)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=p3c-idea&metric=alert_status)](https://sonarcloud.io/dashboard?id=p3c-idea)
+p3c-cmd
+
+[![idea plugin](https://sonarcloud.io/api/project_badges/measure?project=p3c-idea&metric=alert_status)](https://sonarcloud.io/dashboard?id=p3c-idea)
+idea plugin(p3c-common)
+
 ## <font color="green">Notice</font>
 This Third-party maintenance(TPM) here is forked from original [alibaba/p3c](https://github.com/alibaba/p3c)
 

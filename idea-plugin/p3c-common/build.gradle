@@ -2,10 +2,12 @@ plugins {
     id 'java'
     id "org.jetbrains.intellij" version "0.4.18"
 
-//    id 'application'
+    id "org.sonarqube" version "2.8"
+
     id 'maven'
     id "com.github.ben-manes.versions" version "0.28.0"
 }
+
 apply plugin: 'kotlin'
 apply plugin: 'idea'
 apply plugin: 'maven'
@@ -37,6 +39,14 @@ if (idea_version.startsWith('193.') || idea_version.startsWith('2019.3') || idea
     myPlugins = ['java']
 }
 
+sonarqube {
+    properties {
+        property "sonar.projectKey", "p3c-idea"
+        property "sonar.organization", "xenoamess-github"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.login", "023904832cfec46a1aa61bb7aeee156b066cb3bc"
+    }
+}
 
 intellij {
     version idea_version

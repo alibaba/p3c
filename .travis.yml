@@ -1,0 +1,48 @@
+language: java
+sudo: true
+dist: trusty
+before_install:
+  - chmod +x mvnw
+  - chmod +x idea-plugin/gradlew
+git:
+  depth: false
+cache:
+  directories:
+    - $HOME/.m2
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+install: true
+matrix:
+  include:
+    - os: linux
+      jdk: openjdk8
+    - os: linux
+      jdk: openjdk9
+    - os: linux
+      jdk: openjdk10
+    - os: linux
+      jdk: openjdk11
+    - os: linux
+      jdk: openjdk12
+    - os: linux
+      jdk: openjdk13
+    - os: linux
+      jdk: openjdk14
+    - os: linux
+      jdk: openjdk-ea
+  allow_failures:
+    - jdk: openjdk14
+    - jdk: openjdk9
+    - jdk: openjdk-ea
+script:
+  - "cd ./p3c-pmd"
+  - "../mvnw clean install -U -Dmaven.javadoc.skip=false -e"
+  - "cd ../"
+  - "cd ./idea-plugin"
+  - "cd ./p3c-common"
+  - "../gradlew publishToMavenLocal --scan -s"
+  - "cd ../"
+  - "cd ./p3c-idea"
+  - "../gradlew publishToMavenLocal --scan -s"
+  - "cd ../"
+  - "./gradlew buildPlugin --scan -s"

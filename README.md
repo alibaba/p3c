@@ -1,7 +1,7 @@
 # P3C
 
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
-
+[![Build Status](https://travis-ci.org/XenoAmess/p3c.svg?branch=xenoamess_maintain_fork)](https://travis-ci.org/XenoAmess/p3c)
 ## <font color="green">Notice</font>
 This Third-party maintenance(TPM) here is forked from original [alibaba/p3c](https://github.com/alibaba/p3c)
 
@@ -51,6 +51,7 @@ The project consists of 3 parts:
     3. These two methods must be overridden if self-defined object is used as the key of Map.
    Note: String can be used as the key of Map since these two methods have been rewritten.
 
+<!--
 ## Join us
 If you have any questions or comments, please contact junlie by email at caikang.ck@alibaba-inc.com, and please join us to make project P3C perfect for more programmers.
 
@@ -58,7 +59,6 @@ Please follow our WeChat official account as ali_yunxiao below:
 
 ![](https://gw.alicdn.com/tfscom/TB1TrNcXjv85uJjSZFNXXcJApXa.png)
 
-<!--
 ### 2020 阿里春季招聘—欢迎投递简历
 
 [校招详情](https://www.nowcoder.com/discuss/385514)

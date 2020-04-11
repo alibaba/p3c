@@ -33,6 +33,7 @@ import com.siyeh.ig.numeric.LongLiteralsEndingWithLowercaseLInspection
  */
 class AliLongLiteralsEndingWithLowercaseLInspection : LongLiteralsEndingWithLowercaseLInspection, AliBaseInspection {
     constructor()
+
     /**
      * For Javassist
      */

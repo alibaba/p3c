@@ -48,6 +48,7 @@ class AliAccessStaticViaInstanceInspection : AccessStaticViaInstance, AliBaseIns
     val messageKey = "com.alibaba.p3c.idea.inspection.standalone.AliAccessStaticViaInstanceInspection"
 
     constructor()
+
     /**
      * For Javassist
      */
@@ -69,9 +70,11 @@ class AliAccessStaticViaInstanceInspection : AccessStaticViaInstance, AliBaseIns
         return "AliAccessStaticViaInstance"
     }
 
-    override fun createAccessStaticViaInstanceFix(expr: PsiReferenceExpression,
+    override fun createAccessStaticViaInstanceFix(
+            expr: PsiReferenceExpression,
             onTheFly: Boolean,
-            result: JavaResolveResult): AccessStaticViaInstanceFix {
+            result: JavaResolveResult
+    ): AccessStaticViaInstanceFix {
         return object : AccessStaticViaInstanceFix(expr, result, onTheFly) {
             val fixKey = "com.alibaba.p3c.idea.quickfix.standalone.AliAccessStaticViaInstanceInspection"
             internal val text = calcText(result.element as PsiMember, result.substitutor)
@@ -107,8 +110,11 @@ class AliAccessStaticViaInstanceInspection : AccessStaticViaInstance, AliBaseIns
         return HighlightDisplayLevels.BLOCKER
     }
 
-    private fun checkAccessStaticMemberViaInstanceReference(expr: PsiReferenceExpression, holder: ProblemsHolder,
-            onTheFly: Boolean) {
+    private fun checkAccessStaticMemberViaInstanceReference(
+            expr: PsiReferenceExpression,
+            holder: ProblemsHolder,
+            onTheFly: Boolean
+    ) {
         val result = expr.advancedResolve(false)
         val resolved = result.element as? PsiMember ?: return
 

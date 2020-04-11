@@ -26,7 +26,7 @@ import com.intellij.openapi.util.IconLoader;
 public final class P3cIcons {
     private P3cIcons() {
         throw new AssertionError("icons.P3cIcons"
-            + " instances for you!");
+                + " instances for you!");
     }
 
     public static final Icon ANALYSIS_ACTION = IconLoader.getIcon("/icons/ali-ide-run.png");

@@ -71,8 +71,12 @@ interface AliBaseInspection {
 
     fun manualBuildFix(psiElement: PsiElement, isOnTheFly: Boolean): LocalQuickFix? = null
 
-    fun manualParsePsiElement(psiFile: PsiFile, manager: InspectionManager,
-            start: Int, end: Int): PsiElement {
+    fun manualParsePsiElement(
+            psiFile: PsiFile,
+            manager: InspectionManager,
+            start: Int,
+            end: Int
+    ): PsiElement {
         return psiFile.findElementAt(start)!!
     }
 

@@ -108,9 +108,15 @@ class AliInspectionAction : AnAction() {
         return project.basePath == file.canonicalPath
     }
 
-    private fun inspectForKeyEvent(project: Project, managerEx: InspectionManagerEx,
-            toolWrappers: List<InspectionToolWrapper<*, *>>, psiElement: PsiElement?, psiFile: PsiFile?,
-            virtualFile: VirtualFile?, analysisScope: AnalysisScope) {
+    private fun inspectForKeyEvent(
+            project: Project,
+            managerEx: InspectionManagerEx,
+            toolWrappers: List<InspectionToolWrapper<*, *>>,
+            psiElement: PsiElement?,
+            psiFile: PsiFile?,
+            virtualFile: VirtualFile?,
+            analysisScope: AnalysisScope
+    ) {
         var module: Module? = null
         if (virtualFile != null && project.baseDir != virtualFile) {
             module = ModuleUtilCore.findModuleForFile(virtualFile, project)
@@ -138,9 +144,12 @@ class AliInspectionAction : AnAction() {
     companion object {
         val logger = Logger.getInstance(AliInspectionAction::class.java)
 
-        fun createContext(toolWrapperList: List<InspectionToolWrapper<*, *>>,
-                managerEx: InspectionManagerEx, psiElement: PsiElement?, projectScopeSelected: Boolean):
-                GlobalInspectionContextImpl {
+        fun createContext(
+                toolWrapperList: List<InspectionToolWrapper<*, *>>,
+                managerEx: InspectionManagerEx,
+                psiElement: PsiElement?,
+                projectScopeSelected: Boolean
+        ): GlobalInspectionContextImpl {
             val model = InspectionProfileService.createSimpleProfile(toolWrapperList, managerEx, psiElement)
             val inspectionContext = createNewGlobalContext(
                     managerEx, projectScopeSelected)
@@ -148,11 +157,16 @@ class AliInspectionAction : AnAction() {
             return inspectionContext
         }
 
-        private fun createNewGlobalContext(managerEx: InspectionManagerEx,
-                projectScopeSelected: Boolean): GlobalInspectionContextImpl {
+        private fun createNewGlobalContext(
+                managerEx: InspectionManagerEx,
+                projectScopeSelected: Boolean
+        ): GlobalInspectionContextImpl {
             return object : GlobalInspectionContextImpl(managerEx.project, managerEx.contentManager) {
-                override fun runTools(scope: AnalysisScope, runGlobalToolsOnly: Boolean,
-                        isOfflineInspections: Boolean) {
+                override fun runTools(
+                        scope: AnalysisScope,
+                        runGlobalToolsOnly: Boolean,
+                        isOfflineInspections: Boolean
+                ) {
                     super.runTools(scope, runGlobalToolsOnly, isOfflineInspections)
                     if (myProgressIndicator.isCanceled) {
                         return
@@ -160,7 +174,7 @@ class AliInspectionAction : AnAction() {
                     InspectionActionExtensionPoint.extension.extensions.forEach {
                         try {
                             it.doOnInspectionFinished(this, projectScopeSelected)
-                        } catch(e: Exception) {
+                        } catch (e: Exception) {
                             logger.warn(e)
                         }
                     }
@@ -171,7 +185,7 @@ class AliInspectionAction : AnAction() {
                     InspectionActionExtensionPoint.extension.extensions.forEach {
                         try {
                             it.doOnClose(noSuspiciousCodeFound, project)
-                        } catch(e: Exception) {
+                        } catch (e: Exception) {
                             logger.warn(e)
                         }
                     }
@@ -182,7 +196,7 @@ class AliInspectionAction : AnAction() {
                     InspectionActionExtensionPoint.extension.extensions.forEach {
                         try {
                             it.doOnView(view)
-                        } catch(e: Exception) {
+                        } catch (e: Exception) {
                             logger.warn(e)
                         }
                     }

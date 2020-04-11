@@ -42,8 +42,11 @@ class DelegatePmdInspection : LocalInspectionTool(), AliBaseInspection, PmdRuleI
         return aliPmdInspection.runForWholeFile()
     }
 
-    override fun checkFile(file: PsiFile, manager: InspectionManager,
-            isOnTheFly: Boolean): Array<ProblemDescriptor>? {
+    override fun checkFile(
+            file: PsiFile,
+            manager: InspectionManager,
+            isOnTheFly: Boolean
+    ): Array<ProblemDescriptor>? {
         return aliPmdInspection.checkFile(file, manager, isOnTheFly)
     }
 

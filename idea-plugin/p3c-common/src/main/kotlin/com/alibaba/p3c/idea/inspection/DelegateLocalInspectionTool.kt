@@ -45,8 +45,11 @@ class DelegateLocalInspectionTool : LocalInspectionTool(), AliBaseInspection {
         return localInspectionTool.runForWholeFile()
     }
 
-    override fun checkFile(file: PsiFile, manager: InspectionManager,
-            isOnTheFly: Boolean): Array<ProblemDescriptor>? {
+    override fun checkFile(
+            file: PsiFile,
+            manager: InspectionManager,
+            isOnTheFly: Boolean
+    ): Array<ProblemDescriptor>? {
         return localInspectionTool.checkFile(file, manager, isOnTheFly)
     }
 
@@ -84,8 +87,11 @@ class DelegateLocalInspectionTool : LocalInspectionTool(), AliBaseInspection {
         return false
     }
 
-    override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean,
-            session: LocalInspectionToolSession): PsiElementVisitor {
+    override fun buildVisitor(
+            holder: ProblemsHolder,
+            isOnTheFly: Boolean,
+            session: LocalInspectionToolSession
+    ): PsiElementVisitor {
         if (!AliLocalInspectionToolProvider.javaShouldInspectChecker.shouldInspect(holder.file)) {
             return PsiElementVisitor.EMPTY_VISITOR
         }

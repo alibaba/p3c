@@ -45,8 +45,12 @@ object LowerCamelCaseVariableNamingQuickFix : AliQuickFix {
     }
 
     private fun toLowerCamelCase(identifier: String): String {
-        val list = Splitter.onPattern("[^a-z0-9A-Z]+").trimResults()
-            .omitEmptyStrings().split(identifier).toList()
+        val list = Splitter
+                .onPattern("[^a-z0-9A-Z]+")
+                .trimResults()
+                .omitEmptyStrings()
+                .split(identifier)
+                .toList()
         val result = list.mapIndexed { i, s ->
             val charArray = s.toCharArray()
             charArray[0] = if (i == 0) charArray[0].toLowerCase() else charArray[0].toUpperCase()

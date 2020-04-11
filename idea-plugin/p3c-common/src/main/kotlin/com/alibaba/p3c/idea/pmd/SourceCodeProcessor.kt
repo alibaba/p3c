@@ -153,20 +153,28 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
         }
     }
 
-    private fun usesTypeResolution(languageVersion: LanguageVersion, rootNode: Node, ruleSets: RuleSets,
-        language: Language) {
+    private fun usesTypeResolution(
+            languageVersion: LanguageVersion,
+            rootNode: Node,
+            ruleSets: RuleSets,
+            language: Language
+    ) {
 
         if (ruleSets.usesTypeResolution(language)) {
             TimeTracker.startOperation(TimedOperationCategory.TYPE_RESOLUTION).use { to ->
                 languageVersion.languageVersionHandler.getTypeResolutionFacade(configuration.classLoader)
-                    .start(rootNode)
+                        .start(rootNode)
             }
         }
     }
 
 
-    private fun usesMultifile(rootNode: Node, languageVersionHandler: LanguageVersionHandler, ruleSets: RuleSets,
-        language: Language) {
+    private fun usesMultifile(
+            rootNode: Node,
+            languageVersionHandler: LanguageVersionHandler,
+            ruleSets: RuleSets,
+            language: Language
+    ) {
 
         if (ruleSets.usesMultifile(language)) {
             TimeTracker.startOperation(TimedOperationCategory.MULTIFILE_ANALYSIS).use { to -> languageVersionHandler.multifileFacade.start(rootNode) }
@@ -209,9 +217,9 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
 
         fun reInitNodeCache(expireTime: Long) {
             nodeCache = CacheBuilder.newBuilder().concurrencyLevel(16)
-                .expireAfterWrite(expireTime, TimeUnit.MILLISECONDS)
-                .maximumSize(100)
-                .build<String, Node>()!!
+                    .expireAfterWrite(expireTime, TimeUnit.MILLISECONDS)
+                    .maximumSize(100)
+                    .build<String, Node>()!!
         }
 
         fun invalidateCache(file: String) {

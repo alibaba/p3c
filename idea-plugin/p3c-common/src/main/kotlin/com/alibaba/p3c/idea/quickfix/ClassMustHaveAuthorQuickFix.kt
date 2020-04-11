@@ -35,7 +35,9 @@ object ClassMustHaveAuthorQuickFix : InspectionGadgetsFix(), AliQuickFix {
 
     override fun doFix(project: Project?, descriptor: ProblemDescriptor?) {
         descriptor ?: return
-        val psiClass = descriptor.psiElement as? PsiClass ?: descriptor.psiElement?.parent as? PsiClass ?: return
+        val psiClass = descriptor.psiElement as? PsiClass
+                ?: descriptor.psiElement?.parent as? PsiClass
+                ?: return
 
         val document = psiClass.docComment
         val psiFacade = JavaPsiFacade.getInstance(project)

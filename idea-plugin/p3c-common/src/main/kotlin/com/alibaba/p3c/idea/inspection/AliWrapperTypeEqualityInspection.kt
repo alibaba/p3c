@@ -167,7 +167,8 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
     }
 
     override fun manualBuildFix(psiElement: PsiElement, isOnTheFly: Boolean): LocalQuickFix? {
-        val expression = psiElement.parent as? PsiBinaryExpression ?: return null
+        val expression = psiElement.parent as? PsiBinaryExpression
+                ?: return null
         val rhs = expression.rOperand ?: return null
         val lhs = expression.lOperand
         val lhsType = lhs.type

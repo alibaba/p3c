@@ -26,80 +26,78 @@
 <br/>
     ]]></description>
 
-    <change-notes>
-        <![CDATA[
-        <ul>
-        2.0.1.2x-SNAPSHOT
-        <li>Fix idea 2020.1 compatibility issue</li>
-        <li>fix javadoc in p3c-cmd</li>
-        <li>fix clinic dependency in p3c-cmd</li>
-        <li>upgrade gradle wrapper</li>
-        <li>upgrade idea-plugin version</li>
-        <li>upgrade some dependencies</li>
+    <change-notes><![CDATA[
+        <ul>2.0.1.2x
+            <li>reviews all pending prs before 2020/04/11 , and merged/improved some of them.</li>
+            <li>merged pr: special camel rule for MybatisGenerator's DOMapper classes.</li>
+            <li>merged pr: fix for check of BeanUtils' copyProperties, and add more tests for it.</li>
+            <li>merged pr: forbid Object Varargs, and change its priority from 1 to 4.</li>
+            <li>merged pr: forbid Object Varargs, and change its priority from 1 to 4.</li>
+            <li>upgrade some dependencies.</li>
+            <li>remake pom.xml in p3c-pmd.</li>
+            <li>fix some javadoc in p3c-pmd.</li>
+            <li>fix code smells.</li>
+            <li>fix some wrongly formatted xmls, including this plugin.xml.</li>
+            <li>add WARNING and WEAK_WARNING.</li>
         </ul>
-        <ul>
-        2.0.1
-        <li>Fix idea 2019.3 compatibility issue</li>
-        <li>fix https://github.com/alibaba/p3c/issues/540</li>
-        <li>fix https://github.com/alibaba/p3c/issues/209</li>
-        <li>fix https://github.com/alibaba/p3c/issues/579</li>
-        <li>Add code style rule of lock</li>
+        <ul>2.0.1.1x
+            <li>Fix idea 2020.1 compatibility issue</li>
+            <li>fix javadoc in p3c-cmd</li>
+            <li>fix clinic dependency in p3c-cmd</li>
+            <li>upgrade gradle wrapper</li>
+            <li>upgrade idea-plugin version</li>
+            <li>upgrade some dependencies</li>
         </ul>
-        <ul>
-        2.0.0
-        <li>supported min idea version 2016.1(145.258.11)</li>
-        <li>supported min jdk version 1.8</li>
-        <li>fix persistent compatibility issue</li>
-        <li>fix https://github.com/alibaba/p3c/issues/430</li>
-        <li>fix https://github.com/alibaba/p3c/issues/454</li>
-        <li>fix https://github.com/alibaba/p3c/issues/409</li>
-        <li>add rule To judge the equivalence of floating-point numbers.</li>
-        <li>add annotation process for rule ClassMustHaveAuthorRule</li>
+        <ul>2.0.1
+            <li>Fix idea 2019.3 compatibility issue</li>
+            <li>fix https://github.com/alibaba/p3c/issues/540</li>
+            <li>fix https://github.com/alibaba/p3c/issues/209</li>
+            <li>fix https://github.com/alibaba/p3c/issues/579</li>
+            <li>Add code style rule of lock</li>
+        </ul>
+        <ul>2.0.0
+            <li>supported min idea version 2016.1(145.258.11)</li>
+            <li>supported min jdk version 1.8</li>
+            <li>fix persistent compatibility issue</li>
+            <li>fix https://github.com/alibaba/p3c/issues/430</li>
+            <li>fix https://github.com/alibaba/p3c/issues/454</li>
+            <li>fix https://github.com/alibaba/p3c/issues/409</li>
+            <li>add rule To judge the equivalence of floating-point numbers.</li>
+            <li>add annotation process for rule ClassMustHaveAuthorRule</li>
         </ul>
         <ul>1.0.6
             <li>fix <a href="https://github.com/alibaba/p3c/issues/337">https://github.com/alibaba/p3c/issues/337</a>  do not check annotation </li>
             <li>PojoMustOverrideToStringRule do not check interface </li>
             <li>Performance improvement</li>
         </ul>
-          <ul>
-        1.0.5
-        <li>
-        Add rule [Recommended] The total number of lines for a method should not be more than 80.
-        </li>
-        <li>
-        Add rule [Recommended] Avoid using the negation operator '!'.
-        </li>
-        <li>
-        Add rule [Mandatory] When doing date formatting, "y" should be written in lowercase for "year" in a pattern statement
-        </li>
-         <li>https://github.com/alibaba/p3c/issues/264</li>
-         </ul>
-          <ul>
-        1.0.4
-         <li>fix https://github.com/alibaba/p3c/issues/217</li>
-        <li>fix https://github.com/alibaba/p3c/issues/208</li>
-        <li>fix https://github.com/alibaba/p3c/issues/195</li>
+        <ul>1.0.5
+            <li>Add rule [Recommended] The total number of lines for a method should not be more than 80.</li>
+            <li>Add rule [Recommended] Avoid using the negation operator '!'.</li>
+            <li>Add rule [Mandatory] When doing date formatting, "y" should be written in lowercase for "year" in a pattern statement</li>
+            <li>https://github.com/alibaba/p3c/issues/264</li>
         </ul>
-         <ul>
-        1.0.3
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/191">https://github.com/alibaba/p3c/issues/191</a></li>
+        <ul>1.0.4
+            <li>fix https://github.com/alibaba/p3c/issues/217</li>
+            <li>fix https://github.com/alibaba/p3c/issues/208</li>
+            <li>fix https://github.com/alibaba/p3c/issues/195</li>
         </ul>
-         <ul>
-        1.0.2
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/185">https://github.com/alibaba/p3c/issues/185</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/189">https://github.com/alibaba/p3c/issues/189</a></li>
+        <ul>1.0.3
+            <li>fix <a href="https://github.com/alibaba/p3c/issues/191">https://github.com/alibaba/p3c/issues/191</a></li>
         </ul>
-         <ul>
-        1.0.1
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/149">https://github.com/alibaba/p3c/issues/149</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/60">https://github.com/alibaba/p3c/issues/60</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/58">https://github.com/alibaba/p3c/issues/58</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/68">https://github.com/alibaba/p3c/issues/68</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/68">https://github.com/alibaba/p3c/issues/68</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/112">https://github.com/alibaba/p3c/issues/112</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/127">https://github.com/alibaba/p3c/issues/127</a></li>
+        <ul>1.0.2
+            <li>fix <a href="https://github.com/alibaba/p3c/issues/185">https://github.com/alibaba/p3c/issues/185</a></li>
+            <li>fix <a href="https://github.com/alibaba/p3c/issues/189">https://github.com/alibaba/p3c/issues/189</a></li>
         </ul>
-        ]]>
+        <ul>1.0.1
+            <li>fix <a href="https://github.com/alibaba/p3c/issues/149">https://github.com/alibaba/p3c/issues/149</a></li>
+            <li>fix <a href="https://github.com/alibaba/p3c/issues/60">https://github.com/alibaba/p3c/issues/60</a></li>
+            <li>fix <a href="https://github.com/alibaba/p3c/issues/58">https://github.com/alibaba/p3c/issues/58</a></li>
+            <li>fix <a href="https://github.com/alibaba/p3c/issues/68">https://github.com/alibaba/p3c/issues/68</a></li>
+            <li>fix <a href="https://github.com/alibaba/p3c/issues/68">https://github.com/alibaba/p3c/issues/68</a></li>
+            <li>fix <a href="https://github.com/alibaba/p3c/issues/112">https://github.com/alibaba/p3c/issues/112</a></li>
+            <li>fix <a href="https://github.com/alibaba/p3c/issues/127">https://github.com/alibaba/p3c/issues/127</a></li>
+        </ul>
+    ]]>
     </change-notes>
 
     <idea-version since-build="145.0"/>

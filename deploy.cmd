@@ -1,5 +1,5 @@
 cd ./p3c-pmd
-call mvnw.cmd clean deploy -Dmaven.javadoc.skip=false -e -X -Psonatype-oss-release
+call mvn clean deploy -Dmaven.javadoc.skip=false -e -X -Psonatype-oss-release
 cd ../
 cd ./idea-plugin
 

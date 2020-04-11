@@ -51,7 +51,7 @@ ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 dependencies {
     compile group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
-    compile 'com.alibaba.p3c:p3c-pmd:2.0.1.3x-SNAPSHOT'
+    compile 'com.xenoamess.p3c:p3c-pmd:2.0.1.3x-SNAPSHOT'
     compile group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
 }
 
@@ -61,22 +61,22 @@ uploadArchives {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
             repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: findProperty('ossrhUsername'), password: findProperty('ossrhPassword'))
+                authentication(userName: System.getProperty('ossrhUsername'), password: System.getProperty('ossrhPassword'))
             }
 
             snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: findProperty('ossrhUsername'), password: findProperty('ossrhPassword'))
+                authentication(userName: System.getProperty('ossrhUsername'), password: System.getProperty('ossrhPassword'))
             }
 
             pom.project {
                 name 'p3c-common'
                 packaging 'jar'
                 description 'P3c Idea Plugin Common.'
-                url 'https://github.com/alibaba/p3c'
+                url 'https://github.com/xenoamess/p3c'
 
                 scm {
-                    url 'https://github.com/alibaba/p3c'
-                    connection 'scm:git:https://git@github.com/alibaba/p3c.git'
+                    url 'https://github.com/xenoamess/p3c'
+                    connection 'scm:git:https://git@github.com/xenoamess/p3c.git'
                 }
 
                 licenses {
@@ -97,6 +97,13 @@ uploadArchives {
                         id 'ZengHou'
                         name 'ZengHou'
                         email 'fengwei1983@gmail.com'
+                    }
+                    developer {
+                        id 'XenoAmess'
+                        name 'XenoAmess'
+                        email 'xenoamess@gmail.com'
+                        organization 'XenoAmess'
+                        url 'https://github.com/xenoamess'
                     }
                 }
             }

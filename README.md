@@ -51,6 +51,7 @@ The project consists of 3 parts:
     3. These two methods must be overridden if self-defined object is used as the key of Map.
    Note: String can be used as the key of Map since these two methods have been rewritten.
 
+<!--
 ## Join us
 If you have any questions or comments, please contact junlie by email at caikang.ck@alibaba-inc.com, and please join us to make project P3C perfect for more programmers.
 
@@ -58,7 +59,6 @@ Please follow our WeChat official account as ali_yunxiao below:
 
 ![](https://gw.alicdn.com/tfscom/TB1TrNcXjv85uJjSZFNXXcJApXa.png)
 
-<!--
 ### 2020 阿里春季招聘—欢迎投递简历
 
 [校招详情](https://www.nowcoder.com/discuss/385514)

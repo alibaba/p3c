@@ -12,7 +12,7 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 javadoc {
-    options.tags = [ "date" ]
+    options.tags = ["date"]
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {

@@ -107,15 +107,24 @@ class AliCodeAnalysisCheckinHandler(
     }
 
 
-    override fun beforeCheckin(executor: CommitExecutor?,
-            additionalDataConsumer: PairConsumer<Any, Any>): CheckinHandler.ReturnResult {
+    override fun beforeCheckin(
+            executor: CommitExecutor?,
+            additionalDataConsumer: PairConsumer<Any, Any>
+    ): CheckinHandler.ReturnResult {
         if (!getSettings().analysisBeforeCheckin) {
             return CheckinHandler.ReturnResult.COMMIT
         }
         if (DumbService.getInstance(myProject).isDumb) {
-            if (Messages.showOkCancelDialog(myProject,
-                    "Code analysis is impossible until indices are up-to-date", dialogTitle,
-                    waitingText, commitText, null) == Messages.OK) {
+            if (Messages.showOkCancelDialog(
+                            myProject,
+                            "Code analysis is impossible until indices are up-to-date",
+                            dialogTitle,
+                            waitingText,
+                            commitText,
+                            null
+                    )
+                    == Messages.OK
+            ) {
                 return CheckinHandler.ReturnResult.CANCEL
             }
             return CheckinHandler.ReturnResult.COMMIT
@@ -128,8 +137,16 @@ class AliCodeAnalysisCheckinHandler(
                     myProject, "Analyze Finished")
             return CheckinHandler.ReturnResult.COMMIT
         }
-        if (Messages.showOkCancelDialog(myProject, "Found suspicious code,continue commit？",
-                dialogTitle, commitText, cancelText, null) == Messages.OK) {
+        if (Messages.showOkCancelDialog(
+                        myProject,
+                        "Found suspicious code,continue commit？",
+                        dialogTitle,
+                        commitText,
+                        cancelText,
+                        null
+                )
+                == Messages.OK
+        ) {
             return CheckinHandler.ReturnResult.COMMIT
         } else {
             doAnalysis(myProject, virtualFiles.toTypedArray())
@@ -164,7 +181,8 @@ class AliCodeAnalysisCheckinHandler(
                             val hasViolation = virtualFiles.asSequence().any {
                                 file ->
                                 ApplicationManager.getApplication().runReadAction(Computable {
-                                    val psiFile = psiManager.findFile(file) ?: return@Computable false
+                                    val psiFile = psiManager.findFile(file)
+                                            ?: return@Computable false
                                     val curCount = count.incrementAndGet()
                                     progress.text = file.canonicalPath
                                     progress.fraction = curCount.toDouble() / virtualFiles.size.toDouble()

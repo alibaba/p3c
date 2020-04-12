@@ -44,6 +44,7 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
     private val messageKey = "com.alibaba.p3c.idea.inspection.standalone.AliMissingOverrideAnnotationInspection"
 
     constructor()
+
     /**
      * For Javassist
      */
@@ -66,8 +67,10 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
 
     override fun buildFix(vararg infos: Any): InspectionGadgetsFix? {
         val fix = super.buildFix(*infos) ?: return null
-        return DecorateInspectionGadgetsFix(fix,
-            P3cBundle.getMessage("com.alibaba.p3c.idea.quickfix.standalone.AliMissingOverrideAnnotationInspection"))
+        return DecorateInspectionGadgetsFix(
+                fix,
+                P3cBundle.getMessage("com.alibaba.p3c.idea.quickfix.standalone.AliMissingOverrideAnnotationInspection")
+        )
     }
 
     override fun manualBuildFix(psiElement: PsiElement, isOnTheFly: Boolean): LocalQuickFix? = buildFix(psiElement)
@@ -98,9 +101,15 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
             if (!isJdk6Override(method, methodClass) && !isJdk5Override(method, methodClass)) {
                 return
             }
-            if (ignoreObjectMethods && (MethodUtils.isHashCode(method) ||
-                    MethodUtils.isEquals(method) ||
-                    MethodUtils.isToString(method))) {
+            if (ignoreObjectMethods
+                    &&
+                    (MethodUtils.isHashCode(method)
+                            ||
+                            MethodUtils.isEquals(method)
+                            ||
+                            MethodUtils.isToString(method)
+                            )
+            ) {
                 return
             }
             registerMethodError(method)

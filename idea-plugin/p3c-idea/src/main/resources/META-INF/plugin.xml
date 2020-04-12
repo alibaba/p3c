@@ -27,6 +27,14 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.0.1.3x
+            <li>move groupID from com.alibaba.p3c to com.xenoamess.p3c, as I have no right to release an alibaba project in maven central.</li>
+            <li>bugfix for gitbook; add markdown guidelines.</li>
+            <li>remake pom for p3c-pmd.</li>
+            <li>reformat some kotlin codes</li>
+            <li>add travis-ci</li>
+            <li>add sonarcloud</li>
+        </ul>
         <ul>2.0.1.2x
             <li>reviews all pending prs before 2020/04/11 , and merged/improved some of them.</li>
             <li>merged pr: special camel rule for MybatisGenerator's DOMapper classes.</li>

@@ -1,9 +1,10 @@
 cd ./p3c-pmd
-call mvn clean install -Dmaven.javadoc.skip=false -e -X
+call mvn clean deploy -Dmaven.javadoc.skip=false -e -X -Psonatype-oss-release
 cd ../
 cd ./idea-plugin
 
 cd ./p3c-common
+rem call ../gradlew uploadArchives -DossrhUsername="%ossrhUsername%" -DossrhPassword="%ossrhPassword%"
 call ../gradlew publishToMavenLocal
 cd ../
 

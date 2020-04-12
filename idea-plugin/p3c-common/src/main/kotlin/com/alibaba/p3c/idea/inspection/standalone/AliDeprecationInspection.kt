@@ -40,6 +40,7 @@ class AliDeprecationInspection : DeprecationInspection, AliBaseInspection {
     private val messageKey = "com.alibaba.p3c.idea.inspection.standalone.AliDeprecationInspection"
 
     constructor()
+
     /**
      * For Javassist
      */
@@ -87,40 +88,82 @@ class AliDeprecationInspection : DeprecationInspection, AliBaseInspection {
     class DeprecationInspectionProblemsHolder(private val holder: ProblemsHolder, onTheFly: Boolean) : ProblemsHolder(
             holder.manager, holder.file, onTheFly) {
 
-        override fun registerProblem(psiElement: PsiElement,
+        override fun registerProblem(
+                psiElement: PsiElement,
                 @Nls descriptionTemplate: String,
-                fixes: Array<LocalQuickFix>?) {
-            holder.registerProblem(psiElement, getMessage(descriptionTemplate), *(fixes ?: emptyArray()))
+                fixes: Array<LocalQuickFix>?
+        ) {
+            holder.registerProblem(
+                    psiElement,
+                    getMessage(descriptionTemplate),
+                    *(fixes ?: emptyArray())
+            )
         }
 
-        override fun registerProblem(psiElement: PsiElement,
+        override fun registerProblem(
+                psiElement: PsiElement,
                 @Nls descriptionTemplate: String,
-                highlightType: ProblemHighlightType, fixes: Array<LocalQuickFix>?) {
-            holder.registerProblem(psiElement, getMessage(descriptionTemplate), highlightType, *(fixes ?: emptyArray()))
+                highlightType: ProblemHighlightType,
+                fixes: Array<LocalQuickFix>?
+        ) {
+            holder.registerProblem(
+                    psiElement,
+                    getMessage(descriptionTemplate),
+                    highlightType,
+                    *(fixes ?: emptyArray())
+            )
         }
 
-        override fun registerProblem(reference: PsiReference, descriptionTemplate: String,
-                highlightType: ProblemHighlightType) {
+        override fun registerProblem(
+                reference: PsiReference,
+                descriptionTemplate: String,
+                highlightType: ProblemHighlightType
+        ) {
             holder.registerProblem(reference, getMessage(descriptionTemplate), highlightType)
         }
 
-        override fun registerProblemForReference(reference: PsiReference,
-                highlightType: ProblemHighlightType, descriptionTemplate: String,
-                fixes: Array<LocalQuickFix>?) {
-            holder.registerProblemForReference(reference, highlightType, getMessage(descriptionTemplate),
-                    *(fixes ?: emptyArray()))
+        override fun registerProblemForReference(
+                reference: PsiReference,
+                highlightType: ProblemHighlightType,
+                descriptionTemplate: String,
+                fixes: Array<LocalQuickFix>?
+        ) {
+            holder.registerProblemForReference(
+                    reference,
+                    highlightType,
+                    getMessage(descriptionTemplate),
+                    *(fixes ?: emptyArray())
+            )
         }
 
-        override fun registerProblem(psiElement: PsiElement, rangeInElement: TextRange?,
-                message: String, fixes: Array<LocalQuickFix>?) {
-            holder.registerProblem(psiElement, rangeInElement, getMessage(message), *(fixes ?: emptyArray()))
+        override fun registerProblem(
+                psiElement: PsiElement,
+                rangeInElement: TextRange?,
+                message: String,
+                fixes: Array<LocalQuickFix>?
+        ) {
+            holder.registerProblem(
+                    psiElement,
+                    rangeInElement,
+                    getMessage(message),
+                    *(fixes ?: emptyArray())
+            )
         }
 
-        override fun registerProblem(psiElement: PsiElement, message: String,
-                highlightType: ProblemHighlightType, rangeInElement: TextRange?,
-                fixes: Array<LocalQuickFix>?) {
-            holder.registerProblem(psiElement, getMessage(message), highlightType, rangeInElement,
-                    *(fixes ?: emptyArray()))
+        override fun registerProblem(
+                psiElement: PsiElement,
+                message: String,
+                highlightType: ProblemHighlightType,
+                rangeInElement: TextRange?,
+                fixes: Array<LocalQuickFix>?
+        ) {
+            holder.registerProblem(
+                    psiElement,
+                    getMessage(message),
+                    highlightType,
+                    rangeInElement,
+                    *(fixes ?: emptyArray())
+            )
         }
 
         private fun getMessage(msg: String): String {

@@ -48,7 +48,8 @@ class AliPmdProcessor(val rule: Rule) {
     fun processFile(psiFile: PsiFile): List<RuleViolation> {
         configuration.setSourceEncoding(psiFile.virtualFile.charset.name())
         configuration.inputPaths = psiFile.virtualFile.canonicalPath
-        val document = FileDocumentManager.getInstance().getDocument(psiFile.virtualFile) ?: return emptyList()
+        val document = FileDocumentManager.getInstance().getDocument(psiFile.virtualFile)
+                ?: return emptyList()
         if (document.lineCount > 10000) {
             return emptyList()
         }

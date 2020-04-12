@@ -62,8 +62,11 @@ class AliPmdInspection(private val ruleName: String)
         return true
     }
 
-    override fun checkFile(file: PsiFile, manager: InspectionManager,
-            isOnTheFly: Boolean): Array<ProblemDescriptor>? {
+    override fun checkFile(
+            file: PsiFile,
+            manager: InspectionManager,
+            isOnTheFly: Boolean
+    ): Array<ProblemDescriptor>? {
         if (!shouldInspectChecker.shouldInspect(file)) {
             return null
         }

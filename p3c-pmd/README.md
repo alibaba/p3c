@@ -9,9 +9,9 @@
 ### <font color="green">Maven</font>
 ```xml
 <dependency>
-    <groupId>com.alibaba.p3c</groupId>
+    <groupId>com.xenoamess.p3c</groupId>
     <artifactId>p3c-pmd</artifactId>
-    <version>1.3.6</version>
+    <version>2.0.1.3x</version>
 </dependency>
 ```
 ### <font color="green">Gradle</font>

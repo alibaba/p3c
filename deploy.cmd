@@ -4,7 +4,8 @@ cd ../
 cd ./idea-plugin
 
 cd ./p3c-common
-call ../gradlew uploadArchives -DossrhUsername="%ossrhUsername%" -DossrhPassword="%ossrhPassword%"
+rem call ../gradlew uploadArchives -DossrhUsername="%ossrhUsername%" -DossrhPassword="%ossrhPassword%"
+call ../gradlew publishToMavenLocal
 cd ../
 
 cd ./p3c-idea

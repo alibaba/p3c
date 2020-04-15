@@ -4,8 +4,6 @@ dist: trusty
 before_install:
   - chmod +x mvnw
   - chmod +x idea-plugin/gradlew
-git:
-  depth: false
 cache:
   directories:
     - $HOME/.m2

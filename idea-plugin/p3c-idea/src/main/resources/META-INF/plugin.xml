@@ -27,6 +27,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.0.1.4x-SNAPSHOT
+            <li>add a Exception catch for some code to make sure will not corrupt when idea lib adds some more functions.</li>
+        </ul>
         <ul>2.0.1.3x
             <li>move groupID from com.alibaba.p3c to com.xenoamess.p3c, as I have no right to release an alibaba project in maven central.</li>
             <li>bugfix for gitbook; add markdown guidelines.</li>

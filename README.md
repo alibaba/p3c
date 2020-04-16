@@ -14,6 +14,8 @@ This Third-party maintenance(TPM) here is forked from original [alibaba/p3c](htt
 
 Follows Apache license described in [license](license.txt)
 
+Sources can be found https://github.com/XenoAmess/p3c
+
 Releases can be found at https://plugins.jetbrains.com/plugin/14109-alibaba-java-coding-guidelines-xenoamess-tpm-
 
 This TPM aims to help maintain alibaba/p3c, fix bugs, and add improvements, as the original developer is too busy to handle them.

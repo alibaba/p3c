@@ -31,7 +31,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <ul>2.0.1.4x
+        <ul>2.0.1.4x-SNAPSHOT
             <li>add a Exception catch for some code to make sure will not corrupt when idea lib adds some more functions in future.</li>
             <li>update version of pmd from 6.17.0 to 6.22.0.</li>
         </ul>

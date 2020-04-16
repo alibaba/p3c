@@ -16,7 +16,7 @@
 package com.alibaba.p3c.idea.pmd.index
 
 import com.intellij.util.indexing.FileContent
-import net.sourceforge.pmd.util.datasource.internal.AbstractDataSource
+import net.sourceforge.pmd.util.datasource.DataSource
 import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.io.InputStream
@@ -25,7 +25,7 @@ import java.io.InputStream
  * @author caikang
  * @date 2016/12/11
  */
-class InspectionDataSource(private val fileContent: FileContent) : AbstractDataSource() {
+class InspectionDataSource(private val fileContent: FileContent) : DataSource {
 
     @Throws(IOException::class)
     override fun getInputStream(): InputStream {
@@ -34,5 +34,9 @@ class InspectionDataSource(private val fileContent: FileContent) : AbstractDataS
 
     override fun getNiceFileName(shortNames: Boolean, inputFileName: String?): String {
         return fileContent.fileName
+    }
+
+    fun close() {
+        // empty default implementation
     }
 }

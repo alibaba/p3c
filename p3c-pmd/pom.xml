@@ -22,7 +22,7 @@
         <!---->
         <!---->
         <!--libraries versions-->
-        <pmd.version>6.17.0</pmd.version>
+        <pmd.version>6.22.0</pmd.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <annotation.version>1.3.2</annotation.version>
         <kotlin.version>1.3.71</kotlin.version>
@@ -62,7 +62,8 @@
 
     <scm>
         <url>https://github.com/xenoamess/p3c</url>
-        <connection>scm:git:https://git@github.com/xenoamess/p3c.git</connection>
+        <connection>scm:git:https://git@github.com/xenoamess/p3c.git
+        </connection>
     </scm>
 
     <organization>
@@ -156,7 +157,6 @@
                             <allowSnapshots>false</allowSnapshots>
                             <excludes>
                                 <exclude>org.slf4j:*</exclude>
-                                <exclude>net.sourceforge.pmd:*</exclude>
                             </excludes>
                         </configuration>
                         <executions>

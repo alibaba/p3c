@@ -117,8 +117,12 @@ fun buildNotificationGroup(displayId: String, displayType: NotificationDisplayTy
     var notificationGroupClass = Class.forName("com.intellij.notification.NotificationGroup")
     notificationGroupClass.constructors.forEach {
         if (it.parameters.size == 3) {
-            return it.newInstance(displayId, displayType, isLogByDefault)
-                    as NotificationGroup
+            try {
+                return it.newInstance(displayId, displayType, isLogByDefault)
+                        as NotificationGroup
+            } catch (e: Exception) {
+                System.err.println(e);
+            }
         }
     }
     throw MethodNotSupportedException("cannot find a suitable constructor for NotificationGroup who accepts [String,NotificationDisplayType,Boolean]")

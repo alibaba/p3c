@@ -35,4 +35,8 @@ class InspectionDataSource(private val fileContent: FileContent) : DataSource {
     override fun getNiceFileName(shortNames: Boolean, inputFileName: String?): String {
         return fileContent.fileName
     }
+
+    fun close() {
+        // empty default implementation
+    }
 }

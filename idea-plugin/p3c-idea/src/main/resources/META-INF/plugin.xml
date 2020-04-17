@@ -14,6 +14,10 @@
 <br/>
 <p>Follows Apache license described in [license](https://github.com/XenoAmess/p3c/blob/xenoamess_maintain_fork/license.txt)</p>
 <br/>
+<p>Sources can be found https://github.com/XenoAmess/p3c</p>
+<br/>
+<p>Releases can be found at https://plugins.jetbrains.com/plugin/14109-alibaba-java-coding-guidelines-xenoamess-tpm-</p>
+<br/>
 <p>This TPM aims to help maintain alibaba/p3c, fix bugs, and add improvements, as the original developer is too busy to handle them.</p>
 <br/>
 <p>This TPM is NOT created, or maintained, or controled by any alibaba employee, in other words it is not a TPM, not an official branch.</p>
@@ -27,6 +31,11 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.0.1.4x
+            <li>add a Exception catch for some code to make sure will not corrupt when idea lib adds some more functions in future.</li>
+            <li>update version of pmd from 6.17.0 to 6.18.0.</li>
+            <li>code changes due to pmd upgrade.</li>
+        </ul>
         <ul>2.0.1.3x
             <li>move groupID from com.alibaba.p3c to com.xenoamess.p3c, as I have no right to release an alibaba project in maven central.</li>
             <li>bugfix for gitbook; add markdown guidelines.</li>

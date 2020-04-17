@@ -42,7 +42,7 @@ public class UseQuietReferenceNotationRule extends AbstractXpathRule {
      */
     private static final Pattern ALLOW_FILE_PATTERN = Pattern.compile(".*(template|velocity).*");
 
-    private static final String UT_FILE_NAME = "n/a";
+    private static final String UT_FILE_NAME = "a";
     private static final String MACRO_NAME = "macro";
 
     /**

@@ -23,6 +23,7 @@ import com.alibaba.p3c.pmd.I18nResources
 import com.alibaba.smartfox.idea.common.component.AliBaseApplicationComponent
 import com.intellij.codeInsight.daemon.impl.SeverityRegistrar
 import com.intellij.openapi.actionSystem.ActionManager
+import com.intellij.openapi.components.ServiceManager
 
 /**
  *
@@ -30,15 +31,11 @@ import com.intellij.openapi.actionSystem.ActionManager
  * @author caikang
  * @date 2017/06/19
  */
-class CommonSettingsApplicationComponent(private val p3cConfig: P3cConfig) : AliBaseApplicationComponent {
+class CommonSettingsApplicationComponent : AliBaseApplicationComponent {
     override fun initComponent() {
         SeverityRegistrar.registerStandard(HighlightInfoTypes.BLOCKER, HighlightSeverities.BLOCKER)
         SeverityRegistrar.registerStandard(HighlightInfoTypes.CRITICAL, HighlightSeverities.CRITICAL)
         SeverityRegistrar.registerStandard(HighlightInfoTypes.MAJOR, HighlightSeverities.MAJOR)
-
-        I18nResources.changeLanguage(p3cConfig.locale)
-        val analyticsGroup = ActionManager.getInstance().getAction(analyticsGroupId)
-        analyticsGroup.templatePresentation.text = P3cBundle.getMessage(analyticsGroupText)
     }
 
     companion object {

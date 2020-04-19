@@ -16,10 +16,14 @@
 package com.alibaba.p3c.idea.component
 
 import com.alibaba.p3c.idea.compatible.inspection.Inspections
+import com.alibaba.p3c.idea.component.CommonSettingsApplicationComponent.Companion
 import com.alibaba.p3c.idea.config.P3cConfig
+import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.p3c.idea.inspection.AliPmdInspectionInvoker
 import com.alibaba.p3c.idea.pmd.SourceCodeProcessor
+import com.alibaba.p3c.pmd.I18nResources
 import com.alibaba.smartfox.idea.common.component.AliBaseProjectComponent
+import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFileAdapter
 import com.intellij.openapi.vfs.VirtualFileEvent
@@ -56,6 +60,12 @@ class AliProjectComponent(
 
             }
         }
+    }
+
+    override fun initComponent() {
+        I18nResources.changeLanguage(p3cConfig.locale)
+        val analyticsGroup = ActionManager.getInstance().getAction(CommonSettingsApplicationComponent.analyticsGroupId)
+        analyticsGroup.templatePresentation.text = P3cBundle.getMessage(CommonSettingsApplicationComponent.analyticsGroupText)
     }
 
     override fun projectOpened() {

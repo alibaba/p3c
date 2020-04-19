@@ -7,7 +7,7 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 javadoc {
-    options.tags = [ "date" ]
+    options.tags = ["date"]
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -27,11 +27,11 @@ artifacts {
 }
 
 def myPlugins = []
-
-if (idea_version.startsWith('193.') || idea_version.startsWith('2019.3')) {
+def versionDotIndex = idea_version.indexOf('.')
+def intVersion = versionDotIndex == -1 ? Integer.parseInt(idea_version) : Integer.parseInt(idea_version.substring(0, versionDotIndex))
+if (intVersion >= 2019 || (intVersion < 1000 && intVersion >= 193)) {
     myPlugins = ['java']
 }
-
 
 intellij {
     version idea_version

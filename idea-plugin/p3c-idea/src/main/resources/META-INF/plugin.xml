@@ -5,6 +5,10 @@
 
     <change-notes>
         <![CDATA[
+         <ul>
+        2.0.2
+        <li>Fix idea 2020.1 Ultimate compatibility issue</li>
+        </ul>
         <ul>
         2.0.1
         <li>Fix idea 2019.3 compatibility issue</li>

@@ -15,15 +15,10 @@
  */
 package com.alibaba.p3c.idea.component
 
-import com.alibaba.p3c.idea.config.P3cConfig
-import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.p3c.idea.util.HighlightInfoTypes
 import com.alibaba.p3c.idea.util.HighlightSeverities
-import com.alibaba.p3c.pmd.I18nResources
 import com.alibaba.smartfox.idea.common.component.AliBaseApplicationComponent
 import com.intellij.codeInsight.daemon.impl.SeverityRegistrar
-import com.intellij.openapi.actionSystem.ActionManager
-import com.intellij.openapi.components.ServiceManager
 
 /**
  *
@@ -36,10 +31,5 @@ class CommonSettingsApplicationComponent : AliBaseApplicationComponent {
         SeverityRegistrar.registerStandard(HighlightInfoTypes.BLOCKER, HighlightSeverities.BLOCKER)
         SeverityRegistrar.registerStandard(HighlightInfoTypes.CRITICAL, HighlightSeverities.CRITICAL)
         SeverityRegistrar.registerStandard(HighlightInfoTypes.MAJOR, HighlightSeverities.MAJOR)
-    }
-
-    companion object {
-        val analyticsGroupId = "com.alibaba.p3c.analytics.action_group"
-        val analyticsGroupText = "$analyticsGroupId.text"
     }
 }

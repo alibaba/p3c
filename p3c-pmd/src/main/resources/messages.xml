@@ -200,7 +200,10 @@
     </entry>
 
     <entry key="java.flowcontrol.SwitchExpressionRule.violation.nodefault">
-        <![CDATA[switch块缺少default语句]]>
+        <![CDATA[switch表达式缺少default语句]]>
+    </entry>
+    <entry key="java.flowcontrol.SwitchExpressionRule.rule.msg">
+        <![CDATA[在一个switch表达式内，必须包含一个default语句并且放在最后，即使它什么代码也没有。]]>
     </entry>
 
     <entry key="java.flowcontrol.NeedBraceRule.violation.msg">

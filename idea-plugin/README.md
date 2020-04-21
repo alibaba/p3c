@@ -60,6 +60,23 @@ compile 'com.xenoamess.p3c.idea:p3c-common:2.0.2.1x-SNAPSHOT'
 	<font color="blue">We use the idea standard Inspection Results to show our violations.</font>  
 	 
 	![Result](doc/images/inspection_result.png)  
+
+Results are grouped by tags, which include Blocker,Critical,Major,Warning,Weak Warning.
+
+Blocker, Critical and Major will remain sync with alibaba official version, and will not be changed freely, unless especially declared.
+
+When I see some reasonable third party rules in Community I might add them to Warning or Weak Warning.
+
+Usually, if a third party rule can be followed in every situation, then it is tagged Warning.
+
+Otherwise, if it cannot be followed in some special cases, then it will be tagged Weak Warning.
+
+If you want to use pmd-maven-plugin for auto-analyze and assure, 
+
+You should set `<failurePriority>3</failurePriority>` for having same behavior than alibaba official version.
+
+See example/use-case in `p3c-pmd/pom.xml`
+
 	
 	<font color="blue">We can also analyze file which is modified before vcs checkin.</font>  
 	

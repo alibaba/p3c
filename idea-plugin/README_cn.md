@@ -108,9 +108,9 @@ Alt+Enter键可呼出Intention菜单，不同的规则会提示不同信息的Qu
 
 如果要使用pmd maven plugin对代码进行自动检查以确保不违反阿里巴巴Java开发手册，
 
-则请设置<failurePriority>3</failurePriority>，以保证与官方版本规则吻合。
+则请设置`<failurePriority>3</failurePriority>`，以保证与官方版本规则吻合。
 
-使用例可见p3c-pmd/pom.xml
+使用例可见`p3c-pmd/pom.xml`
 
 默认情况我们在结果面板需要双击具体违规项才能打开对应的源文件，开启Autoscroll To Source选项，单击面板中的文件名、或者是具体的违规项的时候IDEA会自动打开对应的源文件。
 

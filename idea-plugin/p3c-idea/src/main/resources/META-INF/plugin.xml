@@ -31,6 +31,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.0.2
+        <li>Fix idea 2020.1 Ultimate compatibility issue</li>
+        </ul>
+        <ul>
         <ul>2.0.1.5x-SNAPSHOT
         </ul>
         <ul>2.0.1.4x

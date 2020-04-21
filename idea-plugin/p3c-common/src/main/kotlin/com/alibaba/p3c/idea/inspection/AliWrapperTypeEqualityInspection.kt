@@ -87,7 +87,7 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
         }
         val type = infos[0] as PsiArrayType
         val componentType = type.componentType
-        val fix = ArrayEqualityFix(componentType is PsiArrayType)
+        val fix = ArrayEqualityFix(componentType is PsiArrayType, familyName)
         return DecorateInspectionGadgetsFix(fix, fix.name, familyName)
     }
 
@@ -116,7 +116,6 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
                     || TypeUtils.expressionHasTypeOrSubtype(expression, CommonClassNames.JAVA_LANG_CHARACTER)
         }
 
-
         private fun hasNumberType(expression: PsiExpression): Boolean {
             return TypeUtils.expressionHasTypeOrSubtype(expression, CommonClassNames.JAVA_LANG_NUMBER)
         }
@@ -126,7 +125,8 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
 
     }
 
-    private inner class ArrayEqualityFix(private val deepEquals: Boolean) : InspectionGadgetsFix() {
+    private class ArrayEqualityFix(private val deepEquals: Boolean, private val familyName: String) :
+            InspectionGadgetsFix() {
 
         override fun getName(): String {
             if (deepEquals) {
@@ -137,7 +137,7 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
         }
 
         override fun getFamilyName(): String {
-            return this@AliWrapperTypeEqualityInspection.familyName
+            return familyName
         }
 
         @Throws(IncorrectOperationException::class)
@@ -145,7 +145,9 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
             val element = descriptor.psiElement
             val parent = element.parent as? PsiBinaryExpression ?: return
             val tokenType = parent.operationTokenType
-            @NonNls val newExpressionText = StringBuilder()
+
+            @NonNls
+            val newExpressionText = StringBuilder()
             if (JavaTokenType.NE == tokenType) {
                 newExpressionText.append('!')
             } else if (JavaTokenType.EQEQ != tokenType) {
@@ -161,8 +163,10 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
             val rhs = parent.rOperand ?: return
             newExpressionText.append(rhs.text)
             newExpressionText.append(')')
-            PsiReplacementUtil.replaceExpressionAndShorten(parent,
-                    newExpressionText.toString())
+            PsiReplacementUtil.replaceExpressionAndShorten(
+                    parent,
+                    newExpressionText.toString()
+            )
         }
     }
 

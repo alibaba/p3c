@@ -24,6 +24,23 @@
         </example>
     </rule>
 
+    <rule name="SwitchExpressionRule"
+          language="java"
+          message="java.flowcontrol.SwitchExpressionRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.flowcontrol.SwitchExpressionRule">
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+    int b = switch (x) {
+        case 1 -> 4;
+        case 2 -> 5;
+        default -> 6;
+    }
+			]]>
+        </example>
+    </rule>
+
     <rule name="NeedBraceRule"
           language="java"
           message="java.flowcontrol.NeedBraceRule.rule.msg"

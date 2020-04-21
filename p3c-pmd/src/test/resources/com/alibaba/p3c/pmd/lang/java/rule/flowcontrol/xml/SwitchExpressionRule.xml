@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+    <code-fragment id="switch-no-default-1">
+        <![CDATA[
+    public class Example {
+        public void fn() {
+            int a = 5;
+            int b = switch (a) {
+                case 1 -> 4;
+                case 2 -> 5;
+            };
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>switch no default</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>4</expected-linenumbers>
+        <code-ref id="switch-no-default-1" />
+    </test-code>
+
+    <!-- ====================================================================== -->
+
+    <code-fragment id="switch-have-default-1">
+        <![CDATA[
+    public class Example {
+        public void fn() {
+            int a = 5;
+            int b = switch (a) {
+                case 1 -> 4;
+                case 2 -> 5;
+                default -> 6;
+            };
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>switch have default</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="switch-have-default-1" />
+    </test-code>
+
+</test-data>

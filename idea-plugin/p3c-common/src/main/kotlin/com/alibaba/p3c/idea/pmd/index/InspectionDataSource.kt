@@ -36,7 +36,7 @@ class InspectionDataSource(private val fileContent: FileContent) : DataSource {
         return fileContent.fileName
     }
 
-    fun close() {
+    override fun close() {
         // empty default implementation
     }
 }

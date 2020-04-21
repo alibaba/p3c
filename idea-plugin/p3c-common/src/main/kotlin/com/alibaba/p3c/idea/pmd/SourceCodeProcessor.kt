@@ -81,15 +81,20 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
         // make sure custom XPath functions are initialized
         Initializer.initialize()
 
+        processSourceCodeWithoutCache(sourceCode, ruleSets, ctx)
+    }
+
+    @Throws(PMDException::class)
+    private fun processSourceCodeWithoutCache(sourceCode: Reader, ruleSets: RuleSets, ctx: RuleContext) {
         try {
             ruleSets.start(ctx)
             processSource(sourceCode, ruleSets, ctx)
         } catch (pe: ParseException) {
             configuration.analysisCache.analysisFailed(ctx.sourceCodeFile)
-            throw PMDException("Error while parsing " + ctx.sourceCodeFilename, pe)
+            throw PMDException("Error while parsing " + ctx.sourceCodeFile, pe)
         } catch (e: Exception) {
             configuration.analysisCache.analysisFailed(ctx.sourceCodeFile)
-            throw PMDException("Error while processing " + ctx.sourceCodeFilename, e)
+            throw PMDException("Error while processing " + ctx.sourceCodeFile, e)
         } finally {
             ruleSets.end(ctx)
         }
@@ -119,6 +124,7 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
         val languageVersionHandler = languageVersion.languageVersionHandler
         val parser = PMD.parserFor(languageVersion, configuration)
         val rootNode = parse(ctx, sourceCode, parser)
+        resolveQualifiedNames(rootNode, languageVersionHandler)
         symbolFacade(rootNode, languageVersionHandler)
         val language = languageVersion.language
         usesDFA(languageVersion, rootNode, ruleSets, language)

@@ -125,7 +125,6 @@
 
     <idea-version since-build="145.0"/>
 
-    <depends optional="true" config-file="pluginWithVelocity.xml">com.intellij.velocity</depends>
     <depends optional="true" config-file="pluginWithJava.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>

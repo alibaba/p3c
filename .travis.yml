@@ -4,11 +4,11 @@ dist: trusty
 before_install:
   - chmod +x mvnw
   - chmod +x idea-plugin/gradlew
-cache:
-  directories:
-    - $HOME/.m2
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+#cache:
+#  directories:
+#    - $HOME/.m2
+#    - $HOME/.gradle/caches/
+#    - $HOME/.gradle/wrapper/
 install: true
 matrix:
   include:

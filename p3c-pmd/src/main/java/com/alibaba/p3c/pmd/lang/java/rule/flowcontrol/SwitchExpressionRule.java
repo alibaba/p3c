@@ -42,18 +42,6 @@ public class SwitchExpressionRule extends AbstractAliRule {
      * @param data
      */
     private void checkDefault(ASTSwitchExpression node, Object data) {
-//        System.out.println();
-//        int n = node.getNumChildren();
-//        for (int i = 0; i < n; i++) {
-//            JavaNode childNode = node.getChild(i);
-//            System.out.println(childNode.getXPathNodeName());
-//            if (childNode instanceof ASTSwitchLabeledExpression) {
-//                ASTSwitchLabel label = (ASTSwitchLabel) childNode.getChild(0);
-//
-//            }
-//        }
-//        addViolationWithMessage(data, node, MESSAGE_KEY_PREFIX + ".nodefault");
-
         final String switchCheckXpath = "SwitchLabeledExpression[SwitchLabel[@Default = 'true']]";
         if (!node.hasDescendantMatchingXPath(switchCheckXpath)) {
             addViolationWithMessage(data, node, MESSAGE_KEY_PREFIX + ".nodefault");

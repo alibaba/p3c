@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess.p3c</groupId>
     <artifactId>p3c-pmd</artifactId>
-    <version>2.0.2.2x.1f</version>
+    <version>2.0.2.3x-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>p3c-pmd</name>
     <properties>

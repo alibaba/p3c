@@ -197,7 +197,14 @@ Explain 3: It is possible that when implementing the lock() method in Lock objec
         <![CDATA[every case should end with break or return etc.]]>
     </entry>
     <entry key="java.flowcontrol.SwitchStatementRule.rule.msg">
-        <![CDATA[ In a switch block, each case should be finished by break/return. If not, a note should be included to describe at which case it will stop. Within every switch block, a default statement must be present, even if it is empty.]]>
+        <![CDATA[In a switch block, each case should be finished by break/return. If not, a note should be included to describe at which case it will stop. Within every switch block, a default statement must be present, even if it is empty.]]>
+    </entry>
+
+    <entry key="java.flowcontrol.SwitchExpressionRule.violation.nodefault">
+        <![CDATA[missing default statement in switch expression]]>
+    </entry>
+    <entry key="java.flowcontrol.SwitchExpressionRule.rule.msg">
+        <![CDATA[Within every switch expression, a default statement must be present, even if it is empty.]]>
     </entry>
 
     <entry key="java.flowcontrol.NeedBraceRule.violation.msg">

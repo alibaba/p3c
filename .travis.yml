@@ -4,11 +4,11 @@ dist: trusty
 before_install:
   - chmod +x mvnw
   - chmod +x idea-plugin/gradlew
-#cache:
-#  directories:
-#    - $HOME/.m2
-#    - $HOME/.gradle/caches/
-#    - $HOME/.gradle/wrapper/
+cache:
+  directories:
+    - $HOME/.m2
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
 install: true
 matrix:
   include:
@@ -34,7 +34,8 @@ matrix:
     - jdk: openjdk-ea
 script:
   - "cd ./p3c-pmd"
-  - "../mvnw clean install site -U -e -X -Dmaven.javadoc.skip=false"
+#  - "../mvnw clean install site -U -e -X -Dmaven.javadoc.skip=false"
+  - "../mvnw clean install site -U -e -Dmaven.javadoc.skip=false"
   - "cd ../"
   - "cd ./idea-plugin"
   - "cd ./p3c-common"

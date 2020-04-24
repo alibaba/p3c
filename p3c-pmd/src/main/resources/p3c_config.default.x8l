@@ -1,0 +1,36 @@
+<com.alibaba.p3c.pmd.config version=0.0.1>
+    <rule_config>
+        <ConstantFieldShouldBeUpperCaseRule>
+            <LOG_VARIABLE_TYPE_SET>Log&Logger>
+            <WHITE_LIST>serialVersionUID>
+        >
+        <LowerCamelCaseVariableNamingRule><WHITE_LIST>DAOImpl>>
+        <PojoMustOverrideToStringRule><POJO_SUFFIX_SET>DO&DTO&VO&BO>>
+        <UndefineMagicConstantRule><LITERAL_WHITE_LIST>0&1&""&0.0&1.0&-1&0L&1L>>
+        <MethodReturnWrapperTypeRule>
+            <PRIMITIVE_TYPE_TO_WAPPER_TYPE>
+                <int>Integer>
+                <boolean>Boolean>
+                <float>Float>
+                <double>Double>
+                <byte>Byte>
+                <short>Short>
+                <long>Long>
+                <char>Character>
+                <void>Void>
+            >
+        >
+        <CollectionInitShouldAssignCapacityRule><COLLECTION_TYPE>HashMap&ConcurrentHashMap>>
+        <ClassNamingShouldBeCamelRule><CLASS_NAMING_WHITE_LIST>Hbase&HBase&ID&ConcurrentHashMap>>
+    >
+>
+<<
+ConstantFieldShouldBeUpperCaseRule_LOG_VARIABLE_TYPE_SET=["Log","Logger"]
+ConstantFieldShouldBeUpperCaseRule_WHITE_LIST=["serialVersionUID"]
+LowerCamelCaseVariableNamingRule_WHITE_LIST=["DAOImpl"]
+PojoMustOverrideToStringRule_POJO_SUFFIX_SET=["DO","DTO","VO","BO"]
+UndefineMagicConstantRule_LITERAL_WHITE_LIST=["0","1","\\\"\\\"","0.0","1.0","-1","0L","1L"]
+MethodReturnWrapperTypeRule_PRIMITIVE_TYPE_TO_WAPPER_TYPE={"int":"Integer","boolean":"Boolean","float":"Float","double":"Double","byte":"Byte","short":"Short","long":"Long","char":"Character"}
+CollectionInitShouldAssignCapacityRule_COLLECTION_TYPE=["HashMap","ConcurrentHashMap"]
+ClassNamingShouldBeCamelRule_CLASS_NAMING_WHITE_LIST=["Hbase","HBase","ID"]
+>

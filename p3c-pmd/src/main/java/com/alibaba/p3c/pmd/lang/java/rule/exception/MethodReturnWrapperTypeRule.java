@@ -40,7 +40,7 @@ import org.jaxen.JaxenException;
  */
 public class MethodReturnWrapperTypeRule extends AbstractAliRule {
     private static final Map<String, String> PRIMITIVE_TYPE_TO_WAPPER_TYPE = NameListConfig.NAME_LIST_SERVICE
-        .getNameMap("MethodReturnWrapperTypeRule", "PRIMITIVE_TYPE_TO_WAPPER_TYPE", String.class, String.class);
+        .getNameMap("MethodReturnWrapperTypeRule", "PRIMITIVE_TYPE_TO_WAPPER_TYPE");
     private static final String METHOD_RETURN_TYPE_XPATH = "ResultType/Type/PrimitiveType";
     private static final String METHOD_RETURN_OBJECT_XPATH
         = "Block/BlockStatement/Statement/ReturnStatement/Expression/PrimaryExpression/PrimaryPrefix/Name";

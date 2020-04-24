@@ -27,19 +27,15 @@ public interface NameListService {
      * get name list
      * @param className class name
      * @param name type name
-     * @return  name list
+     * @return name list
      */
-    List<String> getNameList(String className,String name);
+    List<String> getNameList(String className, String name);
 
     /**
      * get config
      * @param className class name
      * @param name type name
-     * @param kClass  type of key
-     * @param vClass  type of value
-     * @param <K> type of key
-     * @param <V> type of value
-     * @return  name list
+     * @return name list
      */
-    <K, V> Map<K, V> getNameMap(String className,String name,Class<K> kClass,Class<V> vClass);
+    Map<String, String> getNameMap(String className, String name);
 }

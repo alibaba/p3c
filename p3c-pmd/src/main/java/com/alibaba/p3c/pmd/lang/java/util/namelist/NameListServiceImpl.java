@@ -40,15 +40,12 @@ public class NameListServiceImpl implements NameListService {
     private static final String DEFAULT_P3C_CONFIG_FILE_NAME = "p3c_config.default.x8l";
     private final P3cConfigDataBean p3cConfigDataBean;
 
-    private boolean ifLoadCustomerConfigX8lTree;
-
     public NameListServiceImpl() {
         this(true);
     }
 
     public NameListServiceImpl(boolean ifLoadCustomerConfigX8lTree) {
-        this.ifLoadCustomerConfigX8lTree = ifLoadCustomerConfigX8lTree;
-        p3cConfigDataBean = initP3cConfigDataBean(this.ifLoadCustomerConfigX8lTree);
+        p3cConfigDataBean = initP3cConfigDataBean(ifLoadCustomerConfigX8lTree);
     }
 
     private static P3cConfigDataBean initP3cConfigDataBean(boolean ifLoadCustomerConfigX8lTreeLocal) {

@@ -74,3 +74,11 @@ Please follow our WeChat official account as ali_yunxiao below:
 
 [社招详情](https://job.alibaba.com/zhaopin/position_detail.htm?trace=qrcode_share&positionCode=GP605219)
 -->
+
+## <font color="green">Config Mechanism</font>
+
+see 
+
+[documents](/p3c-idea/README.md)
+
+[说明](/p3c-idea/README_cn.md)

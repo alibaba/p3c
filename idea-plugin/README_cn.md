@@ -131,3 +131,131 @@ Alt+Enter键可呼出Intention菜单，不同的规则会提示不同信息的Qu
 ![](https://gw.alicdn.com/tfscom/TB1u_ZZjamgSKJjSspiXXXyJFXa.png)
 2. 如果有违反手册的地方会提示是否继续提交，选择取消后会自动对修改的代码进行扫描
 ![](https://gw.alicdn.com/tfscom/TB1r5PUXbb85uJjSZFmXXcgsFXa.png)
+
+## 设置文件机制
+### 文件目录
+对于p3c idea插件来说，配置文件存放的位置为项目根目录下的p3c_config.x8l文件。
+
+对于maven项目来说，配置文件存放的位置为运行mvn的目录下的p3c_config.x8l文件。
+
+经常的，这两个位置指向同一个位置。
+
+### 文件格式
+文件格式为 [x8l](https://github.com/cyanpotion/x8l).
+
+### 文件描述
+
+举个例子，以 [cyan_potion](https://github.com/cyanpotion/cyan_potionp3c_config.x8l) 为例，
+我们来看如何配置p3c_config.x8l
+
+首先，p3c_config.x8l位于项目根目录。
+
+```
+<com.alibaba.p3c.pmd.config version=0.0.1>
+    <rule_config>
+        <LowerCamelCaseVariableNamingRule>
+            <WHITE_LIST>
+                DAOImpl&
+                GLFW&
+                URL&
+                URI&
+                XInput&
+                PosX&
+                PosY&
+                AWT&
+                XY&
+                drawBoxTC&
+                FPS&
+                ID&
+                lastX&
+                lastY&
+            >
+        >
+        <ClassNamingShouldBeCamelRule><CLASS_NAMING_WHITE_LIST>Hbase&HBase&ID&ConcurrentHashMap&GLFW&URL&URI&JXInput&SettingFileParser_>>
+    >
+    <rule_blacklist>
+        PackageNamingRule&
+        AbstractClassShouldStartWithAbstractNamingRule&
+        ThreadPoolCreationRule&
+        MethodTooLongRule&
+    >
+    <class_blacklist>
+        Console
+    >
+    <rule_class_pair_blacklist>
+        <FileUtils>AvoidUseDeprecationRule>
+        <Font>AvoidUseDeprecationRule>
+        <GameInputManager>LowerCamelCaseVariableNamingRule&AvoidUseDeprecationRule>
+        <Keymap>AvoidUseDeprecationRule>
+        <WorldForDemo>AvoidUseDeprecationRule>
+    >
+>
+```
+
+其中，根节点名必为com.alibaba.p3c.pmd.config 。
+
+属性version=0.0.1为配置文件version，目前尚未实际应用，但是建议写明，以防后续破坏性更新。
+
+对于这个项目，方便/美观起见，我们开启了trim，所有读取的String会被trim，然后再进行处理。
+
+例如，
+
+```
+    <class_blacklist>
+        Console
+    >
+```
+
+中的TextNode
+
+```
+
+        Console
+    
+```
+
+会被trim为`Console`然后使用。
+
+com.alibaba.p3c.pmd.config节点下有四个子节点，以下依次讲解。
+
+### rule_config
+
+rule_config节点主要包括对于提供了设置属性的规则的具体设置。
+
+如，LowerCamelCaseVariableNamingRule的WHITE_LIST属性。
+
+该属性要求提供一字符串List，则本项目中读取一个ContentNode下多个TextNode转换为字符串List。
+
+### rule_blacklist
+
+rule_blacklist节点主要包括对该项目的所有类禁用某一规则。
+
+如，rule_blacklist中含有PackageNamingRule，则表明该项目中，检测器不会检测PackageNamingRule。
+
+rule_blacklist中的Rule类名既可以是SimpleName，也可以是CanonicalName。
+
+### class_blacklist
+
+rule_blacklist节点主要包括对该项目中的某一类禁用所有规则。
+
+如，class_blacklist中含有Console类，则该项目中所有名为Console的类均不会进行任何检测。
+
+注意，由于PMD技术原因，class_blacklist中的类必须为SimpleName
+
+### rule_class_pair_blacklist
+
+rule_class_pair_blacklist节点主要包括对该项目中的某一类禁用某数个规则。
+
+如，rule_class_pair_blacklist中含有
+
+`<GameInputManager>LowerCamelCaseVariableNamingRule&AvoidUseDeprecationRule>`
+
+，
+则该项目中所有名为GameInputManager的类中，LowerCamelCaseVariableNamingRule与AvoidUseDeprecationRule不会被检测。
+
+Rule类名既可以是SimpleName，也可以是CanonicalName。
+注意，由于PMD技术原因，被忽略检测的类名必须为SimpleName。
+
+累了，哪个英语好的老哥给翻成英文吧，我得去睡觉。
+
+~~反正我不太信这玩意有非中文用户。~~

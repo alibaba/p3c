@@ -32,6 +32,9 @@
 
     <change-notes><![CDATA[
         <ul>2.0.2.3x
+            <li>add config mechanism to both p3c-pmd and idea-plugin.</li>
+            <li>down priority EqualsHashCodeRule to 4.</li>
+            <li>EqualsHashCodeRule now only check non-Abstract class.</li>
         </ul>
         <ul>2.0.2.2x
             <li>add com.alibaba.p3c.pmd.lang.java.rule.flowcontrol.SwitchExpressionRule to deal with switch expression, which is experimental in java 12 and 13, and finally public in java 14.Added a rule for checking SwitchExpression MUST have a default branch.</li>

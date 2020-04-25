@@ -79,6 +79,6 @@ Please follow our WeChat official account as ali_yunxiao below:
 
 see 
 
-[documents](p3c-idea/README.md)
+[documents](idea-plugin/README.md)
 
-[说明](p3c-idea/README_cn.md)
+[说明](idea-plugin/README_cn.md)

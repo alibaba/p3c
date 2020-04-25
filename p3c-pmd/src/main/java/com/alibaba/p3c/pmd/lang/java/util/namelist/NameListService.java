@@ -17,6 +17,7 @@ package com.alibaba.p3c.pmd.lang.java.util.namelist;
 
 import net.sourceforge.pmd.lang.rule.AbstractRule;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,7 @@ import java.util.Map;
  * @date 2017/03/23
  */
 public interface NameListService {
+
     /**
      * get name list
      * @param className class name
@@ -40,6 +42,12 @@ public interface NameListService {
      * @return name list
      */
     Map<String, String> getNameMap(String className, String name);
+
+    /**
+     * patch config from a patch file.
+     * @param file additional config file
+     */
+    void loadPatchConfigFile(File file);
 
     /**
      * check if a rule is in rule black list.

@@ -74,6 +74,11 @@ public class NameListServiceImpl implements NameListService {
     }
 
     @Override
+    public void loadPatchConfigFile(File file) {
+        this.getP3cConfigDataBean().tryPatchP3cConfigDataBean(file);
+    }
+
+    @Override
     public List<String> getNameList(String className, String name) {
         return getContentNode(className, name).asStringListTrimmed();
     }

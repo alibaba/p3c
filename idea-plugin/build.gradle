@@ -26,8 +26,8 @@ allprojects {
         resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     }
     repositories {
-        mavenCentral()
         mavenLocal()
+        mavenCentral()
         jcenter()
     }
 

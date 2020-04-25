@@ -25,17 +25,17 @@ import java.io.File;
  * @date 2017/03/27
  */
 public class NameListConfig {
-    public static @NotNull NameListService nameListService = createNameListService();
+    private static @NotNull NameListService nameListService = createNameListService();
 
     public synchronized static @NotNull NameListService renewNameListService() {
-        nameListService = createNameListService();
-        return nameListService;
+        setNameListService(createNameListService());
+        return getNameListService();
     }
 
     public synchronized static @NotNull NameListService renewNameListService(@NotNull File patchConfigFile) {
-        nameListService = createNameListService();
-        nameListService.loadPatchConfigFile(patchConfigFile);
-        return nameListService;
+        setNameListService(createNameListService());
+        getNameListService().loadPatchConfigFile(patchConfigFile);
+        return getNameListService();
     }
 
     private static @NotNull NameListService createNameListService() {
@@ -48,5 +48,9 @@ public class NameListConfig {
 
     public synchronized static @NotNull NameListService getNameListService() {
         return nameListService;
+    }
+
+    public synchronized static void setNameListService(NameListService nameListService) {
+        NameListConfig.nameListService = nameListService;
     }
 }

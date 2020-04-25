@@ -15,12 +15,25 @@
  */
 package com.alibaba.p3c.idea.compatible.inspection
 
+import com.alibaba.p3c.pmd.lang.java.util.namelist.NameListConfig
+import com.alibaba.p3c.pmd.lang.java.util.namelist.NameListServiceImpl.P3C_CONFIG_FILE_NAME
 import com.google.common.base.Splitter
 import com.intellij.codeInspection.ex.InspectionProfileImpl
 import com.intellij.codeInspection.ex.InspectionToolWrapper
 import com.intellij.codeInspection.ex.ScopeToolState
 import com.intellij.codeInspection.javaDoc.JavaDocLocalInspection
 import com.intellij.openapi.project.Project
+import java.io.File
+import java.io.FilenameFilter
+
+/**
+ * @author XenoAmess
+ */
+class P3cConfigFilenameFilter : FilenameFilter {
+    override fun accept(dir: File?, name: String?): Boolean {
+        return P3C_CONFIG_FILE_NAME.equals(name);
+    }
+}
 
 /**
  *
@@ -30,9 +43,21 @@ import com.intellij.openapi.project.Project
  */
 object Inspections {
     fun aliInspections(project: Project, filter: (InspectionToolWrapper<*, *>) -> Boolean): List<InspectionToolWrapper<*, *>> {
+        loadPatchConfigFile(project);
         val profile = InspectionProfileService.getProjectInspectionProfile(project)
         return getAllTools(project, profile).filter(filter)
     }
+
+    private fun loadPatchConfigFile(project: Project) {
+        var projectBaseFile = File(project.basePath);
+        var fileList = projectBaseFile.listFiles(P3cConfigFilenameFilter())
+        if (fileList == null || fileList.isEmpty()) {
+            NameListConfig.renewNameListService();
+        } else {
+            NameListConfig.renewNameListService(fileList[0]);
+        }
+    }
+
 
     fun addCustomTag(project: Project, tag: String) {
         val profile = InspectionProfileService.getProjectInspectionProfile(project)

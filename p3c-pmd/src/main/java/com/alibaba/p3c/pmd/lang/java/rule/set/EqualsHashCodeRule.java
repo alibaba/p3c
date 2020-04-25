@@ -36,8 +36,10 @@ public class EqualsHashCodeRule extends AbstractAliRule {
 
         try {
             List<Node> nodeList = rootNode.findChildNodesWithXPath(
-                    "//ClassOrInterfaceBodyDeclaration[./Annotation[@AnnotationName = 'Override']]" +
-                            "//MethodDeclaration[@MethodName = 'hashCode' or @MethodName = 'equals']");
+                    "//ClassOrInterfaceDeclaration[@Abstract='false']"
+                            + "//ClassOrInterfaceBodyDeclaration[./Annotation[@AnnotationName = 'Override']]"
+                            + "//MethodDeclaration[@MethodName = 'hashCode' or @MethodName = 'equals']"
+            );
             if (nodeList.size() == 1) {
                 addViolationWithMessage(data, nodeList.get(0),
                         "java.set.EqualsHashCodeRule.rule.msg");

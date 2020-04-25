@@ -23,6 +23,8 @@
         <CollectionInitShouldAssignCapacityRule><COLLECTION_TYPE>HashMap&ConcurrentHashMap>>
         <ClassNamingShouldBeCamelRule><CLASS_NAMING_WHITE_LIST>Hbase&HBase&ID&ConcurrentHashMap>>
     >
+    <rule_blacklist>>
+    <class_blacklist>>
 >
 <<
 ConstantFieldShouldBeUpperCaseRule_LOG_VARIABLE_TYPE_SET=["Log","Logger"]

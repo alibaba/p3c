@@ -20,7 +20,12 @@ import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclarator;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
+import net.sourceforge.pmd.lang.java.symboltable.ClassScope;
 import net.sourceforge.pmd.lang.rule.AbstractRule;
+import net.sourceforge.pmd.lang.symboltable.Scope;
+import net.sourceforge.pmd.lang.symboltable.ScopedNode;
+
+import static com.alibaba.p3c.pmd.lang.java.util.namelist.NameListConfig.NAME_LIST_SERVICE;
 
 /**
  * @author caikang
@@ -32,7 +37,26 @@ public class ViolationUtils {
     }
 
     public static void addViolationWithPrecisePosition(AbstractRule rule, Node node, Object data,
-        String message) {
+                                                       String message) {
+
+        if (NAME_LIST_SERVICE.ifRuleInRuleBlackList(rule)) {
+            return;
+        }
+
+        if (node instanceof ScopedNode) {
+            ScopedNode scopedNode = (ScopedNode) node;
+            Scope scope = scopedNode.getScope();
+            while (scope != null && !(scope instanceof ClassScope)) {
+                scope = scope.getParent();
+            }
+            if (scope != null) {
+                String className = ((ClassScope) scope).getClassName();
+                if (NAME_LIST_SERVICE.ifClassNameInClassBlackList(className)) {
+                    return;
+                }
+            }
+        }
+
         if (node instanceof ASTFieldDeclaration) {
             ASTVariableDeclaratorId variableDeclaratorId = node.getFirstDescendantOfType(ASTVariableDeclaratorId.class);
             addViolation(rule, variableDeclaratorId, data, message);

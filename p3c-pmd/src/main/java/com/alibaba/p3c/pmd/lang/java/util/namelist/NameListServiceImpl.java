@@ -17,10 +17,9 @@ package com.alibaba.p3c.pmd.lang.java.util.namelist;
 
 import com.alibaba.p3c.pmd.config.P3cConfigDataBean;
 import com.xenoamess.x8l.ContentNode;
-import com.xenoamess.x8l.X8lGrammarException;
 import com.xenoamess.x8l.X8lTree;
 import com.xenoamess.x8l.databind.X8lDataBeanFieldScheme;
-import com.xenoamess.x8l.dealers.X8lDealer;
+import net.sourceforge.pmd.lang.rule.AbstractRule;
 import org.apache.commons.io.IOUtils;
 
 import java.io.File;
@@ -28,17 +27,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import static com.xenoamess.x8l.databind.X8lDataBeanDefaultParser.getLastFromList;
-import static java.util.logging.Level.WARNING;
 
 /**
  * @author changle.lq
  * @date 2017/03/27
  */
 public class NameListServiceImpl implements NameListService {
-    private static final Logger LOGGER = Logger.getLogger(NameListServiceImpl.class.getName());
 
     private static final String P3C_CONFIG_FILE_NAME = "p3c_config.x8l";
     private static final String DEFAULT_P3C_CONFIG_FILE_NAME = "p3c_config.default.x8l";
@@ -70,19 +66,7 @@ public class NameListServiceImpl implements NameListService {
         }
 
         if (ifLoadCustomerConfigX8lTreeLocal) {
-            File customerConfigFile = new File(P3C_CONFIG_FILE_NAME);
-            if (customerConfigFile.exists() && customerConfigFile.isFile()) {
-                try {
-                    X8lTree customerConfigX8lTree = X8lTree.load(
-                            customerConfigFile, X8lDealer.INSTANCE
-                    );
-                    p3cConfigDataBeanLocal.getP3cConfigX8lTree().append(customerConfigX8lTree);
-                } catch (IOException e) {
-                    LOGGER.log(WARNING, "reading customer config file fails, IO fails.", e);
-                } catch (X8lGrammarException e) {
-                    LOGGER.log(WARNING, "reading customer config file fails, grammar wrong.", e);
-                }
-            }
+            p3cConfigDataBeanLocal.tryPatchP3cConfigDataBean(new File(P3C_CONFIG_FILE_NAME));
         }
 
         p3cConfigDataBeanLocal.loadFromX8lTree(p3cConfigDataBeanLocal.getP3cConfigX8lTree());
@@ -99,11 +83,27 @@ public class NameListServiceImpl implements NameListService {
         return getContentNode(className, name).asStringMapTrimmed();
     }
 
+    @Override
+    public boolean ifRuleInRuleBlackList(AbstractRule rule) {
+        return ifStringInRuleBlackList(rule.getClass().getSimpleName())
+                || ifStringInRuleBlackList(rule.getClass().getCanonicalName());
+    }
+
+    public boolean ifStringInRuleBlackList(String string) {
+        return this.getP3cConfigDataBean().getRuleBlackListSet().contains(string);
+    }
+
+    @Override
+    public boolean ifClassNameInClassBlackList(String className) {
+        return this.getP3cConfigDataBean().getClassBlackListSet().contains(className);
+    }
+
+
     public ContentNode getContentNode(String className, String name) {
         return getLastFromList(
-                getP3cConfigDataBean().getP3cConfigX8lTree().fetch(
+                getP3cConfigDataBean().getRuleConfigNode().fetch(
                         X8lDataBeanFieldScheme.X8LPATH,
-                        "com.alibaba.p3c.pmd.config>rule_config>" + className + ">CONTENT_NODE(" + name + ")",
+                        "CONTENT_NODE(" + className + ")>CONTENT_NODE(" + name + ")",
                         ContentNode.class
                 )
         );

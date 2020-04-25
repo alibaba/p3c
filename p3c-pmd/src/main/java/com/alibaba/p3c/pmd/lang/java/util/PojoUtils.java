@@ -15,11 +15,10 @@
  */
 package com.alibaba.p3c.pmd.lang.java.util;
 
-import java.util.List;
-
 import com.alibaba.p3c.pmd.lang.java.util.namelist.NameListConfig;
-
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
+
+import java.util.List;
 
 /**
  * POJO Utils
@@ -28,8 +27,9 @@ import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
  * @date 2016/11/25
  */
 public class PojoUtils {
-    private static final List<String> POJO_SUFFIX_SET =
-        NameListConfig.NAME_LIST_SERVICE.getNameList("PojoMustOverrideToStringRule", "POJO_SUFFIX_SET");
+    private static List<String> getPojoSuffixSet() {
+        return NameListConfig.getNameListService().getNameList("PojoMustOverrideToStringRule", "POJO_SUFFIX_SET");
+    }
 
     private PojoUtils() {
     }
@@ -38,7 +38,7 @@ public class PojoUtils {
         if (klass == null) {
             return false;
         }
-        for (String suffix : POJO_SUFFIX_SET) {
+        for (String suffix : getPojoSuffixSet()) {
             if (klass.endsWith(suffix)) {
                 return true;
             }

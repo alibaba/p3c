@@ -15,22 +15,15 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.constant;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.alibaba.p3c.pmd.lang.java.util.namelist.NameListConfig;
-
 import net.sourceforge.pmd.lang.ast.Node;
-import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
-import net.sourceforge.pmd.lang.java.ast.ASTForStatement;
-import net.sourceforge.pmd.lang.java.ast.ASTIfStatement;
-import net.sourceforge.pmd.lang.java.ast.ASTLiteral;
-import net.sourceforge.pmd.lang.java.ast.ASTWhileStatement;
-import net.sourceforge.pmd.util.StringUtil;
-
+import net.sourceforge.pmd.lang.java.ast.*;
 import org.apache.commons.lang3.StringUtils;
 import org.jaxen.JaxenException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * [Mandatory] Magic values, except for predefined, are forbidden in coding.
@@ -43,8 +36,12 @@ public class UndefineMagicConstantRule extends AbstractAliRule {
     /**
      * white list for undefined variable, may be added
      */
-    private final static List<String> LITERAL_WHITE_LIST = NameListConfig.NAME_LIST_SERVICE.getNameList(
-        UndefineMagicConstantRule.class.getSimpleName(), "LITERAL_WHITE_LIST");
+    private static List<String> getLiteralWhiteList() {
+        return NameListConfig.getNameListService().getNameList(
+                UndefineMagicConstantRule.class.getSimpleName(),
+                "LITERAL_WHITE_LIST"
+        );
+    }
 
     private final static String XPATH = "//Literal/../../../../..[not(VariableInitializer)]";
 
@@ -69,7 +66,7 @@ public class UndefineMagicConstantRule extends AbstractAliRule {
                         currentLiterals.add(literal);
                         String imageReplace = StringUtils.replace(literal.getImage(), "{", "'{");
                         addViolationWithMessage(data, literal,
-                            "java.constant.UndefineMagicConstantRule.violation.msg", new Object[] {imageReplace});
+                                "java.constant.UndefineMagicConstantRule.violation.msg", new Object[]{imageReplace});
                     }
                 }
             }
@@ -93,7 +90,7 @@ public class UndefineMagicConstantRule extends AbstractAliRule {
             return false;
         }
         // filter white list
-        for (String whiteItem : LITERAL_WHITE_LIST) {
+        for (String whiteItem : getLiteralWhiteList()) {
             if (whiteItem.equals(name)) {
                 return false;
             }

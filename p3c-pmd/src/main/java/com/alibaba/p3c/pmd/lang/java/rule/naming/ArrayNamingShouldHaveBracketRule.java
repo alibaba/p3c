@@ -16,7 +16,7 @@
 package com.alibaba.p3c.pmd.lang.java.rule.naming;
 
 import com.alibaba.p3c.pmd.I18nResources;
-import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.AbstractAliXpathRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -27,7 +27,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  * @author changle.lq
  * @date 2017/04/16
  */
-public class ArrayNamingShouldHaveBracketRule extends AbstractXpathRule {
+public class ArrayNamingShouldHaveBracketRule extends AbstractAliXpathRule {
     private static final String XPATH = "//VariableDeclaratorId[../..[@Array = 'true']]"
         + "[../../Type/ReferenceType[@Array != 'true']]";
 

@@ -16,7 +16,7 @@
 package com.alibaba.p3c.pmd.lang.java.rule.other;
 
 import com.alibaba.p3c.pmd.I18nResources;
-import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.AbstractAliXpathRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -27,7 +27,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  * @author keriezhang
  * @date 2016/12/14
  */
-public class AvoidNewDateGetTimeRule extends AbstractXpathRule {
+public class AvoidNewDateGetTimeRule extends AbstractAliXpathRule {
 
     private static final String XPATH =
         "//PrimaryExpression"

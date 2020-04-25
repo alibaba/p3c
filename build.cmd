@@ -4,14 +4,14 @@ cd ../
 cd ./idea-plugin
 
 cd ./p3c-common
-call ../gradlew publishToMavenLocal
+call ../gradlew clean publishToMavenLocal
 cd ../
 
 cd ./p3c-idea
-call ../gradlew publishToMavenLocal
+call ../gradlew clean publishToMavenLocal
 cd ../
 
-call ./gradlew buildPlugin
+call ./gradlew clean buildPlugin
 
 cd ../
 pause

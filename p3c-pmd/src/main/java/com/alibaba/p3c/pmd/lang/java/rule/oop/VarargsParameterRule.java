@@ -17,7 +17,7 @@ package com.alibaba.p3c.pmd.lang.java.rule.oop;
  */
 
 import com.alibaba.p3c.pmd.I18nResources;
-import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.AbstractAliXpathRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 import net.sourceforge.pmd.lang.ast.Node;
 
@@ -27,7 +27,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  * @author leonard99559
  * @date 2019/10/16
  */
-public class VarargsParameterRule extends AbstractXpathRule {
+public class VarargsParameterRule extends AbstractAliXpathRule {
     private static final String XPATH = "//FormalParameter[@Varargs = 'true' and ./Type[@TypeImage = 'Object']]";
 
     public VarargsParameterRule() {

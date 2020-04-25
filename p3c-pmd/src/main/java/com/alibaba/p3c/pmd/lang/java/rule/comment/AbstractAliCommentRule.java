@@ -16,7 +16,7 @@
 package com.alibaba.p3c.pmd.lang.java.rule.comment;
 
 import com.alibaba.p3c.pmd.I18nResources;
-
+import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.rule.documentation.AbstractCommentRule;
 
@@ -24,7 +24,7 @@ import net.sourceforge.pmd.lang.java.rule.documentation.AbstractCommentRule;
  * @author caikang
  * @date 2017/06/21
  */
-public class AbstractAliCommentRule extends AbstractCommentRule {
+public abstract class AbstractAliCommentRule extends AbstractCommentRule {
     @Override
     public void setDescription(String description) {
         super.setDescription(I18nResources.getMessageWithExceptionHandled(description));
@@ -37,12 +37,27 @@ public class AbstractAliCommentRule extends AbstractCommentRule {
 
     @Override
     public void addViolationWithMessage(Object data, Node node, String message) {
-        super.addViolationWithMessage(data, node, I18nResources.getMessageWithExceptionHandled(message));
+        if (ViolationUtils.shouldIgnoreViolation(this.getClass(), node)) {
+            return;
+        }
+        super.addViolationWithMessage(
+                data,
+                node,
+                I18nResources.getMessageWithExceptionHandled(message)
+        );
     }
 
     @Override
     public void addViolationWithMessage(Object data, Node node, String message, Object[] args) {
-        super.addViolationWithMessage(data, node,
-            String.format(I18nResources.getMessageWithExceptionHandled(message), args));
+        if (ViolationUtils.shouldIgnoreViolation(this.getClass(), node)) {
+            return;
+        }
+        super.addViolationWithMessage(
+                data,
+                node,
+                String.format(I18nResources.getMessageWithExceptionHandled(message),
+                        args
+                )
+        );
     }
 }

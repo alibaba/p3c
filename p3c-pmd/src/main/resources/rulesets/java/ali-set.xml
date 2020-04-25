@@ -132,7 +132,7 @@ Negative example:
     <rule name="EqualsHashCodeRule" language="java"
           message="java.set.EqualsHashCodeRule.rule.msg"
           class="com.alibaba.p3c.pmd.lang.java.rule.set.EqualsHashCodeRule">
-        <priority>1</priority>
+        <priority>4</priority>
         <example>
             <![CDATA[
 Positive example:

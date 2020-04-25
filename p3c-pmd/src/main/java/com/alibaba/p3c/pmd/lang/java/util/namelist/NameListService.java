@@ -15,6 +15,7 @@
  */
 package com.alibaba.p3c.pmd.lang.java.util.namelist;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -23,23 +24,48 @@ import java.util.Map;
  * @date 2017/03/23
  */
 public interface NameListService {
+
     /**
      * get name list
      * @param className class name
      * @param name type name
-     * @return  name list
+     * @return name list
      */
-    List<String> getNameList(String className,String name);
+    List<String> getNameList(String className, String name);
 
     /**
      * get config
      * @param className class name
      * @param name type name
-     * @param kClass  type of key
-     * @param vClass  type of value
-     * @param <K> type of key
-     * @param <V> type of value
-     * @return  name list
+     * @return name list
      */
-    <K, V> Map<K, V> getNameMap(String className,String name,Class<K> kClass,Class<V> vClass);
+    Map<String, String> getNameMap(String className, String name);
+
+    /**
+     * patch config from a patch file.
+     * @param file additional config file
+     */
+    void loadPatchConfigFile(File file);
+
+    /**
+     * check if a rule is in rule black list.
+     * @param ruleClass rule class
+     * @return true if in rule black list
+     */
+    boolean ifRuleClassInRuleBlackList(Class ruleClass);
+
+    /**
+     * check if class name is in class black list.
+     * @param className class name
+     * @return true if in class black list
+     */
+    boolean ifClassNameInClassBlackList(String className);
+
+    /**
+     * check if class name is in class name pair black list.
+     * @param ruleClass rule class
+     * @param className class name
+     * @return true if in class black list
+     */
+    boolean ifRuleClassNameClassNamePairInPairIgnoreList(Class ruleClass, String className);
 }

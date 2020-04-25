@@ -15,17 +15,17 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.fix.FixClassTypeResolver;
-
+import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 import net.sourceforge.pmd.RuleContext;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
 import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * re calculate node type
@@ -43,7 +43,7 @@ public abstract class AbstractAliRule extends AbstractJavaRule {
     @Override
     public Object visit(ASTCompilationUnit node, Object data) {
         // Each CompilationUnit will be scanned only once by custom type resolver.
-        String sourceCodeFilename = ((RuleContext)data).getSourceCodeFilename();
+        String sourceCodeFilename = ((RuleContext) data).getSourceCodeFilename();
 
         // Do type resolve if file name is empty(unit tests).
         if (StringUtils.isBlank(sourceCodeFilename) || EMPTY_FILE_NAME.equals(sourceCodeFilename)) {
@@ -72,13 +72,26 @@ public abstract class AbstractAliRule extends AbstractJavaRule {
 
     @Override
     public void addViolationWithMessage(Object data, Node node, String message) {
-        super.addViolationWithMessage(data, node, I18nResources.getMessageWithExceptionHandled(message));
+        if (ViolationUtils.shouldIgnoreViolation(this.getClass(), node)) {
+            return;
+        }
+        super.addViolationWithMessage(
+                data,
+                node,
+                I18nResources.getMessageWithExceptionHandled(message)
+        );
     }
 
     @Override
     public void addViolationWithMessage(Object data, Node node, String message, Object[] args) {
-        super.addViolationWithMessage(data, node,
-            String.format(I18nResources.getMessageWithExceptionHandled(message), args));
+        if (ViolationUtils.shouldIgnoreViolation(this.getClass(), node)) {
+            return;
+        }
+        super.addViolationWithMessage(
+                data,
+                node,
+                String.format(I18nResources.getMessageWithExceptionHandled(message), args)
+        );
     }
 
     private void resolveType(ASTCompilationUnit node, Object data) {

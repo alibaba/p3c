@@ -16,7 +16,7 @@
 package com.alibaba.p3c.pmd.lang.java.rule.naming;
 
 import com.alibaba.p3c.pmd.I18nResources;
-import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.AbstractAliXpathRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -29,7 +29,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
  * @author changle.lq
  * @date 2017/04/16
  */
-public class BooleanPropertyShouldNotStartWithIsRule extends AbstractXpathRule {
+public class BooleanPropertyShouldNotStartWithIsRule extends AbstractAliXpathRule {
     private static final String XPATH = "//VariableDeclaratorId[(ancestor::ClassOrInterfaceDeclaration)["
         + "@Interface='false' and ( ends-with(@Image, 'DO') or ends-with(@Image, 'DTO')"
         + " or ends-with(@Image, 'VO') or ends-with(@Image, 'DAO'))]]"
@@ -42,9 +42,14 @@ public class BooleanPropertyShouldNotStartWithIsRule extends AbstractXpathRule {
     @Override
     public void addViolation(Object data, Node node, String arg) {
         if (node instanceof ASTVariableDeclaratorId) {
-            ViolationUtils.addViolationWithPrecisePosition(this, node, data,
+            ViolationUtils.addViolationWithPrecisePosition(
+                    this,
+                    node,
+                    data,
                 I18nResources.getMessage("java.naming.BooleanPropertyShouldNotStartWithIsRule.violation.msg",
-                    node.getImage()));
+                    node.getImage()
+                )
+            );
         } else {
             super.addViolation(data, node, arg);
         }

@@ -15,14 +15,20 @@
  */
 package com.alibaba.p3c.pmd.lang.java.util.namelist;
 
+import com.alibaba.p3c.pmd.config.P3cConfigDataBean;
+import com.xenoamess.x8l.ContentNode;
+import com.xenoamess.x8l.X8lTree;
+import com.xenoamess.x8l.databind.X8lDataBeanFieldScheme;
+import org.apache.commons.io.IOUtils;
+
+import java.io.File;
 import java.io.IOException;
-import java.util.LinkedHashSet;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
+import java.util.Set;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import static com.xenoamess.x8l.databind.X8lDataBeanDefaultParser.getLastFromList;
 
 /**
  * @author changle.lq
@@ -30,47 +36,90 @@ import com.google.gson.reflect.TypeToken;
  */
 public class NameListServiceImpl implements NameListService {
 
-    private static final String NAME_LIST_PROPERTY_FILE_NAME = "namelist.properties";
-    private static final Properties PROPERTIES = initProperties();
-    private static final String SEPARATOR = "_";
+    public static final String P3C_CONFIG_FILE_NAME = "p3c_config.x8l";
+    public static final String DEFAULT_P3C_CONFIG_FILE_NAME = "p3c_config.default.x8l";
+    private final P3cConfigDataBean p3cConfigDataBean;
 
-    private static Properties initProperties() {
-        LinkedProperties props = new LinkedProperties();
-        ClassLoader classLoader = NameListServiceImpl.class.getClassLoader();
+    public NameListServiceImpl() {
+        this(true);
+    }
+
+    public NameListServiceImpl(boolean ifLoadCustomerConfigX8lTree) {
+        p3cConfigDataBean = initP3cConfigDataBean(ifLoadCustomerConfigX8lTree);
+    }
+
+    private static P3cConfigDataBean initP3cConfigDataBean(boolean ifLoadCustomerConfigX8lTreeLocal) {
+        P3cConfigDataBean p3cConfigDataBeanLocal = new P3cConfigDataBean();
         try {
-            props.load(classLoader.getResourceAsStream(NAME_LIST_PROPERTY_FILE_NAME));
+            try (InputStream inputStream =
+                         NameListServiceImpl.class.getClassLoader()
+                                 .getResourceAsStream(DEFAULT_P3C_CONFIG_FILE_NAME);
+                 InputStream bufferedInputStream = IOUtils.toBufferedInputStream(inputStream)
+            ) {
+                p3cConfigDataBeanLocal.setP3cConfigX8lTree(X8lTree.load(bufferedInputStream));
+            }
         } catch (IOException ex) {
-            throw new IllegalStateException("Load namelist.properties fail", ex);
+            throw new IllegalStateException("Load p3c_config.default.x8l fail", ex);
         }
-        return props;
+
+        if (ifLoadCustomerConfigX8lTreeLocal) {
+            p3cConfigDataBeanLocal.tryPatchP3cConfigDataBean(new File(P3C_CONFIG_FILE_NAME));
+        }
+        p3cConfigDataBeanLocal.loadFromX8lTree(p3cConfigDataBeanLocal.getP3cConfigX8lTree());
+        return p3cConfigDataBeanLocal;
+    }
+
+    @Override
+    public void loadPatchConfigFile(File file) {
+        this.getP3cConfigDataBean().tryPatchP3cConfigDataBean(file);
     }
 
     @Override
     public List<String> getNameList(String className, String name) {
-        Gson gson = new Gson();
-        return gson.fromJson((String)PROPERTIES.get(className + SEPARATOR + name),
-            new TypeToken<List<String>>() {}.getType());
+        return getContentNode(className, name).asStringListTrimmed();
     }
 
     @Override
-    public <K, V> Map<K, V> getNameMap(String className, String name, Class<K> kClass, Class<V> vClass) {
-        Gson gson = new Gson();
-        return gson.fromJson((String)PROPERTIES.get(className + SEPARATOR + name),
-            new TypeToken<Map<K, V>>() {
-            }.getType());
+    public Map<String, String> getNameMap(String className, String name) {
+        return getContentNode(className, name).asStringMapTrimmed();
     }
 
-    private static class LinkedProperties extends Properties {
-        private final LinkedHashSet<Object> linkedKeys = new LinkedHashSet<>();
+    @Override
+    public boolean ifRuleClassInRuleBlackList(Class ruleClass) {
+        return ifStringInRuleBlackList(ruleClass.getSimpleName())
+                || ifStringInRuleBlackList(ruleClass.getCanonicalName());
+    }
 
-        @Override
-        public Object put(Object key, Object value) {
-            linkedKeys.add(key);
-            return super.put(key, value);
-        }
+    public boolean ifStringInRuleBlackList(String string) {
+        return this.getP3cConfigDataBean().getRuleBlackListSet().contains(string);
+    }
 
-        public int getSize() {
-            return linkedKeys.size();
+    @Override
+    public boolean ifClassNameInClassBlackList(String className) {
+        return this.getP3cConfigDataBean().getClassBlackListSet().contains(className);
+    }
+
+    @Override
+    public boolean ifRuleClassNameClassNamePairInPairIgnoreList(Class ruleClass, String className) {
+        if (getP3cConfigDataBean().getRuleClassPairBlackListMap().containsKey(className)) {
+            Set<String> ruleSet = getP3cConfigDataBean().getRuleClassPairBlackListMap().get(className);
+            return ruleSet.contains(ruleClass.getSimpleName()) || ruleSet.contains(ruleClass.getCanonicalName());
         }
+        return false;
+    }
+
+
+    public ContentNode getContentNode(String className, String name) {
+        return getLastFromList(
+                getP3cConfigDataBean().getP3cConfigX8lTree().fetch(
+                        X8lDataBeanFieldScheme.X8LPATH,
+                        "com.alibaba.p3c.pmd.config>rule_config>CONTENT_NODE(" + className + ")>CONTENT_NODE(" + name + ")",
+                        ContentNode.class
+                )
+        );
+    }
+
+    public P3cConfigDataBean getP3cConfigDataBean() {
+        return p3cConfigDataBean;
     }
 }

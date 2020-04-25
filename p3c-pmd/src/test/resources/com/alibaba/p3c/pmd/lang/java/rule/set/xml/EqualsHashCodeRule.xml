@@ -77,4 +77,20 @@
         <expected-linenumbers>5</expected-linenumbers>
         <code-ref id="sets-EqualsHashCodeRule-missEqualsWarn"/>
     </test-code>
+
+    <code-fragment id="ignore_abstract_class"><![CDATA[
+        public abstract class AbstractFoo {
+            @Override
+            public boolean equals(Object o) {
+                return true;
+            }
+        }
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>shall ignore abstract class.</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="ignore_abstract_class"/>
+    </test-code>
 </test-data>

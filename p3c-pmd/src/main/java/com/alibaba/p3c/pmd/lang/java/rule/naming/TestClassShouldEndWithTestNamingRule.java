@@ -77,11 +77,17 @@ public class TestClassShouldEndWithTestNamingRule extends AbstractJUnitRule {
 
     @Override
     public void addViolationWithMessage(Object data, Node node, String message) {
+        if (ViolationUtils.shouldIgnoreViolation(this.getClass(), node)) {
+            return;
+        }
         super.addViolationWithMessage(data, node, I18nResources.getMessageWithExceptionHandled(message));
     }
 
     @Override
     public void addViolationWithMessage(Object data, Node node, String message, Object[] args) {
+        if (ViolationUtils.shouldIgnoreViolation(this.getClass(), node)) {
+            return;
+        }
         super.addViolationWithMessage(data, node,
             String.format(I18nResources.getMessageWithExceptionHandled(message), args));
     }

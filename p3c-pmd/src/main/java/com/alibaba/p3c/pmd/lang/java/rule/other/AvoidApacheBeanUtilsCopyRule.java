@@ -15,7 +15,7 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.other;
 
-import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.AbstractAliXpathRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -28,7 +28,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  * @date 2016/12/14
  *
  */
-public class AvoidApacheBeanUtilsCopyRule extends AbstractXpathRule {
+public class AvoidApacheBeanUtilsCopyRule extends AbstractAliXpathRule {
     private static final String XPATH =
             "//PrimaryPrefix/Name[(@Image='BeanUtils.copyProperties' and "
                 + "//ImportDeclaration[@ImportedName='org.apache.commons.beanutils.BeanUtils']) or "

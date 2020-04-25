@@ -15,6 +15,7 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.naming;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import com.alibaba.p3c.pmd.I18nResources;
@@ -22,6 +23,7 @@ import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.alibaba.p3c.pmd.lang.java.util.StringAndCharConstants;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
+import com.alibaba.p3c.pmd.lang.java.util.namelist.NameListConfig;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTAnnotationTypeDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
@@ -41,8 +43,21 @@ public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
     private static final String MESSAGE_KEY_PREFIX = "java.naming.LowerCamelCaseVariableNamingRule.violation.msg";
     private final Pattern pattern = Pattern.compile("^[a-z][a-z0-9]*([A-Z][a-z0-9]+)*(DO|DTO|VO|DAO|BO|DOList|DTOList|VOList|DAOList|BOList|X|Y|Z|UDF|UDAF|[A-Z])?$");
 
+    private static List<String> getWhiteList() {
+        return NameListConfig.getNameListService().getNameList(
+                LowerCamelCaseVariableNamingRule.class.getSimpleName(),
+                "WHITE_LIST"
+        );
+    }
+
     @Override
     public Object visit(final ASTVariableDeclaratorId node, Object data) {
+        for (String s : getWhiteList()) {
+            if (node.getImage().contains(s)) {
+                return super.visit(node, data);
+            }
+        }
+
         //避免与 AvoidStartWithDollarAndUnderLineNamingRule 重复判断(例: $myTest)
         if (variableNamingStartOrEndWithDollarAndUnderLine(node.getImage())) {
             return super.visit(node, data);
@@ -71,6 +86,12 @@ public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
 
     @Override
     public Object visit(ASTMethodDeclarator node, Object data) {
+        for (String s : getWhiteList()) {
+            if (node.getImage().contains(s)) {
+                return super.visit(node, data);
+            }
+        }
+
         if (!variableNamingStartOrEndWithDollarAndUnderLine(node.getImage())) {
             if (!(pattern.matcher(node.getImage()).matches())) {
                 ViolationUtils.addViolationWithPrecisePosition(this, node, data,

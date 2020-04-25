@@ -15,22 +15,16 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.exception;
 
-import java.util.List;
-import java.util.Map;
-
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 import com.alibaba.p3c.pmd.lang.java.util.namelist.NameListConfig;
-
 import net.sourceforge.pmd.lang.ast.Node;
-import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType;
-import net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTName;
-import net.sourceforge.pmd.lang.java.ast.ASTPrimitiveType;
-import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
+import net.sourceforge.pmd.lang.java.ast.*;
 import org.jaxen.JaxenException;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * [Recommended] If the return type is primitive, return a value of wrapper class may cause NullPointerException.
@@ -39,14 +33,19 @@ import org.jaxen.JaxenException;
  * @date 2017/04/16
  */
 public class MethodReturnWrapperTypeRule extends AbstractAliRule {
-    private static final Map<String, String> PRIMITIVE_TYPE_TO_WAPPER_TYPE = NameListConfig.getNameListService()
-        .getNameMap("MethodReturnWrapperTypeRule", "PRIMITIVE_TYPE_TO_WAPPER_TYPE");
+    private static Map<String, String> getPrimitiveTypeToWrapperType() {
+        return NameListConfig.getNameListService().getNameMap(
+                "MethodReturnWrapperTypeRule",
+                "PRIMITIVE_TYPE_TO_WAPPER_TYPE"
+        );
+    }
+
     private static final String METHOD_RETURN_TYPE_XPATH = "ResultType/Type/PrimitiveType";
     private static final String METHOD_RETURN_OBJECT_XPATH
-        = "Block/BlockStatement/Statement/ReturnStatement/Expression/PrimaryExpression/PrimaryPrefix/Name";
+            = "Block/BlockStatement/Statement/ReturnStatement/Expression/PrimaryExpression/PrimaryPrefix/Name";
     private static final String METHOD_VARIABLE_TYPE_XPATH = "Type/ReferenceType/ClassOrInterfaceType";
     private static final String METHOD_VARIABLE_NAME_XPATH
-        = "Block/BlockStatement/LocalVariableDeclaration/VariableDeclarator/VariableDeclaratorId";
+            = "Block/BlockStatement/LocalVariableDeclaration/VariableDeclarator/VariableDeclaratorId";
 
     @Override
     public Object visit(ASTMethodDeclaration node, Object data) {
@@ -56,7 +55,7 @@ public class MethodReturnWrapperTypeRule extends AbstractAliRule {
             if (!(astPrimitiveTypeList != null && astPrimitiveTypeList.size() == 1)) {
                 return super.visit(node, data);
             }
-            ASTPrimitiveType astPrimitiveType = (ASTPrimitiveType)astPrimitiveTypeList.get(0);
+            ASTPrimitiveType astPrimitiveType = (ASTPrimitiveType) astPrimitiveTypeList.get(0);
             //If the return type is not a basic types,skip
             if (!(astPrimitiveType.getType() != null && astPrimitiveType.getType().isPrimitive())) {
                 return super.visit(node, data);
@@ -73,32 +72,33 @@ public class MethodReturnWrapperTypeRule extends AbstractAliRule {
             if (methodVariableNameList == null || methodVariableNameList.size() == 0) {
                 return super.visit(node, data);
             }
-            ASTName astName = (ASTName)nameList.get(0);
+            ASTName astName = (ASTName) nameList.get(0);
             String variableName = astName.getImage();
             //iterate all the method of variable nodes
             for (Node methodVariableNameNode : methodVariableNameList) {
                 ASTVariableDeclaratorId astVariableDeclaratorId
-                    = (ASTVariableDeclaratorId)methodVariableNameNode;
+                        = (ASTVariableDeclaratorId) methodVariableNameNode;
                 //find out the variable named the same with return node
                 if (!variableName.equals(astVariableDeclaratorId.getImage())) {
                     continue;
                 }
                 ASTLocalVariableDeclaration astLocalVariableDeclaration = astVariableDeclaratorId
-                    .getFirstParentOfType(ASTLocalVariableDeclaration.class);
+                        .getFirstParentOfType(ASTLocalVariableDeclaration.class);
                 //check local variables type
                 List<Node> nodeList = astLocalVariableDeclaration.findChildNodesWithXPath(
-                    METHOD_VARIABLE_TYPE_XPATH);
+                        METHOD_VARIABLE_TYPE_XPATH);
 
                 if (nodeList != null && nodeList.size() == 1) {
-                    ASTClassOrInterfaceType astClassOrInterfaceType = (ASTClassOrInterfaceType)nodeList.get(
-                        0);
+                    ASTClassOrInterfaceType astClassOrInterfaceType = (ASTClassOrInterfaceType) nodeList.get(
+                            0);
+                    Map<String, String> primitiveTypeToWrapperType = getPrimitiveTypeToWrapperType();
                     //if variable type is a value of wrapper
-                    if (PRIMITIVE_TYPE_TO_WAPPER_TYPE.get(primitiveTypeName) != null
-                        && PRIMITIVE_TYPE_TO_WAPPER_TYPE.get(primitiveTypeName).equals(
-                        astClassOrInterfaceType.getType().getSimpleName())) {
+                    if (primitiveTypeToWrapperType.get(primitiveTypeName) != null
+                            && primitiveTypeToWrapperType.get(primitiveTypeName).equals(
+                            astClassOrInterfaceType.getType().getSimpleName())) {
                         ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-                            I18nResources.getMessage("java.exception.MethodReturnWrapperTypeRule.violation.msg",
-                                primitiveTypeName, astClassOrInterfaceType.getType().getSimpleName()));
+                                I18nResources.getMessage("java.exception.MethodReturnWrapperTypeRule.violation.msg",
+                                        primitiveTypeName, astClassOrInterfaceType.getType().getSimpleName()));
                     }
                 }
             }

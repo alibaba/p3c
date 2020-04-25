@@ -38,23 +38,8 @@ public class ViolationUtils {
 
     public static void addViolationWithPrecisePosition(AbstractRule rule, Node node, Object data,
                                                        String message) {
-
-        if (getNameListService().ifRuleInRuleBlackList(rule)) {
+        if (shouldIgnoreViolation(rule.getClass(), node)) {
             return;
-        }
-
-        if (node instanceof ScopedNode) {
-            ScopedNode scopedNode = (ScopedNode) node;
-            Scope scope = scopedNode.getScope();
-            while (scope != null && !(scope instanceof ClassScope)) {
-                scope = scope.getParent();
-            }
-            if (scope != null) {
-                String className = ((ClassScope) scope).getClassName();
-                if (getNameListService().ifClassNameInClassBlackList(className)) {
-                    return;
-                }
-            }
         }
 
         if (node instanceof ASTFieldDeclaration) {
@@ -76,5 +61,28 @@ public class ViolationUtils {
         } else {
             rule.addViolationWithMessage(data, node, message);
         }
+    }
+
+    public static boolean shouldIgnoreViolation(Class ruleClass, Node node) {
+        if (getNameListService().ifRuleClassInRuleBlackList(ruleClass)) {
+            return true;
+        }
+
+        if (node instanceof ScopedNode) {
+            ScopedNode scopedNode = (ScopedNode) node;
+            Scope scope = scopedNode.getScope();
+            while (scope != null && !(scope instanceof ClassScope)) {
+                scope = scope.getParent();
+            }
+            if (scope != null) {
+                String className = ((ClassScope) scope).getClassName();
+                if (getNameListService().ifClassNameInClassBlackList(className)) {
+                    return true;
+                }
+                return getNameListService().ifRuleClassNameClassNamePairInPairIgnoreList(ruleClass, className);
+            }
+        }
+
+        return false;
     }
 }

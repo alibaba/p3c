@@ -15,15 +15,14 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.naming;
 
-import java.util.List;
-import java.util.regex.Pattern;
-
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 import com.alibaba.p3c.pmd.lang.java.util.namelist.NameListConfig;
-
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
+
+import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * [Mandatory] Class names should be nouns in UpperCamelCase except domain models: DO, BO, DTO, VO, etc.
@@ -34,14 +33,18 @@ import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 public class ClassNamingShouldBeCamelRule extends AbstractAliRule {
 
     private static final Pattern PATTERN
-        = Pattern.compile("^I?([A-Z][a-z0-9]+)+(([A-Z])|(DO|DTO|VO|DAO|BO|DAOImpl|YunOS|AO|PO|DOMapper))?$");
+            = Pattern.compile("^I?([A-Z][a-z0-9]+)+(([A-Z])|(DO|DTO|VO|DAO|BO|DAOImpl|YunOS|AO|PO|DOMapper))?$");
 
-    private static final List<String> CLASS_NAMING_WHITE_LIST = NameListConfig.getNameListService().getNameList(
-        ClassNamingShouldBeCamelRule.class.getSimpleName(), "CLASS_NAMING_WHITE_LIST");
+    private static List<String> getClassNamingWhiteList() {
+        return NameListConfig.getNameListService().getNameList(
+                ClassNamingShouldBeCamelRule.class.getSimpleName(),
+                "CLASS_NAMING_WHITE_LIST"
+        );
+    }
 
     @Override
     public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
-        for (String s : CLASS_NAMING_WHITE_LIST) {
+        for (String s : getClassNamingWhiteList()) {
             if (node.getImage().contains(s)) {
                 return super.visit(node, data);
             }
@@ -50,8 +53,8 @@ public class ClassNamingShouldBeCamelRule extends AbstractAliRule {
             return super.visit(node, data);
         }
         ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-            I18nResources.getMessage("java.naming.ClassNamingShouldBeCamelRule.violation.msg",
-                node.getImage()));
+                I18nResources.getMessage("java.naming.ClassNamingShouldBeCamelRule.violation.msg",
+                        node.getImage()));
 
         return super.visit(node, data);
     }

@@ -15,7 +15,7 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.flowcontrol;
 
-import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.AbstractAliXpathRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -28,7 +28,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  * @author zenghou.fw
  * @date 2017/11/21
  */
-public class AvoidNegationOperatorRule extends AbstractXpathRule {
+public class AvoidNegationOperatorRule extends AbstractAliXpathRule {
     private static final String XPATH = "//UnaryExpressionNotPlusMinus[child::PrimaryExpression"
         + "//PrimaryPrefix/Expression/RelationalExpression]"
         + "|//UnaryExpressionNotPlusMinus[child::PrimaryExpression"

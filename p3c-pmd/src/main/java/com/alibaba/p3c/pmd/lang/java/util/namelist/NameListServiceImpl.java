@@ -19,7 +19,6 @@ import com.alibaba.p3c.pmd.config.P3cConfigDataBean;
 import com.xenoamess.x8l.ContentNode;
 import com.xenoamess.x8l.X8lTree;
 import com.xenoamess.x8l.databind.X8lDataBeanFieldScheme;
-import net.sourceforge.pmd.lang.rule.AbstractRule;
 import org.apache.commons.io.IOUtils;
 
 import java.io.File;
@@ -27,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static com.xenoamess.x8l.databind.X8lDataBeanDefaultParser.getLastFromList;
 
@@ -65,7 +65,6 @@ public class NameListServiceImpl implements NameListService {
         if (ifLoadCustomerConfigX8lTreeLocal) {
             p3cConfigDataBeanLocal.tryPatchP3cConfigDataBean(new File(P3C_CONFIG_FILE_NAME));
         }
-
         p3cConfigDataBeanLocal.loadFromX8lTree(p3cConfigDataBeanLocal.getP3cConfigX8lTree());
         return p3cConfigDataBeanLocal;
     }
@@ -86,9 +85,9 @@ public class NameListServiceImpl implements NameListService {
     }
 
     @Override
-    public boolean ifRuleInRuleBlackList(AbstractRule rule) {
-        return ifStringInRuleBlackList(rule.getClass().getSimpleName())
-                || ifStringInRuleBlackList(rule.getClass().getCanonicalName());
+    public boolean ifRuleClassInRuleBlackList(Class ruleClass) {
+        return ifStringInRuleBlackList(ruleClass.getSimpleName())
+                || ifStringInRuleBlackList(ruleClass.getCanonicalName());
     }
 
     public boolean ifStringInRuleBlackList(String string) {
@@ -100,12 +99,21 @@ public class NameListServiceImpl implements NameListService {
         return this.getP3cConfigDataBean().getClassBlackListSet().contains(className);
     }
 
+    @Override
+    public boolean ifRuleClassNameClassNamePairInPairIgnoreList(Class ruleClass, String className) {
+        if (getP3cConfigDataBean().getRuleClassPairBlackListMap().containsKey(className)) {
+            Set<String> ruleSet = getP3cConfigDataBean().getRuleClassPairBlackListMap().get(className);
+            return ruleSet.contains(ruleClass.getSimpleName()) || ruleSet.contains(ruleClass.getCanonicalName());
+        }
+        return false;
+    }
+
 
     public ContentNode getContentNode(String className, String name) {
         return getLastFromList(
-                getP3cConfigDataBean().getRuleConfigNode().fetch(
+                getP3cConfigDataBean().getP3cConfigX8lTree().fetch(
                         X8lDataBeanFieldScheme.X8LPATH,
-                        "CONTENT_NODE(" + className + ")>CONTENT_NODE(" + name + ")",
+                        "com.alibaba.p3c.pmd.config>rule_config>CONTENT_NODE(" + className + ")>CONTENT_NODE(" + name + ")",
                         ContentNode.class
                 )
         );

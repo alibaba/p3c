@@ -31,7 +31,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <ul>2.0.2.3x-SNAPSHOT
+        <ul>2.0.2.3x
         </ul>
         <ul>2.0.2.2x
             <li>add com.alibaba.p3c.pmd.lang.java.rule.flowcontrol.SwitchExpressionRule to deal with switch expression, which is experimental in java 12 and 13, and finally public in java 14.Added a rule for checking SwitchExpression MUST have a default branch.</li>

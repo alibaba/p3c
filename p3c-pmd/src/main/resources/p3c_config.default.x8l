@@ -25,4 +25,5 @@
     >
     <rule_blacklist>>
     <class_blacklist>>
+    <rule_class_pair_blacklist>>
 >

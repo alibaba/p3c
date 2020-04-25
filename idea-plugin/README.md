@@ -21,7 +21,7 @@ gradle runIde -Pidea_version=14.1.7
 
 ## <font color="green">Use p3c-common as your plugin dependency</font>
 ```groovy
-compile 'com.xenoamess.p3c.idea:p3c-common:2.0.2.3x-SNAPSHOT'
+compile 'com.xenoamess.p3c.idea:p3c-common:2.0.2.3x'
 ```
 ## [中文使用手册](README_cn.md)
 ## <font color="green">Install</font>

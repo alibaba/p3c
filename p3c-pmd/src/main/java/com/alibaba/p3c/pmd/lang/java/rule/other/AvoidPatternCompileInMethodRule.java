@@ -16,7 +16,7 @@
 package com.alibaba.p3c.pmd.lang.java.rule.other;
 
 import com.alibaba.p3c.pmd.I18nResources;
-import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.AbstractAliXpathRule;
 import com.alibaba.p3c.pmd.lang.java.util.VariableUtils;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
@@ -30,7 +30,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;
  * @author keriezhang
  * @date 2016/12/14
  */
-public class AvoidPatternCompileInMethodRule extends AbstractXpathRule {
+public class AvoidPatternCompileInMethodRule extends AbstractAliXpathRule {
     /**
      * The parameter of Pattern.compile cannot be a string literal.
      */

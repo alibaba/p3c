@@ -16,7 +16,7 @@
 package com.alibaba.p3c.pmd.lang.java.rule.exception;
 
 import com.alibaba.p3c.pmd.I18nResources;
-import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.AbstractAliXpathRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -29,7 +29,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  * @author zenghou.fw
  * @date 2017/03/29
  */
-public class AvoidReturnInFinallyRule extends AbstractXpathRule {
+public class AvoidReturnInFinallyRule extends AbstractAliXpathRule {
     private static final String XPATH = "//FinallyStatement//ReturnStatement";
 
     public AvoidReturnInFinallyRule() {

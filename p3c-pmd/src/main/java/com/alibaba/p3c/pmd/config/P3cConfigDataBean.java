@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -25,18 +25,33 @@ import static java.util.logging.Level.WARNING;
 public class P3cConfigDataBean implements X8lDataBean {
     @SuppressWarnings("unused")
     public static @Nullable Set<String> getContentNodeAsStringSet(@NotNull List<Object> list) {
-        return ((ContentNode) getLastFromList(list)).asStringCollectionFill(new HashSet<>());
+        Set<String> res = ((ContentNode) getLastFromList(list)).asStringSetTrimmed();
+        if (res != null) {
+            res.remove("");
+        }
+        return res;
+    }
+
+    @SuppressWarnings("unused")
+    public static @Nullable HashMap<String, Set<String>> getRuleClassPairBlackListMap(@NotNull List<Object> list) {
+        ContentNode node = ((ContentNode) getLastFromList(list));
+        List<ContentNode> contentNodeChildren = node.getContentNodesFromChildren();
+        HashMap<String, Set<String>> res = new HashMap<>(contentNodeChildren.size());
+        if (contentNodeChildren == null) {
+            return null;
+        }
+        for (ContentNode au : contentNodeChildren) {
+            res.put(
+                    au.getName().trim(),
+                    au.asStringSetTrimmed()
+            );
+        }
+        return res;
     }
 
     private static final Logger LOGGER = Logger.getLogger(P3cConfigDataBean.class.getName());
 
     private X8lTree p3cConfigX8lTree;
-
-    @X8lDataBeanFieldMark(
-            path = "com.alibaba.p3c.pmd.config>rule_config",
-            functionName = "getObject"
-    )
-    private ContentNode ruleConfigNode;
 
     @X8lDataBeanFieldMark(
             path = "com.alibaba.p3c.pmd.config>rule_blacklist",
@@ -52,6 +67,12 @@ public class P3cConfigDataBean implements X8lDataBean {
     )
     private Set<String> classBlackListSet;
 
+    @X8lDataBeanFieldMark(
+            path = "com.alibaba.p3c.pmd.config>rule_class_pair_blacklist",
+            parser = P3cConfigDataBean.class,
+            functionName = "getRuleClassPairBlackListMap"
+    )
+    private HashMap<String, Set<String>> ruleClassPairBlackListMap;
 
     public void tryPatchP3cConfigDataBean(@NotNull File file) {
         if (file.exists() && file.isFile()) {
@@ -60,6 +81,7 @@ public class P3cConfigDataBean implements X8lDataBean {
                         file, X8lDealer.INSTANCE
                 );
                 this.getP3cConfigX8lTree().append(patchConfigX8lTree);
+                this.loadFromX8lTree(this.getP3cConfigX8lTree());
             } catch (IOException e) {
                 LOGGER.log(WARNING, "reading config file" + file + " fails, IO fails.", e);
             } catch (Exception e) {
@@ -79,14 +101,6 @@ public class P3cConfigDataBean implements X8lDataBean {
         this.p3cConfigX8lTree = p3cConfigX8lTree;
     }
 
-    public ContentNode getRuleConfigNode() {
-        return ruleConfigNode;
-    }
-
-    public void setRuleConfigNode(ContentNode ruleConfigNode) {
-        this.ruleConfigNode = ruleConfigNode;
-    }
-
     public Set<String> getRuleBlackListSet() {
         return ruleBlackListSet;
     }
@@ -101,5 +115,13 @@ public class P3cConfigDataBean implements X8lDataBean {
 
     public void setClassBlackListSet(Set<String> classBlackListSet) {
         this.classBlackListSet = classBlackListSet;
+    }
+
+    public HashMap<String, Set<String>> getRuleClassPairBlackListMap() {
+        return ruleClassPairBlackListMap;
+    }
+
+    public void setRuleClassPairBlackListMap(HashMap<String, Set<String>> ruleClassPairBlackListMap) {
+        this.ruleClassPairBlackListMap = ruleClassPairBlackListMap;
     }
 }

@@ -15,7 +15,7 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.other;
 
-import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.AbstractAliXpathRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -28,7 +28,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  * @author keriezhang
  * @date 2017/04/14
  */
-public class AvoidMissUseOfMathRandomRule extends AbstractXpathRule {
+public class AvoidMissUseOfMathRandomRule extends AbstractAliXpathRule {
 
     private static final String XPATH =
         "//PrimaryExpression[./PrimaryPrefix/Name[@Image='Math.random'] and "

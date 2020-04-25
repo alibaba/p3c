@@ -16,7 +16,7 @@
 package com.alibaba.p3c.pmd.lang.vm.rule.other;
 
 import com.alibaba.p3c.pmd.I18nResources;
-import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.AbstractAliXpathRule;
 import net.sourceforge.pmd.RuleContext;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.vm.ast.ASTDirective;
@@ -36,7 +36,7 @@ import static net.sourceforge.pmd.lang.rule.xpath.XPathRuleQuery.XPATH_1_0;
  * @author keriezhang
  * @date 2016/12/14
  */
-public class UseQuietReferenceNotationRule extends AbstractXpathRule {
+public class UseQuietReferenceNotationRule extends AbstractAliXpathRule {
     /**
      * scan file path pattern
      */

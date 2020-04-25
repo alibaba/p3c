@@ -15,7 +15,7 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.flowcontrol;
 
-import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.AbstractAliXpathRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -28,7 +28,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  * @author zenghou.fw
  * @date 2017/04/11
  */
-public class AvoidComplexConditionRule extends AbstractXpathRule {
+public class AvoidComplexConditionRule extends AbstractAliXpathRule {
     private static final String XPATH = "(//IfStatement/Expression"
         + "|//ConditionalExpression[@Ternary = 'true']/PrimaryExpression)"
         + "[count(.//ConditionalAndExpression) + count(.//ConditionalOrExpression) > 1]";

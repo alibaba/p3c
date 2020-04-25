@@ -15,8 +15,6 @@
  */
 package com.alibaba.p3c.pmd.lang.java.util.namelist;
 
-import net.sourceforge.pmd.lang.rule.AbstractRule;
-
 import java.io.File;
 import java.util.List;
 import java.util.Map;
@@ -51,10 +49,10 @@ public interface NameListService {
 
     /**
      * check if a rule is in rule black list.
-     * @param rule rule
+     * @param ruleClass rule class
      * @return true if in rule black list
      */
-    boolean ifRuleInRuleBlackList(AbstractRule rule);
+    boolean ifRuleClassInRuleBlackList(Class ruleClass);
 
     /**
      * check if class name is in class black list.
@@ -62,4 +60,12 @@ public interface NameListService {
      * @return true if in class black list
      */
     boolean ifClassNameInClassBlackList(String className);
+
+    /**
+     * check if class name is in class name pair black list.
+     * @param ruleClass rule class
+     * @param className class name
+     * @return true if in class black list
+     */
+    boolean ifRuleClassNameClassNamePairInPairIgnoreList(Class ruleClass, String className);
 }

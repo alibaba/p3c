@@ -16,7 +16,7 @@
 package com.alibaba.p3c.pmd.lang.java.rule.naming;
 
 import com.alibaba.p3c.pmd.I18nResources;
-import com.alibaba.p3c.pmd.lang.AbstractXpathRule;
+import com.alibaba.p3c.pmd.lang.AbstractAliXpathRule;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 
 import net.sourceforge.pmd.lang.ast.Node;
@@ -28,7 +28,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
  * @author changle.lq
  * @date 2017/04/16
  */
-public class AbstractClassShouldStartWithAbstractNamingRule extends AbstractXpathRule {
+public class AbstractClassShouldStartWithAbstractNamingRule extends AbstractAliXpathRule {
     private static final String XPATH = "//ClassOrInterfaceDeclaration"
         + " [@Abstract='true' and @Interface='false'][not (matches(@Image,'^(Abstract|Base).*'))]";
 

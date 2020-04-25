@@ -25,7 +25,7 @@ import net.sourceforge.pmd.lang.rule.AbstractRule;
 import net.sourceforge.pmd.lang.symboltable.Scope;
 import net.sourceforge.pmd.lang.symboltable.ScopedNode;
 
-import static com.alibaba.p3c.pmd.lang.java.util.namelist.NameListConfig.NAME_LIST_SERVICE;
+import static com.alibaba.p3c.pmd.lang.java.util.namelist.NameListConfig.nameListService;
 
 /**
  * @author caikang
@@ -39,7 +39,7 @@ public class ViolationUtils {
     public static void addViolationWithPrecisePosition(AbstractRule rule, Node node, Object data,
                                                        String message) {
 
-        if (NAME_LIST_SERVICE.ifRuleInRuleBlackList(rule)) {
+        if (nameListService.ifRuleInRuleBlackList(rule)) {
             return;
         }
 
@@ -51,7 +51,7 @@ public class ViolationUtils {
             }
             if (scope != null) {
                 String className = ((ClassScope) scope).getClassName();
-                if (NAME_LIST_SERVICE.ifClassNameInClassBlackList(className)) {
+                if (nameListService.ifClassNameInClassBlackList(className)) {
                     return;
                 }
             }

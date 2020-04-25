@@ -29,7 +29,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
  */
 public class PojoUtils {
     private static final List<String> POJO_SUFFIX_SET =
-        NameListConfig.NAME_LIST_SERVICE.getNameList("PojoMustOverrideToStringRule", "POJO_SUFFIX_SET");
+        NameListConfig.getNameListService().getNameList("PojoMustOverrideToStringRule", "POJO_SUFFIX_SET");
 
     private PojoUtils() {
     }

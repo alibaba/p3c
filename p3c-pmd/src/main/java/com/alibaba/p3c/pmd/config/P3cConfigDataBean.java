@@ -23,6 +23,7 @@ import static java.util.logging.Level.WARNING;
  * @date 2020/04/24
  */
 public class P3cConfigDataBean implements X8lDataBean {
+    @SuppressWarnings("unused")
     public static @Nullable Set<String> getContentNodeAsStringSet(@NotNull List<Object> list) {
         return ((ContentNode) getLastFromList(list)).asStringCollectionFill(new HashSet<>());
     }

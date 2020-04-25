@@ -36,9 +36,9 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class ConstantFieldShouldBeUpperCaseRule extends AbstractAliRule {
     private static final String SERVICE_SUFFIX = "Service";
-    private static final Set<String> LOG_VARIABLE_TYPE_SET = new HashSet<>(NameListConfig.NAME_LIST_SERVICE.getNameList(
+    private static final Set<String> LOG_VARIABLE_TYPE_SET = new HashSet<>(NameListConfig.getNameListService().getNameList(
         "ConstantFieldShouldBeUpperCaseRule", "LOG_VARIABLE_TYPE_SET"));
-    private static final Set<String> WHITE_LIST = new HashSet<>(NameListConfig.NAME_LIST_SERVICE.getNameList(
+    private static final Set<String> WHITE_LIST = new HashSet<>(NameListConfig.getNameListService().getNameList(
         "ConstantFieldShouldBeUpperCaseRule", "WHITE_LIST"));
 
     @Override

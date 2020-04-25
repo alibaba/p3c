@@ -27,7 +27,6 @@ import net.sourceforge.pmd.lang.java.ast.ASTForStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTIfStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTLiteral;
 import net.sourceforge.pmd.lang.java.ast.ASTWhileStatement;
-import net.sourceforge.pmd.util.StringUtil;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jaxen.JaxenException;
@@ -43,7 +42,7 @@ public class UndefineMagicConstantRule extends AbstractAliRule {
     /**
      * white list for undefined variable, may be added
      */
-    private final static List<String> LITERAL_WHITE_LIST = NameListConfig.NAME_LIST_SERVICE.getNameList(
+    private final static List<String> LITERAL_WHITE_LIST = NameListConfig.getNameListService().getNameList(
         UndefineMagicConstantRule.class.getSimpleName(), "LITERAL_WHITE_LIST");
 
     private final static String XPATH = "//Literal/../../../../..[not(VariableInitializer)]";

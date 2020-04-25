@@ -16,19 +16,37 @@
 package com.alibaba.p3c.pmd.lang.java.util.namelist;
 
 import com.alibaba.p3c.pmd.lang.java.util.SpiLoader;
+import org.jetbrains.annotations.NotNull;
+
+import java.io.File;
 
 /**
  * @author changle.lq
  * @date 2017/03/27
  */
 public class NameListConfig {
-    public static final NameListService NAME_LIST_SERVICE = getNameListService();
+    public static @NotNull NameListService nameListService = createNameListService();
 
-    private static NameListService getNameListService() {
-        NameListService instance  = SpiLoader.getInstance(NameListService.class);
+    public synchronized static @NotNull NameListService renewNameListService() {
+        nameListService = createNameListService();
+        return nameListService;
+    }
+
+    public synchronized static @NotNull NameListService renewNameListService(@NotNull File patchConfigFile) {
+        nameListService = createNameListService();
+        nameListService.loadPatchConfigFile(patchConfigFile);
+        return nameListService;
+    }
+
+    private static @NotNull NameListService createNameListService() {
+        NameListService instance = SpiLoader.getInstance(NameListService.class);
         if (instance == null) {
             instance = new NameListServiceImpl();
         }
         return instance;
+    }
+
+    public synchronized static @NotNull NameListService getNameListService() {
+        return nameListService;
     }
 }

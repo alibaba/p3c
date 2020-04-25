@@ -36,8 +36,8 @@ import static com.xenoamess.x8l.databind.X8lDataBeanDefaultParser.getLastFromLis
  */
 public class NameListServiceImpl implements NameListService {
 
-    private static final String P3C_CONFIG_FILE_NAME = "p3c_config.x8l";
-    private static final String DEFAULT_P3C_CONFIG_FILE_NAME = "p3c_config.default.x8l";
+    public static final String P3C_CONFIG_FILE_NAME = "p3c_config.x8l";
+    public static final String DEFAULT_P3C_CONFIG_FILE_NAME = "p3c_config.default.x8l";
     private final P3cConfigDataBean p3cConfigDataBean;
 
     public NameListServiceImpl() {

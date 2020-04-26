@@ -31,7 +31,7 @@ import java.io.FilenameFilter
  */
 class P3cConfigFilenameFilter : FilenameFilter {
     override fun accept(dir: File?, name: String?): Boolean {
-        return P3C_CONFIG_FILE_NAME.equals(name);
+        return P3C_CONFIG_FILE_NAME.equals(name)
     }
 }
 
@@ -43,18 +43,18 @@ class P3cConfigFilenameFilter : FilenameFilter {
  */
 object Inspections {
     fun aliInspections(project: Project, filter: (InspectionToolWrapper<*, *>) -> Boolean): List<InspectionToolWrapper<*, *>> {
-        loadPatchConfigFile(project);
+        loadPatchConfigFile(project)
         val profile = InspectionProfileService.getProjectInspectionProfile(project)
         return getAllTools(project, profile).filter(filter)
     }
 
     private fun loadPatchConfigFile(project: Project) {
-        var projectBaseFile = File(project.basePath);
+        var projectBaseFile = File(project.basePath)
         var fileList = projectBaseFile.listFiles(P3cConfigFilenameFilter())
         if (fileList == null || fileList.isEmpty()) {
-            NameListConfig.renewNameListService();
+            NameListConfig.renewNameListService()
         } else {
-            NameListConfig.renewNameListService(fileList[0]);
+            NameListConfig.renewNameListService(fileList[0])
         }
     }
 

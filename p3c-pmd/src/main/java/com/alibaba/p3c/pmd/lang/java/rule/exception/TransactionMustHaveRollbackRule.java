@@ -78,7 +78,7 @@ public class TransactionMustHaveRollbackRule extends AbstractAliRule {
                 return super.visit(node, data);
             }
             addViolationWithMessage(data, methodDeclaration, MESSAGE_KEY_PREFIX,
-                new Object[] {methodDeclaration.getMethodName()});
+                new Object[] {methodDeclaration.getName()});
         } catch (JaxenException ignore) {
         }
         return super.visit(node, data);
@@ -110,10 +110,10 @@ public class TransactionMustHaveRollbackRule extends AbstractAliRule {
      * @return sibling node
      */
     private <T> T getSiblingForType(ASTAnnotation node, Class<T> clz) {
-        Node parent = node.jjtGetParent();
-        int num = parent.jjtGetNumChildren();
+        Node parent = node.getParent();
+        int num = parent.getNumChildren();
         for (int i = 0; i < num; i++) {
-            Node child = parent.jjtGetChild(i);
+            Node child = parent.getChild(i);
             if (clz.isAssignableFrom(child.getClass())) {
                 return clz.cast(child);
             }

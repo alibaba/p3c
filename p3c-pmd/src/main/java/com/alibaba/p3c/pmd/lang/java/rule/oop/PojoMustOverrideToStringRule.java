@@ -96,7 +96,7 @@ public class PojoMustOverrideToStringRule extends AbstractPojoRule {
         try {
             // toString() definition
             ASTMethodDeclaration toStringMethod = (ASTMethodDeclaration)node.findChildNodesWithXPath(XPATH).get(0);
-            ASTBlock block = toStringMethod.getBlock();
+            ASTBlock block = toStringMethod.getBody();
             if (block.hasDescendantMatchingXPath(TOSTRING_XPATH)) {
                 addViolationWithMessage(data, block, MESSAGE_KEY_PREFIX + ".usesuper");
             }

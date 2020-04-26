@@ -64,7 +64,7 @@ public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
         }
         // Constant named does not apply to this rule
         ASTTypeDeclaration typeDeclaration = node.getFirstParentOfType(ASTTypeDeclaration.class);
-        Node jjtGetChild = typeDeclaration.jjtGetChild(0);
+        Node jjtGetChild = typeDeclaration.getChild(0);
         if (jjtGetChild instanceof ASTAnnotationTypeDeclaration) {
             return super.visit(node, data);
         }

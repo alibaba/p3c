@@ -71,7 +71,7 @@ public class CollectionInitShouldAssignCapacityRule extends AbstractAliRule {
                 continue;
             }
             ASTArguments argumentNode = (ASTArguments) argNode;
-            Integer count = argumentNode.getArgumentCount();
+            Integer count = argumentNode.size();
             // judge whether parameters have  initial size
             if (count == 0) {
                 addViolationWithMessage(data, argNode,

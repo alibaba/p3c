@@ -61,7 +61,7 @@ public class ConstantFieldShouldBeUpperCaseRule extends AbstractAliRule {
             return super.visit(node, data);
         }
         //filter by white list，such as the serialVersionUID
-        String constantName = node.jjtGetChild(1).jjtGetChild(0).getImage();
+        String constantName = node.getChild(1).getChild(0).getImage();
         boolean inWhiteList = StringUtils.isEmpty(constantName) || getWhiteList().contains(constantName)
                 || constantName.endsWith(SERVICE_SUFFIX);
         if (inWhiteList) {

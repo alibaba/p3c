@@ -60,10 +60,10 @@ public class ClassCastExceptionWithToArrayRule extends AbstractAliRule {
                 }
                 ASTPrimaryPrefix prefix = primaryPrefixs.get(0);
                 ASTPrimarySuffix suffix = primarySuffixs.get(0);
-                if (prefix.jjtGetNumChildren() == 0) {
+                if (prefix.getNumChildren() == 0) {
                     continue;
                 }
-                Node prefixChildNode = prefix.jjtGetChild(0);
+                Node prefixChildNode = prefix.getChild(0);
                 String childName = prefixChildNode.getImage();
                 if (childName == null) {
                     continue;

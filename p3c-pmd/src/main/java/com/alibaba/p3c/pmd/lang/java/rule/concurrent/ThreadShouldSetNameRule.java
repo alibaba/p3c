@@ -80,11 +80,11 @@ public class ThreadShouldSetNameRule extends AbstractAliRule {
 
     private Object checkThreadPoolExecutor(ASTAllocationExpression node, Object data) {
         ASTArgumentList argumentList = node.getFirstDescendantOfType(ASTArgumentList.class);
-        if (argumentList.jjtGetNumChildren() > ARGUMENT_LENGTH_6) {
+        if (argumentList.getNumChildren() > ARGUMENT_LENGTH_6) {
             return true;
         }
-        if (argumentList.jjtGetNumChildren() < ARGUMENT_LENGTH_6
-            || !checkThreadFactoryArgument((ASTExpression)argumentList.jjtGetChild(ARGUMENT_LENGTH_6 - INDEX_1))) {
+        if (argumentList.getNumChildren() < ARGUMENT_LENGTH_6
+            || !checkThreadFactoryArgument((ASTExpression)argumentList.getChild(ARGUMENT_LENGTH_6 - INDEX_1))) {
             addViolationWithMessage(data, node, MESSAGE_KEY_PREFIX + ".ThreadPoolExecutor");
         }
         return super.visit(node, data);
@@ -92,11 +92,11 @@ public class ThreadShouldSetNameRule extends AbstractAliRule {
 
     private Object checkSchedulePoolExecutor(ASTAllocationExpression node, Object data) {
         ASTArgumentList argumentList = node.getFirstDescendantOfType(ASTArgumentList.class);
-        if (argumentList.jjtGetNumChildren() > ARGUMENT_LENGTH_2) {
+        if (argumentList.getNumChildren() > ARGUMENT_LENGTH_2) {
             return true;
         }
-        if (argumentList.jjtGetNumChildren() < ARGUMENT_LENGTH_2
-            || !checkThreadFactoryArgument((ASTExpression)argumentList.jjtGetChild(ARGUMENT_LENGTH_2 - INDEX_1))) {
+        if (argumentList.getNumChildren() < ARGUMENT_LENGTH_2
+            || !checkThreadFactoryArgument((ASTExpression)argumentList.getChild(ARGUMENT_LENGTH_2 - INDEX_1))) {
             addViolationWithMessage(data, node, MESSAGE_KEY_PREFIX + ".ScheduledThreadPoolExecutor");
         }
         return super.visit(node, data);

@@ -106,8 +106,8 @@ public class StringConcatRule extends AbstractAliRule {
                     }
                 }
                 // arguments joint by "+"
-                for (int i = 0; i < additiveNode.jjtGetNumChildren(); i++) {
-                    Node firstArg = additiveNode.jjtGetChild(i);
+                for (int i = 0; i < additiveNode.getNumChildren(); i++) {
+                    Node firstArg = additiveNode.getChild(i);
                     if (!(firstArg instanceof ASTPrimaryExpression)) {
                         continue;
                     }

@@ -71,7 +71,7 @@ public class MethodTooLongRule extends AbstractAliRule {
         int startLine = classOrInterfaceBodyDecl.getBeginLine();
         int endLine = classOrInterfaceBodyDecl.getEndLine();
 
-        Node firstChild = classOrInterfaceBodyDecl.jjtGetChild(0);
+        Node firstChild = classOrInterfaceBodyDecl.getChild(0);
         // Method has annotation
         if (firstChild instanceof ASTAnnotation) {
             Token firstToken = (Token)classOrInterfaceBodyDecl.jjtGetFirstToken();

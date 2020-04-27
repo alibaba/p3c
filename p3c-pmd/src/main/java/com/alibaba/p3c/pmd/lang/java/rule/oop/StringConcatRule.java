@@ -15,24 +15,16 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.oop;
 
-import java.util.List;
-
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.alibaba.p3c.pmd.lang.java.util.NumberConstants;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
-import net.sourceforge.pmd.lang.java.ast.ASTAdditiveExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTDoStatement;
-import net.sourceforge.pmd.lang.java.ast.ASTForStatement;
-import net.sourceforge.pmd.lang.java.ast.ASTName;
-import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTStatementExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTWhileStatement;
-import net.sourceforge.pmd.lang.java.ast.AbstractJavaNode;
+import net.sourceforge.pmd.lang.java.ast.*;
 import net.sourceforge.pmd.lang.symboltable.NameDeclaration;
 import org.jaxen.JaxenException;
+
+import java.util.List;
 
 /**
  * [Recommended] Use the append method in StringBuilder inside a loop body when concatenating multiple strings.
@@ -43,8 +35,8 @@ import org.jaxen.JaxenException;
 public class StringConcatRule extends AbstractAliRule {
 
     private static final String XPATH =
-        "Statement/Block//Expression[preceding-sibling::AssignmentOperator]/AdditiveExpression[(@Image = '+') and "
-            + "count(./PrimaryExpression/PrimaryPrefix/Literal[@StringLiteral = 'true']) > 0]";
+            "Statement/Block//Expression[preceding-sibling::AssignmentOperator]/AdditiveExpression[(@Image = '+') and "
+                    + "count(./PrimaryExpression/PrimaryPrefix/Literal[@StringLiteral = 'true']) > 0]";
 
     @Override
     public Object visit(ASTForStatement node, Object data) {
@@ -67,37 +59,37 @@ public class StringConcatRule extends AbstractAliRule {
     /**
      * Find additive assignment with string literal, then check if the assigned variable defined out of the loop,
      *
-     * @param node
-     * @param data
-     * @param nodeClass
+     * @param node node
+     * @param data ruleContext
+     * @param nodeClass nodeClass
      */
     private void checkStringConcat(Node node, Object data, Class nodeClass) {
         try {
             List<? extends Node> additiveNodes = node.findChildNodesWithXPath(XPATH);
             for (Node additiveNode : additiveNodes) {
-                ASTAdditiveExpression additiveExpression = (ASTAdditiveExpression)additiveNode;
+                ASTAdditiveExpression additiveExpression = (ASTAdditiveExpression) additiveNode;
                 Node assignmentStatement = additiveExpression.getNthParent(2);
                 if (!(assignmentStatement instanceof ASTStatementExpression)) {
                     continue;
                 }
-                List<Node> nodes = ((ASTStatementExpression)assignmentStatement)
-                    .findChildNodesWithXPath("PrimaryExpression/PrimaryPrefix/Name[@Image]");
+                List<Node> nodes = ((ASTStatementExpression) assignmentStatement)
+                        .findChildNodesWithXPath("PrimaryExpression/PrimaryPrefix/Name[@Image]");
                 if (nodes == null || nodes.size() != NumberConstants.INTEGER_SIZE_OR_LENGTH_1) {
                     continue;
                 }
-                NameDeclaration resultVar = ((ASTName)nodes.get(0)).getNameDeclaration();
+                NameDeclaration resultVar = ((ASTName) nodes.get(0)).getNameDeclaration();
                 if (resultVar != null && resultVar.getNode() != null) {
                     boolean isDefinedInLoop = false;
 
-                    AbstractJavaNode loopStatement = (AbstractJavaNode)resultVar.getNode().getFirstParentOfType(
-                        nodeClass);
+                    AbstractJavaNode loopStatement = (AbstractJavaNode) resultVar.getNode().getFirstParentOfType(
+                            nodeClass);
 
                     while (loopStatement != null) {
                         if (loopStatement == node) {
                             isDefinedInLoop = true;
                             break;
                         }
-                        loopStatement = (AbstractJavaNode)loopStatement.getFirstParentOfType(nodeClass);
+                        loopStatement = (AbstractJavaNode) loopStatement.getFirstParentOfType(nodeClass);
                     }
 
                     // if assigned variable defined in the loop then break
@@ -111,12 +103,12 @@ public class StringConcatRule extends AbstractAliRule {
                     if (!(firstArg instanceof ASTPrimaryExpression)) {
                         continue;
                     }
-                    List<Node> names = ((ASTPrimaryExpression)firstArg).
-                        findChildNodesWithXPath("./PrimaryPrefix/Name[@Image]");
+                    List<Node> names = ((ASTPrimaryExpression) firstArg).
+                            findChildNodesWithXPath("./PrimaryPrefix/Name[@Image]");
                     if (names == null || names.size() != NumberConstants.INTEGER_SIZE_OR_LENGTH_1) {
                         continue;
                     }
-                    NameDeclaration firstArgVar = ((ASTName)names.get(0)).getNameDeclaration();
+                    NameDeclaration firstArgVar = ((ASTName) names.get(0)).getNameDeclaration();
 
                     // concat self, e.g. a = a + b;
                     if (resultVar == firstArgVar) {
@@ -133,6 +125,6 @@ public class StringConcatRule extends AbstractAliRule {
     @Override
     public void addViolation(Object data, Node node, String arg) {
         ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-            I18nResources.getMessage("java.oop.PojoMustOverrideToStringRule.violation.msg"));
+                I18nResources.getMessage("java.oop.PojoMustOverrideToStringRule.violation.msg"));
     }
 }

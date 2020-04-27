@@ -35,8 +35,9 @@ public class CollectionInitShouldAssignCapacityRule extends AbstractAliRule {
 
     /**
      * Black List,will increase ArrayList, HashSet etc follow-up
+     * @return CollectionInitShouldAssignCapacityRule COLLECTION_TYPE
      */
-    private final static List<String> getCollectionList() {
+    private static List<String> getCollectionList() {
         return NameListConfig.getNameListService().getNameList(
                 CollectionInitShouldAssignCapacityRule.class.getSimpleName(),
                 "COLLECTION_TYPE"

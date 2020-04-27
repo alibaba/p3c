@@ -95,9 +95,9 @@ public class UnsupportedExceptionWithModifyAsListRule extends AbstractAliRule {
     /**
      * Only to find out whether there is any violation within the scope of the corresponding method
      *
-     * @param variableName
-     * @param item
-     * @return
+     * @param variableName variableName
+     * @param item node
+     * @return ifCheckBlockNodesValid
      */
     private boolean checkBlockNodesValid(String variableName, Node item) {
         if (item instanceof ASTName) {
@@ -110,9 +110,9 @@ public class UnsupportedExceptionWithModifyAsListRule extends AbstractAliRule {
     /**
      * judge name equels t.add t.remove t.clear
      *
-     * @param name
-     * @param variableName
-     * @return
+     * @param name name
+     * @param variableName variableName
+     * @return if name suits
      */
     private boolean judgeName(String name, String variableName) {
         return name.equals(variableName + ADD) || name.equals(variableName + REMOVE)

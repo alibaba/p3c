@@ -3,69 +3,17 @@
  */
 package com.alibaba.p3c.pmd.fix;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.annotation.Generated;
-
 import com.alibaba.p3c.pmd.lang.java.util.NumberConstants;
 import com.alibaba.p3c.pmd.lang.java.util.StringAndCharConstants;
-
 import net.sourceforge.pmd.lang.ast.Node;
-import net.sourceforge.pmd.lang.java.ast.ASTAdditiveExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTAllocationExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTAndExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTAnnotationTypeDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTArrayDimsAndInits;
-import net.sourceforge.pmd.lang.java.ast.ASTBooleanLiteral;
-import net.sourceforge.pmd.lang.java.ast.ASTCastExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType;
-import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
-import net.sourceforge.pmd.lang.java.ast.ASTConditionalAndExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTConditionalExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTConditionalOrExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTEnumDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTEqualityExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTExclusiveOrExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTInclusiveOrExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTInstanceOfExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTLiteral;
-import net.sourceforge.pmd.lang.java.ast.ASTMarkerAnnotation;
-import net.sourceforge.pmd.lang.java.ast.ASTMultiplicativeExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTName;
-import net.sourceforge.pmd.lang.java.ast.ASTNormalAnnotation;
-import net.sourceforge.pmd.lang.java.ast.ASTNullLiteral;
-import net.sourceforge.pmd.lang.java.ast.ASTPackageDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTPostfixExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTPreDecrementExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTPreIncrementExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTPrimaryPrefix;
-import net.sourceforge.pmd.lang.java.ast.ASTPrimarySuffix;
-import net.sourceforge.pmd.lang.java.ast.ASTPrimitiveType;
-import net.sourceforge.pmd.lang.java.ast.ASTReferenceType;
-import net.sourceforge.pmd.lang.java.ast.ASTRelationalExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTShiftExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTSingleMemberAnnotation;
-import net.sourceforge.pmd.lang.java.ast.ASTStatementExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTType;
-import net.sourceforge.pmd.lang.java.ast.ASTTypeDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTUnaryExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTUnaryExpressionNotPlusMinus;
-import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
-import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
-import net.sourceforge.pmd.lang.java.ast.TypeNode;
+import net.sourceforge.pmd.lang.java.ast.*;
 import net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver;
 import net.sourceforge.pmd.lang.java.typeresolution.PMDASMClassLoader;
+
+import javax.annotation.Generated;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //
 // Helpful reading:
@@ -183,7 +131,7 @@ public class FixClassTypeResolver extends ClassTypeResolver {
 
     @Override
     public Object visit(ASTImportDeclaration node, Object data) {
-        ASTName importedType = (ASTName)node.jjtGetChild(0);
+        ASTName importedType = (ASTName) node.jjtGetChild(0);
         if (importedType.getType() != null) {
             node.setType(importedType.getType());
         } else {
@@ -242,7 +190,7 @@ public class FixClassTypeResolver extends ClassTypeResolver {
             // 1) Parent is a PackageDeclaration, which is not a type
             // 2) Parent is a ImportDeclaration, this is handled elsewhere.
             if (!(node.jjtGetParent() instanceof ASTPackageDeclaration
-                || node.jjtGetParent() instanceof ASTImportDeclaration)) {
+                    || node.jjtGetParent() instanceof ASTImportDeclaration)) {
                 String name = node.getImage();
                 if (name.indexOf(StringAndCharConstants.DOT) != -1) {
                     name = name.substring(0, name.indexOf(StringAndCharConstants.DOT));
@@ -252,7 +200,7 @@ public class FixClassTypeResolver extends ClassTypeResolver {
         } else {
             // Carry over the type from the declaration
             if (node.getNameDeclaration().getNode() instanceof TypeNode) {
-                node.setType(((TypeNode)node.getNameDeclaration().getNode()).getType());
+                node.setType(((TypeNode) node.getNameDeclaration().getNode()).getType());
             }
         }
         return super.visit(node, data);
@@ -515,9 +463,9 @@ public class FixClassTypeResolver extends ClassTypeResolver {
     public Object visit(ASTAllocationExpression node, Object data) {
         super.visit(node, data);
         boolean notRollupTypeUnary = node.jjtGetNumChildren() >= NumberConstants.INTEGER_SIZE_OR_LENGTH_2
-            && node.jjtGetChild(1) instanceof ASTArrayDimsAndInits
-            || node.jjtGetNumChildren() >= NumberConstants.INTEGER_SIZE_OR_LENGTH_3
-            && node.jjtGetChild(NumberConstants.INDEX_2) instanceof ASTArrayDimsAndInits;
+                && node.jjtGetChild(1) instanceof ASTArrayDimsAndInits
+                || node.jjtGetNumChildren() >= NumberConstants.INTEGER_SIZE_OR_LENGTH_3
+                && node.jjtGetChild(NumberConstants.INDEX_2) instanceof ASTArrayDimsAndInits;
         if (!notRollupTypeUnary) {
             rollupTypeUnary(node);
         }
@@ -562,7 +510,7 @@ public class FixClassTypeResolver extends ClassTypeResolver {
         if (node.jjtGetNumChildren() >= 1) {
             Node child = node.jjtGetChild(0);
             if (child instanceof TypeNode) {
-                typeNode.setType(((TypeNode)child).getType());
+                typeNode.setType(((TypeNode) child).getType());
             }
         }
     }
@@ -578,13 +526,13 @@ public class FixClassTypeResolver extends ClassTypeResolver {
         if (node.jjtGetNumChildren() >= 1) {
             Node child = node.jjtGetChild(0);
             if (child instanceof TypeNode) {
-                Class<?> type = ((TypeNode)child).getType();
+                Class<?> type = ((TypeNode) child).getType();
                 if (type != null) {
                     if (byte.class.getName().equals(type.getName()) || short.class.getName().equals(type.getName())
-                        || char.class.getName().equals(type.getName())) {
+                            || char.class.getName().equals(type.getName())) {
                         populateType(typeNode, int.class.getName());
                     } else {
-                        typeNode.setType(((TypeNode)child).getType());
+                        typeNode.setType(((TypeNode) child).getType());
                     }
                 }
             }
@@ -603,25 +551,25 @@ public class FixClassTypeResolver extends ClassTypeResolver {
             Node child1 = node.jjtGetChild(0);
             Node child2 = node.jjtGetChild(1);
             if (child1 instanceof TypeNode && child2 instanceof TypeNode) {
-                Class<?> type1 = ((TypeNode)child1).getType();
-                Class<?> type2 = ((TypeNode)child2).getType();
+                Class<?> type1 = ((TypeNode) child1).getType();
+                Class<?> type2 = ((TypeNode) child2).getType();
                 if (type1 != null && type2 != null) {
                     // Yeah, String is not numeric, but easiest place to handle
                     // it, only affects ASTAdditiveExpression
                     if (String.class.getName().equals(type1.getName()) || String.class.getName().equals(
-                        type2.getName())) {
+                            type2.getName())) {
                         populateType(typeNode, String.class.getName());
                     } else if (boolean.class.getName().equals(type1.getName()) || boolean.class.getName().equals(
-                        type2.getName())) {
+                            type2.getName())) {
                         populateType(typeNode, boolean.class.getName());
                     } else if (double.class.getName().equals(type1.getName()) || double.class.getName().equals(
-                        type2.getName())) {
+                            type2.getName())) {
                         populateType(typeNode, double.class.getName());
                     } else if (float.class.getName().equals(type1.getName()) || float.class.getName().equals(
-                        type2.getName())) {
+                            type2.getName())) {
                         populateType(typeNode, float.class.getName());
                     } else if (long.class.getName().equals(type1.getName()) || long.class.getName().equals(
-                        type2.getName())) {
+                            type2.getName())) {
                         populateType(typeNode, long.class.getName());
                     } else {
                         populateType(typeNode, int.class.getName());
@@ -632,7 +580,7 @@ public class FixClassTypeResolver extends ClassTypeResolver {
                     // Yeah, String is not numeric, but easiest place to handle
                     // it, only affects ASTAdditiveExpression
                     boolean populateString = type1 != null && String.class.getName().equals(type1.getName())
-                        || type2 != null && String.class.getName().equals(type2.getName());
+                            || type2 != null && String.class.getName().equals(type2.getName());
                     if (populateString) {
                         populateType(typeNode, String.class.getName());
                     }
@@ -671,8 +619,8 @@ public class FixClassTypeResolver extends ClassTypeResolver {
         if (myType == null && qualifiedName != null && qualifiedName.contains(DOT_STRING)) {
             // try if the last part defines a inner class
             String qualifiedNameInner = qualifiedName.substring(0,
-                qualifiedName.lastIndexOf(StringAndCharConstants.DOT)) + "$"
-                + qualifiedName.substring(qualifiedName.lastIndexOf(StringAndCharConstants.DOT) + 1);
+                    qualifiedName.lastIndexOf(StringAndCharConstants.DOT)) + "$"
+                    + qualifiedName.substring(qualifiedName.lastIndexOf(StringAndCharConstants.DOT) + 1);
             try {
                 myType = pmdClassLoader.loadClass(qualifiedNameInner);
             } catch (Exception e) {
@@ -744,6 +692,7 @@ public class FixClassTypeResolver extends ClassTypeResolver {
 
     /**
      * If the outer class wasn't found then we'll get in here
+     * @param node node
      */
     private void populateImports(ASTCompilationUnit node) {
         List<ASTImportDeclaration> theImportDeclarations = node.findChildrenOfType(ASTImportDeclaration.class);

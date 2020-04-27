@@ -15,28 +15,17 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.other;
 
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.alibaba.p3c.pmd.lang.java.rule.util.NodeSortUtils;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
-import net.sourceforge.pmd.lang.java.ast.ASTAnnotation;
-import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceBodyDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
-import net.sourceforge.pmd.lang.java.ast.ASTExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
-import net.sourceforge.pmd.lang.java.ast.AbstractJavaNode;
-import net.sourceforge.pmd.lang.java.ast.Comment;
-import net.sourceforge.pmd.lang.java.ast.FormalComment;
-import net.sourceforge.pmd.lang.java.ast.MultiLineComment;
-import net.sourceforge.pmd.lang.java.ast.SingleLineComment;
-import net.sourceforge.pmd.lang.java.ast.Token;
+import net.sourceforge.pmd.lang.java.ast.*;
+
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * [Recommended] The total number of lines for a method should not be more than 80.
@@ -66,7 +55,7 @@ public class MethodTooLongRule extends AbstractAliRule {
     public Object visit(ASTMethodDeclaration node, Object data) {
         // Include method modifiers.
         ASTClassOrInterfaceBodyDeclaration classOrInterfaceBodyDecl =
-            (ASTClassOrInterfaceBodyDeclaration)node.jjtGetParent();
+                (ASTClassOrInterfaceBodyDeclaration) node.jjtGetParent();
 
         int startLine = classOrInterfaceBodyDecl.getBeginLine();
         int endLine = classOrInterfaceBodyDecl.getEndLine();
@@ -74,11 +63,11 @@ public class MethodTooLongRule extends AbstractAliRule {
         Node firstChild = classOrInterfaceBodyDecl.getChild(0);
         // Method has annotation
         if (firstChild instanceof ASTAnnotation) {
-            Token firstToken = (Token)classOrInterfaceBodyDecl.jjtGetFirstToken();
+            Token firstToken = (Token) classOrInterfaceBodyDecl.jjtGetFirstToken();
             // If annotation is before modifier, exclude the annotation.
             if (ANNOTATION_PREFIX.equals(firstToken.image)) {
-                ASTAnnotation annotation = (ASTAnnotation)firstChild;
-                Token lastToken = (Token)annotation.jjtGetLastToken();
+                ASTAnnotation annotation = (ASTAnnotation) firstChild;
+                Token lastToken = (Token) annotation.jjtGetLastToken();
 
                 // First token after annotation. The same line or next line after annotation.
                 Token next = lastToken.next;
@@ -91,7 +80,7 @@ public class MethodTooLongRule extends AbstractAliRule {
 
         if (endLine - startLine - commentLineCount + 1 > MAX_LINE_COUNT) {
             ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-                I18nResources.getMessage("java.other.MethodTooLongRule.violation.msg", node.getName()));
+                    I18nResources.getMessage("java.other.MethodTooLongRule.violation.msg", node.getName()));
         }
         return data;
     }
@@ -118,8 +107,8 @@ public class MethodTooLongRule extends AbstractAliRule {
     /**
      * Get number of comment lines
      *
-     * @param methodDecl
-     * @return
+     * @param methodDecl methodDecl node
+     * @return lineCount
      */
     private int getCommentLineCount(ASTMethodDeclaration methodDecl) {
         int lineCount = 0;
@@ -136,12 +125,12 @@ public class MethodTooLongRule extends AbstractAliRule {
 
             // value should be either expression or comment.
             if (value instanceof AbstractJavaNode) {
-                lastNode = (AbstractJavaNode)value;
+                lastNode = (AbstractJavaNode) value;
             } else if (value instanceof FormalComment || value instanceof MultiLineComment) {
-                Comment comment = (Comment)value;
+                Comment comment = (Comment) value;
                 lineCount += comment.getEndLine() - comment.getBeginLine() + 1;
             } else if (value instanceof SingleLineComment) {
-                SingleLineComment singleLineComment = (SingleLineComment)value;
+                SingleLineComment singleLineComment = (SingleLineComment) value;
                 // Comment may in the same line with node.
                 if (lastNode == null || singleLineComment.getBeginLine() != lastNode.getBeginLine()) {
                     lineCount += 1;

@@ -38,8 +38,8 @@ public class SwitchExpressionRule extends AbstractAliRule {
     /**
      * Check if switch statement contains default branch
      *
-     * @param node
-     * @param data
+     * @param node node
+     * @param data ruleContext
      */
     private void checkDefault(ASTSwitchExpression node, Object data) {
         final String switchCheckXpath = "SwitchLabeledExpression[SwitchLabel[@Default = 'true']]";

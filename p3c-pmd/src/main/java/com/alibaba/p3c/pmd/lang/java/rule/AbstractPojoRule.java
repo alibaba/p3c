@@ -15,12 +15,11 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule;
 
-import java.util.List;
-
 import com.alibaba.p3c.pmd.lang.java.util.PojoUtils;
-
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
+
+import java.util.List;
 
 /**
  * Base class for POJO
@@ -50,13 +49,13 @@ public abstract class AbstractPojoRule extends AbstractAliRule {
     /**
      * check contains POJO
      * @param node compilation unit
-     * @return
+     * @return ifHasPojoInJavaFile
      */
     private boolean hasPojoInJavaFile(ASTCompilationUnit node) {
-        List<ASTClassOrInterfaceDeclaration> klasses = node.findDescendantsOfType(
+        List<ASTClassOrInterfaceDeclaration> astClassOrInterfaceDeclarations = node.findDescendantsOfType(
                 ASTClassOrInterfaceDeclaration.class);
-        for (ASTClassOrInterfaceDeclaration klass : klasses) {
-            if (isPojo(klass)) {
+        for (ASTClassOrInterfaceDeclaration astClassOrInterfaceDeclaration : astClassOrInterfaceDeclarations) {
+            if (isPojo(astClassOrInterfaceDeclaration)) {
                 return true;
             }
         }

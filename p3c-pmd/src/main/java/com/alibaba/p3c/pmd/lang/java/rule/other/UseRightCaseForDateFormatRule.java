@@ -47,8 +47,8 @@ public class UseRightCaseForDateFormatRule extends AbstractAliXpathRule {
     /**
      * 暂只检查4个y和2个y开头的日期格式化字符串参数，不考虑其他类型
      *
-     * @param argNode
-     * @param data
+     * @param argNode argNode
+     * @param data ruleContext
      */
     private void checkNode(Node argNode, Object data) {
         String image = "";

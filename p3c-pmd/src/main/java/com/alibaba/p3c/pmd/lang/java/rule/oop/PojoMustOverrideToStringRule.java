@@ -19,12 +19,7 @@ import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractPojoRule;
 import com.alibaba.p3c.pmd.lang.java.util.PojoUtils;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
-
-import net.sourceforge.pmd.lang.java.ast.ASTBlock;
-import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType;
-import net.sourceforge.pmd.lang.java.ast.ASTExtendsList;
-import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
+import net.sourceforge.pmd.lang.java.ast.*;
 import org.jaxen.JaxenException;
 
 /**
@@ -37,23 +32,25 @@ import org.jaxen.JaxenException;
 public class PojoMustOverrideToStringRule extends AbstractPojoRule {
 
     private static final String XPATH = "ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/MethodDeclaration"
-        + "[@Public='true' and MethodDeclarator[@Image='toString'] and "
-        + "MethodDeclarator[@Image='toString' and @ParameterCount='0']]";
+            + "[@Public='true' and MethodDeclarator[@Image='toString'] and "
+            + "MethodDeclarator[@Image='toString' and @ParameterCount='0']]";
 
     private static final String TOSTRING_XPATH = "//PrimaryExpression[PrimaryPrefix[Name"
-        + "[(ends-with(@Image, '.toString'))]]["
-        + "(../PrimarySuffix/Arguments/ArgumentList/Expression/PrimaryExpression/PrimaryPrefix/Literal[@StringLiteral"
-        + "='true'])" + " and ( count(../PrimarySuffix/Arguments/ArgumentList/Expression) = 1 )]]"
-        + "[not(ancestor::Expression/ConditionalAndExpression//EqualityExpression[@Image='!=']//NullLiteral)]"
-        + "[not(ancestor::Expression/ConditionalOrExpression//EqualityExpression[@Image='==']//NullLiteral)]";
+            + "[(ends-with(@Image, '.toString'))]]["
+            + "(../PrimarySuffix/Arguments/ArgumentList/Expression/PrimaryExpression/PrimaryPrefix/Literal" +
+            "[@StringLiteral"
+            + "='true'])" + " and ( count(../PrimarySuffix/Arguments/ArgumentList/Expression) = 1 )]]"
+            + "[not(ancestor::Expression/ConditionalAndExpression//EqualityExpression[@Image='!=']//NullLiteral)]"
+            + "[not(ancestor::Expression/ConditionalOrExpression//EqualityExpression[@Image='==']//NullLiteral)]";
 
     private static final String LOMBOK_NAME_XPATH = "/Name["
-        + "(@Image='Data' and //ImportDeclaration[@ImportedName='lombok.Data' or @ImportedName='lombok'])"
-        + " or (@Image='ToString' and //ImportDeclaration[@ImportedName='lombok.ToString' or @ImportedName='lombok'])"
-        + " or (@Image='lombok.Data') or (@Image='lombok.ToString')]";
+            + "(@Image='Data' and //ImportDeclaration[@ImportedName='lombok.Data' or @ImportedName='lombok'])"
+            + " or (@Image='ToString' and //ImportDeclaration[@ImportedName='lombok.ToString' or " +
+            "@ImportedName='lombok'])"
+            + " or (@Image='lombok.Data') or (@Image='lombok.ToString')]";
 
     private static final String LOMBOK_XPATH = "../Annotation/MarkerAnnotation" + LOMBOK_NAME_XPATH
-        + "|../Annotation/NormalAnnotation" + LOMBOK_NAME_XPATH;
+            + "|../Annotation/NormalAnnotation" + LOMBOK_NAME_XPATH;
 
     private static final String MESSAGE_KEY_PREFIX = "java.oop.PojoMustOverrideToStringRule.violation.msg";
 
@@ -72,7 +69,7 @@ public class PojoMustOverrideToStringRule extends AbstractPojoRule {
 
         if (!node.hasDescendantMatchingXPath(XPATH)) {
             ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-                I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".notostring", node.getImage()));
+                    I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".notostring", node.getImage()));
         } else {
             checkForExtend(node, data);
         }
@@ -80,11 +77,11 @@ public class PojoMustOverrideToStringRule extends AbstractPojoRule {
     }
 
     private void checkForExtend(ASTClassOrInterfaceDeclaration node, Object data) {
-    /*
-     * The super.toString method should be called in front of the whole implementation
-     * if the current class extends another POJO class
-     * -> this part not checked
-     */
+        /*
+         * The super.toString method should be called in front of the whole implementation
+         * if the current class extends another POJO class
+         * -> this part not checked
+         */
         ASTExtendsList extendsList = node.getFirstChildOfType(ASTExtendsList.class);
         if (extendsList == null) {
             return;
@@ -95,7 +92,7 @@ public class PojoMustOverrideToStringRule extends AbstractPojoRule {
         }
         try {
             // toString() definition
-            ASTMethodDeclaration toStringMethod = (ASTMethodDeclaration)node.findChildNodesWithXPath(XPATH).get(0);
+            ASTMethodDeclaration toStringMethod = (ASTMethodDeclaration) node.findChildNodesWithXPath(XPATH).get(0);
             ASTBlock block = toStringMethod.getBody();
             if (block.hasDescendantMatchingXPath(TOSTRING_XPATH)) {
                 addViolationWithMessage(data, block, MESSAGE_KEY_PREFIX + ".usesuper");
@@ -107,6 +104,7 @@ public class PojoMustOverrideToStringRule extends AbstractPojoRule {
 
     /**
      * Class with lombok @Data will be skipped
+     * @param node node
      */
     private boolean withLombokAnnotation(ASTClassOrInterfaceDeclaration node) {
         return node.hasDescendantMatchingXPath(LOMBOK_XPATH);

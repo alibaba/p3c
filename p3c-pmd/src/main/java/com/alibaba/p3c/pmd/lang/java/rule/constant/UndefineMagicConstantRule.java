@@ -35,6 +35,7 @@ public class UndefineMagicConstantRule extends AbstractAliRule {
 
     /**
      * white list for undefined variable, may be added
+     * @return UndefineMagicConstantRule LITERAL_WHITE_LIST
      */
     private static List<String> getLiteralWhiteList() {
         return NameListConfig.getNameListService().getNameList(
@@ -79,8 +80,8 @@ public class UndefineMagicConstantRule extends AbstractAliRule {
     /**
      * Undefined variables are in the blacklist
      *
-     * @param literal
-     * @return
+     * @param literal literal
+     * @return ifInBlackList
      */
     private boolean inBlackList(ASTLiteral literal) {
         String name = literal.getImage();

@@ -15,20 +15,13 @@
  */
 package com.alibaba.p3c.idea.pmd
 
+import com.alibaba.p3c.idea.compatible.inspection.Inspections
 import com.google.common.base.Throwables
 import com.intellij.openapi.application.ex.ApplicationUtil
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.psi.PsiFile
-import net.sourceforge.pmd.PMDConfiguration
-import net.sourceforge.pmd.PMDException
-import net.sourceforge.pmd.Report
-import net.sourceforge.pmd.Rule
-import net.sourceforge.pmd.RuleContext
-import net.sourceforge.pmd.RuleSetFactory
-import net.sourceforge.pmd.RuleSets
-import net.sourceforge.pmd.RuleViolation
-import net.sourceforge.pmd.RulesetsFactoryUtils
+import net.sourceforge.pmd.*
 import net.sourceforge.pmd.util.ResourceLoader
 import java.io.IOException
 import java.io.StringReader
@@ -46,6 +39,7 @@ class AliPmdProcessor(val rule: Rule) {
     }
 
     fun processFile(psiFile: PsiFile): List<RuleViolation> {
+        Inspections.loadPatchConfigFile(psiFile.project)
         configuration.setSourceEncoding(psiFile.virtualFile.charset.name())
         configuration.inputPaths = psiFile.virtualFile.canonicalPath
         val document = FileDocumentManager.getInstance().getDocument(psiFile.virtualFile)

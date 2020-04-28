@@ -23,6 +23,7 @@ import com.intellij.codeInspection.ex.InspectionToolWrapper
 import com.intellij.codeInspection.ex.ScopeToolState
 import com.intellij.codeInspection.javaDoc.JavaDocLocalInspection
 import com.intellij.openapi.project.Project
+import org.jetbrains.annotations.SystemIndependent
 import java.io.File
 import java.io.FilenameFilter
 
@@ -48,9 +49,11 @@ object Inspections {
         return getAllTools(project, profile).filter(filter)
     }
 
-    private fun loadPatchConfigFile(project: Project) {
-        var projectBaseFile = File(project.basePath)
-        var fileList = projectBaseFile.listFiles(P3cConfigFilenameFilter())
+    fun loadPatchConfigFile(project: Project) {
+        val projectBasePath: @SystemIndependent String? = project.basePath
+                ?: return
+        val projectBaseFile = File(projectBasePath)
+        val fileList = projectBaseFile.listFiles(P3cConfigFilenameFilter())
         if (fileList == null || fileList.isEmpty()) {
             NameListConfig.renewNameListService()
         } else {

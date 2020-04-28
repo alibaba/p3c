@@ -121,7 +121,7 @@ fun buildNotificationGroup(displayId: String, displayType: NotificationDisplayTy
                 return it.newInstance(displayId, displayType, isLogByDefault)
                         as NotificationGroup
             } catch (e: Exception) {
-                System.err.println(e);
+                System.err.println(e)
             }
         }
     }

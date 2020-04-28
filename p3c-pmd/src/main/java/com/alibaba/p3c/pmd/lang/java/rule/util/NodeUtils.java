@@ -15,16 +15,11 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.util;
 
-import java.util.concurrent.locks.Lock;
-
 import net.sourceforge.pmd.lang.ast.Node;
-import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTName;
-import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTStatementExpression;
-import net.sourceforge.pmd.lang.java.ast.AbstractJavaAccessTypeNode;
-import net.sourceforge.pmd.lang.java.ast.Token;
+import net.sourceforge.pmd.lang.java.ast.*;
 import net.sourceforge.pmd.lang.java.typeresolution.TypeHelper;
+
+import java.util.concurrent.locks.Lock;
 
 /**
  * @author caikang
@@ -42,9 +37,9 @@ public class NodeUtils {
         if (descendant == null || ancestor == null) {
             return false;
         }
-        Node parent = descendant.jjtGetParent();
+        Node parent = descendant.getParent();
         while (parent != ancestor && parent != null) {
-            parent = parent.jjtGetParent();
+            parent = parent.getParent();
         }
         return parent == ancestor;
     }
@@ -57,13 +52,13 @@ public class NodeUtils {
      */
     public static boolean isWrapperType(ASTPrimaryExpression expression) {
         return TypeHelper.isA(expression, Integer.class)
-            || TypeHelper.isA(expression, Long.class)
-            || TypeHelper.isA(expression, Boolean.class)
-            || TypeHelper.isA(expression, Byte.class)
-            || TypeHelper.isA(expression, Double.class)
-            || TypeHelper.isA(expression, Short.class)
-            || TypeHelper.isA(expression, Float.class)
-            || TypeHelper.isA(expression, Character.class);
+                || TypeHelper.isA(expression, Long.class)
+                || TypeHelper.isA(expression, Boolean.class)
+                || TypeHelper.isA(expression, Byte.class)
+                || TypeHelper.isA(expression, Double.class)
+                || TypeHelper.isA(expression, Short.class)
+                || TypeHelper.isA(expression, Float.class)
+                || TypeHelper.isA(expression, Character.class);
     }
 
     public static boolean isConstant(ASTFieldDeclaration field) {
@@ -87,7 +82,7 @@ public class NodeUtils {
         if (name == null || name.getType() == null || !Lock.class.isAssignableFrom(name.getType())) {
             return false;
         }
-        Token token = (Token)name.jjtGetLastToken();
+        Token token = (Token) name.jjtGetLastToken();
         return methodName.equals(token.image);
     }
 
@@ -95,7 +90,7 @@ public class NodeUtils {
         if (!(node instanceof ASTStatementExpression)) {
             return false;
         }
-        ASTStatementExpression statementExpression = (ASTStatementExpression)node;
+        ASTStatementExpression statementExpression = (ASTStatementExpression) node;
         return isLockStatementExpression(statementExpression);
     }
 }

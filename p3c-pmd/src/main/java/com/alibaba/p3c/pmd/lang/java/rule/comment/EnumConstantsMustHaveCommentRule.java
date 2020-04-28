@@ -49,8 +49,8 @@ public class EnumConstantsMustHaveCommentRule extends AbstractAliCommentRule {
             if (value instanceof ASTEnumDeclaration) {
                 isPreviousEnumDecl = true;
             } else if (value instanceof ASTEnumConstant && isPreviousEnumDecl) {
-                Node enumBody = value.jjtGetParent();
-                Node enumDeclaration = enumBody.jjtGetParent();
+                Node enumBody = value.getParent();
+                Node enumDeclaration = enumBody.getParent();
                 addViolationWithMessage(data, enumBody,
                     I18nResources.getMessage("java.comment.EnumConstantsMustHaveCommentRule.violation.msg",
                         enumDeclaration.getImage()));

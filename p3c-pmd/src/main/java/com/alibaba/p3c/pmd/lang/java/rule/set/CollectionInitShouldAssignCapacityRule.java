@@ -35,8 +35,9 @@ public class CollectionInitShouldAssignCapacityRule extends AbstractAliRule {
 
     /**
      * Black List,will increase ArrayList, HashSet etc follow-up
+     * @return CollectionInitShouldAssignCapacityRule COLLECTION_TYPE
      */
-    private final static List<String> getCollectionList() {
+    private static List<String> getCollectionList() {
         return NameListConfig.getNameListService().getNameList(
                 CollectionInitShouldAssignCapacityRule.class.getSimpleName(),
                 "COLLECTION_TYPE"
@@ -71,7 +72,7 @@ public class CollectionInitShouldAssignCapacityRule extends AbstractAliRule {
                 continue;
             }
             ASTArguments argumentNode = (ASTArguments) argNode;
-            Integer count = argumentNode.getArgumentCount();
+            Integer count = argumentNode.size();
             // judge whether parameters have  initial size
             if (count == 0) {
                 addViolationWithMessage(data, argNode,

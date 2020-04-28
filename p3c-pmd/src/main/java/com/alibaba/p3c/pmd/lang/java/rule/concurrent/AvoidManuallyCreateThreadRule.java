@@ -124,7 +124,7 @@ public class AvoidManuallyCreateThreadRule extends AbstractAliRule {
         if (!returnThread(methodDeclaration)) {
             return false;
         }
-        if (!METHOD_NEW_THREAD.equals(methodDeclaration.getMethodName())) {
+        if (!METHOD_NEW_THREAD.equals(methodDeclaration.getName())) {
             return false;
         }
         List<ASTFormalParameter> parameters = methodDeclaration.getFirstDescendantOfType(ASTFormalParameters.class)

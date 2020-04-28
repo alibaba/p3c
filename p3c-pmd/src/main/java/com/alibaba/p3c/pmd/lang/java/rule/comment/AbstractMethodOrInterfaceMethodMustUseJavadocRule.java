@@ -64,7 +64,7 @@ public class AbstractMethodOrInterfaceMethodMustUseJavadocRule extends AbstractA
                 if (null == comment || !(comment instanceof FormalComment)) {
                     ViolationUtils.addViolationWithPrecisePosition(this, method, data,
                         I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".abstract",
-                            method.getMethodName()));
+                                method.getName()));
                 } else {
                     this.checkMethodCommentFormat(method, data);
                 }
@@ -87,7 +87,7 @@ public class AbstractMethodOrInterfaceMethodMustUseJavadocRule extends AbstractA
             if (null == comment || !(comment instanceof FormalComment)) {
                 ViolationUtils.addViolationWithPrecisePosition(this, method, data,
                     I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".interface",
-                        method.getMethodName()));
+                            method.getName()));
             } else {
                 this.checkMethodCommentFormat(method, data);
             }
@@ -103,7 +103,7 @@ public class AbstractMethodOrInterfaceMethodMustUseJavadocRule extends AbstractA
         if (EMPTY_CONTENT_PATTERN.matcher(commentContent).matches()) {
             ViolationUtils.addViolationWithPrecisePosition(this, method, data,
                 I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".desc",
-                    method.getMethodName()));
+                        method.getName()));
         }
 
         // description of parameters
@@ -123,7 +123,7 @@ public class AbstractMethodOrInterfaceMethodMustUseJavadocRule extends AbstractA
             if (!paramNamePattern.matcher(commentContent).matches()) {
                 ViolationUtils.addViolationWithPrecisePosition(this, method, data,
                     I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".parameter",
-                        method.getMethodName(), paramName));
+                            method.getName(), paramName));
             }
         }
 
@@ -132,7 +132,7 @@ public class AbstractMethodOrInterfaceMethodMustUseJavadocRule extends AbstractA
 
             ViolationUtils.addViolationWithPrecisePosition(this, method, data,
                 I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".return",
-                    method.getMethodName()));
+                        method.getName()));
         }
 
         // possible exception
@@ -147,7 +147,7 @@ public class AbstractMethodOrInterfaceMethodMustUseJavadocRule extends AbstractA
                 if (!exceptionPattern.matcher(commentContent).matches()) {
                     ViolationUtils.addViolationWithPrecisePosition(this, method, data,
                         I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".exception",
-                            method.getMethodName(), exceptionName));
+                                method.getName(), exceptionName));
                 }
             }
         }

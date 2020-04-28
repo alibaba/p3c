@@ -8,10 +8,8 @@ call ../gradlew clean publishToMavenLocal
 cd ../
 
 cd ./p3c-idea
-call ../gradlew clean publishToMavenLocal
+call ../gradlew clean publishToMavenLocal buildPlugin
 cd ../
-
-call ./gradlew clean buildPlugin
 
 cd ../
 pause

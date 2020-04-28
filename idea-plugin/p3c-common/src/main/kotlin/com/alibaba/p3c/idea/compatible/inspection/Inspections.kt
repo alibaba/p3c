@@ -23,6 +23,7 @@ import com.intellij.codeInspection.ex.InspectionToolWrapper
 import com.intellij.codeInspection.ex.ScopeToolState
 import com.intellij.codeInspection.javaDoc.JavaDocLocalInspection
 import com.intellij.openapi.project.Project
+import org.jetbrains.annotations.SystemIndependent
 import java.io.File
 import java.io.FilenameFilter
 
@@ -31,7 +32,7 @@ import java.io.FilenameFilter
  */
 class P3cConfigFilenameFilter : FilenameFilter {
     override fun accept(dir: File?, name: String?): Boolean {
-        return P3C_CONFIG_FILE_NAME.equals(name);
+        return P3C_CONFIG_FILE_NAME.equals(name)
     }
 }
 
@@ -43,18 +44,20 @@ class P3cConfigFilenameFilter : FilenameFilter {
  */
 object Inspections {
     fun aliInspections(project: Project, filter: (InspectionToolWrapper<*, *>) -> Boolean): List<InspectionToolWrapper<*, *>> {
-        loadPatchConfigFile(project);
+        loadPatchConfigFile(project)
         val profile = InspectionProfileService.getProjectInspectionProfile(project)
         return getAllTools(project, profile).filter(filter)
     }
 
-    private fun loadPatchConfigFile(project: Project) {
-        var projectBaseFile = File(project.basePath);
-        var fileList = projectBaseFile.listFiles(P3cConfigFilenameFilter())
+    fun loadPatchConfigFile(project: Project) {
+        val projectBasePath: @SystemIndependent String? = project.basePath
+                ?: return
+        val projectBaseFile = File(projectBasePath)
+        val fileList = projectBaseFile.listFiles(P3cConfigFilenameFilter())
         if (fileList == null || fileList.isEmpty()) {
-            NameListConfig.renewNameListService();
+            NameListConfig.renewNameListService()
         } else {
-            NameListConfig.renewNameListService(fileList[0]);
+            NameListConfig.renewNameListService(fileList[0])
         }
     }
 

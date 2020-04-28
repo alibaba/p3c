@@ -42,8 +42,8 @@ public class SwitchStatementRule extends AbstractAliRule {
     /**
      * Check if switch statement contains default branch
      *
-     * @param node
-     * @param data
+     * @param node node
+     * @param data ruleContext
      */
     private void checkDefault(ASTSwitchStatement node, Object data) {
         final String switchCheckXpath = "SwitchLabel[@Default = 'true']";
@@ -55,8 +55,8 @@ public class SwitchStatementRule extends AbstractAliRule {
     /**
      * Check the availability of break, return, throw, continue in case statement
      *
-     * @param node
-     * @param data
+     * @param node node
+     * @param data ruleContext
      */
     private void checkFallThrough(ASTSwitchStatement node, Object data) {
         // refer the rule MissingBreakInSwitch of PMD

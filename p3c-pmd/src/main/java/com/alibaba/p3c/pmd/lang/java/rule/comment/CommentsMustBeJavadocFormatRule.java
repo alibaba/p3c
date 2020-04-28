@@ -66,7 +66,7 @@ public class CommentsMustBeJavadocFormatRule extends AbstractAliCommentRule {
     public Object visit(final ASTConstructorDeclaration decl, Object data) {
         checkComment(decl, data, () -> {
             String constructorName = ((Token)decl.jjtGetFirstToken()).image;
-            if (decl.getFormalParameters().getParameterCount() == 0) {
+            if (decl.getFormalParameters().size() == 0) {
                 return I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".constructor.default",
                     constructorName);
             }
@@ -89,7 +89,7 @@ public class CommentsMustBeJavadocFormatRule extends AbstractAliCommentRule {
     @Override
     public Object visit(final ASTMethodDeclaration decl, Object data) {
         checkComment(decl, data, () -> I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".method",
-            decl.getMethodName()));
+                decl.getName()));
         return super.visit(decl, data);
     }
 

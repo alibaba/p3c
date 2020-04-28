@@ -4,15 +4,13 @@ cd ../
 cd ./idea-plugin
 
 cd ./p3c-common
-call ../gradlew clean install sign uploadArchives -DossrhUsername="%ossrhUsername%" -DossrhPassword="%ossrhPassword%"
-rem call ../gradlew publishToMavenLocal
+rem call ../gradlew clean install sign uploadArchives -DossrhUsername="%ossrhUsername%" -DossrhPassword="%ossrhPassword%"
+call ../gradlew publishToMavenLocal
 cd ../
 
 cd ./p3c-idea
-call ../gradlew clean publishToMavenLocal
+call ../gradlew clean publishToMavenLocal buildPlugin
 cd ../
-
-call ./gradlew clean buildPlugin
 
 cd ../
 pause

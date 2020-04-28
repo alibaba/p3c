@@ -55,13 +55,13 @@ intellij {
     updateSinceUntilBuild false
     sandboxDirectory "$project.buildDir/idea-sandbox/$idea_version"
 }
-version '2.0.2.4x'
+version '2.0.2.5x-SNAPSHOT'
 
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 dependencies {
     compile group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
-    compile 'com.xenoamess.p3c:p3c-pmd:2.0.2.4x'
+    compile 'com.xenoamess.p3c:p3c-pmd:2.0.2.5x-SNAPSHOT'
     compile group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
 }
 

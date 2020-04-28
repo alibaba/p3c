@@ -31,6 +31,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.0.2.5x-SNAPSHOT
+        </ul>
         <ul>2.0.2.4x
             <li>add config mechanism to idea highlight.</li>
             <li>upgrade x8l version.</li>

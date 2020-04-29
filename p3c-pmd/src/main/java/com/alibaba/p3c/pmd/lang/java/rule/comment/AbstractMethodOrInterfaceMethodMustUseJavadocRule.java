@@ -15,22 +15,14 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.comment;
 
-import java.util.List;
-import java.util.regex.Pattern;
-
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
-import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
-import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTName;
-import net.sourceforge.pmd.lang.java.ast.ASTNameList;
-import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
-import net.sourceforge.pmd.lang.java.ast.Comment;
-import net.sourceforge.pmd.lang.java.ast.FormalComment;
+import net.sourceforge.pmd.lang.java.ast.*;
 import org.jaxen.JaxenException;
+
+import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * [Mandatory] Abstract methods (including methods in interface) should be commented by Javadoc.
@@ -42,15 +34,16 @@ import org.jaxen.JaxenException;
 public class AbstractMethodOrInterfaceMethodMustUseJavadocRule extends AbstractAliCommentRule {
 
     private static final String METHOD_IN_INTERFACE_XPATH =
-        "./ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/MethodDeclaration";
+            "./ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/MethodDeclaration";
     private static final String METHOD_VARIABLE_DECLARATOR_XPATH
-        = "./MethodDeclarator/FormalParameters/FormalParameter/VariableDeclaratorId";
+            = "./MethodDeclarator/FormalParameters/FormalParameter/VariableDeclaratorId";
 
     private static final String MESSAGE_KEY_PREFIX
-        = "java.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule.violation.msg";
+            = "java.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule.violation.msg";
 
     private static final Pattern EMPTY_CONTENT_PATTERN = Pattern.compile("[/*\\n\\r\\s]+(@.*)?", Pattern.DOTALL);
     private static final Pattern RETURN_PATTERN = Pattern.compile(".*@return.*", Pattern.DOTALL);
+    private static final Pattern INHERIT_DOC_PATTERN = Pattern.compile(".*@inheritDoc.*", Pattern.DOTALL);
 
     @Override
     public Object visit(ASTClassOrInterfaceDeclaration decl, Object data) {
@@ -61,10 +54,10 @@ public class AbstractMethodOrInterfaceMethodMustUseJavadocRule extends AbstractA
                     continue;
                 }
                 Comment comment = method.comment();
-                if (null == comment || !(comment instanceof FormalComment)) {
+                if (!(comment instanceof FormalComment)) {
                     ViolationUtils.addViolationWithPrecisePosition(this, method, data,
-                        I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".abstract",
-                                method.getName()));
+                            I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".abstract",
+                                    method.getName()));
                 } else {
                     this.checkMethodCommentFormat(method, data);
                 }
@@ -78,16 +71,16 @@ public class AbstractMethodOrInterfaceMethodMustUseJavadocRule extends AbstractA
             methodNodes = decl.findChildNodesWithXPath(METHOD_IN_INTERFACE_XPATH);
         } catch (JaxenException e) {
             throw new RuntimeException("XPath expression " + METHOD_IN_INTERFACE_XPATH
-                + " failed: " + e.getLocalizedMessage(), e);
+                    + " failed: " + e.getLocalizedMessage(), e);
         }
 
         for (Node node : methodNodes) {
-            ASTMethodDeclaration method = (ASTMethodDeclaration)node;
+            ASTMethodDeclaration method = (ASTMethodDeclaration) node;
             Comment comment = method.comment();
-            if (null == comment || !(comment instanceof FormalComment)) {
+            if (!(comment instanceof FormalComment)) {
                 ViolationUtils.addViolationWithPrecisePosition(this, method, data,
-                    I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".interface",
-                            method.getName()));
+                        I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".interface",
+                                method.getName()));
             } else {
                 this.checkMethodCommentFormat(method, data);
             }
@@ -102,8 +95,15 @@ public class AbstractMethodOrInterfaceMethodMustUseJavadocRule extends AbstractA
         // method instruction
         if (EMPTY_CONTENT_PATTERN.matcher(commentContent).matches()) {
             ViolationUtils.addViolationWithPrecisePosition(this, method, data,
-                I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".desc",
-                        method.getName()));
+                    I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".desc",
+                            method.getName()));
+        }
+
+        // if has @inheritDoc in javadoc of this function,
+        // then the things not listed are inherited from super function,
+        // thus legal.
+        if (INHERIT_DOC_PATTERN.matcher(commentContent).matches()) {
+            return;
         }
 
         // description of parameters
@@ -112,18 +112,18 @@ public class AbstractMethodOrInterfaceMethodMustUseJavadocRule extends AbstractA
             variableDeclaratorIds = method.findChildNodesWithXPath(METHOD_VARIABLE_DECLARATOR_XPATH);
         } catch (JaxenException e) {
             throw new RuntimeException(
-                "XPath expression " + METHOD_VARIABLE_DECLARATOR_XPATH + " failed: " + e.getLocalizedMessage(), e);
+                    "XPath expression " + METHOD_VARIABLE_DECLARATOR_XPATH + " failed: " + e.getLocalizedMessage(), e);
         }
 
         for (Node variableDeclaratorId : variableDeclaratorIds) {
-            ASTVariableDeclaratorId param = (ASTVariableDeclaratorId)variableDeclaratorId;
+            ASTVariableDeclaratorId param = (ASTVariableDeclaratorId) variableDeclaratorId;
             String paramName = param.getImage();
             Pattern paramNamePattern = Pattern.compile(".*@param\\s+" + paramName + ".*", Pattern.DOTALL);
 
             if (!paramNamePattern.matcher(commentContent).matches()) {
                 ViolationUtils.addViolationWithPrecisePosition(this, method, data,
-                    I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".parameter",
-                            method.getName(), paramName));
+                        I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".parameter",
+                                method.getName(), paramName));
             }
         }
 
@@ -131,8 +131,8 @@ public class AbstractMethodOrInterfaceMethodMustUseJavadocRule extends AbstractA
         if (!method.isVoid() && !RETURN_PATTERN.matcher(commentContent).matches()) {
 
             ViolationUtils.addViolationWithPrecisePosition(this, method, data,
-                I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".return",
-                        method.getName()));
+                    I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".return",
+                            method.getName()));
         }
 
         // possible exception
@@ -142,12 +142,12 @@ public class AbstractMethodOrInterfaceMethodMustUseJavadocRule extends AbstractA
             for (ASTName exception : exceptions) {
                 String exceptionName = exception.getImage();
                 Pattern exceptionPattern = Pattern.compile(".*@throws\\s+"
-                    + exceptionName + ".*", Pattern.DOTALL);
+                        + exceptionName + ".*", Pattern.DOTALL);
 
                 if (!exceptionPattern.matcher(commentContent).matches()) {
                     ViolationUtils.addViolationWithPrecisePosition(this, method, data,
-                        I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".exception",
-                                method.getName(), exceptionName));
+                            I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".exception",
+                                    method.getName(), exceptionName));
                 }
             }
         }

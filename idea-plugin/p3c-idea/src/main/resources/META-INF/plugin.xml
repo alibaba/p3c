@@ -32,6 +32,7 @@
 
     <change-notes><![CDATA[
         <ul>2.0.2.5x-SNAPSHOT
+            <li>ignore AbstractMethodOrInterfaceMethodMustUseJavadocRule check for function who have @inheritdoc in javadoc.</li>
         </ul>
         <ul>2.0.2.4x
             <li>add config mechanism to idea highlight.</li>

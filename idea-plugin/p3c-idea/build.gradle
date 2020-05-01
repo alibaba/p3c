@@ -10,7 +10,7 @@ apply plugin: 'idea'
 
 def myPlugins = ['git4idea']
 
-if (idea_version.startsWith('193.') || idea_version.startsWith('2019.3') || idea_version.startsWith('IU-201.')) {
+if (idea_version.startsWith('193.') || idea_version.startsWith('2019.3') || idea_version.startsWith('IU-201.') || idea_version.startsWith('201.')) {
     myPlugins = ['git4idea', 'java']
 }
 

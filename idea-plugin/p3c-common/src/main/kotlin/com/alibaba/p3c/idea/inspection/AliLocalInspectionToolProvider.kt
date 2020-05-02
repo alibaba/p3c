@@ -65,9 +65,9 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
     class RuleInfo(var rule: Rule, var shouldInspectChecker: ShouldInspectChecker)
 
     companion object {
-        val ruleInfoMap: MutableMap<String, RuleInfo> = Maps.newHashMap<String, RuleInfo>()
+        val ruleInfoMap: MutableMap<String, RuleInfo> = Maps.newHashMap()
         private val LOGGER = Logger.getInstance(AliLocalInspectionToolProvider::class.java)
-        val ruleNames: MutableList<String> = Lists.newArrayList<String>()!!
+        val ruleNames: MutableList<String> = Lists.newArrayList()!!
         private val CLASS_LIST = Lists.newArrayList<Class<LocalInspectionTool>>()
         private val nativeInspectionToolClass = arrayListOf<Class<out LocalInspectionTool>>(
                 AliMissingOverrideAnnotationInspection::class.java,
@@ -137,7 +137,7 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
         private fun initPmdInspection() {
             for (ri in newRuleInfos()) {
                 this.ruleNames.add(ri.rule.name)
-                ruleInfoMap.put(ri.rule.name, ri)
+                ruleInfoMap[ri.rule.name] = ri
             }
             val pool = ClassPool.getDefault()
             pool.insertClassPath(ClassClassPath(DelegatePmdInspection::class.java))

@@ -225,7 +225,7 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
             nodeCache = CacheBuilder.newBuilder().concurrencyLevel(16)
                     .expireAfterWrite(expireTime, TimeUnit.MILLISECONDS)
                     .maximumSize(100)
-                    .build<String, Node>()!!
+                    .build()!!
         }
 
         fun invalidateCache(file: String) {

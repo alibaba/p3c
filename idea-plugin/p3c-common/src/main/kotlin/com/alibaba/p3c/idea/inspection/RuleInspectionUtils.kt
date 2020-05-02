@@ -59,7 +59,7 @@ object RuleInspectionUtils {
         cfg.getTemplate("StaticDescriptionTemplate.ftl")
     }
 
-    private val ruleSetsPrefix = "rulesets/"
+    private const val ruleSetsPrefix = "rulesets/"
 
     private val ruleStaticDescriptions: Map<String, String>
     private val ruleMessages: Map<String, String>
@@ -92,12 +92,12 @@ object RuleInspectionUtils {
     }
 
     fun getHighlightDisplayLevel(rulePriority: RulePriority): HighlightDisplayLevel {
-        when (rulePriority) {
-            RulePriority.HIGH -> return HighlightDisplayLevels.BLOCKER
-            RulePriority.MEDIUM_HIGH -> return HighlightDisplayLevels.CRITICAL
-            RulePriority.MEDIUM -> return HighlightDisplayLevels.MAJOR
-            RulePriority.MEDIUM_LOW -> return HighlightDisplayLevels.WARNING
-            else -> return HighlightDisplayLevels.WEAK_WARNING
+        return when (rulePriority) {
+            RulePriority.HIGH -> HighlightDisplayLevels.BLOCKER
+            RulePriority.MEDIUM_HIGH -> HighlightDisplayLevels.CRITICAL
+            RulePriority.MEDIUM -> HighlightDisplayLevels.MAJOR
+            RulePriority.MEDIUM_LOW -> HighlightDisplayLevels.WARNING
+            else -> HighlightDisplayLevels.WEAK_WARNING
         }
     }
 
@@ -109,14 +109,14 @@ object RuleInspectionUtils {
         val writer = StringWriter()
         try {
             val map = Maps.newHashMap<String, Any>()
-            map.put("message", StringUtils.trimToEmpty(rule.message))
-            map.put("description", StringUtils.trimToEmpty(rule.description))
+            map["message"] = StringUtils.trimToEmpty(rule.message)
+            map["description"] = StringUtils.trimToEmpty(rule.description)
             val examples = rule.examples.map {
                 it?.trim { c ->
                     c == '\n'
                 }
             }
-            map.put("examples", examples)
+            map["examples"] = examples
             staticDescriptionTemplate.process(map, writer)
         } catch (e: TemplateException) {
             logger.error(e)
@@ -137,7 +137,7 @@ object RuleInspectionUtils {
             ruleSets.allRuleSets
                     .asSequence()
                     .flatMap { it.rules.asSequence() }
-                    .forEach { map.put(it.name, it) }
+                    .forEach { map[it.name] = it }
             return Lists.newArrayList(map.values)
         } catch (e: IOException) {
             logger.warn("no available alibaba rules")
@@ -176,21 +176,21 @@ object RuleInspectionUtils {
 
     @Throws(IOException::class)
     private fun findRuleSetsFromJar(ruleSets: MutableList<String>, url: URL) {
-        logger.info("start to find rule sets from jar " + url)
+        logger.info("start to find rule sets from jar $url")
         var path = URLDecoder.decode(url.path, StandardCharsets.UTF_8.name())
         val index = path.lastIndexOf(URLUtil.JAR_SEPARATOR)
         if (index > NumberConstants.INDEX_0) {
             path = path.substring("file:".length, index)
         }
         val jarFile = JarFile(path)
-        logger.info("create jarFile for path " + path)
+        logger.info("create jarFile for path $path")
         val jarEntries = jarFile.entries()
         while (jarEntries.hasMoreElements()) {
             val jarEntry = jarEntries.nextElement()
             val subPath = jarEntry.name.replace(ruleSetsPrefix, "")
             if (ruleSetFilePattern.matcher(subPath).find()) {
                 val resultPath = subPath.replace(".xml", "")
-                logger.info("get result rule set " + resultPath)
+                logger.info("get result rule set $resultPath")
                 ruleSets.add(resultPath)
             }
         }

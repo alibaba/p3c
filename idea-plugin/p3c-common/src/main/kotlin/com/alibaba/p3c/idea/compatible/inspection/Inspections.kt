@@ -84,7 +84,7 @@ object Inspections {
         if (tags.contains(tag)) {
             return
         }
-        javaDocLocalInspection.myAdditionalJavadocTags += "," + tag
+        javaDocLocalInspection.myAdditionalJavadocTags += ",$tag"
         profile.profileChanged()
         profile.scopesChanged()
     }

@@ -81,6 +81,6 @@ interface AliBaseInspection {
     }
 
     companion object {
-        val GROUP_NAME = "Ali-Check"
+        const val GROUP_NAME = "Ali-Check"
     }
 }

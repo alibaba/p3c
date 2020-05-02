@@ -55,7 +55,7 @@ public class UndefineMagicConstantRule extends AbstractAliRule {
     @Override
     public Object visit(ASTCompilationUnit node, Object data) {
         // removed repeat magic value , to prevent the parent class to find sub-variable nodes when there is a repeat
-        List<ASTLiteral> currentLiterals = new ArrayList<ASTLiteral>();
+        List<ASTLiteral> currentLiterals = new ArrayList<>();
         try {
             // Find the parent node of the undefined variable
             List<Node> parentNodes = node.findChildNodesWithXPath(XPATH);

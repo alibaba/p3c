@@ -114,8 +114,8 @@ public class ThreadPoolCreationRule extends AbstractAliRule {
         return sb.toString();
     }
 
-    class Info {
+    static class Info {
         boolean executorsUsed;
-        Set<String> importedExecutorsMethods = new HashSet<>();
+        final Set<String> importedExecutorsMethods = new HashSet<>();
     }
 }

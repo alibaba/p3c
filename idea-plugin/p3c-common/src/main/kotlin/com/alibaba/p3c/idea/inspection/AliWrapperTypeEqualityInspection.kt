@@ -129,10 +129,10 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
             InspectionGadgetsFix() {
 
         override fun getName(): String {
-            if (deepEquals) {
-                return "$replaceWith 'Arrays.deepEquals()'"
+            return if (deepEquals) {
+                "$replaceWith 'Arrays.deepEquals()'"
             } else {
-                return "$replaceWith 'Arrays.equals()'"
+                "$replaceWith 'Arrays.equals()'"
             }
         }
 

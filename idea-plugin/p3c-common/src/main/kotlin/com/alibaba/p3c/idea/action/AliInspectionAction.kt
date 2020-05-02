@@ -59,9 +59,9 @@ class AliInspectionAction : AnAction() {
         val toolWrappers = Inspections.aliInspections(project) {
             it.tool is AliBaseInspection
         }
-        val psiElement = e.getData<PsiElement>(CommonDataKeys.PSI_ELEMENT)
-        val psiFile = e.getData<PsiFile>(CommonDataKeys.PSI_FILE)
-        val virtualFile = e.getData<VirtualFile>(CommonDataKeys.VIRTUAL_FILE)
+        val psiElement = e.getData(CommonDataKeys.PSI_ELEMENT)
+        val psiFile = e.getData(CommonDataKeys.PSI_FILE)
+        val virtualFile = e.getData(CommonDataKeys.VIRTUAL_FILE)
         val virtualFiles = e.getData<Array<VirtualFile>>(CommonDataKeys.VIRTUAL_FILE_ARRAY)
         var analysisScope: AnalysisScope? = null
         var projectDir = false
@@ -69,7 +69,7 @@ class AliInspectionAction : AnAction() {
             analysisScope = AnalysisScope(psiFile)
             projectDir = isBaseDir(psiFile.virtualFile, project)
         } else if (virtualFiles != null && virtualFiles.size > NumberConstants.INTEGER_SIZE_OR_LENGTH_0) {
-            analysisScope = AnalysisScope(project, Lists.newArrayList<VirtualFile>(*virtualFiles))
+            analysisScope = AnalysisScope(project, Lists.newArrayList(*virtualFiles))
             projectDir = virtualFiles.any {
                 isBaseDir(it, project)
             }
@@ -125,7 +125,7 @@ class AliInspectionAction : AnAction() {
         val uiOptions = AnalysisUIOptions.getInstance(project)
         uiOptions.ANALYZE_TEST_SOURCES = false
         val dialog = BaseAnalysisActionDialog("Select Analyze Scope", "Analyze Scope", project, analysisScope,
-                if (module != null) module.name else null, true, uiOptions, psiElement)
+                module?.name, true, uiOptions, psiElement)
 
         if (!dialog.showAndGet()) {
             return

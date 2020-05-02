@@ -135,7 +135,7 @@ class AliAccessStaticViaInstanceInspection : AccessStaticViaInstance, AliBaseIns
                 "${JavaHighlightUtil.formatType(qualifierExpression.type)}.${HighlightMessageUtil.getSymbolName(
                         resolved, result.substitutor)}")
         if (!onTheFly) {
-            if (RemoveUnusedVariableUtil.checkSideEffects(qualifierExpression, null, ArrayList<PsiElement>())) {
+            if (RemoveUnusedVariableUtil.checkSideEffects(qualifierExpression, null, ArrayList())) {
                 holder.registerProblem(expr, description)
                 return
             }

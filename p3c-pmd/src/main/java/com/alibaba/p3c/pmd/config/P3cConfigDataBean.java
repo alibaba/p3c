@@ -6,13 +6,10 @@ import com.xenoamess.x8l.databind.X8lDataBean;
 import com.xenoamess.x8l.databind.X8lDataBeanFieldMark;
 import com.xenoamess.x8l.dealers.X8lDealer;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Logger;
 
 import static com.xenoamess.x8l.databind.X8lDataBeanDefaultParser.getLastFromList;
@@ -23,9 +20,14 @@ import static java.util.logging.Level.WARNING;
  * @date 2020/04/24
  */
 public class P3cConfigDataBean implements X8lDataBean {
+
     @SuppressWarnings("unused")
-    public static @Nullable Set<String> getContentNodeAsStringSet(@NotNull List<Object> list) {
-        Set<String> res = ((ContentNode) getLastFromList(list)).asStringSetTrimmed();
+    public static @NotNull Set<String> getContentNodeAsStringSet(@NotNull List<Object> list) {
+        Object lastObject = getLastFromList(list);
+        if (!(lastObject instanceof ContentNode)) {
+            return new HashSet<>(0);
+        }
+        Set<String> res = ((ContentNode) lastObject).asStringSetTrimmed();
         if (res != null) {
             res.remove("");
         }
@@ -33,13 +35,17 @@ public class P3cConfigDataBean implements X8lDataBean {
     }
 
     @SuppressWarnings("unused")
-    public static @Nullable HashMap<String, Set<String>> getRuleClassPairBlackListMap(@NotNull List<Object> list) {
+    public static @NotNull HashMap<String, Set<String>> getRuleClassPairBlackListMap(@NotNull List<Object> list) {
         ContentNode node = ((ContentNode) getLastFromList(list));
-        List<ContentNode> contentNodeChildren = node.getContentNodesFromChildren();
-        HashMap<String, Set<String>> res = new HashMap<>(contentNodeChildren.size());
-        if (contentNodeChildren == null) {
-            return null;
+        if (node == null) {
+            return new HashMap<>(0);
         }
+        List<ContentNode> contentNodeChildren = node.getContentNodesFromChildren();
+        if (contentNodeChildren.size() == 0) {
+            return new HashMap<>(0);
+        }
+        HashMap<String, Set<String>> res = new HashMap<>(contentNodeChildren.size());
+
         for (ContentNode au : contentNodeChildren) {
             res.put(
                     au.getName().trim(),
@@ -72,7 +78,7 @@ public class P3cConfigDataBean implements X8lDataBean {
             parser = P3cConfigDataBean.class,
             functionName = "getRuleClassPairBlackListMap"
     )
-    private HashMap<String, Set<String>> ruleClassPairBlackListMap;
+    private Map<String, Set<String>> ruleClassPairBlackListMap;
 
     public void tryPatchP3cConfigDataBean(@NotNull File file) {
         if (file.exists() && file.isFile()) {
@@ -117,11 +123,11 @@ public class P3cConfigDataBean implements X8lDataBean {
         this.classBlackListSet = classBlackListSet;
     }
 
-    public HashMap<String, Set<String>> getRuleClassPairBlackListMap() {
+    public Map<String, Set<String>> getRuleClassPairBlackListMap() {
         return ruleClassPairBlackListMap;
     }
 
-    public void setRuleClassPairBlackListMap(HashMap<String, Set<String>> ruleClassPairBlackListMap) {
+    public void setRuleClassPairBlackListMap(Map<String, Set<String>> ruleClassPairBlackListMap) {
         this.ruleClassPairBlackListMap = ruleClassPairBlackListMap;
     }
 }

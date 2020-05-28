@@ -68,7 +68,7 @@ public class TestConfig {
         assertEquals(
                 nameListService.getNameMap(
                         "MethodReturnWrapperTypeRule",
-                        "PRIMITIVE_TYPE_TO_WAPPER_TYPE"
+                        "PRIMITIVE_TYPE_TO_WRAPPER_TYPE"
                 ),
                 mapa
         );

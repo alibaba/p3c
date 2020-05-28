@@ -8,7 +8,7 @@
         <PojoMustOverrideToStringRule><POJO_SUFFIX_SET>DO&DTO&VO&BO>>
         <UndefineMagicConstantRule><LITERAL_WHITE_LIST>0&1&""&0.0&1.0&-1&0L&1L>>
         <MethodReturnWrapperTypeRule>
-            <PRIMITIVE_TYPE_TO_WAPPER_TYPE>
+            <PRIMITIVE_TYPE_TO_WRAPPER_TYPE>
                 <int>Integer>
                 <boolean>Boolean>
                 <float>Float>

@@ -36,14 +36,14 @@ import java.util.Set;
 public class ConstantFieldShouldBeUpperCaseRule extends AbstractAliRule {
     private static final String SERVICE_SUFFIX = "Service";
 
-    private static final Set<String> getLogVariableTypeSet() {
+    private static Set<String> getLogVariableTypeSet() {
         return new HashSet<>(NameListConfig.getNameListService().getNameList(
                 "ConstantFieldShouldBeUpperCaseRule",
                 "LOG_VARIABLE_TYPE_SET")
         );
     }
 
-    private static final Set<String> getWhiteList() {
+    private static Set<String> getWhiteList() {
         return new HashSet<>(NameListConfig.getNameListService().getNameList(
                 "ConstantFieldShouldBeUpperCaseRule",
                 "WHITE_LIST")

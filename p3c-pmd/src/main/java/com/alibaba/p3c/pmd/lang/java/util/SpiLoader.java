@@ -25,7 +25,7 @@ import com.alibaba.p3c.pmd.lang.java.util.namelist.NameListConfig;
  * @date 2017/04/01
  */
 public class SpiLoader {
-    private final static ConcurrentHashMap<Class<?>, Object> INSTANCE_CACHE = new ConcurrentHashMap<Class<?>, Object>();
+    private final static ConcurrentHashMap<Class<?>, Object> INSTANCE_CACHE = new ConcurrentHashMap<>();
 
     @SuppressWarnings("unchecked")
     public static <T> T getInstance(Class<T> classType) {

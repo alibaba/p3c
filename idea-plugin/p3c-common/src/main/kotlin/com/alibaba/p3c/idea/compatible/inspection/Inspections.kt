@@ -50,14 +50,23 @@ object Inspections {
     }
 
     fun loadPatchConfigFile(project: Project) {
-        val projectBasePath: @SystemIndependent String? = project.basePath
-                ?: return
-        val projectBaseFile = File(projectBasePath)
-        val fileList = projectBaseFile.listFiles(P3cConfigFilenameFilter())
-        if (fileList == null || fileList.isEmpty()) {
+        val patchConfigFile = fetchPatchConfigFile(project)
+        if (patchConfigFile == null) {
             NameListConfig.renewNameListService()
         } else {
-            NameListConfig.renewNameListService(fileList[0])
+            NameListConfig.renewNameListService(patchConfigFile)
+        }
+    }
+
+    private fun fetchPatchConfigFile(project: Project): File? {
+        val projectBasePath: @SystemIndependent String? = project.basePath
+                ?: return null
+        val projectBaseFile = File(projectBasePath)
+        val fileList = projectBaseFile.listFiles(P3cConfigFilenameFilter())
+        return if (fileList == null || fileList.isEmpty()) {
+            null
+        } else {
+            fileList[0]
         }
     }
 
@@ -75,7 +84,7 @@ object Inspections {
         if (tags.contains(tag)) {
             return
         }
-        javaDocLocalInspection.myAdditionalJavadocTags += "," + tag
+        javaDocLocalInspection.myAdditionalJavadocTags += ",$tag"
         profile.profileChanged()
         profile.scopesChanged()
     }

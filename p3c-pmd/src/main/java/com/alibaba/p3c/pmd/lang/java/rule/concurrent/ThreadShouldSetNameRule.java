@@ -102,6 +102,7 @@ public class ThreadShouldSetNameRule extends AbstractAliRule {
         return super.visit(node, data);
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean checkThreadFactoryArgument(ASTExpression expression) {
         if (expression.getType() != null && ThreadFactory.class.isAssignableFrom(expression.getType())) {
             return true;

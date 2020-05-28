@@ -1,16 +1,16 @@
 package com.alibaba.p3c.pmd.testframework;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-
 import net.sourceforge.pmd.Rule;
 import net.sourceforge.pmd.testframework.RuleTst;
 import net.sourceforge.pmd.testframework.TestDescriptor;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author huawen.phw
@@ -22,24 +22,24 @@ public class ExtendRuleTst extends RuleTst {
 
     public void runTest(Rule rule, String examFilePath, String expectedVioLineNumbers) {
         TestDescriptor descriptor = extractTestsFromJavaFile(rule, examFilePath
-            , expectedVioLineNumbers);
+                , expectedVioLineNumbers);
         if (descriptor != null) {
             runTest(descriptor);
         }
     }
 
     /**
-     * @param rule
-     * @return
+     * @param rule rule
+     * @return TestDescriptor
      */
     public TestDescriptor extractTestsFromJavaFile(Rule rule) {
         return extractTestsFromJavaFile(rule, "java/" + getCleanRuleName(rule) + ".java");
     }
 
     /**
-     * @param rule
-     * @param javaFilePath
-     * @return
+     * @param rule rule
+     * @param javaFilePath javaFilePath
+     * @return TestDescriptor
      */
     public TestDescriptor extractTestsFromJavaFile(Rule rule, String javaFilePath) {
         return extractTestsFromJavaFile(rule, javaFilePath, "");
@@ -72,7 +72,7 @@ public class ExtendRuleTst extends RuleTst {
         }
         List<Integer> expectedLineNumber = getExpectedLineNumbers(expectedLineNumbers);
         TestDescriptor descriptor = new TestDescriptor(fileContents, rule.getDescription(),
-            expectedLineNumber.size(), rule);
+                expectedLineNumber.size(), rule);
         descriptor.setExpectedLineNumbers(expectedLineNumber);
         return descriptor;
     }

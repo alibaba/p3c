@@ -36,7 +36,7 @@ public class MethodReturnWrapperTypeRule extends AbstractAliRule {
     private static Map<String, String> getPrimitiveTypeToWrapperType() {
         return NameListConfig.getNameListService().getNameMap(
                 "MethodReturnWrapperTypeRule",
-                "PRIMITIVE_TYPE_TO_WAPPER_TYPE"
+                "PRIMITIVE_TYPE_TO_WRAPPER_TYPE"
         );
     }
 

@@ -15,19 +15,15 @@
  */
 package com.alibaba.p3c.pmd;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.Properties;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.ResourceBundle.Control;
 
 /**
@@ -98,16 +94,18 @@ public class I18nResources {
         }
 
         @Override
+        @NotNull
         protected Object handleGetObject(String key) {
             return props.getProperty(key);
         }
 
         @Override
+        @Nullable
         public Enumeration<String> getKeys() {
             List<String> keys = new ArrayList<>();
             Enumeration<Object> enumeration = props.keys();
             while (enumeration.hasMoreElements()) {
-                keys.add((String)enumeration.nextElement());
+                keys.add((String) enumeration.nextElement());
             }
             return Collections.enumeration(keys);
         }
@@ -129,15 +127,15 @@ public class I18nResources {
 
         @Override
         public ResourceBundle newBundle(String baseName,
-            Locale locale,
-            String format,
-            ClassLoader loader,
-            boolean reload)
-            throws IllegalAccessException,
-            InstantiationException,
-            IOException {
+                                        Locale locale,
+                                        String format,
+                                        ClassLoader loader,
+                                        boolean reload)
+                throws IllegalAccessException,
+                InstantiationException,
+                IOException {
             if (baseName == null || locale == null
-                || format == null || loader == null) {
+                    || format == null || loader == null) {
                 throw new NullPointerException();
             }
             ResourceBundle bundle = null;
@@ -160,7 +158,7 @@ public class I18nResources {
         }
 
         private InputStream getInputStream(ClassLoader loader, String resourceName)
-            throws IOException {
+                throws IOException {
             URL url = loader.getResource(resourceName);
             if (url == null) {
                 return null;

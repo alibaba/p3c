@@ -137,7 +137,7 @@ class AliCodeAnalysisCheckinHandler(
                     myProject, "Analyze Finished")
             return CheckinHandler.ReturnResult.COMMIT
         }
-        if (Messages.showOkCancelDialog(
+        return if (Messages.showOkCancelDialog(
                         myProject,
                         "Found suspicious code,continue commit？",
                         dialogTitle,
@@ -147,17 +147,17 @@ class AliCodeAnalysisCheckinHandler(
                 )
                 == Messages.OK
         ) {
-            return CheckinHandler.ReturnResult.COMMIT
+            CheckinHandler.ReturnResult.COMMIT
         } else {
             doAnalysis(myProject, virtualFiles.toTypedArray())
-            return CheckinHandler.ReturnResult.CLOSE_WINDOW
+            CheckinHandler.ReturnResult.CLOSE_WINDOW
         }
     }
 
     fun doAnalysis(project: Project, virtualFiles: Array<VirtualFile>) {
         val managerEx = InspectionManager.getInstance(project) as InspectionManagerEx
         val analysisScope = AnalysisScope(project,
-                ArrayList(Arrays.asList(*virtualFiles)))
+                ArrayList(listOf(*virtualFiles)))
         val tools = Inspections.aliInspections(project) { it.tool is AliBaseInspection }
         AliInspectionAction.createContext(tools, managerEx, null, false)
                 .doInspections(analysisScope)

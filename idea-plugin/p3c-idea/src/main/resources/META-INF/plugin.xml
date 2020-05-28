@@ -31,6 +31,12 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.0.2.5x
+            <li>ignore AbstractMethodOrInterfaceMethodMustUseJavadocRule check for function who have @inheritdoc in javadoc.</li>
+            <li>fix some typos.</li>
+            <li>fix code smells.</li>
+            <li>upgrade dependencies.</li>
+        </ul>
         <ul>2.0.2.4x
             <li>add config mechanism to idea highlight.</li>
             <li>upgrade x8l version.</li>

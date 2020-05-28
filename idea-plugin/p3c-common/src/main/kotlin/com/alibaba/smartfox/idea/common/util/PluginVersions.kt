@@ -25,12 +25,12 @@ import com.intellij.openapi.extensions.PluginId
  * @author caikang
  */
 object PluginVersions {
-    val baseVersion141 = 141
-    val baseVersion143 = 143
-    val baseVersion145 = 145
-    val baseVersion162 = 162
-    val baseVersion163 = 163
-    val baseVersion171 = 171
+    const val baseVersion141 = 141
+    const val baseVersion143 = 143
+    const val baseVersion145 = 145
+    const val baseVersion162 = 162
+    const val baseVersion163 = 163
+    const val baseVersion171 = 171
 
     val pluginId: PluginId = (javaClass.classLoader as PluginClassLoader).pluginId
     val pluginDescriptor: IdeaPluginDescriptor = PluginManager.getPlugin(pluginId)!!

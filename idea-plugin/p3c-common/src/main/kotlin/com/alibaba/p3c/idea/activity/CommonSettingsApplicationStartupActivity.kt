@@ -33,7 +33,7 @@ import com.intellij.openapi.project.Project
  */
 class CommonSettingsApplicationStartupActivity : AliBaseApplicationStartupActivity {
     companion object {
-        val analyticsGroupId = "com.alibaba.p3c.analytics.action_group"
+        const val analyticsGroupId = "com.alibaba.p3c.analytics.action_group"
         val analyticsGroupText = "$analyticsGroupId.text"
         private val p3cConfig = P3cConfig()
     }

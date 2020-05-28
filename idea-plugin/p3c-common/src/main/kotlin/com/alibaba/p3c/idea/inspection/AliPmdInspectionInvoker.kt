@@ -150,7 +150,7 @@ class AliPmdInspectionInvoker(
 
         fun reInitInvokers(expireTime: Long) {
             invokers = CacheBuilder.newBuilder().maximumSize(500).expireAfterWrite(expireTime,
-                    TimeUnit.MILLISECONDS).build<FileRule, AliPmdInspectionInvoker>()!!
+                    TimeUnit.MILLISECONDS).build()!!
         }
     }
 }

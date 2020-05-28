@@ -50,7 +50,7 @@ public class NameListConfig {
         return nameListService;
     }
 
-    public synchronized static void setNameListService(NameListService nameListService) {
+    public synchronized static void setNameListService(@NotNull NameListService nameListService) {
         NameListConfig.nameListService = nameListService;
     }
 }

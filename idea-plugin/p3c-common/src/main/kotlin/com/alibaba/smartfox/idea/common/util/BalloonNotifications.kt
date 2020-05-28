@@ -34,12 +34,12 @@ import java.net.UnknownHostException
  * @date 2017/05/08
  */
 object BalloonNotifications {
-    val displayId = "SmartFox Intellij IDEA Balloon Notification"
+    const val displayId = "SmartFox Intellij IDEA Balloon Notification"
     val balloonGroup = buildNotificationGroup(displayId, NotificationDisplayType.BALLOON, true)
 
-    val stickyBalloonDisplayId = "SmartFox Intellij IDEA Notification"
+    const val stickyBalloonDisplayId = "SmartFox Intellij IDEA Notification"
     val stickyBalloonGroup = buildNotificationGroup(stickyBalloonDisplayId, NotificationDisplayType.STICKY_BALLOON, true)
-    val TITLE = "SmartFox Intellij IDEA Plugin"
+    const val TITLE = "SmartFox Intellij IDEA Plugin"
 
     fun showInfoDialog(component: Component, title: String, message: String) {
         Messages.showInfoMessage(component, message, title)
@@ -114,7 +114,7 @@ object LogNotifications {
 
 
 fun buildNotificationGroup(displayId: String, displayType: NotificationDisplayType, isLogByDefault: Boolean): NotificationGroup {
-    var notificationGroupClass = Class.forName("com.intellij.notification.NotificationGroup")
+    val notificationGroupClass = Class.forName("com.intellij.notification.NotificationGroup")
     notificationGroupClass.constructors.forEach {
         if (it.parameters.size == 3) {
             try {

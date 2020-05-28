@@ -31,8 +31,8 @@ allprojects {
     apply plugin: 'kotlin'
     apply plugin: 'maven-publish'
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
     compileJava.options.encoding = 'UTF-8'
     configurations.all {
         resolutionStrategy.cacheChangingModulesFor 0, 'seconds'

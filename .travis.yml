@@ -12,25 +12,17 @@ cache:
 install: true
 matrix:
   include:
-    - os: linux
-      jdk: openjdk8
-    - os: linux
-      jdk: openjdk9
-    - os: linux
-      jdk: openjdk10
-    - os: linux
-      jdk: openjdk11
-    - os: linux
-      jdk: openjdk12
-    - os: linux
-      jdk: openjdk13
-    - os: linux
-      jdk: openjdk14
-    - os: linux
-      jdk: openjdk-ea
-  allow_failures:
-    - jdk: openjdk14
+    - jdk: openjdk8
     - jdk: openjdk9
+    - jdk: openjdk10
+    - jdk: openjdk11
+    - jdk: openjdk12
+    - jdk: openjdk13
+    - jdk: openjdk14
+    - jdk: openjdk-ea
+  allow_failures:
+    - jdk: openjdk9
+    - jdk: openjdk14
     - jdk: openjdk-ea
 script:
   - "cd ./p3c-pmd"

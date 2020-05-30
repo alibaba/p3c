@@ -485,7 +485,7 @@ Note: Do not define Pattern pattern = Pattern.compile(.); within method body.
     </entry>
 
     <entry key="java.other.AvoidApacheBeanUtilsCopyRule.rule.msg">
-        <![CDATA[Avoid using *Apache Beanutils* to copy attributes.]]>
+        <![CDATA[Avoid using *Apache BeanUtils* to copy attributes.]]>
     </entry>
     <entry key="java.other.AvoidApacheBeanUtilsCopyRule.rule.desc">
         <![CDATA[

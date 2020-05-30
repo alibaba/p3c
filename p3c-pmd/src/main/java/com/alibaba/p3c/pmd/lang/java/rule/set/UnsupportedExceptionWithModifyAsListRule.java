@@ -73,7 +73,7 @@ public class UnsupportedExceptionWithModifyAsListRule extends AbstractAliRule {
                     continue;
                 }
                 List<Node> blockNodes = blockNode.findChildNodesWithXPath(CHILD_XPATH);
-                // variable.add .removed is forbbiden.
+                // variable.add .removed is forbidden.
                 for (Node blockItem : blockNodes) {
                     if (blockItem.getBeginLine() < item.getBeginLine()) {
                         continue;
@@ -108,7 +108,7 @@ public class UnsupportedExceptionWithModifyAsListRule extends AbstractAliRule {
     }
 
     /**
-     * judge name equels t.add t.remove t.clear
+     * judge name equals t.add t.remove t.clear
      *
      * @param name name
      * @param variableName variableName

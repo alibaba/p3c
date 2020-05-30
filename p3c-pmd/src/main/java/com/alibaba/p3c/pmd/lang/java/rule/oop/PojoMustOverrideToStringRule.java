@@ -35,7 +35,7 @@ public class PojoMustOverrideToStringRule extends AbstractPojoRule {
             + "[@Public='true' and MethodDeclarator[@Image='toString'] and "
             + "MethodDeclarator[@Image='toString' and @ParameterCount='0']]";
 
-    private static final String TOSTRING_XPATH = "//PrimaryExpression[PrimaryPrefix[Name"
+    private static final String TO_STRING_XPATH = "//PrimaryExpression[PrimaryPrefix[Name"
             + "[(ends-with(@Image, '.toString'))]]["
             + "(../PrimarySuffix/Arguments/ArgumentList/Expression/PrimaryExpression/PrimaryPrefix/Literal" +
             "[@StringLiteral"
@@ -94,7 +94,7 @@ public class PojoMustOverrideToStringRule extends AbstractPojoRule {
             // toString() definition
             ASTMethodDeclaration toStringMethod = (ASTMethodDeclaration) node.findChildNodesWithXPath(XPATH).get(0);
             ASTBlock block = toStringMethod.getBody();
-            if (block.hasDescendantMatchingXPath(TOSTRING_XPATH)) {
+            if (block.hasDescendantMatchingXPath(TO_STRING_XPATH)) {
                 addViolationWithMessage(data, block, MESSAGE_KEY_PREFIX + ".usesuper");
             }
         } catch (JaxenException e) {

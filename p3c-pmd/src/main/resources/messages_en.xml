@@ -409,7 +409,7 @@ Javadoc should include method instruction, description of parameters, return val
         <![CDATA[return value of method [%s] should have javadoc]]>
     </entry>
     <entry key="java.comment.AbstractMethodOrInterfaceMethodMustUseJavadocRule.violation.msg.exception">
-        <![CDATA[method [%s] should have javadoc for exception[%s]]]>
+        <![CDATA[method [%s] should have javadoc for exception [%s]]]>
     </entry>
 
     <entry key="java.comment.AvoidCommentBehindStatementRule.rule.msg">

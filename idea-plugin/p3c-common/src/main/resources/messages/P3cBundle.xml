@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+    <entry key="com.alibaba.p3c.action.switch_enable_irregular_commit">禁止不规范代码提交</entry>
+    <entry key="com.alibaba.p3c.action.switch_disable_irregular_commit">允许不规范代码提交</entry>
     <entry key="com.alibaba.p3c.analytics.action_group.text">阿里编码规约</entry>
     <entry key="com.alibaba.p3c.action.switch_language.text.cur_zh">切换语言至英文(English)</entry>
     <entry key="com.alibaba.p3c.action.switch_language.text.cur_en">切换语言至中文</entry>

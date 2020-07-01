@@ -37,5 +37,6 @@ public class ConcurrentRuleTest extends SimpleAggregatorTst {
         addRule(RULE_NAME, "ThreadLocalShouldRemoveRule");
         addRule(RULE_NAME, "AvoidConcurrentCompetitionRandomRule");
         addRule(RULE_NAME, "CountDownShouldInFinallyRule");
+        addRule(RULE_NAME, "LockShouldWithTryFinallyRule");
     }
 }

@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
-import java.util.concurrent.locks.Lock;
 
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
 
@@ -37,6 +36,10 @@ import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
 import net.sourceforge.pmd.lang.java.ast.AbstractJavaNode;
 import net.sourceforge.pmd.lang.java.ast.Token;
 
+import static com.alibaba.p3c.pmd.lang.java.rule.util.NodeUtils.isLockNode;
+import static com.alibaba.p3c.pmd.lang.java.rule.util.NodeUtils.isLockStatementExpression;
+import static com.alibaba.p3c.pmd.lang.java.rule.util.NodeUtils.isUnLockStatementExpression;
+
 /**
  * [Mandatory] SimpleDataFormat is unsafe, do not define it as a static variable.
  * If have to, lock or DateUtils class must be used.
@@ -46,8 +49,6 @@ import net.sourceforge.pmd.lang.java.ast.Token;
  */
 public class AvoidCallStaticSimpleDateFormatRule extends AbstractAliRule {
     private static final String FORMAT_METHOD_NAME = "format";
-    private static final String LOCK_NAME = "lock";
-    private static final String UN_LOCK_NAME = "unlock";
 
     @Override
     public Object visit(ASTMethodDeclaration node, Object data) {
@@ -101,7 +102,9 @@ public class AvoidCallStaticSimpleDateFormatRule extends AbstractAliRule {
                 // add lock node
                 stack.push(flowNode.getNode());
                 return;
-            } else if (isUnLockStatementExpression(statementExpression)) {
+            }
+
+            if (isUnLockStatementExpression(statementExpression)) {
                 // remove element in lock block
                 while (!stack.isEmpty()) {
                     Node node = stack.pop();
@@ -132,21 +135,18 @@ public class AvoidCallStaticSimpleDateFormatRule extends AbstractAliRule {
         return name.getImage();
     }
 
-    private boolean isLockNode(Node node) {
-        if (!(node instanceof ASTStatementExpression)) {
-            return false;
-        }
-        ASTStatementExpression statementExpression = (ASTStatementExpression)node;
-        return isLockStatementExpression(statementExpression);
-    }
-
-    private boolean isStaticSimpleDateFormatCall(ASTPrimaryExpression primaryExpression,
-        Set<String> localSimpleDateFormatNames) {
+    private boolean isStaticSimpleDateFormatCall(
+        ASTPrimaryExpression primaryExpression,
+        Set<String> localSimpleDateFormatNames
+    ) {
         if (primaryExpression.jjtGetNumChildren() == 0) {
             return false;
         }
         ASTName name = primaryExpression.getFirstDescendantOfType(ASTName.class);
         if (name == null || name.getType() != SimpleDateFormat.class) {
+            return false;
+        }
+        if (name.getNameDeclaration() == null || name.getNameDeclaration().getName() == null) {
             return false;
         }
         if (localSimpleDateFormatNames.contains(name.getNameDeclaration().getName())) {
@@ -161,20 +161,4 @@ public class AvoidCallStaticSimpleDateFormatRule extends AbstractAliRule {
         return FORMAT_METHOD_NAME.equals(token.image);
     }
 
-    private boolean isLockStatementExpression(ASTStatementExpression statementExpression) {
-        return isLockTypeAndMethod(statementExpression, LOCK_NAME);
-    }
-
-    private boolean isUnLockStatementExpression(ASTStatementExpression statementExpression) {
-        return isLockTypeAndMethod(statementExpression, UN_LOCK_NAME);
-    }
-
-    private boolean isLockTypeAndMethod(ASTStatementExpression statementExpression, String methodName) {
-        ASTName name = statementExpression.getFirstDescendantOfType(ASTName.class);
-        if (name == null || name.getType() == null || !Lock.class.isAssignableFrom(name.getType())) {
-            return false;
-        }
-        Token token = (Token)name.jjtGetLastToken();
-        return methodName.equals(token.image);
-    }
 }

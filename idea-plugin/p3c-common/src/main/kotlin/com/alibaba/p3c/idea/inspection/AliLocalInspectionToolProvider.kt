@@ -38,8 +38,10 @@ import javassist.ClassPool
 import javassist.CtField
 import javassist.NotFoundException
 import net.sourceforge.pmd.Rule
+import net.sourceforge.pmd.RuleSet
 import net.sourceforge.pmd.RuleSetFactory
 import net.sourceforge.pmd.RuleSetNotFoundException
+import net.sourceforge.pmd.RuleSets
 import javax.annotation.Generated
 
 /**
@@ -48,7 +50,7 @@ import javax.annotation.Generated
  */
 class AliLocalInspectionToolProvider : InspectionToolProvider {
 
-    override fun getInspectionClasses(): Array<Class<*>> {
+    override fun getInspectionClasses(): Array<Class<out LocalInspectionTool>> {
         return CLASS_LIST.toTypedArray()
     }
 
@@ -68,17 +70,17 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
         val ruleInfoMap: MutableMap<String, RuleInfo> = Maps.newHashMap<String, RuleInfo>()
         private val LOGGER = Logger.getInstance(AliLocalInspectionToolProvider::class.java)
         val ruleNames: MutableList<String> = Lists.newArrayList<String>()!!
-        private val CLASS_LIST = Lists.newArrayList<Class<*>>()
+        private val CLASS_LIST = Lists.newArrayList<Class<LocalInspectionTool>>()
         private val nativeInspectionToolClass = arrayListOf<Class<out LocalInspectionTool>>(
-                AliMissingOverrideAnnotationInspection::class.java,
-                AliAccessStaticViaInstanceInspection::class.java,
-                AliDeprecationInspection::class.java,
-                MapOrSetKeyShouldOverrideHashCodeEqualsInspection::class.java,
-                AliArrayNamingShouldHaveBracketInspection::class.java,
-                AliControlFlowStatementWithoutBracesInspection::class.java,
-                AliEqualsAvoidNullInspection::class.java,
-                AliLongLiteralsEndingWithLowercaseLInspection::class.java,
-                AliWrapperTypeEqualityInspection::class.java
+            AliMissingOverrideAnnotationInspection::class.java,
+            AliAccessStaticViaInstanceInspection::class.java,
+            AliDeprecationInspection::class.java,
+            MapOrSetKeyShouldOverrideHashCodeEqualsInspection::class.java,
+            AliArrayNamingShouldHaveBracketInspection::class.java,
+            AliControlFlowStatementWithoutBracesInspection::class.java,
+            AliEqualsAvoidNullInspection::class.java,
+            AliLongLiteralsEndingWithLowercaseLInspection::class.java,
+            AliWrapperTypeEqualityInspection::class.java
         )
         val javaShouldInspectChecker = object : ShouldInspectChecker {
             override fun shouldInspect(file: PsiFile): Boolean {
@@ -104,9 +106,9 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
                 val virtualFile = file.virtualFile
                 val index = ProjectRootManager.getInstance(file.project).fileIndex
                 return index.isInSource(virtualFile)
-                        && !index.isInTestSourceContent(virtualFile)
-                        && !index.isInLibraryClasses(virtualFile)
-                        && !index.isInLibrarySource(virtualFile)
+                    && !index.isInTestSourceContent(virtualFile)
+                    && !index.isInLibraryClasses(virtualFile)
+                    && !index.isInLibrarySource(virtualFile)
             }
         }
 
@@ -130,7 +132,7 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
                 val toolClass = pool.get(LocalInspectionTool::class.java.name)
                 val newField = CtField(toolClass, "forJavassist", cc)
                 cc.addField(newField, CtField.Initializer.byNew(itClass))
-                CLASS_LIST.add(cc.toClass())
+                CLASS_LIST.add(cc.toClass() as Class<LocalInspectionTool>)
             }
         }
 
@@ -150,7 +152,7 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
                     val value = "\"" + ruleInfo.rule.name + "\""
                     val newField = CtField.make("private String ruleName = $value;", cc)
                     cc.addField(newField, value)
-                    CLASS_LIST.add(cc.toClass())
+                    CLASS_LIST.add(cc.toClass() as Class<LocalInspectionTool>)
                 }
 
             } catch (e: NotFoundException) {
@@ -173,11 +175,27 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
             return result
         }
 
-        private fun processForRuleSet(ruleSetName: String, shouldInspectChecker: ShouldInspectChecker): List<RuleInfo> {
+        fun getRuleSet(ruleSetName: String): RuleSet {
             val factory = RuleSetFactory()
+            return factory.createRuleSet(ruleSetName.replace("/", "-"))
+        }
+
+        fun getRuleSetList(): List<RuleSet> {
+            return listOf(getRuleSet("java/ali-pmd"), getRuleSet("vm/ali-other"))
+        }
+
+        fun getRuleSets(): RuleSets {
+            return RuleSets().also { rs ->
+                for (ruleSet in getRuleSetList()) {
+                    rs.addRuleSet(ruleSet)
+                }
+            }
+        }
+
+        private fun processForRuleSet(ruleSetName: String, shouldInspectChecker: ShouldInspectChecker): List<RuleInfo> {
             val result = Lists.newArrayList<RuleInfo>()
             try {
-                val ruleSet = factory.createRuleSet(ruleSetName.replace("/", "-"))
+                val ruleSet = getRuleSet(ruleSetName)
                 ruleSet.rules.mapTo(result) {
                     RuleInfo(it, shouldInspectChecker)
                 }

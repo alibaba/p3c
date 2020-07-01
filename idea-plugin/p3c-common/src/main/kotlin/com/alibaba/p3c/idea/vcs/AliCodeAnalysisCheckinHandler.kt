@@ -46,8 +46,8 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiManager
 import com.intellij.ui.NonFocusableCheckBox
+import com.intellij.util.ExceptionUtil
 import com.intellij.util.PairConsumer
-import com.intellij.vcsUtil.Rethrow
 import java.awt.BorderLayout
 import java.util.ArrayList
 import java.util.Arrays
@@ -64,8 +64,8 @@ import javax.swing.JPanel
  * @date 2017/05/04
  */
 class AliCodeAnalysisCheckinHandler(
-        private val myProject: Project,
-        private val myCheckinPanel: CheckinProjectPanel
+    private val myProject: Project,
+    private val myCheckinPanel: CheckinProjectPanel
 ) : CheckinHandler() {
     private val dialogTitle = "Alibaba Code Analyze"
     private val cancelText = "&Cancel"
@@ -106,16 +106,20 @@ class AliCodeAnalysisCheckinHandler(
         return ServiceManager.getService(P3cConfig::class.java)
     }
 
-
-    override fun beforeCheckin(executor: CommitExecutor?,
-            additionalDataConsumer: PairConsumer<Any, Any>): CheckinHandler.ReturnResult {
+    override fun beforeCheckin(
+        executor: CommitExecutor?,
+        additionalDataConsumer: PairConsumer<Any, Any>
+    ): CheckinHandler.ReturnResult {
         if (!getSettings().analysisBeforeCheckin) {
             return CheckinHandler.ReturnResult.COMMIT
         }
         if (DumbService.getInstance(myProject).isDumb) {
-            if (Messages.showOkCancelDialog(myProject,
+            if (Messages.showOkCancelDialog(
+                    myProject,
                     "Code analysis is impossible until indices are up-to-date", dialogTitle,
-                    waitingText, commitText, null) == Messages.OK) {
+                    waitingText, commitText, null
+                ) == Messages.OK
+            ) {
                 return CheckinHandler.ReturnResult.CANCEL
             }
             return CheckinHandler.ReturnResult.COMMIT
@@ -124,12 +128,17 @@ class AliCodeAnalysisCheckinHandler(
         val virtualFiles = CheckinHandlerUtil.filterOutGeneratedAndExcludedFiles(myCheckinPanel.virtualFiles, myProject)
         val hasViolation = hasViolation(virtualFiles, myProject)
         if (!hasViolation) {
-            BalloonNotifications.showSuccessNotification("No suspicious code found！",
-                    myProject, "Analyze Finished")
+            BalloonNotifications.showSuccessNotification(
+                "No suspicious code found！",
+                myProject, "Analyze Finished"
+            )
             return CheckinHandler.ReturnResult.COMMIT
         }
-        if (Messages.showOkCancelDialog(myProject, "Found suspicious code,continue commit？",
-                dialogTitle, commitText, cancelText, null) == Messages.OK) {
+        if (Messages.showOkCancelDialog(
+                myProject, "Found suspicious code,continue commit？",
+                dialogTitle, commitText, cancelText, null
+            ) == Messages.OK
+        ) {
             return CheckinHandler.ReturnResult.COMMIT
         } else {
             doAnalysis(myProject, virtualFiles.toTypedArray())
@@ -139,58 +148,60 @@ class AliCodeAnalysisCheckinHandler(
 
     fun doAnalysis(project: Project, virtualFiles: Array<VirtualFile>) {
         val managerEx = InspectionManager.getInstance(project) as InspectionManagerEx
-        val analysisScope = AnalysisScope(project,
-                ArrayList(Arrays.asList(*virtualFiles)))
+        val analysisScope = AnalysisScope(
+            project,
+            ArrayList(Arrays.asList(*virtualFiles))
+        )
         val tools = Inspections.aliInspections(project) { it.tool is AliBaseInspection }
-        AliInspectionAction.createContext(tools, managerEx, null, false)
-                .doInspections(analysisScope)
+        AliInspectionAction.createContext(tools, managerEx, null, false, analysisScope)
+            .doInspections(analysisScope)
     }
 
     private fun hasViolation(virtualFiles: List<VirtualFile>, project: Project): Boolean {
         ApplicationManager.getApplication().assertIsDispatchThread()
         PsiDocumentManager.getInstance(myProject).commitAllDocuments()
         if (ApplicationManager.getApplication().isWriteAccessAllowed) throw RuntimeException(
-                "Must not run under write action")
+            "Must not run under write action"
+        )
         val result = AtomicBoolean(false)
         val exception = Ref.create<Exception>()
         ProgressManager.getInstance().run(
-                object : Task.Modal(myProject, VcsBundle.message("checking.code.smells.progress.title"), true) {
-                    override fun run(progress: ProgressIndicator) {
-                        try {
-                            val tools = Inspections.aliInspections(project) { it.tool is AliBaseInspection }
-                            val inspectionManager = InspectionManager.getInstance(project)
-                            val psiManager = PsiManager.getInstance(project)
-                            val count = AtomicInteger(0)
-                            val hasViolation = virtualFiles.asSequence().any {
-                                file ->
-                                ApplicationManager.getApplication().runReadAction(Computable {
-                                    val psiFile = psiManager.findFile(file) ?: return@Computable false
-                                    val curCount = count.incrementAndGet()
-                                    progress.text = file.canonicalPath
-                                    progress.fraction = curCount.toDouble() / virtualFiles.size.toDouble()
-                                    return@Computable tools.any {
-                                        progress.checkCanceled()
-                                        val tool = it.tool as LocalInspectionTool
-                                        val aliTool = tool as AliBaseInspection
-                                        progress.text2 = aliTool.ruleName()
-                                        val problems = tool.processFile(psiFile, inspectionManager)
-                                        problems.size > 0
-                                    }
-                                })
+            object : Task.Modal(myProject, VcsBundle.message("checking.code.smells.progress.title"), true) {
+                override fun run(progress: ProgressIndicator) {
+                    try {
+                        val tools = Inspections.aliInspections(project) { it.tool is AliBaseInspection }
+                        val inspectionManager = InspectionManager.getInstance(project)
+                        val psiManager = PsiManager.getInstance(project)
+                        val count = AtomicInteger(0)
+                        val hasViolation = virtualFiles.asSequence().any { file ->
+                            ApplicationManager.getApplication().runReadAction(Computable {
+                                val psiFile = psiManager.findFile(file) ?: return@Computable false
+                                val curCount = count.incrementAndGet()
+                                progress.text = file.canonicalPath
+                                progress.fraction = curCount.toDouble() / virtualFiles.size.toDouble()
+                                return@Computable tools.any {
+                                    progress.checkCanceled()
+                                    val tool = it.tool as LocalInspectionTool
+                                    val aliTool = tool as AliBaseInspection
+                                    progress.text2 = aliTool.ruleName()
+                                    val problems = tool.processFile(psiFile, inspectionManager)
+                                    problems.size > 0
+                                }
+                            })
 
-                            }
-                            result.set(hasViolation)
-                        } catch (e: ProcessCanceledException) {
-                            result.set(false)
-                        } catch (e: Exception) {
-                            log.error(e)
-                            exception.set(e)
                         }
+                        result.set(hasViolation)
+                    } catch (e: ProcessCanceledException) {
+                        result.set(false)
+                    } catch (e: Exception) {
+                        log.error(e)
+                        exception.set(e)
                     }
-                })
+                }
+            })
         if (!exception.isNull) {
             val t = exception.get()
-            Rethrow.reThrowRuntime(t)
+            ExceptionUtil.rethrowAllAsUnchecked(t)
         }
 
         return result.get()

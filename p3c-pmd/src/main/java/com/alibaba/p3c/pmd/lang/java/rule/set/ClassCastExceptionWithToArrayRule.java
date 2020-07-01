@@ -71,7 +71,7 @@ public class ClassCastExceptionWithToArrayRule extends AbstractAliRule {
                 if (childName.endsWith(".toArray") && suffix.getArgumentCount() == 0
                     && primarySuffixs.size() == 1) {
                     addViolationWithMessage(data, item,
-                        "java.set.ClassCastExceptionWithSubListToArrayListRule.violation.msg",
+                        "java.set.ClassCastExceptionWithToArrayRule.violation.msg",
                         new Object[] {childName});
                 }
             }

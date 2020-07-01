@@ -15,10 +15,12 @@
  */
 package com.alibaba.p3c.idea.pmd
 
+import com.alibaba.p3c.idea.component.AliProjectComponent
 import com.google.common.base.Throwables
 import com.intellij.openapi.application.ex.ApplicationUtil
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.fileEditor.FileDocumentManager
+import com.intellij.openapi.progress.ProcessCanceledException
 import com.intellij.psi.PsiFile
 import net.sourceforge.pmd.PMDConfiguration
 import net.sourceforge.pmd.PMDException
@@ -32,12 +34,16 @@ import net.sourceforge.pmd.RulesetsFactoryUtils
 import net.sourceforge.pmd.util.ResourceLoader
 import java.io.IOException
 import java.io.StringReader
+import net.sourceforge.pmd.SourceCodeProcessor as PmdSourceCodeProcessor
 
 /**
  * @author caikang
  * @date 2016/12/11
  */
-class AliPmdProcessor(val rule: Rule) {
+class AliPmdProcessor private constructor(val rule: Rule? = null, val ruleSets: RuleSets? = null) {
+    constructor(rule: Rule) : this(rule, null)
+    constructor(ruleSets: RuleSets) : this(null, ruleSets)
+
     private val ruleSetFactory: RuleSetFactory
     private val configuration = PMDConfiguration()
 
@@ -45,30 +51,42 @@ class AliPmdProcessor(val rule: Rule) {
         ruleSetFactory = RulesetsFactoryUtils.getRulesetFactory(configuration, ResourceLoader())
     }
 
-    fun processFile(psiFile: PsiFile): List<RuleViolation> {
+    fun processFile(psiFile: PsiFile, isOnTheFly: Boolean): List<RuleViolation> {
         configuration.setSourceEncoding(psiFile.virtualFile.charset.name())
         configuration.inputPaths = psiFile.virtualFile.canonicalPath
         val document = FileDocumentManager.getInstance().getDocument(psiFile.virtualFile) ?: return emptyList()
-        if (document.lineCount > 10000) {
-            return emptyList()
-        }
+        val project = psiFile.project
+        val aliProjectComponent = project.getComponent(AliProjectComponent::class.java)
+        val fileContext = aliProjectComponent.getFileContext(psiFile.virtualFile) ?: return emptyList()
         val ctx = RuleContext()
-        val processor = SourceCodeProcessor(configuration)
         val niceFileName = psiFile.virtualFile.canonicalPath!!
         val report = Report.createReport(ctx, niceFileName)
-        val ruleSets = RuleSets()
+        val processRuleSets = ruleSets ?: RuleSets().also { rs ->
+            val ruleSet = ruleSetFactory.createSingleRuleRuleSet(rule)
+            rs.addRuleSet(ruleSet)
+        }
 
-        val ruleSet = ruleSetFactory.createSingleRuleRuleSet(rule)
-        ruleSets.addRuleSet(ruleSet)
+
         LOG.debug("Processing " + ctx.sourceCodeFilename)
         try {
+            val reader = StringReader(document.text)
             ctx.languageVersion = null
-            processor.processSourceCode(StringReader(document.text), ruleSets, ctx)
+            if (isOnTheFly) {
+                SourceCodeProcessor(configuration, document, fileContext, isOnTheFly).processSourceCode(
+                    reader,
+                    processRuleSets,
+                    ctx
+                )
+            } else {
+                PmdSourceCodeProcessor(configuration).processSourceCode(reader, processRuleSets, ctx)
+            }
         } catch (pmde: PMDException) {
             LOG.debug("Error while processing file: $niceFileName", pmde.cause)
             report.addError(Report.ProcessingError(pmde, niceFileName))
         } catch (ioe: IOException) {
             LOG.error("Unable to read source file: $niceFileName", ioe)
+        } catch (pce: ProcessCanceledException) {
+            throw pce
         } catch (re: RuntimeException) {
             val root = Throwables.getRootCause(re)
             if (root !is ApplicationUtil.CannotRunReadActionException) {

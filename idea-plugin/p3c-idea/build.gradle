@@ -4,9 +4,16 @@ plugins {
 apply plugin: 'kotlin'
 apply plugin: 'idea'
 
+def myPlugins = ['git4idea']
+def versionDotIndex = idea_version.indexOf('.')
+def intVersion = versionDotIndex == -1 ? Integer.parseInt(idea_version) : Integer.parseInt(idea_version.substring(0, versionDotIndex))
+if (intVersion >= 2019 || (intVersion < 1000 && intVersion >= 193)) {
+    myPlugins = ['git4idea', 'java']
+}
+
 intellij {
     version idea_version
-    plugins 'git4idea'
+    plugins = myPlugins
     pluginName plugin_name
     updateSinceUntilBuild false
     sandboxDirectory "idea-sandbox"

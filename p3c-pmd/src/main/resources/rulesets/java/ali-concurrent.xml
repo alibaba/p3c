@@ -286,4 +286,44 @@ Positive example 2：
         ]]>
         </example>
     </rule>
+    <rule name="LockShouldWithTryFinallyRule"
+          language="java"
+          since="1.6"
+          message="java.concurrent.LockShouldWithTryFinallyRule.rule.msg"
+          dfa="true"
+          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.LockShouldWithTryFinallyRule">
+        <description>java.concurrent.LockShouldWithTryFinallyRule.rule.desc</description>
+        <priority>1</priority>
+        <example>
+            <![CDATA[
+Positive example：
+    Lock lock = new XxxLock();
+    // ...
+    lock.lock();
+    try {
+        doSomething();
+        doOthers();
+    } finally {
+        lock.unlock();
+    }
+        ]]>
+        </example>
+        <example>
+            <![CDATA[
+Negative example：
+    Lock lock = new XxxLock();
+    // ...
+    try {
+        // If an exception is thrown here, the finally block is executed directly
+        doSomething();
+        // The finally block executes regardless of whether the lock is successful or not
+        lock.lock();
+        doOthers();
+
+    } finally {
+        lock.unlock();
+    }
+        ]]>
+        </example>
+    </rule>
 </ruleset>

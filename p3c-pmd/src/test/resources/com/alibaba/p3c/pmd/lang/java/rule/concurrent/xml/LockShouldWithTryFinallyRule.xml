@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+    <test-code>
+        <description>LockShouldWithTryFinallyRule</description>
+        <expected-problems>2</expected-problems>
+        <expected-linenumbers>15,20</expected-linenumbers>
+        <code><![CDATA[
+package com.alibaba.test.p3c;
+
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+/**
+ * @author caikang
+ * @date 2019/09/29
+ */
+public class LockTest {
+    private Lock lock = new ReentrantLock();
+
+    public void testLock() {
+        try {
+            lock.lockInterruptibly();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            lock.lock();
+            try {
+
+            } finally {
+            }
+        } catch (Exception e) {
+
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+        ]]></code>
+    </test-code>
+</test-data>

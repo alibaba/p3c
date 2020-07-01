@@ -15,10 +15,15 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.util;
 
+import java.util.concurrent.locks.Lock;
+
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTName;
 import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
+import net.sourceforge.pmd.lang.java.ast.ASTStatementExpression;
 import net.sourceforge.pmd.lang.java.ast.AbstractJavaAccessTypeNode;
+import net.sourceforge.pmd.lang.java.ast.Token;
 import net.sourceforge.pmd.lang.java.typeresolution.TypeHelper;
 
 /**
@@ -26,6 +31,10 @@ import net.sourceforge.pmd.lang.java.typeresolution.TypeHelper;
  * @date 2016/11/16
  */
 public class NodeUtils {
+    public static final String LOCK_NAME = "lock";
+    public static final String LOCK_INTERRUPTIBLY_NAME = "lockInterruptibly";
+    public static final String UN_LOCK_NAME = "unlock";
+
     public static boolean isParentOrSelf(Node descendant, Node ancestor) {
         if (descendant == ancestor) {
             return true;
@@ -63,5 +72,30 @@ public class NodeUtils {
 
     public static Class<?> getNodeType(AbstractJavaAccessTypeNode node) {
         return node == null ? null : node.getType();
+    }
+
+    public static boolean isLockStatementExpression(ASTStatementExpression statementExpression) {
+        return isLockTypeAndMethod(statementExpression, LOCK_NAME);
+    }
+
+    public static boolean isUnLockStatementExpression(ASTStatementExpression statementExpression) {
+        return isLockTypeAndMethod(statementExpression, UN_LOCK_NAME);
+    }
+
+    private static boolean isLockTypeAndMethod(ASTStatementExpression statementExpression, String methodName) {
+        ASTName name = statementExpression.getFirstDescendantOfType(ASTName.class);
+        if (name == null || name.getType() == null || !Lock.class.isAssignableFrom(name.getType())) {
+            return false;
+        }
+        Token token = (Token)name.jjtGetLastToken();
+        return methodName.equals(token.image);
+    }
+
+    public static boolean isLockNode(Node node) {
+        if (!(node instanceof ASTStatementExpression)) {
+            return false;
+        }
+        ASTStatementExpression statementExpression = (ASTStatementExpression)node;
+        return isLockStatementExpression(statementExpression);
     }
 }

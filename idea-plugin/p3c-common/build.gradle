@@ -7,7 +7,7 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 javadoc {
-    options.tags = [ "date" ]
+    options.tags = ["date"]
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -26,19 +26,27 @@ artifacts {
     archives sourcesJar
 }
 
+def myPlugins = []
+def versionDotIndex = idea_version.indexOf('.')
+def intVersion = versionDotIndex == -1 ? Integer.parseInt(idea_version) : Integer.parseInt(idea_version.substring(0, versionDotIndex))
+if (intVersion >= 2019 || (intVersion < 1000 && intVersion >= 193)) {
+    myPlugins = ['java']
+}
+
 intellij {
     version idea_version
+    plugins = myPlugins
     pluginName plugin_name
     updateSinceUntilBuild false
     sandboxDirectory "$project.buildDir/idea-sandbox/$idea_version"
 }
-version '2.0.0'
+version '2.0.1'
 
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 dependencies {
     compile group: 'org.freemarker', name: 'freemarker', version: '2.3.25-incubating'
-    compile 'com.alibaba.p3c:p3c-pmd:2.0.0'
+    compile 'com.alibaba.p3c:p3c-pmd:2.0.1'
     compile group: 'org.javassist', name: 'javassist', version: '3.21.0-GA'
 }
 

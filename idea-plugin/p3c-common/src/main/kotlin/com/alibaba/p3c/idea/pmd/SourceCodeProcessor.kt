@@ -1,12 +1,18 @@
 /**
  * BSD-style license; for more info see http://pmd.sourceforge.net/license.html
  */
+
 package com.alibaba.p3c.idea.pmd
 
+import com.alibaba.p3c.idea.component.AliProjectComponent.FileContext
 import com.alibaba.p3c.idea.config.P3cConfig
+import com.alibaba.p3c.idea.util.withLockNotInline
+import com.alibaba.p3c.idea.util.withTryLock
 import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
 import com.intellij.openapi.components.ServiceManager
+import com.intellij.openapi.diagnostic.Logger
+import com.intellij.openapi.editor.Document
 import net.sourceforge.pmd.PMD
 import net.sourceforge.pmd.PMDConfiguration
 import net.sourceforge.pmd.PMDException
@@ -20,39 +26,16 @@ import net.sourceforge.pmd.lang.LanguageVersionHandler
 import net.sourceforge.pmd.lang.Parser
 import net.sourceforge.pmd.lang.ast.Node
 import net.sourceforge.pmd.lang.ast.ParseException
-import net.sourceforge.pmd.lang.xpath.Initializer
-import java.io.IOException
-import java.io.InputStream
-import java.io.InputStreamReader
 import java.io.Reader
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeUnit.MILLISECONDS
 
-class SourceCodeProcessor(private val configuration: PMDConfiguration) {
-
-    /**
-     * Processes the input stream against a rule set using the given input
-     * encoding.
-     *
-     * @param sourceCode
-     * The InputStream to analyze.
-     * @param ruleSets
-     * The collection of rules to process against the file.
-     * @param ctx
-     * The context in which PMD is operating.
-     * @throws PMDException
-     * if the input encoding is unsupported, the input stream could
-     * not be parsed, or other error is encountered.
-     * @see .processSourceCode
-     */
-    @Throws(PMDException::class)
-    fun processSourceCode(sourceCode: InputStream, ruleSets: RuleSets, ctx: RuleContext) {
-        try {
-            InputStreamReader(sourceCode, configuration.sourceEncoding).use { streamReader -> processSourceCode(streamReader, ruleSets, ctx) }
-        } catch (e: IOException) {
-            throw PMDException("IO exception: " + e.message, e)
-        }
-
-    }
+class SourceCodeProcessor(
+    private val configuration: PMDConfiguration,
+    private val document: Document,
+    private val fileContext: FileContext,
+    private val isOnTheFly: Boolean
+) {
 
     /**
      * Processes the input stream against a rule set using the given input
@@ -77,10 +60,6 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
     @Throws(PMDException::class)
     fun processSourceCode(sourceCode: Reader, ruleSets: RuleSets, ctx: RuleContext) {
         determineLanguage(ctx)
-
-        // make sure custom XPath functions are initialized
-        Initializer.initialize()
-
         try {
             ruleSets.start(ctx)
             processSource(sourceCode, ruleSets, ctx)
@@ -103,15 +82,60 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
         }
     }
 
-    private fun getRootNode(sourceCode: Reader, ruleSets: RuleSets, ctx: RuleContext): Node {
+    private fun getRootNode(sourceCode: Reader, ruleSets: RuleSets, ctx: RuleContext): Node? {
         if (!smartFoxConfig.astCacheEnable) {
             return parseNode(ctx, ruleSets, sourceCode)
         }
-        val node = nodeCache.getIfPresent(ctx.sourceCodeFilename)
+        val node = getNode(ctx.sourceCodeFilename, isOnTheFly)
         if (node != null) {
             return node
         }
-        return parseNode(ctx, ruleSets, sourceCode)
+        if (document.lineCount > 3000 && isOnTheFly) {
+            return null
+        }
+        val lock = fileContext.lock
+        val readLock = lock.readLock()
+        val writeLock = lock.writeLock()
+        val ruleName = ruleSets.allRules.joinToString(",") { it.name }
+        val fileName = ctx.sourceCodeFilename
+        val readAction = {
+            getNode(ctx.sourceCodeFilename, isOnTheFly)
+        }
+        val cacheNode = if (isOnTheFly) {
+            readLock.withTryLock(50, MILLISECONDS, readAction)
+        } else {
+            val start = System.currentTimeMillis()
+            LOG.info("rule:$ruleName,file:$fileName require read lock")
+            readLock.withLockNotInline(readAction).also {
+                LOG.info("rule:$ruleName,file:$fileName get result $it with read lock ,elapsed ${System.currentTimeMillis() - start}")
+            }
+        }
+        if (cacheNode != null) {
+            return cacheNode
+        }
+        val writeAction = {
+            val finalNode = getNode(ctx.sourceCodeFilename, isOnTheFly)
+            if (finalNode == null) {
+                val start = System.currentTimeMillis()
+                if (!isOnTheFly) {
+                    LOG.info("rule:$ruleName,file:$fileName parse with write lock")
+                }
+                parseNode(ctx, ruleSets, sourceCode).also {
+                    if (!isOnTheFly) {
+                        LOG.info("rule:$ruleName,file:$fileName get result $it parse with write lock ,elapsed ${System.currentTimeMillis() - start}")
+                    }
+                }
+            } else {
+                finalNode
+            }
+        }
+        return if (isOnTheFly) {
+            writeLock.withTryLock(50, MILLISECONDS, writeAction)!!
+        } else {
+            writeLock.withLockNotInline(
+                writeAction
+            )!!
+        }
     }
 
     private fun parseNode(ctx: RuleContext, ruleSets: RuleSets, sourceCode: Reader): Node {
@@ -123,16 +147,19 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
         val language = languageVersion.language
         usesDFA(languageVersion, rootNode, ruleSets, language)
         usesTypeResolution(languageVersion, rootNode, ruleSets, language)
-        nodeCache.put(ctx.sourceCodeFilename, rootNode)
+        onlyTheFlyCache.put(ctx.sourceCodeFilename, rootNode)
+        userTriggerNodeCache.put(ctx.sourceCodeFilename, rootNode)
         return rootNode
     }
 
     private fun symbolFacade(rootNode: Node, languageVersionHandler: LanguageVersionHandler) {
-        TimeTracker.startOperation(TimedOperationCategory.SYMBOL_TABLE).use { to -> languageVersionHandler.getSymbolFacade(configuration.classLoader).start(rootNode) }
+        TimeTracker.startOperation(TimedOperationCategory.SYMBOL_TABLE)
+            .use { languageVersionHandler.getSymbolFacade(configuration.classLoader).start(rootNode) }
     }
 
     private fun resolveQualifiedNames(rootNode: Node, handler: LanguageVersionHandler) {
-        TimeTracker.startOperation(TimedOperationCategory.QUALIFIED_NAME_RESOLUTION).use { to -> handler.getQualifiedNameResolutionFacade(configuration.classLoader).start(rootNode) }
+        TimeTracker.startOperation(TimedOperationCategory.QUALIFIED_NAME_RESOLUTION)
+            .use { handler.getQualifiedNameResolutionFacade(configuration.classLoader).start(rootNode) }
     }
 
     // private ParserOptions getParserOptions(final LanguageVersionHandler
@@ -153,8 +180,10 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
         }
     }
 
-    private fun usesTypeResolution(languageVersion: LanguageVersion, rootNode: Node, ruleSets: RuleSets,
-        language: Language) {
+    private fun usesTypeResolution(
+        languageVersion: LanguageVersion, rootNode: Node, ruleSets: RuleSets,
+        language: Language
+    ) {
 
         if (ruleSets.usesTypeResolution(language)) {
             TimeTracker.startOperation(TimedOperationCategory.TYPE_RESOLUTION).use { to ->
@@ -164,21 +193,22 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
         }
     }
 
-
-    private fun usesMultifile(rootNode: Node, languageVersionHandler: LanguageVersionHandler, ruleSets: RuleSets,
-        language: Language) {
+    private fun usesMultifile(
+        rootNode: Node, languageVersionHandler: LanguageVersionHandler, ruleSets: RuleSets,
+        language: Language
+    ) {
 
         if (ruleSets.usesMultifile(language)) {
-            TimeTracker.startOperation(TimedOperationCategory.MULTIFILE_ANALYSIS).use { to -> languageVersionHandler.multifileFacade.start(rootNode) }
+            TimeTracker.startOperation(TimedOperationCategory.MULTIFILE_ANALYSIS)
+                .use { languageVersionHandler.multifileFacade.start(rootNode) }
         }
     }
-
 
     private fun processSource(sourceCode: Reader, ruleSets: RuleSets, ctx: RuleContext) {
         val languageVersion = ctx.languageVersion
         val languageVersionHandler = languageVersion.languageVersionHandler
 
-        val rootNode = getRootNode(sourceCode, ruleSets, ctx)
+        val rootNode = getRootNode(sourceCode, ruleSets, ctx) ?: return
         resolveQualifiedNames(rootNode, languageVersionHandler)
         symbolFacade(rootNode, languageVersionHandler)
         val language = languageVersion.language
@@ -201,21 +231,42 @@ class SourceCodeProcessor(private val configuration: PMDConfiguration) {
 
     companion object {
         val smartFoxConfig = ServiceManager.getService(P3cConfig::class.java)!!
-        private lateinit var nodeCache: Cache<String, Node>
+        private lateinit var onlyTheFlyCache: Cache<String, Node>
+        private lateinit var userTriggerNodeCache: Cache<String, Node>
+        private val LOG = Logger.getInstance(SourceCodeProcessor::class.java)
 
         init {
             reInitNodeCache(smartFoxConfig.astCacheTime)
         }
 
         fun reInitNodeCache(expireTime: Long) {
-            nodeCache = CacheBuilder.newBuilder().concurrencyLevel(16)
+            onlyTheFlyCache = CacheBuilder.newBuilder().concurrencyLevel(16)
                 .expireAfterWrite(expireTime, TimeUnit.MILLISECONDS)
-                .maximumSize(100)
+                .maximumSize(300)
+                .build<String, Node>()!!
+
+            userTriggerNodeCache = CacheBuilder.newBuilder().concurrencyLevel(16)
+                .expireAfterWrite(10, TimeUnit.MINUTES)
+                .maximumSize(300)
                 .build<String, Node>()!!
         }
 
         fun invalidateCache(file: String) {
-            nodeCache.invalidate(file)
+            onlyTheFlyCache.invalidate(file)
+            userTriggerNodeCache.invalidate(file)
+        }
+
+        fun invalidUserTrigger(file: String) {
+            userTriggerNodeCache.invalidate(file)
+        }
+
+        fun invalidateAll() {
+            onlyTheFlyCache.invalidateAll()
+            userTriggerNodeCache.invalidateAll()
+        }
+
+        fun getNode(file: String, isOnTheFly: Boolean): Node? {
+            return if (isOnTheFly) onlyTheFlyCache.getIfPresent(file) else userTriggerNodeCache.getIfPresent(file)
         }
     }
 }

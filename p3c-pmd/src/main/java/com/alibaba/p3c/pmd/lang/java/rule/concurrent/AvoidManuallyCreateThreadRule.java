@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.concurrent.ThreadFactory;
 
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import com.alibaba.p3c.pmd.lang.java.rule.util.NodeUtils;
+
 import net.sourceforge.pmd.lang.java.ast.ASTAllocationExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTBlockStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;

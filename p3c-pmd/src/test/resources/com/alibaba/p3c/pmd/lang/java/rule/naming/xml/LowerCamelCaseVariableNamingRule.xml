@@ -7,6 +7,7 @@
     private String abC;
     private String AbC;
     private String abCd;
+    private String locationA;
     private void f(){
         String s = "test";
     }
@@ -15,8 +16,8 @@
     </code-fragment>
     <test-code>
         <description>Variable name should be lowerCamelCase</description>
-        <expected-problems>2</expected-problems>
-        <expected-linenumbers>2,3</expected-linenumbers>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>3</expected-linenumbers>
         <code-ref id="LowerCamelCaseVariableNamingRuleTest" />
     </test-code>
 
@@ -118,7 +119,7 @@ public interface BizConstants {
      public class MockTest{
         @Mock
         void $clinit(){}
-     }
+     }   
     ]]>
     </code-fragment>
     <test-code>
@@ -172,6 +173,90 @@ public interface BizConstants {
         <expected-problems>0</expected-problems>
         <code-ref id="LowerCamelCaseVariableNamingRuleTest9" />
     </test-code>
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest10">
+        <![CDATA[
+         public class Example {
+            public void test(){
+                String myNAME = "zhangsan";
+            }
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase10</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>3</expected-linenumbers>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest10" />
+    </test-code>
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest11">
+        <![CDATA[
+         public class Example {
+            public void test(){
+                String myDOList = "DOList";
+                String myDTOList = "DTOList";
+                String myVOList = "VOList";
+                String myDAOList = "DAOList";
+                String myBOList = "BOList";
+            }
+            public void getScrollX(){}
+            public void getScrollY(){}
+            public void getScrollZ(){}
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase11</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest11" />
+    </test-code>
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest12">
+        <![CDATA[
+         public class Example {
+            public void test(){
+                String myBO = "myBO";
+            }
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase12</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest12" />
+    </test-code>
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest13">
+        <![CDATA[
+         public class Example {
+            public void test(){
+                String myUDF = "myUDF";
+            }
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase13</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest13" />
+    </test-code>
+
+    <code-fragment id="LowerCamelCaseVariableNamingRuleTest14">
+        <![CDATA[
+         public class Example {
+            public void test(){
+                String myUDAF = "myUDAF";
+            }
+        }
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Variable name should be lowerCamelCase14</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="LowerCamelCaseVariableNamingRuleTest14" />
+    </test-code>
+
 </test-data>
 
 

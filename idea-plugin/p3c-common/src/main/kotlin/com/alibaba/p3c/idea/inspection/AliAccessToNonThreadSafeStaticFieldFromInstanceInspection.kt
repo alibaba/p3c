@@ -17,14 +17,14 @@ package com.alibaba.p3c.idea.inspection
 
 import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.intellij.codeHighlighting.HighlightDisplayLevel
-import com.siyeh.ig.threading.AccessToNonThreadSafeStaticFieldFromInstanceInspectionBase
+import com.siyeh.ig.threading.AccessToNonThreadSafeStaticFieldFromInstanceInspection
 
 /**
  * @author caikang
  * @date 2016/12/08
  */
 class AliAccessToNonThreadSafeStaticFieldFromInstanceInspection
-    : AccessToNonThreadSafeStaticFieldFromInstanceInspectionBase,
+    : AccessToNonThreadSafeStaticFieldFromInstanceInspection,
         AliBaseInspection {
     constructor()
     /**

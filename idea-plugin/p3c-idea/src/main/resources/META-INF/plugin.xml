@@ -6,6 +6,15 @@
     <change-notes>
         <![CDATA[
          <ul>
+        2.1.0
+        <li>Fix idea 2020.2 Ultimate compatibility issue</li>
+        <li>Minimum supported idea version up to 2018.3</li>
+        <li>Kotlin upgrade to 1.3.72</li>
+        <li>Disable real time inspect if file lines more than 3000 lines</li>
+        <li>Fix https://github.com/alibaba/p3c/issues/722</li>
+        <li>Fix https://github.com/alibaba/p3c/issues/620</li>
+        </ul>
+        <ul>
         2.0.2
         <li>Fix idea 2020.1 Ultimate compatibility issue</li>
         </ul>
@@ -75,7 +84,7 @@
     </change-notes>
     <vendor>alibaba</vendor>
     <version>2.0.0</version>
-    <idea-version since-build="145.0"/>
+    <idea-version since-build="183.4284"/>
     <depends optional="true">com.intellij.velocity</depends>
     <depends optional="true" config-file="p3c.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>

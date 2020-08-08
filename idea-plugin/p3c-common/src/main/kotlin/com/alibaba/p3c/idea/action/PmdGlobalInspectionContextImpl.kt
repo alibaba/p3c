@@ -6,6 +6,7 @@ import com.alibaba.p3c.idea.inspection.AliLocalInspectionToolProvider
 import com.alibaba.p3c.idea.inspection.PmdRuleInspectionIdentify
 import com.alibaba.p3c.idea.pmd.AliPmdProcessor
 import com.intellij.analysis.AnalysisScope
+import com.intellij.codeInsight.daemon.ProblemHighlightFilter
 import com.intellij.codeInsight.daemon.impl.DaemonProgressIndicator
 import com.intellij.codeInspection.ex.GlobalInspectionContextImpl
 import com.intellij.codeInspection.ui.InspectionResultsView
@@ -14,21 +15,32 @@ import com.intellij.concurrency.JobLauncherImpl
 import com.intellij.concurrency.SensitiveProgressWrapper
 import com.intellij.diagnostic.ThreadDumper
 import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.application.ReadAction
 import com.intellij.openapi.application.ex.ApplicationManagerEx
 import com.intellij.openapi.diagnostic.Logger
+import com.intellij.openapi.editor.Document
 import com.intellij.openapi.progress.ProcessCanceledException
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressIndicatorProvider
 import com.intellij.openapi.progress.ProgressManager
+import com.intellij.openapi.progress.Task.Backgroundable
+import com.intellij.openapi.progress.impl.CoreProgressManager
 import com.intellij.openapi.progress.util.ProgressIndicatorUtils
 import com.intellij.openapi.project.DumbService
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.project.ProjectUtilCore
+import com.intellij.openapi.project.displayUrlRelativeToProject
+import com.intellij.openapi.project.isProjectOrWorkspaceFile
+import com.intellij.openapi.roots.FileIndex
+import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.util.Disposer
 import com.intellij.openapi.util.EmptyRunnable
 import com.intellij.openapi.util.NotNullLazyValue
 import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.psi.PsiBinaryFile
+import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiFile
+import com.intellij.psi.PsiManager
+import com.intellij.psi.SingleRootFileViewProvider
 import com.intellij.psi.search.LocalSearchScope
 import com.intellij.psi.search.SearchScope
 import com.intellij.psi.util.PsiUtilCore
@@ -123,20 +135,7 @@ class PmdGlobalInspectionContextImpl(
         val localScopeFiles: MutableSet<VirtualFile>? = if (searchScope is LocalSearchScope) THashSet() else null
         val filesToInspect: BlockingQueue<PsiFile> = ArrayBlockingQueue(1000)
         val iteratingIndicator: ProgressIndicator = SensitiveProgressWrapper(progressIndicator)
-        val startIterateScopeInBackground = ReflectionUtil.getDeclaredMethod(
-            javaClass.superclass,
-            "startIterateScopeInBackground",
-            AnalysisScope::class.java,
-            Collection::class.java,
-            headlessEnvironment.javaClass,
-            BlockingQueue::class.java,
-            ProgressIndicator::class.java
-        )
-        requireNotNull(startIterateScopeInBackground) {
-            "method GlobalInspectionContextImpl.startIterateScopeInBackground not found in this IDEA version"
-        }
-        val future: Future<*> = startIterateScopeInBackground.invoke(
-            this,
+        val future: Future<*> = startIterateScopeInBackground(
             scope,
             localScopeFiles,
             headlessEnvironment,
@@ -219,12 +218,91 @@ class PmdGlobalInspectionContextImpl(
         ProgressManager.checkCanceled()
     }
 
+    private fun startIterateScopeInBackground(
+        scope: AnalysisScope,
+        localScopeFiles: MutableCollection<VirtualFile>?,
+        headlessEnvironment: Boolean,
+        outFilesToInspect: BlockingQueue<in PsiFile>,
+        progressIndicator: ProgressIndicator
+    ): Future<*>? {
+        val task: Backgroundable = object : Backgroundable(project, "Scanning Files to Inspect") {
+            override fun run(indicator: ProgressIndicator) {
+                try {
+                    val fileIndex: FileIndex = ProjectRootManager.getInstance(project).fileIndex
+                    scope.accept { file: VirtualFile? ->
+                        ProgressManager.checkCanceled()
+                        if (isProjectOrWorkspaceFile(file!!) || !fileIndex.isInContent(file)) return@accept true
+                        val psiFile =
+                            ReadAction.compute<PsiFile?, RuntimeException> {
+                                if (project.isDisposed) throw ProcessCanceledException()
+                                val psi = PsiManager.getInstance(project).findFile(file)
+                                val document =
+                                    psi?.let { shouldProcess(it, headlessEnvironment, localScopeFiles) }
+                                if (document != null) {
+                                    return@compute psi
+                                }
+                                null
+                            }
+                        // do not inspect binary files
+                        if (psiFile != null) {
+                            try {
+                                check(!ApplicationManager.getApplication().isReadAccessAllowed) { "Must not have read action" }
+                                outFilesToInspect.put(psiFile)
+                            } catch (e: InterruptedException) {
+                                logger.error(e)
+                            }
+                        }
+                        ProgressManager.checkCanceled()
+                        true
+                    }
+                } catch (e: ProcessCanceledException) {
+                    // ignore, but put tombstone
+                } finally {
+                    try {
+                        outFilesToInspect.put(PsiUtilCore.NULL_PSI_FILE)
+                    } catch (e: InterruptedException) {
+                        logger.error(e)
+                    }
+                }
+            }
+        }
+        return (ProgressManager.getInstance() as CoreProgressManager).runProcessWithProgressAsynchronously(
+            task,
+            progressIndicator,
+            null
+        )
+    }
+
+    private fun shouldProcess(
+        file: PsiFile,
+        headlessEnvironment: Boolean,
+        localScopeFiles: MutableCollection<VirtualFile>?
+    ): Document? {
+        val virtualFile = file.virtualFile ?: return null
+        if (isBinary(file)) return null //do not inspect binary files
+        if (isViewClosed && !headlessEnvironment) {
+            throw ProcessCanceledException()
+        }
+        if (logger.isDebugEnabled) {
+            logger.debug("Running local inspections on " + virtualFile.path)
+        }
+        if (SingleRootFileViewProvider.isTooLargeForIntelligence(virtualFile)) return null
+        if (localScopeFiles != null && !localScopeFiles.add(virtualFile)) return null
+        return if (!ProblemHighlightFilter.shouldProcessFileInBatch(file)) null else PsiDocumentManager.getInstance(
+            project
+        ).getDocument(file)
+    }
+
+    private fun isBinary(file: PsiFile): Boolean {
+        return file is PsiBinaryFile || file.fileType.isBinary
+    }
+
     private fun doPmdProcess(
         file: PsiFile,
         aliProjectComponent: AliProjectComponent,
         virtualFile: VirtualFile
     ) {
-        val url: String = ProjectUtilCore.displayUrlRelativeToProject(
+        val url: String = displayUrlRelativeToProject(
             virtualFile,
             virtualFile.presentableUrl,
             project,

@@ -21,7 +21,7 @@ import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 import net.sourceforge.pmd.lang.ast.Node;
 
 /**
- * Avoid using *Apache Beanutils* to copy attributes.
+ * Avoid using *Apache BeanUtils* to copy attributes.
  * Note: *Spring BeanUtils* and *Cglib BeanCopier* are recommended to be used, which have better performance.
  * 
  * @author keriezhang

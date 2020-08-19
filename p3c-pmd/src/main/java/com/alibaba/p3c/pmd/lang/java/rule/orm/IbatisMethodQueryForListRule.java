@@ -20,7 +20,13 @@ import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.alibaba.p3c.pmd.lang.java.util.VariableUtils;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 import net.sourceforge.pmd.lang.ast.Node;
-import net.sourceforge.pmd.lang.java.ast.*;
+import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
+import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTLiteral;
+import net.sourceforge.pmd.lang.java.ast.ASTName;
+import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
 import org.apache.commons.lang3.StringUtils;
 import org.jaxen.JaxenException;
 

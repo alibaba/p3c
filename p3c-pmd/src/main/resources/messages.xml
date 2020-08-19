@@ -484,7 +484,7 @@
     </entry>
 
     <entry key="java.other.AvoidApacheBeanUtilsCopyRule.rule.msg">
-        <![CDATA[避免用Apache Beanutils进行属性的copy。]]>
+        <![CDATA[避免用Apache BeanUtils进行属性的copy。]]>
     </entry>
     <entry key="java.other.AvoidApacheBeanUtilsCopyRule.rule.desc">
         <![CDATA[

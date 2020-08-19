@@ -61,7 +61,7 @@ public class WrapperTypeEqualityRule extends AbstractAliRule {
     }
 
     private boolean isArrayLength(ASTPrimaryExpression expression) {
-        // assume expression like "x.length" is the length of array, field with name "length" may result in misrecognition
+        // assume expression like "x.length" is the length of array, field with name "length" may result in mis-recognition
         return "length".equals(expression.jjtGetLastToken().getImage())
             && ".".equals(expression.jjtGetFirstToken().getNext().getImage());
     }

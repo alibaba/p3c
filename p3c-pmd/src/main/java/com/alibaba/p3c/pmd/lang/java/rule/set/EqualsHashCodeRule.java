@@ -24,7 +24,7 @@ import org.jaxen.JaxenException;
 import java.util.List;
 
 /**
- * [Mendatory] Equals method must be with hashCode() method.
+ * [Mandatory] Equals method must be with hashCode() method.
  *
  * @author leonard99559
  * @date 2019/10/16

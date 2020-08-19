@@ -20,7 +20,17 @@ import com.alibaba.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.alibaba.p3c.pmd.lang.java.rule.util.NodeSortUtils;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 import net.sourceforge.pmd.lang.ast.Node;
-import net.sourceforge.pmd.lang.java.ast.*;
+import net.sourceforge.pmd.lang.java.ast.ASTAnnotation;
+import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceBodyDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
+import net.sourceforge.pmd.lang.java.ast.ASTExpression;
+import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
+import net.sourceforge.pmd.lang.java.ast.AbstractJavaNode;
+import net.sourceforge.pmd.lang.java.ast.Comment;
+import net.sourceforge.pmd.lang.java.ast.FormalComment;
+import net.sourceforge.pmd.lang.java.ast.MultiLineComment;
+import net.sourceforge.pmd.lang.java.ast.SingleLineComment;
+import net.sourceforge.pmd.lang.java.ast.Token;
 
 import java.util.List;
 import java.util.Map.Entry;

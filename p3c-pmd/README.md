@@ -11,7 +11,7 @@
 <dependency>
     <groupId>com.xenoamess.p3c</groupId>
     <artifactId>p3c-pmd</artifactId>
-    <version>2.0.2.5x</version>
+    <version>2.0.2.6x</version>
 </dependency>
 ```
 ### <font color="green">Gradle</font>
@@ -243,7 +243,7 @@ Note: In IDE, Javadoc can be seen directly when hovering, which is a good way to
 
 
 ### <font color="green">Other</font>
-* 1``[Mandatory]`` Avoid using *Apache Beanutils* to copy attributes.
+* 1``[Mandatory]`` Avoid using *Apache BeanUtils* to copy attributes.
 * 2 ``[Mandatory]`` When using regex, precompile needs to be done in order to increase the matching performance and preferably stored as a constant.  
 Note: Do not define Pattern pattern = Pattern.compile(.); within method body.
 * 3 ``[Mandatory]`` Variables must add exclamatory mark when passing to velocity engine from backend, like $!{var}.  

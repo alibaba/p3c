@@ -65,7 +65,7 @@ interface AliBaseInspection {
     /**
      * inspection short name
 
-     * @return shor name
+     * @return short name
      */
     fun getShortName(): String
 

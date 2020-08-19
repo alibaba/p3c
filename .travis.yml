@@ -13,16 +13,10 @@ install: true
 matrix:
   include:
     - jdk: openjdk8
-    - jdk: openjdk9
-    - jdk: openjdk10
     - jdk: openjdk11
-    - jdk: openjdk12
-    - jdk: openjdk13
-    - jdk: openjdk14
+    - jdk: openjdk15
     - jdk: openjdk-ea
   allow_failures:
-    - jdk: openjdk9
-    - jdk: openjdk14
     - jdk: openjdk-ea
 script:
   - "cd ./p3c-pmd"

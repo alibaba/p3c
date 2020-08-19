@@ -40,7 +40,7 @@ public class NeedBraceRule extends AbstractAliRule {
 
     @Override
     public Object visit(ASTIfStatement node, Object data) {
-        // SwitchStatement without {} fail by compilaton, no need to check here
+        // SwitchStatement without {} fail by compilation, no need to check here
         if (!node.hasDescendantMatchingXPath(STATEMENT_BLOCK)) {
             addViolationWithMessage(data, node, MESSAGE_KEY,
                 new Object[] {node.jjtGetFirstToken().toString()});

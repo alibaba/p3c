@@ -50,16 +50,16 @@ public class ClassCastExceptionWithToArrayRule extends AbstractAliRule {
                     continue;
                 }
                 ASTPrimaryExpression primaryExpression = (ASTPrimaryExpression)item;
-                List<ASTPrimaryPrefix> primaryPrefixs =
+                List<ASTPrimaryPrefix> primaryPrefixes =
                     primaryExpression.findChildrenOfType(ASTPrimaryPrefix.class);
-                List<ASTPrimarySuffix> primarySuffixs =
+                List<ASTPrimarySuffix> primarySuffixes =
                     primaryExpression.findChildrenOfType(ASTPrimarySuffix.class);
-                if (primaryPrefixs == null || primarySuffixs == null || primaryPrefixs.isEmpty()
-                    || primarySuffixs.isEmpty()) {
+                if (primaryPrefixes == null || primarySuffixes == null || primaryPrefixes.isEmpty()
+                    || primarySuffixes.isEmpty()) {
                     continue;
                 }
-                ASTPrimaryPrefix prefix = primaryPrefixs.get(0);
-                ASTPrimarySuffix suffix = primarySuffixs.get(0);
+                ASTPrimaryPrefix prefix = primaryPrefixes.get(0);
+                ASTPrimarySuffix suffix = primarySuffixes.get(0);
                 if (prefix.getNumChildren() == 0) {
                     continue;
                 }
@@ -69,7 +69,7 @@ public class ClassCastExceptionWithToArrayRule extends AbstractAliRule {
                     continue;
                 }
                 if (childName.endsWith(".toArray") && suffix.getArgumentCount() == 0
-                    && primarySuffixs.size() == 1) {
+                    && primarySuffixes.size() == 1) {
                     addViolationWithMessage(data, item,
                         "java.set.ClassCastExceptionWithToArrayRule.violation.msg",
                         new Object[] {childName});

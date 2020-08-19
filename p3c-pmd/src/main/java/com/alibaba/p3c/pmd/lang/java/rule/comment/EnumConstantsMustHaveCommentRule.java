@@ -69,8 +69,8 @@ public class EnumConstantsMustHaveCommentRule extends AbstractAliCommentRule {
         List<ASTEnumDeclaration> enumDecl = cUnit.findDescendantsOfType(ASTEnumDeclaration.class);
         NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, enumDecl);
 
-        List<ASTEnumConstant> contantDecl = cUnit.findDescendantsOfType(ASTEnumConstant.class);
-        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, contantDecl);
+        List<ASTEnumConstant> constantDecl = cUnit.findDescendantsOfType(ASTEnumConstant.class);
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, constantDecl);
 
         NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, cUnit.getComments());
 

@@ -31,7 +31,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <ul>2.0.2.6x-SNAPSHOT
+        <ul>2.0.2.6x
+            <li>fix code smells.</li>
+            <li>upgrade dependencies.</li>
         </ul>
         <ul>2.0.2.5x
             <li>ignore AbstractMethodOrInterfaceMethodMustUseJavadocRule check for function who have @inheritdoc in javadoc.</li>

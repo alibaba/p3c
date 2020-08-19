@@ -19,7 +19,11 @@ import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.AbstractPojoRule;
 import com.alibaba.p3c.pmd.lang.java.util.PojoUtils;
 import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
-import net.sourceforge.pmd.lang.java.ast.*;
+import net.sourceforge.pmd.lang.java.ast.ASTBlock;
+import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType;
+import net.sourceforge.pmd.lang.java.ast.ASTExtendsList;
+import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
 import org.jaxen.JaxenException;
 
 /**

@@ -16,7 +16,12 @@
 package com.alibaba.p3c.pmd.lang.java.rule.util;
 
 import net.sourceforge.pmd.lang.ast.Node;
-import net.sourceforge.pmd.lang.java.ast.*;
+import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTName;
+import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
+import net.sourceforge.pmd.lang.java.ast.ASTStatementExpression;
+import net.sourceforge.pmd.lang.java.ast.AbstractJavaAccessTypeNode;
+import net.sourceforge.pmd.lang.java.ast.Token;
 import net.sourceforge.pmd.lang.java.typeresolution.TypeHelper;
 
 import java.util.concurrent.locks.Lock;

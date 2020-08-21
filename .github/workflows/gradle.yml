@@ -51,7 +51,7 @@ jobs:
         uses: actions/setup-java@v1.4.0
         with:
           java-version: ${{ matrix.java }}
-      - name: Build with gradlew
+      - name: Build with mixed
         run: |
           cd ./p3c-pmd
           chmod 777 ./mvnw

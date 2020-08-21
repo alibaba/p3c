@@ -53,6 +53,10 @@ jobs:
           java-version: ${{ matrix.java }}
       - name: Build with gradlew
         run: |
+          cd ./p3c-pmd
+          chmod 777 ./mvnw
+          ./mvnw install
+          cd ../
           cd ./idea-plugin
           chmod 777 ./gradlew
           ./gradlew buildPlugin -s

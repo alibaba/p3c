@@ -19,14 +19,14 @@ updates:
     directory: "/p3c-pmd/"
     schedule:
       interval: "daily"
-    target-branch: "develop"
+    target-branch: "xenoamess_maintain_fork_develop"
   - package-ecosystem: "maven"
     directory: "/idea-plugin/"
     schedule:
       interval: "daily"
-    target-branch: "develop"
+    target-branch: "xenoamess_maintain_fork_develop"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
-    target-branch: "develop"
+    target-branch: "xenoamess_maintain_fork_develop"

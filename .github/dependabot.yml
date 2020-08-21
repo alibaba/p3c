@@ -16,12 +16,12 @@
 version: 2
 updates:
   - package-ecosystem: "maven"
-    directory: "/p3c-pmd"
+    directory: "/p3c-pmd/"
     schedule:
       interval: "daily"
     target-branch: "develop"
   - package-ecosystem: "maven"
-    directory: "/idea-plugin"
+    directory: "/idea-plugin/"
     schedule:
       interval: "daily"
     target-branch: "develop"

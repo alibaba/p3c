@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess.p3c</groupId>
     <artifactId>p3c-pmd</artifactId>
-    <version>2.0.2.6x</version>
+    <version>2.0.2.7x-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>p3c-pmd</name>
     <properties>
@@ -204,6 +204,19 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>io.takari</groupId>
+                <artifactId>maven</artifactId>
+                <version>0.7.7</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wrapper</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>

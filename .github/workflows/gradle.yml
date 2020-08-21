@@ -53,5 +53,6 @@ jobs:
           java-version: ${{ matrix.java }}
       - name: Build with gradlew
         run: |
-          chmod 777 ./idea-plugin/gradlew
-          ./idea-plugin/gradlew buildPlugin -s
+          cd ./idea-plugin
+          chmod 777 ./gradlew
+          ./gradlew buildPlugin -s

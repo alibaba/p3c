@@ -1,0 +1,45 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Java CI
+
+on: [ push ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }}
+    strategy:
+      matrix:
+        java: [ 8, 11 ]
+        experimental: [ false ]
+
+    steps:
+      - uses: actions/checkout@v2.3.2
+      - uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v1.4.0
+        with:
+          java-version: ${{ matrix.java }}
+      - name: Build with mvnw
+        run: |
+          chmod 777 ./mvnw
+          ./mvnw install

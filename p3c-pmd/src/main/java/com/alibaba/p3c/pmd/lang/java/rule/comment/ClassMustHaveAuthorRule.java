@@ -39,7 +39,7 @@ import net.sourceforge.pmd.lang.java.ast.Comment;
  */
 public class ClassMustHaveAuthorRule extends AbstractAliCommentRule {
 
-    private static final Pattern AUTHOR_PATTERN = Pattern.compile(".*@author.*",
+    private static final Pattern AUTHOR_PATTERN = Pattern.compile(".*@[Aa]uthor.*",
         Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
 
     private static final String MESSAGE_KEY_PREFIX = "java.comment.ClassMustHaveAuthorRule.violation.msg";

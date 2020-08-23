@@ -46,6 +46,9 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileSystemItem
 import com.intellij.psi.PsiManager
 import java.awt.event.KeyEvent
+import kotlin.reflect.full.companionObject
+import kotlin.reflect.full.companionObjectInstance
+import kotlin.reflect.full.functions
 
 /**
  * @author caikang
@@ -192,16 +195,27 @@ class AliInspectionAction : AnAction() {
             InspectionProfileService.setExternalProfile(model, inspectionContext)
 
             // toolWindowManager = ToolWindowManager.getInstance(project)
-            val toolWindowManagerClass = ToolWindowManager::class.java;
-            val method = try {
-                toolWindowManagerClass.getMethod("getInstance");
+            var toolWindowManager : ToolWindowManager? = null;
+            try {
+                toolWindowManager = ToolWindowManager::class.java.getMethod("getInstance").invoke(null, project) as ToolWindowManager;
             } catch (e : Exception) {
-                val innerClass = Class.forName(toolWindowManagerClass.canonicalName + ".Companion");
-                innerClass.getMethod("getInstance");
+                val functions = ToolWindowManager::class.companionObject?.functions;
+                if (functions != null) {
+                    for (f in functions) {
+                        val ps = f.parameters
+                        if (f.name == "getInstance" && ps.size == 2) {
+                            try {
+                                toolWindowManager = f.call(ToolWindowManager::class.companionObjectInstance, project) as ToolWindowManager
+                                break
+                            } catch (e2 : Exception) {
+                                e2.printStackTrace()
+                            }
+                        }
+                    }
+                }
             }
-            val toolWindowManager = method.invoke(null, project) as ToolWindowManager;
 
-            var toolWindow = toolWindowManager.getToolWindow(ToolWindowId.INSPECTION);
+            val toolWindow = toolWindowManager?.getToolWindow(ToolWindowId.INSPECTION);
             if (toolWindow != null) {
                 val contentManager = toolWindow.contentManager
                 val contentTitle = title?.let {

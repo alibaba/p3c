@@ -62,6 +62,7 @@ dependencies {
     compile group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
     compile 'com.xenoamess.p3c:p3c-pmd:2.1.0.1x'
     compile group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }
 
 uploadArchives {

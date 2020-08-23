@@ -26,6 +26,28 @@ TPM maintainer XenoAmess have no knowledge with eclipse plugin development.
 
 TPM maintainer XenoAmess suggest you only create pr for module idea-plugin and p3c-pmd, unless you really have a strong reason.
 
+## <font color="green">Features</font>
+
+1.  This TPM can always run on latest Jetbrains-idea release/EAP.
+
+    本第三方维护版会在任何etbrains-idea release或者EAP更新时保证可用。
+
+2.  This TPM will always use as latest dependencies as possible.
+
+    本第三方维护版会使用尽可能新的依赖版本。
+
+3.  This TPM implements a mechanism for configuring black-list/white-list for rules/classes
+
+    本第三方维护版实现有一套配置系统，可以对源码类/规则进行黑名单/白名单过滤。
+
+4.  This TPM does NOT fully obey p3c rules. 
+    Especially for the rule who disable deprecated functions.
+    Maintainer XenoAmess will make sure they are usable,
+    but have no enough time to eliminate every deprecated functions.
+
+    本第三方维护版不完全遵循p3c，尤其是关于禁止使用deprecated函数的规则。
+    维护者XenoAmess会保证函数可用，但是没有充裕的时间保证消灭每一个deprecated函数。
+
 ## <font color="green">Preface</font>
 > We are pleased to present Alibaba Java Coding Guidelines which consolidates the best programming practices over the years from Alibaba Group's technical teams. A vast number of Java programming teams impose demanding requirements on code quality across projects as we encourage reuse and better understanding of each other's programs. We have seen many programming problems in the past. For example, defective database table structures and index designs may cause software architecture flaws and performance risks. Another example is confusing code structures being difficult to maintain. Furthermore, vulnerable code without authentication is prone to hackers’ attacks. To address these kinds of problems, we developed this document for Java developers at Alibaba.
  

@@ -26,7 +26,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <annotation.version>1.3.2</annotation.version>
         <kotlin.version>1.4.0</kotlin.version>
-        <x8l.version>2.2.7</x8l.version>
+        <x8l.version>2.2.10</x8l.version>
         <!---->
         <!---->
         <!--maven plugins versions-->

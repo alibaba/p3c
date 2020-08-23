@@ -17,7 +17,6 @@ package com.alibaba.p3c.idea.action
 
 import com.alibaba.p3c.idea.compatible.inspection.InspectionProfileService
 import com.alibaba.p3c.idea.compatible.inspection.Inspections
-import com.alibaba.p3c.idea.ep.InspectionActionExtensionPoint
 import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.p3c.idea.inspection.AliBaseInspection
 import com.alibaba.p3c.idea.util.NumberConstants
@@ -30,7 +29,6 @@ import com.intellij.codeInspection.InspectionsBundle
 import com.intellij.codeInspection.ex.GlobalInspectionContextImpl
 import com.intellij.codeInspection.ex.InspectionManagerEx
 import com.intellij.codeInspection.ex.InspectionToolWrapper
-import com.intellij.codeInspection.ui.InspectionResultsView
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
@@ -193,8 +191,17 @@ class AliInspectionAction : AnAction() {
             )
             InspectionProfileService.setExternalProfile(model, inspectionContext)
 
-            val toolWindow = project.getService(ToolWindowManager::class.java).getToolWindow(ToolWindowId.INSPECTION)
+            // toolWindowManager = ToolWindowManager.getInstance(project)
+            val toolWindowManagerClass = ToolWindowManager::class.java;
+            val method = try {
+                toolWindowManagerClass.getMethod("getInstance");
+            } catch (e : Exception) {
+                val innerClass = Class.forName(toolWindowManagerClass.canonicalName + ".Companion");
+                innerClass.getMethod("getInstance");
+            }
+            val toolWindowManager = method.invoke(null, project) as ToolWindowManager;
 
+            var toolWindow = toolWindowManager.getToolWindow(ToolWindowId.INSPECTION);
             if (toolWindow != null) {
                 val contentManager = toolWindow.contentManager
                 val contentTitle = title?.let {

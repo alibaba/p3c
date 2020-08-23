@@ -30,6 +30,20 @@ public class ClassMustHaveAuthorRule {}
 		<code-ref id="class-with-author" />
 	</test-code>
 
+	<code-fragment id="class-with-author-uppercase"><![CDATA[
+/**
+ * @Author keriezhang
+ * @date 2017/07/18
+ */
+public class ClassMustHaveAuthorRule {}
+    ]]>
+	</code-fragment>
+	<test-code>
+		<description>Class with author uppercase.</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="class-with-author-uppercase" />
+	</test-code>
+
 	<code-fragment id="class-with-date"><![CDATA[
 /**
  * @date 2016/12/14

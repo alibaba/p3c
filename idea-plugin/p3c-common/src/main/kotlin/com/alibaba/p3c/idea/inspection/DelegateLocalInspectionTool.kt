@@ -84,7 +84,7 @@ class DelegateLocalInspectionTool : LocalInspectionTool(), AliBaseInspection {
     }
 
     override fun isSuppressedFor(element: PsiElement): Boolean {
-        return false
+        return localInspectionTool.isSuppressedFor(element)
     }
 
     override fun buildVisitor(

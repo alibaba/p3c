@@ -95,13 +95,13 @@ Positive example:
         <example>
             <![CDATA[
 Negative example:
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
  ]]>
         </example>
         <example>
             <![CDATA[
 Positive example:
-        SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
 ]]>
         </example>
     </rule>

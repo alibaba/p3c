@@ -32,10 +32,9 @@ import org.jetbrains.annotations.Nls
  * @author caikang
  * @date 2016/12/16
  */
-class AliPmdInspection(private val ruleName: String)
-    : LocalInspectionTool(),
-        AliBaseInspection,
-        PmdRuleInspectionIdentify {
+class AliPmdInspection(private val ruleName: String) : LocalInspectionTool(),
+    AliBaseInspection,
+    PmdRuleInspectionIdentify {
     override fun manualBuildFix(psiElement: PsiElement, isOnTheFly: Boolean): LocalQuickFix? {
         return QuickFixes.getQuickFix(ruleName, isOnTheFly)
     }
@@ -63,9 +62,8 @@ class AliPmdInspection(private val ruleName: String)
     }
 
     override fun checkFile(
-            file: PsiFile,
-            manager: InspectionManager,
-            isOnTheFly: Boolean
+        file: PsiFile, manager: InspectionManager,
+        isOnTheFly: Boolean
     ): Array<ProblemDescriptor>? {
         if (!shouldInspectChecker.shouldInspect(file)) {
             return null
@@ -97,10 +95,6 @@ class AliPmdInspection(private val ruleName: String)
 
     override fun isEnabledByDefault(): Boolean {
         return true
-    }
-
-    override fun isSuppressedFor(element: PsiElement): Boolean {
-        return false
     }
 
     override fun getShortName(): String {

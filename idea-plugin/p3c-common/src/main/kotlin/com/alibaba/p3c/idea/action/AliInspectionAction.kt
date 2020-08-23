@@ -17,7 +17,6 @@ package com.alibaba.p3c.idea.action
 
 import com.alibaba.p3c.idea.compatible.inspection.InspectionProfileService
 import com.alibaba.p3c.idea.compatible.inspection.Inspections
-import com.alibaba.p3c.idea.ep.InspectionActionExtensionPoint
 import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.p3c.idea.inspection.AliBaseInspection
 import com.alibaba.p3c.idea.util.NumberConstants
@@ -30,7 +29,6 @@ import com.intellij.codeInspection.InspectionsBundle
 import com.intellij.codeInspection.ex.GlobalInspectionContextImpl
 import com.intellij.codeInspection.ex.InspectionManagerEx
 import com.intellij.codeInspection.ex.InspectionToolWrapper
-import com.intellij.codeInspection.ui.InspectionResultsView
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
@@ -48,7 +46,6 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileSystemItem
 import com.intellij.psi.PsiManager
 import java.awt.event.KeyEvent
-import java.lang.reflect.Method
 
 /**
  * @author caikang
@@ -194,20 +191,16 @@ class AliInspectionAction : AnAction() {
             )
             InspectionProfileService.setExternalProfile(model, inspectionContext)
 
-            var toolWindowManager : ToolWindowManager;
-            try {
-                toolWindowManager = ToolWindowManager.getInstance(project)
+            // toolWindowManager = ToolWindowManager.getInstance(project)
+            val toolWindowManagerClass = ToolWindowManager::class.java;
+            val method = try {
+                toolWindowManagerClass.getMethod("getInstance");
             } catch (e : Exception) {
-                val toolWindowManagerClass = ToolWindowManager::class.java;
-                var method : Method;
-                try {
-                    method = toolWindowManagerClass.getMethod("getInstance");
-                } catch (e2: Exception) {
-                    var innerClass = Class.forName(toolWindowManagerClass.canonicalName + ".Companion");
-                    method = innerClass.getMethod("getInstance");
-                }
-                toolWindowManager = method.invoke(null, project) as ToolWindowManager;
+                val innerClass = Class.forName(toolWindowManagerClass.canonicalName + ".Companion");
+                innerClass.getMethod("getInstance");
             }
+            val toolWindowManager = method.invoke(null, project) as ToolWindowManager;
+
             var toolWindow = toolWindowManager.getToolWindow(ToolWindowId.INSPECTION);
             if (toolWindow != null) {
                 val contentManager = toolWindow.contentManager

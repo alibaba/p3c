@@ -19,12 +19,12 @@ on: [ push ]
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        java: [ 8, 11 ]
+        os: [ ubuntu-latest , windows-latest , macos-latest ]
+        java: [ 8, 11, 13 ]
         experimental: [ false ]
 
     steps:

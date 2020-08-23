@@ -193,7 +193,7 @@ class AliInspectionAction : AnAction() {
             )
             InspectionProfileService.setExternalProfile(model, inspectionContext)
 
-            val toolWindow = ToolWindowManager.getInstance(project).getToolWindow(ToolWindowId.INSPECTION)
+            val toolWindow = project.getService(ToolWindowManager::class.java).getToolWindow(ToolWindowId.INSPECTION)
 
             if (toolWindow != null) {
                 val contentManager = toolWindow.contentManager

@@ -15,6 +15,7 @@
  */
 package com.alibaba.p3c.idea.inspection
 
+import com.alibaba.p3c.idea.component.AliProjectComponent
 import com.alibaba.p3c.idea.config.P3cConfig
 import com.alibaba.p3c.idea.pmd.AliPmdProcessor
 import com.alibaba.p3c.idea.util.DocumentUtils.calculateLineStart
@@ -50,13 +51,22 @@ class AliPmdInspectionInvoker(
 
     private var violations: List<RuleViolation> = emptyList()
 
-    fun doInvoke() {
+    fun doInvoke(isOnTheFly: Boolean) {
         Thread.currentThread().contextClassLoader = javaClass.classLoader
         val processor = AliPmdProcessor(rule)
         val start = System.currentTimeMillis()
-        violations = processor.processFile(psiFile)
-        logger.debug("elapsed ${System.currentTimeMillis() - start}ms to" +
-                " to apply rule ${rule.name} for file ${psiFile.virtualFile.canonicalPath}")
+        val aliProjectComponent = manager.project.getComponent(AliProjectComponent::class.java)
+        val fileContext = aliProjectComponent.getFileContext(psiFile.virtualFile)
+        val ruleViolations = fileContext?.ruleViolations
+        violations = if (isOnTheFly || ruleViolations == null) {
+            processor.processFile(psiFile, isOnTheFly)
+        } else {
+            ruleViolations[rule.name] ?: emptyList()
+        }
+        logger.debug(
+            "elapsed ${System.currentTimeMillis() - start}ms to" +
+                " to apply rule ${rule.name} for file ${psiFile.virtualFile.canonicalPath}"
+        )
     }
 
     fun getRuleProblems(isOnTheFly: Boolean): Array<ProblemDescriptor>? {
@@ -73,11 +83,15 @@ class AliPmdInspectionInvoker(
                     ?: continue
 
             val offsets = if (rv.rule.name == RemoveCommentedCodeRule::class.java.simpleName) {
-                Offsets(calculateLineStart(document, rv.beginLine),
-                        calculateLineStart(document, rv.endLine + 1) - 1)
+                Offsets(
+                    calculateLineStart(document, rv.beginLine),
+                    calculateLineStart(document, rv.endLine + 1) - 1
+                )
             } else {
-                Offsets(calculateRealOffset(document, rv.beginLine, rv.beginColumn),
-                        calculateRealOffset(document, rv.endLine, rv.endColumn))
+                Offsets(
+                    calculateRealOffset(document, rv.beginLine, rv.beginColumn),
+                    calculateRealOffset(document, rv.endLine, rv.endColumn)
+                )
             }
             val errorMessage = if (isOnTheFly) {
                 rv.description
@@ -93,8 +107,7 @@ class AliPmdInspectionInvoker(
                     offsets.start,
                     offsets.end,
                     rv.beginLine
-            )
-                    ?: continue
+            ) ?: continue
             problemDescriptors.add(problemDescriptor)
         }
         return problemDescriptors.toTypedArray()
@@ -102,7 +115,6 @@ class AliPmdInspectionInvoker(
 
     companion object {
         private lateinit var invokers: Cache<FileRule, AliPmdInspectionInvoker>
-
         val smartFoxConfig = ServiceManager.getService(P3cConfig::class.java)!!
 
         init {
@@ -121,36 +133,38 @@ class AliPmdInspectionInvoker(
             val virtualFile = psiFile.virtualFile ?: return null
             if (!smartFoxConfig.ruleCacheEnable) {
                 val invoker = AliPmdInspectionInvoker(psiFile, manager, rule)
-                invoker.doInvoke()
+                invoker.doInvoke(isOnTheFly)
                 return invoker.getRuleProblems(isOnTheFly)
             }
             var invoker = invokers.getIfPresent(FileRule(virtualFile.canonicalPath!!, rule.name))
             if (invoker == null) {
                 synchronized(virtualFile) {
-                    invoker = invokers.getIfPresent(virtualFile.canonicalPath)
+                    invoker = invokers.getIfPresent(virtualFile.canonicalPath!!)
                     if (invoker == null) {
                         invoker = AliPmdInspectionInvoker(psiFile, manager, rule)
-                        invoker!!.doInvoke()
-                        invokers.put(FileRule(virtualFile.canonicalPath!!, rule.name), invoker)
+                        invoker!!.doInvoke(isOnTheFly)
+                        invokers.put(FileRule(virtualFile.canonicalPath!!, rule.name), invoker!!)
                     }
                 }
             }
             return invoker!!.getRuleProblems(isOnTheFly)
         }
 
-        private fun doInvokeIfPresent(filePath: String, rule: String) {
-            invokers.getIfPresent(FileRule(filePath, rule))?.doInvoke()
+        private fun doInvokeIfPresent(filePath: String, rule: String, isOnTheFly: Boolean) {
+            invokers.getIfPresent(FileRule(filePath, rule))?.doInvoke(isOnTheFly)
         }
 
         fun refreshFileViolationsCache(file: VirtualFile) {
             AliLocalInspectionToolProvider.ruleNames.forEach {
-                doInvokeIfPresent(file.canonicalPath!!, it)
+                doInvokeIfPresent(file.canonicalPath!!, it, false)
             }
         }
 
         fun reInitInvokers(expireTime: Long) {
-            invokers = CacheBuilder.newBuilder().maximumSize(500).expireAfterWrite(expireTime,
-                    TimeUnit.MILLISECONDS).build()!!
+            invokers = CacheBuilder.newBuilder().maximumSize(500).expireAfterWrite(
+                expireTime,
+                TimeUnit.MILLISECONDS
+            ).build<FileRule, AliPmdInspectionInvoker>()!!
         }
     }
 }

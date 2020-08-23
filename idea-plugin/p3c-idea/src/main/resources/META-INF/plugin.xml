@@ -31,6 +31,18 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.1.0.1x-SNAPSHOT
+            <li>pmd upgrade to 6.26.0</li>
+            <li>Kotlin upgrade to 1.4.0</li>
+        </ul>
+        <ul>2.1.0
+            <li>Fix idea 2020.2 Ultimate compatibility issue</li>
+            <li>Minimum supported idea version up to 2018.3</li>
+            <li>Kotlin upgrade to 1.3.72</li>
+            <li>Disable real time inspect if file lines more than 3000 lines</li>
+            <li>Fix https://github.com/alibaba/p3c/issues/722</li>
+            <li>Fix https://github.com/alibaba/p3c/issues/620</li>
+        </ul>
         <ul>2.0.2.6x
             <li>fix code smells.</li>
             <li>upgrade dependencies.</li>
@@ -151,6 +163,7 @@
     ]]>
     </change-notes>
 
+    <!--    <idea-version since-build="183.4284"/>-->
     <idea-version since-build="145.0"/>
 
     <depends optional="true" config-file="pluginWithJava.xml">com.intellij.modules.java</depends>

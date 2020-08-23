@@ -7,21 +7,21 @@
 ## <font color="green">Build</font>
 ```
 cd p3c-idea
-gradle clean buildPlugin
+../gradlew clean buildPlugin
 ```
 
 ## <font color="green">Run plugin</font>
 
 ```
 cd p3c-idea
-gradle runIde
+../gradlew runIde
 # run specific IDEA
-gradle runIde -Pidea_version=14.1.7
+../gradlew runIde -Pidea_version=2018.3
 ```
 
 ## <font color="green">Use p3c-common as your plugin dependency</font>
 ```groovy
-compile 'com.xenoamess.p3c.idea:p3c-common:2.0.2.7x-SNAPSHOT'
+compile 'com.xenoamess.p3c.idea:p3c-common:2.1.0.1x-SNAPSHOT'
 ```
 ## [中文使用手册](README_cn.md)
 ## <font color="green">Install</font>

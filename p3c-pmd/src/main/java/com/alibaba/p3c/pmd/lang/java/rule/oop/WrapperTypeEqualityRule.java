@@ -48,7 +48,10 @@ public class WrapperTypeEqualityRule extends AbstractAliRule {
             // PMD can not resolve array length type, but only the
             ASTPrimaryExpression left = expressions.get(0);
             ASTPrimaryExpression right = expressions.get(1);
-
+            // if left is complex expression, skip
+            if (left.jjtGetNumChildren() > 1) {
+                return super.visit(node, data);
+            }
             boolean bothArrayLength = isArrayLength(left) && isArrayLength(right);
             boolean bothWrapperType = NodeUtils.isWrapperType(left) && NodeUtils.isWrapperType(right);
 
@@ -61,7 +64,8 @@ public class WrapperTypeEqualityRule extends AbstractAliRule {
     }
 
     private boolean isArrayLength(ASTPrimaryExpression expression) {
-        // assume expression like "x.length" is the length of array, field with name "length" may result in mis-recognition
+        // assume expression like "x.length" is the length of array, field with name "length" may result in
+        // mis-recognition
         return "length".equals(expression.jjtGetLastToken().getImage())
             && ".".equals(expression.jjtGetFirstToken().getNext().getImage());
     }

@@ -236,7 +236,7 @@ rule_blacklist中的Rule类名既可以是SimpleName，也可以是CanonicalName
 
 ### class_blacklist
 
-rule_blacklist节点主要包括对该项目中的某一类禁用所有规则。
+class_blacklist节点主要包括对该项目中的某一类禁用所有规则。
 
 如，class_blacklist中含有Console类，则该项目中所有名为Console的类均不会进行任何检测。
 
@@ -255,7 +255,3 @@ rule_class_pair_blacklist节点主要包括对该项目中的某一类禁用某�
 
 Rule类名既可以是SimpleName，也可以是CanonicalName。
 注意，由于PMD技术原因，被忽略检测的类名必须为SimpleName。
-
-累了，哪个英语好的老哥给翻成英文吧，我得去睡觉。
-
-~~反正我不太信这玩意有非中文用户。~~

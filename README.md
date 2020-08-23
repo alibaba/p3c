@@ -26,11 +26,33 @@ TPM maintainer XenoAmess have no knowledge with eclipse plugin development.
 
 TPM maintainer XenoAmess suggest you only create pr for module idea-plugin and p3c-pmd, unless you really have a strong reason.
 
+## <font color="green">Features</font>
+
+1.  This TPM can always run on latest Jetbrains-idea release/EAP.
+
+    本第三方维护版会在任何etbrains-idea release或者EAP更新时保证可用。
+
+2.  This TPM will always use as latest dependencies as possible.
+
+    本第三方维护版会使用尽可能新的依赖版本。
+
+3.  This TPM implements a mechanism for configuring black-list/white-list for rules/classes
+
+    本第三方维护版实现有一套配置系统，可以对源码类/规则进行黑名单/白名单过滤。
+
+4.  This TPM does NOT fully obey p3c rules. 
+    Especially for the rule who disable deprecated functions.
+    Maintainer XenoAmess will make sure they are usable,
+    but have no enough time to eliminate every deprecated functions.
+
+    本第三方维护版不完全遵循p3c，尤其是关于禁止使用deprecated函数的规则。
+    维护者XenoAmess会保证函数可用，但是没有充裕的时间保证消灭每一个deprecated函数。
+
 ## <font color="green">Preface</font>
 > We are pleased to present Alibaba Java Coding Guidelines which consolidates the best programming practices over the years from Alibaba Group's technical teams. A vast number of Java programming teams impose demanding requirements on code quality across projects as we encourage reuse and better understanding of each other's programs. We have seen many programming problems in the past. For example, defective database table structures and index designs may cause software architecture flaws and performance risks. Another example is confusing code structures being difficult to maintain. Furthermore, vulnerable code without authentication is prone to hackers’ attacks. To address these kinds of problems, we developed this document for Java developers at Alibaba.
  
 For more information please refer the *Alibaba Java Coding Guidelines*:
-- 中文版: *[阿里巴巴Java开发手册](https://github.com/alibaba/p3c/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%EF%BC%88%E6%B3%B0%E5%B1%B1%E7%89%88%EF%BC%89.pdf)*
+- 中文版: *[阿里巴巴Java开发手册](https://github.com/alibaba/p3c/blob/master/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%EF%BC%88%E5%B5%A9%E5%B1%B1%E7%89%88%EF%BC%89.pdf)*
 - English Version: *[Alibaba Java Coding Guidelines](https://alibaba.github.io/Alibaba-Java-Coding-Guidelines)*
 - 《阿里巴巴Java开发手册》书籍版天猫官方店: *[阿里巴巴Java开发手册最新版](https://detail.tmall.com/item.htm?spm=a1z2e.8325951.feedDetail.4.3315431gklIXe&id=562626792765&ns=1&abbucket=14)*
 - 《码出高效》书籍版天猫官方店: *[码出高效：Java开发手册](https://detail.tmall.com/item.htm?spm=a230r.1.14.40.7dee7d6bwpO82U&id=575107529181&ns=1&abbucket=20)*
@@ -57,21 +79,6 @@ The project consists of 3 parts:
     2. These two methods must be overridden for Set since they are used to ensure that no duplicate object will be inserted in Set.
     3. These two methods must be overridden if self-defined object is used as the key of Map.
    Note: String can be used as the key of Map since these two methods have been rewritten.
-
-<!--
-## Join us
-If you have any questions or comments, please contact junlie by email at caikang.ck@alibaba-inc.com, and please join us to make project P3C perfect for more programmers.
-
-Please follow our WeChat official account as ali_yunxiao below:
-
-![](https://gw.alicdn.com/tfscom/TB1TrNcXjv85uJjSZFNXXcJApXa.png)
-
-### 2020 阿里春季招聘—欢迎投递简历
-
-[校招详情](https://www.nowcoder.com/discuss/385514)
-
-[社招详情](https://job.alibaba.com/zhaopin/position_detail.htm?trace=qrcode_share&positionCode=GP605219)
--->
 
 ## <font color="green">Config Mechanism</font>
 

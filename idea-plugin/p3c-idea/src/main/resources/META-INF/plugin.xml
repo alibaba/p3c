@@ -31,6 +31,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.1.0.1x-SNAPSHOT
+            <li>pmd upgrade to 6.26.0</li>
+            <li>Kotlin upgrade to 1.4.0</li>
+        </ul>
         <ul>2.1.0
             <li>Fix idea 2020.2 Ultimate compatibility issue</li>
             <li>Minimum supported idea version up to 2018.3</li>
@@ -159,7 +163,8 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="183.4284"/>
+    <!--    <idea-version since-build="183.4284"/>-->
+    <idea-version since-build="145.0"/>
 
     <depends optional="true" config-file="pluginWithJava.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>

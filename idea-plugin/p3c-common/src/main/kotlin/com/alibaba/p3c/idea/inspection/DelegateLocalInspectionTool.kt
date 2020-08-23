@@ -49,7 +49,7 @@ class DelegateLocalInspectionTool : LocalInspectionTool(), AliBaseInspection {
             file: PsiFile,
             manager: InspectionManager,
             isOnTheFly: Boolean
-    ): Array<ProblemDescriptor>? {
+    ): Array<ProblemDescriptor?>? {
         return localInspectionTool.checkFile(file, manager, isOnTheFly)
     }
 

@@ -31,7 +31,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <ul>2.1.0.1x-SNAPSHOT
+        <ul>2.1.0.1x
             <li>pmd upgrade to 6.26.0</li>
             <li>Kotlin upgrade to 1.4.0</li>
         </ul>

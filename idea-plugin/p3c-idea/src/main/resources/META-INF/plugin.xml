@@ -163,8 +163,7 @@
     ]]>
     </change-notes>
 
-    <!--    <idea-version since-build="183.4284"/>-->
-    <idea-version since-build="145.0"/>
+    <idea-version since-build="181.5540.23"/>
 
     <depends optional="true" config-file="pluginWithJava.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>

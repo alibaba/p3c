@@ -48,6 +48,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileSystemItem
 import com.intellij.psi.PsiManager
 import java.awt.event.KeyEvent
+import java.lang.reflect.Method
 
 /**
  * @author caikang
@@ -193,8 +194,21 @@ class AliInspectionAction : AnAction() {
             )
             InspectionProfileService.setExternalProfile(model, inspectionContext)
 
-            val toolWindow = project.getService(ToolWindowManager::class.java).getToolWindow(ToolWindowId.INSPECTION)
-
+            var toolWindowManager : ToolWindowManager;
+            try {
+                toolWindowManager = ToolWindowManager.getInstance(project)
+            } catch (e : Exception) {
+                val toolWindowManagerClass = ToolWindowManager::class.java;
+                var method : Method;
+                try {
+                    method = toolWindowManagerClass.getMethod("getInstance");
+                } catch (e2: Exception) {
+                    var innerClass = Class.forName(toolWindowManagerClass.canonicalName + ".Companion");
+                    method = innerClass.getMethod("getInstance");
+                }
+                toolWindowManager = method.invoke(null, project) as ToolWindowManager;
+            }
+            var toolWindow = toolWindowManager.getToolWindow(ToolWindowId.INSPECTION);
             if (toolWindow != null) {
                 val contentManager = toolWindow.contentManager
                 val contentTitle = title?.let {

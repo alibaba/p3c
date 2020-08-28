@@ -7,7 +7,7 @@ p3c-cmd
 [![idea plugin](https://sonarcloud.io/api/project_badges/measure?project=p3c-idea&metric=alert_status)](https://sonarcloud.io/dashboard?id=p3c-idea)
 idea plugin(p3c-common)
 
-## <font color="green">Notice</font>
+## <font color="green">Notice 声明</font>
 This Third-party maintenance(TPM) here is forked from original [alibaba/p3c](https://github.com/alibaba/p3c)
 
 Follows Apache license described in [license](license.txt)
@@ -26,7 +26,7 @@ TPM maintainer XenoAmess have no knowledge with eclipse plugin development.
 
 TPM maintainer XenoAmess suggest you only create pr for module idea-plugin and p3c-pmd, unless you really have a strong reason.
 
-## <font color="green">Features</font>
+## <font color="green">Features 特性</font>
 
 1.  This TPM can always run on latest Jetbrains-idea release/EAP.
 
@@ -48,7 +48,7 @@ TPM maintainer XenoAmess suggest you only create pr for module idea-plugin and p
     本第三方维护版不完全遵循p3c，尤其是关于禁止使用deprecated函数的规则。
     维护者XenoAmess会保证函数可用，但是没有充裕的时间保证消灭每一个deprecated函数。
 
-## <font color="green">Preface</font>
+## <font color="green">Preface 前言</font>
 > We are pleased to present Alibaba Java Coding Guidelines which consolidates the best programming practices over the years from Alibaba Group's technical teams. A vast number of Java programming teams impose demanding requirements on code quality across projects as we encourage reuse and better understanding of each other's programs. We have seen many programming problems in the past. For example, defective database table structures and index designs may cause software architecture flaws and performance risks. Another example is confusing code structures being difficult to maintain. Furthermore, vulnerable code without authentication is prone to hackers’ attacks. To address these kinds of problems, we developed this document for Java developers at Alibaba.
  
 For more information please refer the *Alibaba Java Coding Guidelines*:
@@ -57,13 +57,13 @@ For more information please refer the *Alibaba Java Coding Guidelines*:
 - 《阿里巴巴Java开发手册》书籍版天猫官方店: *[阿里巴巴Java开发手册最新版](https://detail.tmall.com/item.htm?spm=a1z2e.8325951.feedDetail.4.3315431gklIXe&id=562626792765&ns=1&abbucket=14)*
 - 《码出高效》书籍版天猫官方店: *[码出高效：Java开发手册](https://detail.tmall.com/item.htm?spm=a230r.1.14.40.7dee7d6bwpO82U&id=575107529181&ns=1&abbucket=20)*
 
-## <font color="green">Introduction</font>
+## <font color="green">Introduction 介绍</font>
 The project consists of 3 parts:  
 - [PMD implementations](p3c-pmd)  
 - [IntelliJ IDEA plugin](idea-plugin)  
 - [Eclipse plugin](eclipse-plugin)   
 
-## <font color="green">Rules</font>
+## <font color="green">Rules 规则</font>
 <font color="blue">Forty-nine rules are realized based on PMD, please refer the P3C-PMD documentation for more detailed information. Four rules are implemented within IDE plugins (IDEA and Eclipse) as follows:</font>  
 
 - ``[Mandatory]`` Using a deprecated class or method is prohibited.  
@@ -80,7 +80,7 @@ The project consists of 3 parts:
     3. These two methods must be overridden if self-defined object is used as the key of Map.
    Note: String can be used as the key of Map since these two methods have been rewritten.
 
-## <font color="green">Config Mechanism</font>
+## <font color="green">Config Mechanism 配置机制</font>
 
 see 
 

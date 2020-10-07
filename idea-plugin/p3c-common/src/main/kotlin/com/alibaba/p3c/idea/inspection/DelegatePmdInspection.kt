@@ -78,6 +78,6 @@ class DelegatePmdInspection : LocalInspectionTool(), AliBaseInspection, PmdRuleI
     }
 
     override fun isSuppressedFor(element: PsiElement): Boolean {
-        return false
+        return aliPmdInspection.isSuppressedFor(element)
     }
 }

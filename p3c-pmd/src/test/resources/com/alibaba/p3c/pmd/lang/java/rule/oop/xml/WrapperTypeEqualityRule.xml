@@ -53,7 +53,7 @@
         <description>compare wrapper type objects without equals</description>
         <expected-problems>4</expected-problems>
         <expected-linenumbers>11,23,31,34</expected-linenumbers>
-        <code-ref id="wrap-type-not-use-equal" />
+        <code-ref id="wrap-type-not-use-equal"/>
     </test-code>
 
     <!-- ====================================================================== -->
@@ -148,7 +148,7 @@
     <test-code>
         <description>bugfix</description>
         <expected-problems>0</expected-problems>
-        <code-ref id="wrong-result-fix" />
+        <code-ref id="wrong-result-fix"/>
     </test-code>
 
     <!-- ====================================================================== -->
@@ -171,7 +171,37 @@
         <expected-problems>0</expected-problems>
         <code-ref id="array-length-equals"/>
     </test-code>
+    <code-fragment id="expression-primitive-equals">
+        <![CDATA[
+    public class Test {
+        public void foo(){
+            int a;
+            if (Integer.parseInt("0") == a) {
+                return;
+            }
+            if (a == Integer.parseInt("0")) {
+                return;
+            }
 
+            String s = "0";
+            if (Integer.parseInt("0") == Integer.parseInt(s)) {
+                return;
+            };
+
+            Integer b;
+            if (b == Integer.parseInt("0")) {
+                return;
+            }
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>expression is primitive type</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>17</expected-linenumbers>
+        <code-ref id="expression-primitive-equals"/>
+    </test-code>
     <!-- ====================================================================== -->
 
 </test-data>

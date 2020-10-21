@@ -130,7 +130,7 @@ Positive example 3：
           dfa="true"
           class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.AvoidCallStaticSimpleDateFormatRule">
         <description>java.concurrent.AvoidCallStaticSimpleDateFormatRule.rule.desc</description>
-
+        <priority>2</priority>
         <example>
             <![CDATA[
 Positive example 1：
@@ -163,7 +163,6 @@ Positive example 3：
     };
         ]]>
         </example>
-        <priority>2</priority>
     </rule>
 
     <rule name="ThreadLocalShouldRemoveRule"

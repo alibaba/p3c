@@ -1,4 +1,4 @@
-<com.alibaba.p3c.pmd.config version=0.0.1>
+<com.xenoamess.p3c.pmd.config version=0.0.1>
     <rule_config>
         <ConstantFieldShouldBeUpperCaseRule>
             <LOG_VARIABLE_TYPE_SET>Log&Logger>

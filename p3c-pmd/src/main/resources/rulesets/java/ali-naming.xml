@@ -10,7 +10,7 @@
           language="java"
           since="1.6"
           message="java.naming.ClassNamingShouldBeCamelRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.naming.ClassNamingShouldBeCamelRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.naming.ClassNamingShouldBeCamelRule">
         <priority>3</priority>
     </rule>
 
@@ -18,7 +18,7 @@
           language="java"
           since="1.4"
           message="java.naming.AbstractClassShouldStartWithAbstractNamingRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.naming.AbstractClassShouldStartWithAbstractNamingRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.naming.AbstractClassShouldStartWithAbstractNamingRule">
         <priority>2</priority>
         <example>
             <![CDATA[
@@ -35,7 +35,7 @@
           language="java"
           since="1.6"
           message="java.naming.ExceptionClassShouldEndWithExceptionRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.naming.ExceptionClassShouldEndWithExceptionRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.naming.ExceptionClassShouldEndWithExceptionRule">
         <priority>2</priority>
         <example>
             <![CDATA[
@@ -50,7 +50,7 @@
           language="java"
           since="1.6"
           message="java.naming.TestClassShouldEndWithTestNamingRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.naming.TestClassShouldEndWithTestNamingRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.naming.TestClassShouldEndWithTestNamingRule">
         <priority>3</priority>
         <example>
             <![CDATA[
@@ -64,7 +64,7 @@
           language="java"
           since="1.6"
           message="java.naming.LowerCamelCaseVariableNamingRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.naming.LowerCamelCaseVariableNamingRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.naming.LowerCamelCaseVariableNamingRule">
         <priority>2</priority>
     </rule>
 
@@ -72,7 +72,7 @@
           language="java"
           since="1.6"
           message="java.naming.AvoidStartWithDollarAndUnderLineNamingRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.naming.AvoidStartWithDollarAndUnderLineNamingRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.naming.AvoidStartWithDollarAndUnderLineNamingRule">
         <priority>2</priority>
     </rule>
 
@@ -80,7 +80,7 @@
           language="java"
           since="1.6"
           message="java.naming.ConstantFieldShouldBeUpperCaseRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.naming.ConstantFieldShouldBeUpperCaseRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.naming.ConstantFieldShouldBeUpperCaseRule">
         <priority>2</priority>
         <example>
             <![CDATA[
@@ -98,7 +98,7 @@
           language="java"
           since="1.6"
           message="java.naming.ServiceOrDaoClassShouldEndWithImplRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.naming.ServiceOrDaoClassShouldEndWithImplRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.naming.ServiceOrDaoClassShouldEndWithImplRule">
         <priority>2</priority>
         <example>
             <![CDATA[
@@ -120,7 +120,7 @@
           language="java"
           since="1.6"
           message="java.naming.PackageNamingRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.naming.PackageNamingRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.naming.PackageNamingRule">
         <priority>3</priority>
         <example>
             <![CDATA[
@@ -133,7 +133,7 @@
           language="java"
           since="1.6"
           message="java.naming.BooleanPropertyShouldNotStartWithIsRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.naming.BooleanPropertyShouldNotStartWithIsRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.naming.BooleanPropertyShouldNotStartWithIsRule">
         <priority>2</priority>
         <example>
             <![CDATA[
@@ -149,7 +149,7 @@
           language="java"
           since="1.6"
           message="java.naming.ArrayNamingShouldHaveBracketRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.naming.ArrayNamingShouldHaveBracketRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.naming.ArrayNamingShouldHaveBracketRule">
         <priority>3</priority>
         <example>
             <![CDATA[

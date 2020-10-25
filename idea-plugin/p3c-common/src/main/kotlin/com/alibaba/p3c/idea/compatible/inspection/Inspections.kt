@@ -15,8 +15,8 @@
  */
 package com.alibaba.p3c.idea.compatible.inspection
 
-import com.alibaba.p3c.pmd.lang.java.util.namelist.NameListConfig
-import com.alibaba.p3c.pmd.lang.java.util.namelist.NameListServiceImpl.P3C_CONFIG_FILE_NAME
+import com.xenoamess.p3c.pmd.lang.java.util.namelist.NameListConfig
+import com.xenoamess.p3c.pmd.lang.java.util.namelist.NameListServiceImpl.P3C_CONFIG_FILE_NAME
 import com.google.common.base.Splitter
 import com.intellij.codeInspection.ex.InspectionProfileImpl
 import com.intellij.codeInspection.ex.InspectionToolWrapper

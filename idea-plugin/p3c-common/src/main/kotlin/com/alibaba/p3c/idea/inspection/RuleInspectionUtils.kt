@@ -18,7 +18,7 @@ package com.alibaba.p3c.idea.inspection
 import com.alibaba.p3c.idea.config.P3cConfig
 import com.alibaba.p3c.idea.util.HighlightDisplayLevels
 import com.alibaba.p3c.idea.util.NumberConstants
-import com.alibaba.p3c.pmd.I18nResources
+import com.xenoamess.p3c.pmd.I18nResources
 import com.alibaba.smartfox.idea.common.util.getService
 import com.google.common.base.Joiner
 import com.google.common.collect.ImmutableMap

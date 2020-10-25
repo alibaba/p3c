@@ -20,7 +20,7 @@ import com.alibaba.p3c.idea.inspection.standalone.AliAccessStaticViaInstanceInsp
 import com.alibaba.p3c.idea.inspection.standalone.AliDeprecationInspection
 import com.alibaba.p3c.idea.inspection.standalone.AliMissingOverrideAnnotationInspection
 import com.alibaba.p3c.idea.inspection.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsInspection
-import com.alibaba.p3c.pmd.I18nResources
+import com.xenoamess.p3c.pmd.I18nResources
 import com.alibaba.smartfox.idea.common.util.getService
 import com.beust.jcommander.internal.Lists
 import com.beust.jcommander.internal.Maps

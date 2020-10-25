@@ -31,7 +31,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <ul>2.1.0.1x
+        <ul>2.1.0.2x-SNAPSHOT
+            <li>fix logics in rule LowerCamelCaseVariableNamingRule. Now we do not alarm in function with @Override</li>
+        </ul>
+        <ul>2.1.0.2x-SNAPSHOT
             <li>pmd upgrade to 6.26.0</li>
             <li>Kotlin upgrade to 1.4.0</li>
         </ul>

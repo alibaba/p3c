@@ -42,6 +42,7 @@ public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
 
     private static final String MESSAGE_KEY_PREFIX = "java.naming.LowerCamelCaseVariableNamingRule.violation.msg";
     private final Pattern pattern = Pattern.compile("^[a-z][a-z0-9]*([A-Z][a-z0-9]+)*(DO|DTO|VO|DAO|BO|DOList|DTOList|VOList|DAOList|BOList|X|Y|Z|UDF|UDAF|[A-Z])?$");
+    private final String STRING_CLASS_NAME_OVERRIDE = "java.lang.Override";
 
     private static List<String> getWhiteList() {
         return NameListConfig.getNameListService().getNameList(
@@ -88,6 +89,20 @@ public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
     public Object visit(ASTMethodDeclarator node, Object data) {
         for (String s : getWhiteList()) {
             if (node.getImage().contains(s)) {
+                return super.visit(node, data);
+            }
+        }
+
+        {
+            // add logic: DO NOT do this analyse to all function with @Override annotation on
+            // reason: If we can change its parent class
+            // (means the parent class also follows p3c, notice that not all parent classes be in a same project,
+            // it can be from a lib sometimes.), we just alarm there.
+            //
+            // Otherwise, we can do nothing to this, as it is just an override, and can NOT do the rename.
+            //
+            // In each situation, alarm in the child class is meaningless.
+            if(node.getParent().isAnnotationPresent(STRING_CLASS_NAME_OVERRIDE)){
                 return super.visit(node, data);
             }
         }

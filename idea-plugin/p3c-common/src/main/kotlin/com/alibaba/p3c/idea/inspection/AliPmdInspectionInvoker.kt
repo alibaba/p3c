@@ -21,7 +21,7 @@ import com.alibaba.p3c.idea.pmd.AliPmdProcessor
 import com.alibaba.p3c.idea.util.DocumentUtils.calculateLineStart
 import com.alibaba.p3c.idea.util.DocumentUtils.calculateRealOffset
 import com.alibaba.p3c.idea.util.ProblemsUtils
-import com.alibaba.p3c.pmd.lang.java.rule.comment.RemoveCommentedCodeRule
+import com.xenoamess.p3c.pmd.lang.java.rule.comment.RemoveCommentedCodeRule
 import com.beust.jcommander.internal.Lists
 import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder

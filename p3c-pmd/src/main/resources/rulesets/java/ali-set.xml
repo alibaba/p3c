@@ -7,7 +7,7 @@
 
     <rule name="ClassCastExceptionWithToArrayRule"
         message="java.set.ClassCastExceptionWithToArrayRule.rule.msg"
-        class="com.alibaba.p3c.pmd.lang.java.rule.set.ClassCastExceptionWithToArrayRule">
+        class="com.xenoamess.p3c.pmd.lang.java.rule.set.ClassCastExceptionWithToArrayRule">
         <priority>2</priority>
         <example>
         <![CDATA[
@@ -25,7 +25,7 @@ Positive example：
 
     <rule name="UnsupportedExceptionWithModifyAsListRule"
         message="java.set.UnsupportedExceptionWithModifyAsListRule.rule.msg"
-        class="com.alibaba.p3c.pmd.lang.java.rule.set.UnsupportedExceptionWithModifyAsListRule">
+        class="com.xenoamess.p3c.pmd.lang.java.rule.set.UnsupportedExceptionWithModifyAsListRule">
         <priority>2</priority>
         <example>
        <![CDATA[
@@ -43,7 +43,7 @@ Positive example:
 
     <rule name="ClassCastExceptionWithSubListToArrayListRule"
         message="java.set.ClassCastExceptionWithSubListToArrayListRule.rule.msg"
-        class="com.alibaba.p3c.pmd.lang.java.rule.set.ClassCastExceptionWithSubListToArrayListRule">
+        class="com.xenoamess.p3c.pmd.lang.java.rule.set.ClassCastExceptionWithSubListToArrayListRule">
         <description>java.set.ClassCastExceptionWithSubListToArrayListRule.rule.msg.desc</description>
         <priority>2</priority>
         <example>
@@ -65,7 +65,7 @@ Positive example:
 
     <rule name="ConcurrentExceptionWithModifyOriginSubListRule"
         message="java.set.ConcurrentExceptionWithModifyOriginSubListRule.rule.msg"
-        class="com.alibaba.p3c.pmd.lang.java.rule.set.ConcurrentExceptionWithModifyOriginSubListRule">
+        class="com.xenoamess.p3c.pmd.lang.java.rule.set.ConcurrentExceptionWithModifyOriginSubListRule">
         <priority>2</priority>
         <example>
       <![CDATA[
@@ -82,7 +82,7 @@ Negative example:
 
     <rule name="DontModifyInForeachCircleRule"
         message="java.set.DontModifyInForeachCircleRule.rule.msg"
-        class="com.alibaba.p3c.pmd.lang.java.rule.set.DontModifyInForeachCircleRule">
+        class="com.xenoamess.p3c.pmd.lang.java.rule.set.DontModifyInForeachCircleRule">
         <priority>1</priority>
 
         <example>
@@ -112,7 +112,7 @@ Negative example:
 
     <rule name="CollectionInitShouldAssignCapacityRule"
         message="java.set.CollectionInitShouldAssignCapacityRule.rule.msg"
-        class="com.alibaba.p3c.pmd.lang.java.rule.set.CollectionInitShouldAssignCapacityRule">
+        class="com.xenoamess.p3c.pmd.lang.java.rule.set.CollectionInitShouldAssignCapacityRule">
         <description>java.set.CollectionInitShouldAssignCapacityRule.rule.msg.desc</description>
         <priority>3</priority>
         <example>
@@ -131,7 +131,7 @@ Negative example:
     </rule>
     <rule name="EqualsHashCodeRule" language="java"
           message="java.set.EqualsHashCodeRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.set.EqualsHashCodeRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.set.EqualsHashCodeRule">
         <priority>4</priority>
         <example>
             <![CDATA[

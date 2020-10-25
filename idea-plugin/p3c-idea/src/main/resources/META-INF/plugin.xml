@@ -31,6 +31,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.1.0.2x
+            <li>fix logics in rule LowerCamelCaseVariableNamingRule. Now we do not alarm in function with @Override</li>
+            <li>move package 'com.alibaba.p3c.pmd' to 'com.xenoamess.p3c.pmd'</li>
+        </ul>
         <ul>2.1.0.1x
             <li>pmd upgrade to 6.26.0</li>
             <li>Kotlin upgrade to 1.4.0</li>
@@ -64,7 +68,7 @@
             <li>EqualsHashCodeRule now only check non-Abstract class.</li>
         </ul>
         <ul>2.0.2.2x
-            <li>add com.alibaba.p3c.pmd.lang.java.rule.flowcontrol.SwitchExpressionRule to deal with switch expression, which is experimental in java 12 and 13, and finally public in java 14.Added a rule for checking SwitchExpression MUST have a default branch.</li>
+            <li>add SwitchExpressionRule to deal with switch expression, which is experimental in java 12 and 13, and finally public in java 14.Added a rule for checking SwitchExpression MUST have a default branch.</li>
             <li>I'm new to pmd and XPATH thing, so if there be bug/false positive in the new added rule, please e-mail me or open issue on github.</li>
         </ul>
         <ul>2.0.2.1x

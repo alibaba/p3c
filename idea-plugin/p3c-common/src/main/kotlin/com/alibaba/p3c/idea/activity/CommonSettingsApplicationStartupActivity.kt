@@ -19,7 +19,7 @@ import com.alibaba.p3c.idea.config.P3cConfig
 import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.p3c.idea.util.HighlightInfoTypes
 import com.alibaba.p3c.idea.util.HighlightSeverities
-import com.alibaba.p3c.pmd.I18nResources
+import com.xenoamess.p3c.pmd.I18nResources
 import com.alibaba.smartfox.idea.common.activity.AliBaseApplicationStartupActivity
 import com.intellij.codeInsight.daemon.impl.SeverityRegistrar
 import com.intellij.openapi.actionSystem.ActionManager

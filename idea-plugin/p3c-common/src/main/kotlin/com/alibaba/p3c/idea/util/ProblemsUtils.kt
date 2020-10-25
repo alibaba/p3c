@@ -15,7 +15,7 @@
  */
 package com.alibaba.p3c.idea.util
 
-import com.alibaba.p3c.pmd.lang.java.rule.comment.AvoidCommentBehindStatementRule
+import com.xenoamess.p3c.pmd.lang.java.rule.comment.AvoidCommentBehindStatementRule
 import com.intellij.codeInspection.InspectionManager
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor

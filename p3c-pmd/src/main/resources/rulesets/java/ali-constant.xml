@@ -7,7 +7,7 @@
 
     <rule name="UpperEllRule"
         message="java.constant.UpperEllRule.rule.msg"
-        class="com.alibaba.p3c.pmd.lang.java.rule.constant.UpperEllRule">
+        class="com.xenoamess.p3c.pmd.lang.java.rule.constant.UpperEllRule">
         <priority>1</priority>
         <example>
       <![CDATA[
@@ -26,7 +26,7 @@ Positive example:
 
     <rule name="UndefineMagicConstantRule"
         message="java.constant.UndefineMagicConstantRule.rule.msg"
-        class="com.alibaba.p3c.pmd.lang.java.rule.constant.UndefineMagicConstantRule">
+        class="com.xenoamess.p3c.pmd.lang.java.rule.constant.UndefineMagicConstantRule">
         <priority>3</priority>
 
         <example>

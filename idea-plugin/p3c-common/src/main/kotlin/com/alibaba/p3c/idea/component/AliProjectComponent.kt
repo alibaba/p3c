@@ -21,7 +21,7 @@ import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.p3c.idea.inspection.AliPmdInspectionInvoker
 import com.alibaba.p3c.idea.pmd.SourceCodeProcessor
 import com.alibaba.p3c.idea.util.withLockNotInline
-import com.alibaba.p3c.pmd.I18nResources
+import com.xenoamess.p3c.pmd.I18nResources
 import com.alibaba.smartfox.idea.common.component.AliBaseProjectComponent
 import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.project.Project

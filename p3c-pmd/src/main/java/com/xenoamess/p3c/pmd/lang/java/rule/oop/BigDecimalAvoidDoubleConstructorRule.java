@@ -20,6 +20,7 @@ import java.util.List;
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
 
+import net.sourceforge.pmd.lang.ast.GenericToken;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTLiteral;
 import net.sourceforge.pmd.lang.java.ast.ASTName;
@@ -38,6 +39,12 @@ public class BigDecimalAvoidDoubleConstructorRule extends AbstractAliRule {
     private static final String XPATH =
         "Expression/PrimaryExpression/PrimaryPrefix/AllocationExpression/Arguments[preceding-sibling::ClassOrInterfaceType[@Image = 'BigDecimal']]"
             + "/ArgumentList/Expression/PrimaryExpression/PrimaryPrefix";
+
+    private static final String STRING_DOUBLE = "Double";
+
+    private static final String STRING_TO_HEX_STRING = "toHexString";
+
+    private static final String STRING_TO_STRING = "toString";
 
     @Override
     public Object visit(ASTVariableInitializer node, Object data) {
@@ -73,6 +80,17 @@ public class BigDecimalAvoidDoubleConstructorRule extends AbstractAliRule {
 
     private boolean isDoubleVariable(ASTPrimaryPrefix node) {
         ASTName name = node.getFirstChildOfType(ASTName.class);
-        return name != null && Double.class ==  name.getType();
+        if(!(name != null && Double.class ==  name.getType())){
+            return false;
+        }
+        GenericToken firstToken = node.jjtGetFirstToken();
+        GenericToken lastToken = node.jjtGetLastToken();
+
+        return !(STRING_DOUBLE.equals(firstToken.getImage()) &&
+                (
+                        STRING_TO_HEX_STRING.equals(lastToken.getImage())
+                        ||  STRING_TO_STRING.equals(lastToken.getImage())
+                )
+        );
     }
 }

@@ -119,12 +119,6 @@ public class NameListServiceImpl implements NameListService {
                                         + ")>CONTENT_NODE("
                                         + name
                                         + ")"
-                                ,
-                                "com.xenoamess.p3c.pmd.config>rule_config>CONTENT_NODE("
-                                        + className
-                                        + ")>CONTENT_NODE("
-                                        + name
-                                        + ")"
                         },
                         ContentNode.class
                 )

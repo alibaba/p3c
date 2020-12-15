@@ -21,7 +21,7 @@ cd p3c-idea
 
 ## <font color="green">Use p3c-common as your plugin dependency</font>
 ```groovy
-compile 'com.xenoamess.p3c.idea:p3c-common:2.1.0.3x-SNAPSHOT'
+compile 'com.xenoamess.p3c.idea:p3c-common:2.1.0.3x'
 ```
 ## [中文使用手册](README_cn.md)
 ## <font color="green">Install</font>

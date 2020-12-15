@@ -28,7 +28,7 @@ jobs:
         experimental: [ false ]
 
     steps:
-      - uses: actions/checkout@v2.3.3
+      - uses: actions/checkout@v2.3.4
       - uses: actions/cache@v2
         with:
           path: ~/.m2

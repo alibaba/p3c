@@ -30,7 +30,7 @@ TPM maintainer XenoAmess suggest you only create pr for module idea-plugin and p
 
 1.  This TPM can always run on latest Jetbrains-idea release/EAP.
 
-    本第三方维护版会在任何etbrains-idea release或者EAP更新时保证可用。
+    本第三方维护版会在任何 Jetbrains-idea release 或者EAP更新时保证可用。
 
 2.  This TPM will always use as latest dependencies as possible.
 

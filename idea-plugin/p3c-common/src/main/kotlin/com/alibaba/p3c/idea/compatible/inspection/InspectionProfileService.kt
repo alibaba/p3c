@@ -36,8 +36,11 @@ import java.util.LinkedHashSet
  * @date 2017/03/01
  */
 object InspectionProfileService {
-    fun createSimpleProfile(toolWrapperList: List<InspectionToolWrapper<*, *>>,
-            managerEx: InspectionManagerEx, psiElement: PsiElement?): InspectionProfileImpl {
+    fun createSimpleProfile(
+            toolWrapperList: List<InspectionToolWrapper<*, *>>,
+            managerEx: InspectionManagerEx,
+            psiElement: PsiElement?
+    ): InspectionProfileImpl {
         val profile = getProjectInspectionProfile(managerEx.project)
         val allWrappers: LinkedHashSet<InspectionToolWrapper<*, *>> = Sets.newLinkedHashSet()
         allWrappers.addAll(toolWrapperList)
@@ -84,7 +87,11 @@ object InspectionProfileService {
         return model
     }
 
-    fun toggleInspection(project: Project, aliInspections: List<InspectionToolWrapper<*, *>>, closed: Boolean) {
+    fun toggleInspection(
+            project: Project,
+            aliInspections: List<InspectionToolWrapper<*, *>>,
+            closed: Boolean
+    ) {
         val profile = getProjectInspectionProfile(project)
         val shortNames = aliInspections.map {
             it.tool.shortName
@@ -102,8 +109,10 @@ object InspectionProfileService {
         profile.scopesChanged()
     }
 
-    fun setExternalProfile(profile: InspectionProfileImpl,
-            inspectionContext: GlobalInspectionContextImpl) {
+    fun setExternalProfile(
+            profile: InspectionProfileImpl,
+            inspectionContext: GlobalInspectionContextImpl
+    ) {
         val method = inspectionContext.javaClass.methods.first {
             it.name == "setExternalProfile" && it.parameterTypes.size == 1 && it.parameterTypes.first().isAssignableFrom(InspectionProfileImpl::class.java)
         }

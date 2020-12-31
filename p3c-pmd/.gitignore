@@ -80,7 +80,6 @@ config.client.*
 
 temp/
 *.pid
-*.orig
 
 hsf.configuration/
 

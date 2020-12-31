@@ -88,7 +88,7 @@ class MapOrSetKeyShouldOverrideHashCodeEqualsInspection : BaseInspection, AliBas
     private class MapOrSetKeyVisitor : BaseInspectionVisitor() {
 
         private fun getClassType(aClass: PsiClass?): ClassType {
-            return isMapOrSet(aClass, Sets.newHashSet<PsiClass>())
+            return isMapOrSet(aClass, Sets.newHashSet())
         }
 
         private fun isMapOrSet(aClass: PsiClass?, visitedClasses: MutableSet<PsiClass>): ClassType {
@@ -171,8 +171,8 @@ class MapOrSetKeyShouldOverrideHashCodeEqualsInspection : BaseInspection, AliBas
 
     companion object {
 
-        private val skipJdkPackageJava = "java."
-        private val skipJdkPackageJavax = "javax."
+        private const val skipJdkPackageJava = "java."
+        private const val skipJdkPackageJavax = "javax."
 
         private fun redefineHashCodeEquals(psiType: PsiType): Boolean {
             if (psiType !is PsiClassType) {

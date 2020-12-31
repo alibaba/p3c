@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
+    <code-fragment id="sets-EqualsHashCodeRule-ok"><![CDATA[
+        public class Foo { // line 1
+            private Long id;
+
+            @Override
+            public boolean equals(Object o) { // line 5
+                if (this == o) {
+                    return true;
+                }
+                if (o == null || getClass() != o.getClass()) {
+                    return false;
+                }
+                Foo foo = (Foo) o;
+                return Objects.equals(id, foo.id);
+            }
+
+            @Override
+            public int hashCode() { // line 17
+                return Objects.hash(id);
+            }
+        }
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>sets-EqualsHashCodeRule-ok.</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="sets-EqualsHashCodeRule-ok"/>
+    </test-code>
+
+    <code-fragment id="sets-EqualsHashCodeRule-missHashCodeWarn"><![CDATA[
+        public class Foo { // line 1
+            private Long id;
+
+            @Override
+            public boolean equals(Object o) { // line 5
+                if (this == o) {
+                    return true;
+                }
+                if (o == null || getClass() != o.getClass()) {
+                    return false;
+                }
+                Foo foo = (Foo) o;
+                return Objects.equals(id, foo.id);
+            }
+        }
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>sets-EqualsHashCodeRule-missHashCodeWarn.</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>5</expected-linenumbers>
+        <code-ref id="sets-EqualsHashCodeRule-missHashCodeWarn"/>
+    </test-code>
+
+    <code-fragment id="sets-EqualsHashCodeRule-missEqualsWarn"><![CDATA[
+        public class Foo { // line 1
+            private Long id;
+
+            @Override
+            public int hashCode() { // line 5
+                return Objects.hash(id);
+            }
+        }
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>sets-EqualsHashCodeRule-missEqualsWarn.</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>5</expected-linenumbers>
+        <code-ref id="sets-EqualsHashCodeRule-missEqualsWarn"/>
+    </test-code>
+
+    <code-fragment id="ignore_abstract_class"><![CDATA[
+        public abstract class AbstractFoo {
+            @Override
+            public boolean equals(Object o) {
+                return true;
+            }
+        }
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>shall ignore abstract class.</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="ignore_abstract_class"/>
+    </test-code>
+</test-data>

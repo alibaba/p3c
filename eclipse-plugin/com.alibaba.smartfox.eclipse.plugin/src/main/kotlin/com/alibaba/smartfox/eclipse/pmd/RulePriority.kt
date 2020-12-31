@@ -17,7 +17,11 @@ package com.alibaba.smartfox.eclipse.pmd
 
 enum class RulePriority(val priority: Int, val title: String) {
 
-    Blocker(1, "Blocker"), Critical(2, "Critical"), Major(3, "Major");
+    Blocker(1, "Blocker"),
+    Critical(2, "Critical"),
+    Major(3, "Major"),
+    Warning(4, "Warning"),
+    WeakWarning(5, "Weak Warning");
 
     override fun toString(): String {
         return title
@@ -28,7 +32,7 @@ enum class RulePriority(val priority: Int, val title: String) {
             try {
                 return RulePriority.values()[priority - 1]
             } catch (e: ArrayIndexOutOfBoundsException) {
-                return Major
+                return WeakWarning
             }
         }
     }

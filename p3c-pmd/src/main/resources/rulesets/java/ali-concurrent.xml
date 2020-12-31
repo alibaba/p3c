@@ -9,7 +9,7 @@
           language="java"
           since="1.6"
           message="java.concurrent.ThreadPoolCreationRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.ThreadPoolCreationRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.concurrent.ThreadPoolCreationRule">
         <description>java.concurrent.ThreadPoolCreationRule.rule.desc</description>
         <priority>1</priority>
         <example>
@@ -58,7 +58,7 @@ Positive example 3：
           language="java"
           since="1.6"
           message="java.concurrent.AvoidUseTimerRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.AvoidUseTimerRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.concurrent.AvoidUseTimerRule">
         <priority>1</priority>
         <example>
             <![CDATA[
@@ -79,7 +79,7 @@ Positive example 3：
           since="1.6"
           message="java.concurrent.AvoidManuallyCreateThreadRule.rule.msg"
           dfa="true"
-          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.AvoidManuallyCreateThreadRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.concurrent.AvoidManuallyCreateThreadRule">
         <description>java.concurrent.AvoidManuallyCreateThreadRule.rule.desc</description>
         <priority>2</priority>
         <example>
@@ -100,7 +100,7 @@ Positive example 3：
           since="1.6"
           message="java.concurrent.ThreadShouldSetNameRule.rule.msg"
           dfa="true"
-          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.ThreadShouldSetNameRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.concurrent.ThreadShouldSetNameRule">
         <priority>2</priority>
         <example>
             <![CDATA[
@@ -128,7 +128,7 @@ Positive example 3：
           since="1.6"
           message="java.concurrent.AvoidCallStaticSimpleDateFormatRule.rule.msg"
           dfa="true"
-          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.AvoidCallStaticSimpleDateFormatRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.concurrent.AvoidCallStaticSimpleDateFormatRule">
         <description>java.concurrent.AvoidCallStaticSimpleDateFormatRule.rule.desc</description>
         <priority>2</priority>
         <example>
@@ -170,7 +170,7 @@ Positive example 3：
           since="1.6"
           message="java.concurrent.ThreadLocalShouldRemoveRule.rule.msg"
           dfa="true"
-          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.ThreadLocalShouldRemoveRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.concurrent.ThreadLocalShouldRemoveRule">
         <priority>2</priority>
         <example>
             <![CDATA[
@@ -220,7 +220,7 @@ Positive example 3：
           since="1.6"
           message="java.concurrent.AvoidConcurrentCompetitionRandomRule.rule.msg"
           dfa="true"
-          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.AvoidConcurrentCompetitionRandomRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.concurrent.AvoidConcurrentCompetitionRandomRule">
         <priority>3</priority>
         <example>
             <![CDATA[
@@ -262,7 +262,7 @@ Positive example 2：
           since="1.6"
           message="java.concurrent.CountDownShouldInFinallyRule.rule.msg"
           dfa="true"
-          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.CountDownShouldInFinallyRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.concurrent.CountDownShouldInFinallyRule">
         <description>java.concurrent.CountDownShouldInFinallyRule.rule.desc</description>
         <priority>3</priority>
         <example>
@@ -290,7 +290,7 @@ Positive example 2：
           since="1.6"
           message="java.concurrent.LockShouldWithTryFinallyRule.rule.msg"
           dfa="true"
-          class="com.alibaba.p3c.pmd.lang.java.rule.concurrent.LockShouldWithTryFinallyRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.concurrent.LockShouldWithTryFinallyRule">
         <description>java.concurrent.LockShouldWithTryFinallyRule.rule.desc</description>
         <priority>1</priority>
         <example>

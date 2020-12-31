@@ -71,7 +71,6 @@ configuration/**
 
 # sass gitignore#
 .sass-cache
-.idea
 
 # tcc_coverage
 coverage.ec
@@ -82,7 +81,6 @@ config.client.*
 
 temp/
 *.pid
-*.orig
 
 hsf.configuration/
 
@@ -93,3 +91,6 @@ hsf.configuration/
 *.instance
 out
 !/p3c-idea/src/main/kotlin/com/alibaba/smartfox/work/tools/aone/ui/AoneBranchView.kt
+
+#versions-maven-plugin
+*.versionsBackup

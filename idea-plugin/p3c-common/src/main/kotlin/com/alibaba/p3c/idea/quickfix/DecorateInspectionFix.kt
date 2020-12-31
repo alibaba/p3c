@@ -25,9 +25,11 @@ import com.siyeh.ig.InspectionGadgetsFix
  * @author caikang
  * @date 2017/03/02
  */
-class DecorateInspectionGadgetsFix(val fix: InspectionGadgetsFix,
+class DecorateInspectionGadgetsFix(
+        val fix: InspectionGadgetsFix,
         internal val name: String,
-        internal val familyName: String = name) : InspectionGadgetsFix() {
+        internal val familyName: String = name
+) : InspectionGadgetsFix() {
     override fun getName(): String {
         return name
     }

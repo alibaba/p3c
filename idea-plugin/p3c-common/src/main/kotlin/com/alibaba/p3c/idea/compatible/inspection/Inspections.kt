@@ -15,12 +15,26 @@
  */
 package com.alibaba.p3c.idea.compatible.inspection
 
+import com.xenoamess.p3c.pmd.lang.java.util.namelist.NameListConfig
+import com.xenoamess.p3c.pmd.lang.java.util.namelist.NameListServiceImpl.P3C_CONFIG_FILE_NAME
 import com.google.common.base.Splitter
 import com.intellij.codeInspection.ex.InspectionProfileImpl
 import com.intellij.codeInspection.ex.InspectionToolWrapper
 import com.intellij.codeInspection.ex.ScopeToolState
 import com.intellij.codeInspection.javaDoc.JavaDocLocalInspection
 import com.intellij.openapi.project.Project
+import org.jetbrains.annotations.SystemIndependent
+import java.io.File
+import java.io.FilenameFilter
+
+/**
+ * @author XenoAmess
+ */
+class P3cConfigFilenameFilter : FilenameFilter {
+    override fun accept(dir: File?, name: String?): Boolean {
+        return P3C_CONFIG_FILE_NAME.equals(name)
+    }
+}
 
 /**
  *
@@ -30,9 +44,32 @@ import com.intellij.openapi.project.Project
  */
 object Inspections {
     fun aliInspections(project: Project, filter: (InspectionToolWrapper<*, *>) -> Boolean): List<InspectionToolWrapper<*, *>> {
+        loadPatchConfigFile(project)
         val profile = InspectionProfileService.getProjectInspectionProfile(project)
         return getAllTools(project, profile).filter(filter)
     }
+
+    fun loadPatchConfigFile(project: Project) {
+        val patchConfigFile = fetchPatchConfigFile(project)
+        if (patchConfigFile == null) {
+            NameListConfig.renewNameListService()
+        } else {
+            NameListConfig.renewNameListService(patchConfigFile)
+        }
+    }
+
+    private fun fetchPatchConfigFile(project: Project): File? {
+        val projectBasePath: @SystemIndependent String? = project.basePath
+                ?: return null
+        val projectBaseFile = File(projectBasePath)
+        val fileList = projectBaseFile.listFiles(P3cConfigFilenameFilter())
+        return if (fileList == null || fileList.isEmpty()) {
+            null
+        } else {
+            fileList[0]
+        }
+    }
+
 
     fun addCustomTag(project: Project, tag: String) {
         val profile = InspectionProfileService.getProjectInspectionProfile(project)
@@ -47,7 +84,7 @@ object Inspections {
         if (tags.contains(tag)) {
             return
         }
-        javaDocLocalInspection.myAdditionalJavadocTags += "," + tag
+        javaDocLocalInspection.myAdditionalJavadocTags += ",$tag"
         profile.profileChanged()
         profile.scopesChanged()
     }

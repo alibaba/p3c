@@ -35,6 +35,7 @@ import javax.swing.JComponent
  */
 class AliArrayNamingShouldHaveBracketInspection : CStyleArrayDeclarationInspection, AliBaseInspection {
     constructor()
+
     /**
      * ForJavassist
      */

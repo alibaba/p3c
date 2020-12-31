@@ -15,7 +15,7 @@
  */
 package com.alibaba.p3c.idea.util
 
-import com.alibaba.p3c.pmd.lang.java.rule.comment.AvoidCommentBehindStatementRule
+import com.xenoamess.p3c.pmd.lang.java.rule.comment.AvoidCommentBehindStatementRule
 import com.intellij.codeInspection.InspectionManager
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
@@ -42,13 +42,21 @@ import com.intellij.psi.impl.source.tree.ElementType
 object ProblemsUtils {
     private val highlightLineRules = setOf(AvoidCommentBehindStatementRule::class.java.simpleName)
 
-    fun createProblemDescriptorForPmdRule(psiFile: PsiFile, manager: InspectionManager, isOnTheFly: Boolean,
-            ruleName: String, desc: String, start: Int, end: Int,
+    fun createProblemDescriptorForPmdRule(
+            psiFile: PsiFile,
+            manager: InspectionManager,
+            isOnTheFly: Boolean,
+            ruleName: String,
+            desc: String,
+            start: Int,
+            end: Int,
             checkLine: Int = 0,
             quickFix: (PsiElement) -> LocalQuickFix? = {
                 QuickFixes.getQuickFix(ruleName, isOnTheFly)
-            }): ProblemDescriptor? {
-        val document = FileDocumentManager.getInstance().getDocument(psiFile.virtualFile) ?: return null
+            }
+    ): ProblemDescriptor? {
+        val document = FileDocumentManager.getInstance().getDocument(psiFile.virtualFile)
+                ?: return null
         if (highlightLineRules.contains(ruleName) && checkLine <= document.lineCount) {
             val lineNumber = if (start >= document.textLength) {
                 document.lineCount - 1
@@ -113,9 +121,14 @@ object ProblemsUtils {
         if (psiElement == null) {
             return null
         }
-        if (psiElement is PsiKeyword && psiElement.text != null && (ObjectConstants.CLASS_LITERAL == psiElement.text
-                || ObjectConstants.INTERFACE_LITERAL == psiElement.text
-                || ObjectConstants.ENUM_LITERAL == psiElement.text) && psiElement.parent is PsiClass) {
+        if (psiElement is PsiKeyword
+                && psiElement.text != null
+                && (ObjectConstants.CLASS_LITERAL == psiElement.text
+                        || ObjectConstants.INTERFACE_LITERAL == psiElement.text
+                        || ObjectConstants.ENUM_LITERAL == psiElement.text
+                        )
+                && psiElement.parent is PsiClass
+        ) {
             val parent = psiElement.parent as PsiClass
             val identifier = parent.nameIdentifier
             return identifier ?: psiElement
@@ -123,11 +136,17 @@ object ProblemsUtils {
         return psiElement
     }
 
-    private fun createTextRangeProblem(manager: InspectionManager, textRange: TextRange, isOnTheFly: Boolean,
-            psiFile: PsiFile, ruleName: String, desc: String,
+    private fun createTextRangeProblem(
+            manager: InspectionManager,
+            textRange: TextRange,
+            isOnTheFly: Boolean,
+            psiFile: PsiFile,
+            ruleName: String,
+            desc: String,
             quickFix: () -> LocalQuickFix? = {
                 QuickFixes.getQuickFix(ruleName, isOnTheFly)
-            }): ProblemDescriptor {
+            }
+    ): ProblemDescriptor {
 
         return manager.createProblemDescriptor(psiFile, textRange,
                 desc, ProblemHighlightType.GENERIC_ERROR_OR_WARNING,

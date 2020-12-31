@@ -55,7 +55,8 @@ interface AliQuickFix : LocalQuickFix {
                 return
             }
 
-            val editor = FileEditorManager.getInstance(project).selectedTextEditor ?: return
+            val editor = FileEditorManager.getInstance(project).selectedTextEditor
+                    ?: return
             editor.caretModel.moveToOffset(psiIdentifier.textOffset)
             val anAction = ActionManager.getInstance().getAction("RenameElement")
             val psiFile = psiIdentifier.containingFile

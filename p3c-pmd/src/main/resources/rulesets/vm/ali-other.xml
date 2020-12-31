@@ -6,7 +6,7 @@
     <description>AlibabaVelocityOthers</description>
     <rule name="UseQuietReferenceNotationRule" language="vm"
         message="vm.other.UseQuietReferenceNotationRule.rule.msg"
-        class="com.alibaba.p3c.pmd.lang.vm.rule.other.UseQuietReferenceNotationRule">
+        class="com.xenoamess.p3c.pmd.lang.vm.rule.other.UseQuietReferenceNotationRule">
         <description>vm.other.UseQuietReferenceNotationRule.rule.desc</description>
         <priority>3</priority>
         <example>

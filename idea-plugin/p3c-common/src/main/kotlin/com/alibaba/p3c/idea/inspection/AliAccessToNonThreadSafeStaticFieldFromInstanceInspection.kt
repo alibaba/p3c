@@ -27,6 +27,7 @@ class AliAccessToNonThreadSafeStaticFieldFromInstanceInspection
     : AccessToNonThreadSafeStaticFieldFromInstanceInspection,
         AliBaseInspection {
     constructor()
+
     /**
      * For Javassist
      */

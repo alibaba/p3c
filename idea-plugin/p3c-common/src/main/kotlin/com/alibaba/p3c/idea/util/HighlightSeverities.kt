@@ -24,16 +24,14 @@ import com.intellij.lang.annotation.HighlightSeverity
  * @date 2017/02/04
  */
 object HighlightSeverities {
-    val MAJOR = HighlightSeverity("MAJOR", 397)
+    val BLOCKER = HighlightSeverity("BLOCKER", 399)
 
-
-    /**
-     * The standard severity level for warning annotations.
-     */
     val CRITICAL = HighlightSeverity("CRITICAL", 398)
 
-    /**
-     * The standard severity level for error annotations.
-     */
-    val BLOCKER = HighlightSeverity("BLOCKER", 399)
+    val MAJOR = HighlightSeverity("MAJOR", 397)
+
+    val WARNING = HighlightSeverity("WARNING", 396)
+
+    val WEAK_WARNING = HighlightSeverity("WEAK_WARNING", 395)
+
 }

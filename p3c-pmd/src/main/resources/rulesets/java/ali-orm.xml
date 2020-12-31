@@ -9,7 +9,7 @@
           language="java"
           since="1.6"
           message="java.naming.IbatisMethodQueryForListRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.orm.IbatisMethodQueryForListRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.orm.IbatisMethodQueryForListRule">
         <priority>3</priority>
     </rule>
 

@@ -20,10 +20,10 @@ package com.alibaba.p3c.idea.util
  * @date 2016/12/28
  */
 object NumberConstants {
-    val INTEGER_SIZE_OR_LENGTH_0 = 0
-    val INTEGER_SIZE_OR_LENGTH_1 = 1
-    val INTEGER_SIZE_OR_LENGTH_2 = 2
+    const val INTEGER_SIZE_OR_LENGTH_0 = 0
+    const val INTEGER_SIZE_OR_LENGTH_1 = 1
+    const val INTEGER_SIZE_OR_LENGTH_2 = 2
 
-    val INDEX_0 = 0
-    val INDEX_1 = 1
+    const val INDEX_0 = 0
+    const val INDEX_1 = 1
 }

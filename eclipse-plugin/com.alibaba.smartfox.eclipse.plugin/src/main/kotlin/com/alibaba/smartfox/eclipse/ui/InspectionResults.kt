@@ -98,6 +98,8 @@ object InspectionResults {
 
         return "${map[RulePriority.Blocker.title]?.count ?: 0} Blockers," +
                 "${map[RulePriority.Critical.title]?.count ?: 0} Criticals," +
-                "${map[RulePriority.Major.title]?.count ?: 0} Majors"
+                "${map[RulePriority.Major.title]?.count ?: 0} Majors," +
+                "${map[RulePriority.Warning.title]?.count ?: 0} Warnings," +
+                "${map[RulePriority.WeakWarning.title]?.count ?: 0} Weak Warnings"
     }
 }

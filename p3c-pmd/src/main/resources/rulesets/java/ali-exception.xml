@@ -9,7 +9,7 @@
           language="java"
           since="1.6"
           message="java.exception.MethodReturnWrapperTypeRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.exception.MethodReturnWrapperTypeRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.exception.MethodReturnWrapperTypeRule">
         <priority>3</priority>
         <example>
             <![CDATA[
@@ -24,7 +24,7 @@
     <rule name="AvoidReturnInFinallyRule"
           language="java"
           message="java.exception.AvoidReturnInFinallyRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.exception.AvoidReturnInFinallyRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.exception.AvoidReturnInFinallyRule">
         <priority>2</priority>
         <example>
             <![CDATA[
@@ -50,7 +50,7 @@ Negative example:
           since="1.6"
           message="java.exception.TransactionMustHaveRollbackRule.rule.msg"
           dfa="true"
-          class="com.alibaba.p3c.pmd.lang.java.rule.exception.TransactionMustHaveRollbackRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.exception.TransactionMustHaveRollbackRule">
         <priority>3</priority>
         <example>
             <![CDATA[

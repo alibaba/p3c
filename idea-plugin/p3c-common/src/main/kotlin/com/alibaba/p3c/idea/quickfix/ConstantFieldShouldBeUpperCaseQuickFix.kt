@@ -28,7 +28,7 @@ import com.intellij.psi.PsiIdentifier
  * @date 2017/02/28
  */
 object ConstantFieldShouldBeUpperCaseQuickFix : AliQuickFix {
-    val separator = '_'
+    const val separator = '_'
 
     override fun getName(): String {
         return P3cBundle.getMessage("com.alibaba.p3c.idea.quickfix.field.to.upperCaseWithUnderscore")

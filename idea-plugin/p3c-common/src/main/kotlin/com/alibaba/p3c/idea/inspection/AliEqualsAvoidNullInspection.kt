@@ -42,6 +42,7 @@ import org.jetbrains.annotations.NonNls
  */
 class AliEqualsAvoidNullInspection : LiteralAsArgToStringEqualsInspection, AliBaseInspection {
     constructor()
+
     /**
      * For Javassist
      */

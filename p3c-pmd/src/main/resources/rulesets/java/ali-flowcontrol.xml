@@ -8,7 +8,7 @@
     <rule name="SwitchStatementRule"
           language="java"
           message="java.flowcontrol.SwitchStatementRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.flowcontrol.SwitchStatementRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.flowcontrol.SwitchStatementRule">
         <priority>2</priority>
 
         <example>
@@ -24,10 +24,27 @@
         </example>
     </rule>
 
+    <rule name="SwitchExpressionRule"
+          language="java"
+          message="java.flowcontrol.SwitchExpressionRule.rule.msg"
+          class="com.xenoamess.p3c.pmd.lang.java.rule.flowcontrol.SwitchExpressionRule">
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+    int b = switch (x) {
+        case 1 -> 4;
+        case 2 -> 5;
+        default -> 6;
+    }
+			]]>
+        </example>
+    </rule>
+
     <rule name="NeedBraceRule"
           language="java"
           message="java.flowcontrol.NeedBraceRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.flowcontrol.NeedBraceRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.flowcontrol.NeedBraceRule">
         <priority>1</priority>
 
         <example>
@@ -42,7 +59,7 @@
     <rule name="AvoidComplexConditionRule"
           language="java"
           message="java.flowcontrol.AvoidComplexConditionRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.flowcontrol.AvoidComplexConditionRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.flowcontrol.AvoidComplexConditionRule">
         <description>java.flowcontrol.AvoidComplexConditionRule.rule.desc</description>
         <priority>3</priority>
 
@@ -68,7 +85,7 @@ Positive example:
     <rule name="AvoidNegationOperatorRule"
           language="java"
           message="java.flowcontrol.AvoidNegationOperatorRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.flowcontrol.AvoidNegationOperatorRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.flowcontrol.AvoidNegationOperatorRule">
         <description>java.flowcontrol.AvoidNegationOperatorRule.rule.desc</description>
         <priority>3</priority>
 

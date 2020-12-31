@@ -26,12 +26,19 @@ import com.intellij.openapi.util.IconLoader;
 public final class P3cIcons {
     private P3cIcons() {
         throw new AssertionError("icons.P3cIcons"
-            + " instances for you!");
+                + " instances for you!");
     }
 
     public static final Icon ANALYSIS_ACTION = IconLoader.getIcon("/icons/ali-ide-run.png");
 
+    /**
+     * qiyong means 启用
+     */
     public static final Icon PROJECT_INSPECTION_ON = IconLoader.getIcon("/icons/qiyong.png");
+
+    /**
+     * tingyong means 停用
+     */
     public static final Icon PROJECT_INSPECTION_OFF = IconLoader.getIcon("/icons/tingyong.png");
     public static final Icon LANGUAGE = IconLoader.getIcon("/icons/language.png");
     public static final Icon ALIBABA = IconLoader.getIcon("/icons/alibaba.png");

@@ -64,8 +64,8 @@ import javax.swing.JPanel
  * @date 2017/05/04
  */
 class AliCodeAnalysisCheckinHandler(
-    private val myProject: Project,
-    private val myCheckinPanel: CheckinProjectPanel
+        private val myProject: Project,
+        private val myCheckinPanel: CheckinProjectPanel
 ) : CheckinHandler() {
     private val dialogTitle = "Alibaba Code Analyze"
     private val cancelText = "&Cancel"
@@ -107,18 +107,22 @@ class AliCodeAnalysisCheckinHandler(
     }
 
     override fun beforeCheckin(
-        executor: CommitExecutor?,
-        additionalDataConsumer: PairConsumer<Any, Any>
+            executor: CommitExecutor?,
+            additionalDataConsumer: PairConsumer<Any, Any>
     ): CheckinHandler.ReturnResult {
         if (!getSettings().analysisBeforeCheckin) {
             return CheckinHandler.ReturnResult.COMMIT
         }
         if (DumbService.getInstance(myProject).isDumb) {
             if (Messages.showOkCancelDialog(
-                    myProject,
-                    "Code analysis is impossible until indices are up-to-date", dialogTitle,
-                    waitingText, commitText, null
-                ) == Messages.OK
+                            myProject,
+                            "Code analysis is impossible until indices are up-to-date",
+                            dialogTitle,
+                            waitingText,
+                            commitText,
+                            null
+                    )
+                    == Messages.OK
             ) {
                 return CheckinHandler.ReturnResult.CANCEL
             }
@@ -135,9 +139,14 @@ class AliCodeAnalysisCheckinHandler(
             return CheckinHandler.ReturnResult.COMMIT
         }
         if (Messages.showOkCancelDialog(
-                myProject, "Found suspicious code,continue commit？",
-                dialogTitle, commitText, cancelText, null
-            ) == Messages.OK
+                        myProject,
+                        "Found suspicious code,continue commit？",
+                        dialogTitle,
+                        commitText,
+                        cancelText,
+                        null
+                )
+                == Messages.OK
         ) {
             return CheckinHandler.ReturnResult.COMMIT
         } else {
@@ -149,8 +158,8 @@ class AliCodeAnalysisCheckinHandler(
     fun doAnalysis(project: Project, virtualFiles: Array<VirtualFile>) {
         val managerEx = InspectionManager.getInstance(project) as InspectionManagerEx
         val analysisScope = AnalysisScope(
-            project,
-            ArrayList(Arrays.asList(*virtualFiles))
+                project,
+                ArrayList(listOf(*virtualFiles))
         )
         val tools = Inspections.aliInspections(project) { it.tool is AliBaseInspection }
         AliInspectionAction.createContext(tools, managerEx, null, false, analysisScope)
@@ -161,7 +170,7 @@ class AliCodeAnalysisCheckinHandler(
         ApplicationManager.getApplication().assertIsDispatchThread()
         PsiDocumentManager.getInstance(myProject).commitAllDocuments()
         if (ApplicationManager.getApplication().isWriteAccessAllowed) throw RuntimeException(
-            "Must not run under write action"
+                "Must not run under write action"
         )
         val result = AtomicBoolean(false)
         val exception = Ref.create<Exception>()
@@ -173,9 +182,11 @@ class AliCodeAnalysisCheckinHandler(
                         val inspectionManager = InspectionManager.getInstance(project)
                         val psiManager = PsiManager.getInstance(project)
                         val count = AtomicInteger(0)
-                        val hasViolation = virtualFiles.asSequence().any { file ->
+                        val hasViolation = virtualFiles.asSequence().any {
+                            file ->
                             ApplicationManager.getApplication().runReadAction(Computable {
-                                val psiFile = psiManager.findFile(file) ?: return@Computable false
+                                val psiFile = psiManager.findFile(file)
+                                        ?: return@Computable false
                                 val curCount = count.incrementAndGet()
                                 progress.text = file.canonicalPath
                                 progress.fraction = curCount.toDouble() / virtualFiles.size.toDouble()

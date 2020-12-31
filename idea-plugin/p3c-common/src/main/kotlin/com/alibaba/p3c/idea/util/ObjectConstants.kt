@@ -20,11 +20,11 @@ package com.alibaba.p3c.idea.util
  * @date 2016/12/28
  */
 object ObjectConstants {
-    val METHOD_NAME_EQUALS = "equals"
-    val METHOD_NAME_HASHCODE = "hashCode"
-    val METHOD_NAME_ADD = "add"
-    val METHOD_NAME_PUT = "put"
-    val CLASS_LITERAL = "class"
-    val INTERFACE_LITERAL = "interface"
-    val ENUM_LITERAL = "enum"
+    const val METHOD_NAME_EQUALS = "equals"
+    const val METHOD_NAME_HASHCODE = "hashCode"
+    const val METHOD_NAME_ADD = "add"
+    const val METHOD_NAME_PUT = "put"
+    const val CLASS_LITERAL = "class"
+    const val INTERFACE_LITERAL = "interface"
+    const val ENUM_LITERAL = "enum"
 }

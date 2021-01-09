@@ -48,9 +48,9 @@ public class ClassMustHaveAuthorRule extends AbstractAliCommentRule {
      * Immediately return after visiting class/interface/enum/annotation,
      * so that we don't need to deal with inner class/interface/enum/annotation declarations.
      *
-     * @param decl
-     * @param data
-     * @return
+     * @param decl node
+     * @param data ruleContext
+     * @return result
      */
     @Override
     public Object visit(ASTClassOrInterfaceDeclaration decl, Object data) {

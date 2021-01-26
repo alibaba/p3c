@@ -153,5 +153,21 @@ Positive example:
 ]]>
         </example>
     </rule>
+    <rule name="VarargsParameterRule" language="java"
+          message="java.oop.VarargsParameterRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.oop.VarargsParameterRule">
+        <priority>1</priority>
+        <example>
+            <![CDATA[
+Positive example:
+   private void method(int a, int b, int... varargs) {
 
+   }
+Negative example:
+   private void method(int a, int b, Object... varargs) {
+
+   }
+         ]]>
+        </example>
+    </rule>
 </ruleset>

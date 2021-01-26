@@ -136,7 +136,7 @@ Positive example:
           language="java"
           message="java.oop.BigDecimalAvoidDoubleConstructorRule.rule.msg"
           class="com.alibaba.p3c.pmd.lang.java.rule.oop.BigDecimalAvoidDoubleConstructorRule">
-        <description>java.oop.StringConcatRule.rule.msg.desc</description>
+        <description>java.oop.BigDecimalAvoidDoubleConstructorRule.rule.msg.desc</description>
         <priority>3</priority>
 
         <example>

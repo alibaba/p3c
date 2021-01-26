@@ -44,7 +44,7 @@
         <repository>
             <id>juno</id>
             <layout>p2</layout>
-            <url>http://mirrors.ustc.edu.cn/eclipse/releases/juno/</url>
+            <url>https://mirrors.ustc.edu.cn/eclipse/releases/juno/</url>
         </repository>
         <repository>
             <id>sonatype-nexus-snapshots</id>
@@ -187,7 +187,7 @@
                         <baselineReplace>none</baselineReplace>
                         <baselineRepositories>
                             <repository>
-                                <url>http://download.eclipse.org/eclipse/updates/4.4</url>
+                                <url>https://download.eclipse.org/eclipse/updates/4.4</url>
                             </repository>
                         </baselineRepositories>
                     </configuration>

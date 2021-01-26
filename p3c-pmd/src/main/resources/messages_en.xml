@@ -72,7 +72,7 @@
         <![CDATA[iBatis built in queryForList(String statementName, int start, int size) is not recommended]]>
     </entry>
     <entry key="java.naming.ClassNamingShouldBeCamelRule.rule.msg">
-        <![CDATA[Class names should be nouns in UpperCamelCase except domain models: DO, BO, DTO, VO, etc]]>
+        <![CDATA[Class names should be nouns in UpperCamelCase except domain models: DO, BO, DTO, VO, DAO, etc]]>
     </entry>
     <entry key="java.naming.AbstractClassShouldStartWithAbstractNamingRule.rule.msg">
         <![CDATA[Abstract class names must start with Abstract or Base]]>

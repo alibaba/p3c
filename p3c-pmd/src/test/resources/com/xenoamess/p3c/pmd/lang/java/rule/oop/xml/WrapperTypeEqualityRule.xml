@@ -198,8 +198,7 @@
     </code-fragment>
     <test-code>
         <description>expression is primitive type</description>
-        <expected-problems>1</expected-problems>
-        <expected-linenumbers>17</expected-linenumbers>
+        <expected-problems>0</expected-problems>
         <code-ref id="expression-primitive-equals"/>
     </test-code>
     <!-- ====================================================================== -->

@@ -11,6 +11,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTName
 import net.sourceforge.pmd.lang.java.ast.ASTStatementExpression
 import net.sourceforge.pmd.lang.java.ast.ASTTryStatement
 import net.sourceforge.pmd.lang.java.ast.AbstractJavaNode
+import net.sourceforge.pmd.lang.java.ast.TypeNode
 import java.util.concurrent.locks.Lock
 
 /**
@@ -34,8 +35,8 @@ open class LockShouldWithTryFinallyRule : AbstractAliRule() {
             if (lockExpression != null) {
                 // check try finally
                 val tryStatement = findNodeByXpath(
-                    statement, XPATH_TRY_STATEMENT,
-                    ASTTryStatement::class.java
+                        statement, XPATH_TRY_STATEMENT,
+                        ASTTryStatement::class.java
                 )
                 if (!checkTryStatement(tryStatement)) {
                     addLockViolation(data, lockExpression)
@@ -45,11 +46,11 @@ open class LockShouldWithTryFinallyRule : AbstractAliRule() {
             }
             // find lock expression
             val expression = findNodeByXpath(
-                statement, XPATH_LOCK_STATEMENT,
-                ASTStatementExpression::class.java
+                    statement, XPATH_LOCK_STATEMENT,
+                    ASTStatementExpression::class.java
             ) ?: continue
 
-            if (!expression.isLock) {
+            if (!this.haveLock(expression)) {
                 continue
             }
             val astName = expression.getFirstDescendantOfType(ASTName::class.java)
@@ -68,9 +69,9 @@ open class LockShouldWithTryFinallyRule : AbstractAliRule() {
 
     private fun addLockViolation(data: Any, lockExpression: ASTStatementExpression) {
         addViolationWithMessage(
-            data, lockExpression,
-            "java.concurrent.LockShouldWithTryFinallyRule.violation.msg",
-            arrayOf<Any>(getExpressName(lockExpression))
+                data, lockExpression,
+                "java.concurrent.LockShouldWithTryFinallyRule.violation.msg",
+                arrayOf<Any>(getExpressName(lockExpression))
         )
     }
 
@@ -78,16 +79,18 @@ open class LockShouldWithTryFinallyRule : AbstractAliRule() {
         if (tryStatement == null) {
             return false
         }
-        val finallyStatement = tryStatement.getFirstChildOfType(ASTFinallyStatement::class.java) ?: return false
+        val finallyStatement = tryStatement.getFirstChildOfType(ASTFinallyStatement::class.java)
+                ?: return false
         val statementExpression = findNodeByXpath(
-            finallyStatement,
-            XPATH_UNLOCK_STATEMENT, ASTStatementExpression::class.java
+                finallyStatement,
+                XPATH_UNLOCK_STATEMENT, ASTStatementExpression::class.java
         ) ?: return false
 
-        if (!statementExpression.isLock) {
+        if (!haveLock(statementExpression)) {
             return false
         }
-        val astName = statementExpression.getFirstDescendantOfType(ASTName::class.java) ?: return false
+        val astName = statementExpression.getFirstDescendantOfType(ASTName::class.java)
+                ?: return false
         return astName.image?.endsWith(".$UN_LOCK_NAME") ?: false
     }
 
@@ -113,8 +116,19 @@ open class LockShouldWithTryFinallyRule : AbstractAliRule() {
         private const val XPATH_TRY_STATEMENT = "Statement/TryStatement"
     }
 
-    private val ASTStatementExpression?.isLock: Boolean
-        get() = this?.type?.let {
-            Lock::class.java.isAssignableFrom(it)
-        } ?: false
+    private fun haveLock(node: TypeNode): Boolean {
+        if (Lock::class.java.isAssignableFrom(node.type)) {
+            return true;
+        }
+        val numChildren = node.numChildren;
+        for (i in 0 until numChildren) {
+            val currentChild = node.getChild(i);
+            if (currentChild is TypeNode) {
+                if (this.haveLock(currentChild)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

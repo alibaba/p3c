@@ -31,6 +31,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.1.0.4x-SNAPSHOT
+        </ul>
         <ul>2.1.0.3x
             <li>fix bugs about wrongly think new BigDecimal(Double.toString(0.0)) illegal. See: https://github.com/alibaba/p3c/issues/782</li>
         </ul>

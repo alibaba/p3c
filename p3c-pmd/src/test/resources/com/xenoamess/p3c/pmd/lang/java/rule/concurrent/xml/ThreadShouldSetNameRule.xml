@@ -4,8 +4,8 @@
            xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
     <test-code>
         <description>ThreadShouldSetNameRule</description>
-        <expected-problems>3</expected-problems>
-        <expected-linenumbers>17,19,26</expected-linenumbers>
+        <expected-problems>2</expected-problems>
+        <expected-linenumbers>17,19</expected-linenumbers>
         <code><![CDATA[
 package com.alibaba.idea.pmd.test.thread;
 

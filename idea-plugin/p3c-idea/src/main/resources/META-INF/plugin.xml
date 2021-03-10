@@ -31,7 +31,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <ul>2.1.0.5x-SNAPSHOT
+        <ul>2.1.0.5x
             <li>bugfix about LockShouldWithTryFinallyRule will throw NPE when node.type == null</li>
         </ul>
         <ul>2.1.0.4x

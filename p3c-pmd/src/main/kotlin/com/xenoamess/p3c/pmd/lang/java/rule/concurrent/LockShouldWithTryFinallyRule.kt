@@ -117,6 +117,9 @@ open class LockShouldWithTryFinallyRule : AbstractAliRule() {
     }
 
     private fun haveLock(node: TypeNode): Boolean {
+        if (node.type == null) {
+            return false;
+        }
         if (Lock::class.java.isAssignableFrom(node.type)) {
             return true;
         }

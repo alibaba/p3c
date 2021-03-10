@@ -31,6 +31,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.1.0.5x-SNAPSHOT
+            <li></li>
+        </ul>
         <ul>2.1.0.4x
             <li>pmd upgrade to 6.31.0</li>
             <li>upgrade other dependencies</li>

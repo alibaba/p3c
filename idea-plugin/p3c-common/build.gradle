@@ -5,7 +5,7 @@ plugins {
     id "org.sonarqube" version "3.1.1"
 
     id 'maven'
-    id "com.github.ben-manes.versions" version "0.36.0"
+    id "com.github.ben-manes.versions" version "0.38.0"
 }
 
 apply plugin: 'kotlin'
@@ -59,7 +59,7 @@ version plugin_version
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 dependencies {
-    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
+    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.31'
     compile 'com.xenoamess.p3c:p3c-pmd:2.1.0.5x-SNAPSHOT'
     compile group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"

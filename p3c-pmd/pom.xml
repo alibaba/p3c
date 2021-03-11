@@ -272,7 +272,7 @@
                         <groupId>com.xenoamess</groupId>
                         <artifactId>remove-unused-imports-maven-plugin
                         </artifactId>
-                        <version>0.0.4-SNAPSHOT</version>
+                        <version>0.0.4</version>
                         <executions>
                             <execution>
                                 <id>rui1</id>

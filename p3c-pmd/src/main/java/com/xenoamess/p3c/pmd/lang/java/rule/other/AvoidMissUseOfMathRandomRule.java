@@ -17,7 +17,6 @@ package com.xenoamess.p3c.pmd.lang.java.rule.other;
 
 import com.xenoamess.p3c.pmd.lang.AbstractAliXpathRule;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 
 /**
@@ -31,10 +30,11 @@ import net.sourceforge.pmd.lang.ast.Node;
 public class AvoidMissUseOfMathRandomRule extends AbstractAliXpathRule {
 
     private static final String XPATH =
-        "//PrimaryExpression[./PrimaryPrefix/Name[@Image='Math.random'] and "
-            + "../../MultiplicativeExpression/PrimaryExpression/PrimaryPrefix/Literal[matches(@Image, '^\\d+$')] and "
-            + "../../../../../../CastExpression/Type/PrimitiveType[matches(@Image, '^(int|long)$')]"
-            + "]";
+            "//PrimaryExpression[./PrimaryPrefix/Name[@Image='Math.random'] and "
+                    + "../../MultiplicativeExpression/PrimaryExpression/PrimaryPrefix/Literal[matches(@Image, " +
+                    "'^\\d+$')] and "
+                    + "../../../../../../CastExpression/Type/PrimitiveType[matches(@Image, '^(int|long)$')]"
+                    + "]";
 
     public AvoidMissUseOfMathRandomRule() {
         setXPath(XPATH);

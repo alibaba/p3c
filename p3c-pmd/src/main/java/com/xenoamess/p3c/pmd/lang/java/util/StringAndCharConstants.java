@@ -20,9 +20,9 @@ package com.xenoamess.p3c.pmd.lang.java.util;
  * @date 2017/03/28
  */
 public final class StringAndCharConstants {
-    private StringAndCharConstants(){
+    private StringAndCharConstants() {
         throw new AssertionError("StringAndCharConstants"
-            + " instances for you!");
+                + " instances for you!");
     }
 
     public static final char DOT = '.';

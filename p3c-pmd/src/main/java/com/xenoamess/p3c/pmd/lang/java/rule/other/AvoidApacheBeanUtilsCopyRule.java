@@ -17,13 +17,12 @@ package com.xenoamess.p3c.pmd.lang.java.rule.other;
 
 import com.xenoamess.p3c.pmd.lang.AbstractAliXpathRule;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 
 /**
  * Avoid using *Apache BeanUtils* to copy attributes.
  * Note: *Spring BeanUtils* and *Cglib BeanCopier* are recommended to be used, which have better performance.
- * 
+ *
  * @author keriezhang
  * @date 2016/12/14
  *
@@ -31,8 +30,8 @@ import net.sourceforge.pmd.lang.ast.Node;
 public class AvoidApacheBeanUtilsCopyRule extends AbstractAliXpathRule {
     private static final String XPATH =
             "//PrimaryPrefix/Name[(@Image='BeanUtils.copyProperties' and "
-                + "//ImportDeclaration[@ImportedName='org.apache.commons.beanutils.BeanUtils']) or "
-                + "starts-with(@Image,'org.apache.commons.beanutils.BeanUtils.copyProperties')]";
+                    + "//ImportDeclaration[@ImportedName='org.apache.commons.beanutils.BeanUtils']) or "
+                    + "starts-with(@Image,'org.apache.commons.beanutils.BeanUtils.copyProperties')]";
 
     public AvoidApacheBeanUtilsCopyRule() {
         setXPath(XPATH);

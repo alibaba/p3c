@@ -15,18 +15,17 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.oop;
 
-import java.util.List;
-
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractPojoRule;
 import com.xenoamess.p3c.pmd.lang.java.util.VariableUtils;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableInitializer;
 import org.jaxen.JaxenException;
+
+import java.util.List;
 
 /**
  * [Mandatory] While defining POJO classes like DO, DTO, VO, etc., do not assign any default values to the members.
@@ -43,19 +42,19 @@ public class PojoNoDefaultValueRule extends AbstractPojoRule {
         }
         try {
             List<Node> fields = node.findChildNodesWithXPath(
-                "ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/FieldDeclaration");
+                    "ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/FieldDeclaration");
 
             for (Node fieldNode : fields) {
-                ASTFieldDeclaration field = (ASTFieldDeclaration)fieldNode;
+                ASTFieldDeclaration field = (ASTFieldDeclaration) fieldNode;
                 boolean shouldProcess = !field.isPublic() && !field.isFinal() && !field.isStatic() && !field
-                    .isVolatile() &&
-                    field.hasDescendantOfType(ASTVariableInitializer.class);
+                        .isVolatile() &&
+                        field.hasDescendantOfType(ASTVariableInitializer.class);
                 if (!shouldProcess) {
                     continue;
                 }
                 ViolationUtils.addViolationWithPrecisePosition(this, field, data,
-                    I18nResources.getMessage("java.oop.PojoNoDefaultValueRule.violation.msg",
-                        VariableUtils.getVariableName(field)));
+                        I18nResources.getMessage("java.oop.PojoNoDefaultValueRule.violation.msg",
+                                VariableUtils.getVariableName(field)));
             }
         } catch (JaxenException e) {
             throw new RuntimeException(e.getMessage(), e);

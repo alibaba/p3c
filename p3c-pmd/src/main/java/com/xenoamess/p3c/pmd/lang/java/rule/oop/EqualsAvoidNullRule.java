@@ -15,12 +15,9 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.oop;
 
-import java.util.List;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.xenoamess.p3c.pmd.lang.java.rule.util.NodeUtils;
 import com.xenoamess.p3c.pmd.lang.java.util.StringAndCharConstants;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
 import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
@@ -33,6 +30,8 @@ import net.sourceforge.pmd.lang.java.ast.AbstractJavaNode;
 import net.sourceforge.pmd.lang.java.ast.Token;
 import org.jaxen.JaxenException;
 
+import java.util.List;
+
 /**
  * [Mandatory] Since NullPointerException can possibly be thrown while calling the equals method of Object,
  * equals should be invoked by a constant or an object that is definitely not null.
@@ -43,14 +42,14 @@ import org.jaxen.JaxenException;
 public class EqualsAvoidNullRule extends AbstractAliRule {
 
     private static final String XPATH = "//PrimaryExpression[" + "(PrimaryPrefix[Name[(ends-with(@Image, '.equals'))]]|"
-        + "PrimarySuffix[@Image='equals'])"
-        + "[(../PrimarySuffix/Arguments/ArgumentList/Expression/PrimaryExpression/PrimaryPrefix) and "
-        + "( count(../PrimarySuffix/Arguments/ArgumentList/Expression) = 1 )]]"
-        + "[not(ancestor::Expression/ConditionalAndExpression//EqualityExpression[@Image='!=']//NullLiteral)]"
-        + "[not(ancestor::Expression/ConditionalOrExpression//EqualityExpression[@Image='==']//NullLiteral)]";
+            + "PrimarySuffix[@Image='equals'])"
+            + "[(../PrimarySuffix/Arguments/ArgumentList/Expression/PrimaryExpression/PrimaryPrefix) and "
+            + "( count(../PrimarySuffix/Arguments/ArgumentList/Expression) = 1 )]]"
+            + "[not(ancestor::Expression/ConditionalAndExpression//EqualityExpression[@Image='!=']//NullLiteral)]"
+            + "[not(ancestor::Expression/ConditionalOrExpression//EqualityExpression[@Image='==']//NullLiteral)]";
 
     private static final String INVOCATION_PREFIX_XPATH
-        = "PrimarySuffix/Arguments/ArgumentList/Expression/PrimaryExpression[not(PrimarySuffix)]/PrimaryPrefix";
+            = "PrimarySuffix/Arguments/ArgumentList/Expression/PrimaryExpression[not(PrimarySuffix)]/PrimaryPrefix";
 
     private static final String METHOD_EQUALS = "equals";
 
@@ -73,7 +72,7 @@ public class EqualsAvoidNullRule extends AbstractAliRule {
                     return super.visit(node, data);
                 }
 
-                ASTPrimaryPrefix right = (ASTPrimaryPrefix)simpleExpressions.get(0);
+                ASTPrimaryPrefix right = (ASTPrimaryPrefix) simpleExpressions.get(0);
                 if (right.getFirstChildOfType(ASTLiteral.class) != null) {
                     ASTLiteral literal = right.getFirstChildOfType(ASTLiteral.class);
                     if (literal.isStringLiteral()) {
@@ -84,14 +83,14 @@ public class EqualsAvoidNullRule extends AbstractAliRule {
                     ASTName name = right.getFirstChildOfType(ASTName.class);
                     // TODO works only in current compilation file, by crossing files will be null
                     boolean nameInvalid = name == null || name.getNameDeclaration() == null
-                        || name.getNameDeclaration().getNode() == null;
+                            || name.getNameDeclaration().getNode() == null;
                     if (nameInvalid) {
                         return super.visit(node, data);
                     }
                     Node nameNode = name.getNameDeclaration().getNode();
                     if ((nameNode instanceof ASTVariableDeclaratorId) && (nameNode.getNthParent(
-                        2) instanceof ASTFieldDeclaration)) {
-                        ASTFieldDeclaration field = (ASTFieldDeclaration)nameNode.getNthParent(2);
+                            2) instanceof ASTFieldDeclaration)) {
+                        ASTFieldDeclaration field = (ASTFieldDeclaration) nameNode.getNthParent(2);
                         if (NodeUtils.isConstant(field)) {
                             addRuleViolation(data, invocation);
                         }
@@ -113,7 +112,7 @@ public class EqualsAvoidNullRule extends AbstractAliRule {
     }
 
     private String getInvocationName(AbstractJavaNode javaNode) {
-        Token token = (Token)javaNode.jjtGetFirstToken();
+        Token token = (Token) javaNode.jjtGetFirstToken();
         StringBuilder sb = new StringBuilder(token.image).append(token.image);
         while (token.next != null && token.next.image != null && !METHOD_EQUALS.equals(token.next.image)) {
             token = token.next;
@@ -127,9 +126,9 @@ public class EqualsAvoidNullRule extends AbstractAliRule {
 
     private void addRuleViolation(Object data, Node invocation) {
         if (invocation instanceof AbstractJavaNode) {
-            AbstractJavaNode javaNode = (AbstractJavaNode)invocation;
+            AbstractJavaNode javaNode = (AbstractJavaNode) invocation;
             addViolationWithMessage(data, invocation, "java.oop.EqualsAvoidNullRule.violation.msg",
-                new Object[] {getInvocationName(javaNode)});
+                    new Object[]{getInvocationName(javaNode)});
         } else {
             addViolation(data, invocation);
         }

@@ -18,7 +18,6 @@ package com.xenoamess.p3c.pmd.lang.java.rule.naming;
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.AbstractAliXpathRule;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
 
@@ -31,9 +30,9 @@ import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
  */
 public class BooleanPropertyShouldNotStartWithIsRule extends AbstractAliXpathRule {
     private static final String XPATH = "//VariableDeclaratorId[(ancestor::ClassOrInterfaceDeclaration)["
-        + "@Interface='false' and ( ends-with(@Image, 'DO') or ends-with(@Image, 'DTO')"
-        + " or ends-with(@Image, 'VO') or ends-with(@Image, 'DAO'))]]"
-        + "[../../../FieldDeclaration/Type/PrimitiveType[@Image = 'boolean']][.[ starts-with(@Image, 'is')]]";
+            + "@Interface='false' and ( ends-with(@Image, 'DO') or ends-with(@Image, 'DTO')"
+            + " or ends-with(@Image, 'VO') or ends-with(@Image, 'DAO'))]]"
+            + "[../../../FieldDeclaration/Type/PrimitiveType[@Image = 'boolean']][.[ starts-with(@Image, 'is')]]";
 
     public BooleanPropertyShouldNotStartWithIsRule() {
         setXPath(XPATH);
@@ -46,9 +45,9 @@ public class BooleanPropertyShouldNotStartWithIsRule extends AbstractAliXpathRul
                     this,
                     node,
                     data,
-                I18nResources.getMessage("java.naming.BooleanPropertyShouldNotStartWithIsRule.violation.msg",
-                    node.getImage()
-                )
+                    I18nResources.getMessage("java.naming.BooleanPropertyShouldNotStartWithIsRule.violation.msg",
+                            node.getImage()
+                    )
             );
         } else {
             super.addViolation(data, node, arg);

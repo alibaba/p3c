@@ -15,14 +15,13 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.oop;
 
-import java.util.List;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.xenoamess.p3c.pmd.lang.java.rule.util.NodeUtils;
 import com.xenoamess.p3c.pmd.lang.java.util.NumberConstants;
-
 import net.sourceforge.pmd.lang.java.ast.ASTEqualityExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
+
+import java.util.List;
 
 /**
  * [Mandatory] The wrapper classes should be compared by equals method rather than by symbol of '==' directly.
@@ -67,7 +66,7 @@ public class WrapperTypeEqualityRule extends AbstractAliRule {
         // assume expression like "x.length" is the length of array, field with name "length" may result in
         // mis-recognition
         return "length".equals(expression.jjtGetLastToken().getImage())
-            && ".".equals(expression.jjtGetFirstToken().getNext().getImage());
+                && ".".equals(expression.jjtGetFirstToken().getNext().getImage());
     }
 
 }

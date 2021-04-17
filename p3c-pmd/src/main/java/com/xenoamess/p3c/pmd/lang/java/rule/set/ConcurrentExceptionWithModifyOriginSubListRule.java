@@ -33,13 +33,13 @@ import java.util.List;
  */
 public class ConcurrentExceptionWithModifyOriginSubListRule extends AbstractAliRule {
 
-    private final static String ADD = ".add";
-    private final static String REMOVE = ".remove";
-    private final static String CLEAR = ".clear";
-    private final static String XPATH
+    private static final String ADD = ".add";
+    private static final String REMOVE = ".remove";
+    private static final String CLEAR = ".clear";
+    private static final String XPATH
             = "//VariableDeclarator[../Type/ReferenceType/ClassOrInterfaceType[@Image='List']]/VariableInitializer"
             + "/Expression/PrimaryExpression/PrimaryPrefix/Name[ends-with(@Image,'.subList')]";
-    private final static String CHILD_XPATH
+    private static final String CHILD_XPATH
             = "BlockStatement/Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name";
 
     @Override

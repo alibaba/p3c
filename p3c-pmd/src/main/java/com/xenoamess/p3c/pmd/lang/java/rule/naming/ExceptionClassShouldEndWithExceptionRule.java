@@ -18,7 +18,6 @@ package com.xenoamess.p3c.pmd.lang.java.rule.naming;
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType;
 import net.sourceforge.pmd.lang.java.ast.ASTExtendsList;
@@ -43,14 +42,14 @@ public class ExceptionClassShouldEndWithExceptionRule extends AbstractAliRule {
         }
 
         ASTClassOrInterfaceDeclaration astClassOrInterfaceDeclaration = node.getFirstParentOfType(
-            ASTClassOrInterfaceDeclaration.class);
+                ASTClassOrInterfaceDeclaration.class);
         boolean isExceptionViolation = astClassOrInterfaceDeclaration != null
-            && StringUtils.isNotEmpty(astClassOrInterfaceDeclaration.getImage())
-            && !astClassOrInterfaceDeclaration.getImage().endsWith(EXCEPTION_END_SUFFIX);
+                && StringUtils.isNotEmpty(astClassOrInterfaceDeclaration.getImage())
+                && !astClassOrInterfaceDeclaration.getImage().endsWith(EXCEPTION_END_SUFFIX);
         if (isExceptionViolation) {
             ViolationUtils.addViolationWithPrecisePosition(this, astClassOrInterfaceDeclaration, data,
-                I18nResources.getMessage("java.naming.ExceptionClassShouldEndWithExceptionRule.violation.msg",
-                    astClassOrInterfaceDeclaration.getImage()));
+                    I18nResources.getMessage("java.naming.ExceptionClassShouldEndWithExceptionRule.violation.msg",
+                            astClassOrInterfaceDeclaration.getImage()));
         }
         return super.visit(node, data);
     }

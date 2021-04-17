@@ -15,10 +15,7 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.exception;
 
-import java.util.List;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTAnnotation;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
@@ -26,6 +23,8 @@ import net.sourceforge.pmd.lang.java.ast.ASTMemberValuePair;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTName;
 import org.jaxen.JaxenException;
+
+import java.util.List;
 
 /**
  * [Mandatory] Make sure to invoke the rollback if a method throws an Exception.
@@ -36,7 +35,7 @@ import org.jaxen.JaxenException;
 public class TransactionMustHaveRollbackRule extends AbstractAliRule {
     private static final String TRANSACTIONAL_ANNOTATION_NAME = "Transactional";
     private static final String TRANSACTIONAL_FULL_NAME = "org.springframework.transaction.annotation."
-        + TRANSACTIONAL_ANNOTATION_NAME;
+            + TRANSACTIONAL_ANNOTATION_NAME;
     private static final String ROLLBACK_PREFIX = "rollback";
 
     private static final String READ_ONLY = "readOnly";
@@ -44,7 +43,7 @@ public class TransactionMustHaveRollbackRule extends AbstractAliRule {
     private static final String PROPAGATION_NOT_SUPPORTED = "Propagation.NOT_SUPPORTED";
 
     private static final String XPATH_FOR_ROLLBACK = "//StatementExpression/PrimaryExpression"
-        + "/PrimaryPrefix/Name[ends-with(@Image,'rollback')]";
+            + "/PrimaryPrefix/Name[ends-with(@Image,'rollback')]";
 
     private static final String MESSAGE_KEY_PREFIX = "java.exception.TransactionMustHaveRollbackRule.violation.msg";
 
@@ -52,7 +51,7 @@ public class TransactionMustHaveRollbackRule extends AbstractAliRule {
     public Object visit(ASTAnnotation node, Object data) {
         ASTName name = node.getFirstDescendantOfType(ASTName.class);
         boolean noTransactional = name == null || !(TRANSACTIONAL_ANNOTATION_NAME.equals(name.getImage())
-            && !TRANSACTIONAL_FULL_NAME.equals(name.getImage()));
+                && !TRANSACTIONAL_FULL_NAME.equals(name.getImage()));
         if (noTransactional) {
             return super.visit(node, data);
         }
@@ -62,7 +61,7 @@ public class TransactionMustHaveRollbackRule extends AbstractAliRule {
         }
 
         ASTClassOrInterfaceDeclaration classOrInterfaceDeclaration
-            = getSiblingForType(node, ASTClassOrInterfaceDeclaration.class);
+                = getSiblingForType(node, ASTClassOrInterfaceDeclaration.class);
         if (classOrInterfaceDeclaration != null) {
             addViolationWithMessage(data, node, MESSAGE_KEY_PREFIX + ".simple");
             return super.visit(node, data);
@@ -78,7 +77,7 @@ public class TransactionMustHaveRollbackRule extends AbstractAliRule {
                 return super.visit(node, data);
             }
             addViolationWithMessage(data, methodDeclaration, MESSAGE_KEY_PREFIX,
-                new Object[] {methodDeclaration.getName()});
+                    new Object[]{methodDeclaration.getName()});
         } catch (JaxenException ignore) {
         }
         return super.visit(node, data);

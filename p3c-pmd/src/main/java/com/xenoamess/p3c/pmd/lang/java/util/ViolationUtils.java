@@ -78,7 +78,8 @@ public class ViolationUtils {
                 if (NameListConfig.getNameListService().ifClassNameInClassBlackList(className)) {
                     return true;
                 }
-                return NameListConfig.getNameListService().ifRuleClassNameClassNamePairInPairIgnoreList(ruleClass, className);
+                return NameListConfig.getNameListService().ifRuleClassNameClassNamePairInPairIgnoreList(ruleClass,
+                        className);
             }
         }
 

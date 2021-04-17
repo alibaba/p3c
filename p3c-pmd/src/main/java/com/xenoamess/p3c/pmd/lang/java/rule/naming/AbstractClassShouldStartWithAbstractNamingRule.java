@@ -18,7 +18,6 @@ package com.xenoamess.p3c.pmd.lang.java.rule.naming;
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.AbstractAliXpathRule;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 
@@ -30,7 +29,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
  */
 public class AbstractClassShouldStartWithAbstractNamingRule extends AbstractAliXpathRule {
     private static final String XPATH = "//ClassOrInterfaceDeclaration"
-        + " [@Abstract='true' and @Interface='false'][not (matches(@Image,'^(Abstract|Base).*'))]";
+            + " [@Abstract='true' and @Interface='false'][not (matches(@Image,'^(Abstract|Base).*'))]";
 
     public AbstractClassShouldStartWithAbstractNamingRule() {
         setXPath(XPATH);
@@ -40,8 +39,8 @@ public class AbstractClassShouldStartWithAbstractNamingRule extends AbstractAliX
     public void addViolation(Object data, Node node, String arg) {
         if (node instanceof ASTClassOrInterfaceDeclaration) {
             ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-                I18nResources.getMessage("java.naming.AbstractClassShouldStartWithAbstractNamingRule.violation.msg",
-                    node.getImage()));
+                    I18nResources.getMessage("java.naming.AbstractClassShouldStartWithAbstractNamingRule.violation.msg",
+                            node.getImage()));
         } else {
             super.addViolation(data, node, arg);
         }

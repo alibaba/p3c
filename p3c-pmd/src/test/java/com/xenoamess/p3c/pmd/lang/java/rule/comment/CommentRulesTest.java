@@ -19,7 +19,7 @@ import net.sourceforge.pmd.testframework.SimpleAggregatorTst;
 
 /**
  * Test for comment rules.
- * 
+ *
  * @author keriezhang
  * @date 2017/06/18
  *

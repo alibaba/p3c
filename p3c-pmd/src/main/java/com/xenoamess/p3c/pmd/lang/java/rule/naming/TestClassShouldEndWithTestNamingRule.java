@@ -15,15 +15,14 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.naming;
 
-import java.util.List;
-
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
 import net.sourceforge.pmd.lang.java.rule.AbstractJUnitRule;
+
+import java.util.List;
 
 /**
  * [Mandatory] Test cases shall be started with the class names to be tested and ended with Test.
@@ -53,8 +52,8 @@ public class TestClassShouldEndWithTestNamingRule extends AbstractJUnitRule {
 
         if ((testsFound) && (!(node.getImage().endsWith(TEST_SUFFIX)))) {
             ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-                I18nResources.getMessage("java.naming.TestClassShouldEndWithTestNamingRule.violation.msg",
-                    node.getImage()));
+                    I18nResources.getMessage("java.naming.TestClassShouldEndWithTestNamingRule.violation.msg",
+                            node.getImage()));
         }
 
         return super.visit(node, data);
@@ -89,6 +88,6 @@ public class TestClassShouldEndWithTestNamingRule extends AbstractJUnitRule {
             return;
         }
         super.addViolationWithMessage(data, node,
-            String.format(I18nResources.getMessageWithExceptionHandled(message), args));
+                String.format(I18nResources.getMessageWithExceptionHandled(message), args));
     }
 }

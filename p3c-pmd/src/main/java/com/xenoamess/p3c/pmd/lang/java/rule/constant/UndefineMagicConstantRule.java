@@ -48,7 +48,7 @@ public class UndefineMagicConstantRule extends AbstractAliRule {
         );
     }
 
-    private final static String XPATH = "//Literal/../../../../..[not(VariableInitializer)]";
+    private static final String XPATH = "//Literal/../../../../..[not(VariableInitializer)]";
 
     /**
      * An undefined that belongs to non-looped if statements
@@ -107,7 +107,7 @@ public class UndefineMagicConstantRule extends AbstractAliRule {
             return forStatement == null && whileStatement == null;
         }
 
-        // judge magic value belongs to  for statement 
+        // judge magic value belongs to  for statement
         ASTForStatement blackForStatement = literal.getFirstParentOfType(ASTForStatement.class);
         if (blackForStatement != null && lineNum == blackForStatement.getBeginLine()) {
             return true;

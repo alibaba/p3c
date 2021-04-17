@@ -15,15 +15,14 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.concurrent;
 
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTName;
 import net.sourceforge.pmd.lang.java.ast.ASTTryStatement;
 import org.jaxen.JaxenException;
+
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * [Recommended] When using CountDownLatch to convert asynchronous operations to synchronous ones,
@@ -38,7 +37,7 @@ import org.jaxen.JaxenException;
  */
 public class CountDownShouldInFinallyRule extends AbstractAliRule {
     private static final String XPATH = "./Block/BlockStatement/Statement/StatementExpression"
-        + "/PrimaryExpression/PrimaryPrefix/Name[ends-with(@Image,'.countDown')]";
+            + "/PrimaryExpression/PrimaryPrefix/Name[ends-with(@Image,'.countDown')]";
 
     @Override
     public Object visit(ASTTryStatement node, Object data) {
@@ -51,12 +50,12 @@ public class CountDownShouldInFinallyRule extends AbstractAliRule {
                 if (!(nameNode instanceof ASTName)) {
                     continue;
                 }
-                ASTName name = (ASTName)nameNode;
+                ASTName name = (ASTName) nameNode;
                 if (name.getType() != CountDownLatch.class) {
                     continue;
                 }
                 addViolationWithMessage(data, name, "java.concurrent.CountDownShouldInFinallyRule.violation.msg",
-                    new Object[] {name.getImage()});
+                        new Object[]{name.getImage()});
             }
         } catch (JaxenException ignore) {
         }

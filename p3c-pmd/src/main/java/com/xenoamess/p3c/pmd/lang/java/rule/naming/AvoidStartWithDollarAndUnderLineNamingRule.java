@@ -18,7 +18,6 @@ package com.xenoamess.p3c.pmd.lang.java.rule.naming;
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclarator;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
@@ -33,7 +32,7 @@ public class AvoidStartWithDollarAndUnderLineNamingRule extends AbstractAliRule 
     private static final String DOLLAR = "$";
     private static final String UNDERSCORE = "_";
     private static final String FORMAT = I18nResources.getMessage(
-        "java.naming.AvoidStartWithDollarAndUnderLineNamingRule.violation.msg");
+            "java.naming.AvoidStartWithDollarAndUnderLineNamingRule.violation.msg");
 
     @Override
     public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {

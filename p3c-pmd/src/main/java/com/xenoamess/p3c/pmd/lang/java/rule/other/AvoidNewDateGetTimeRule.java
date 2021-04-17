@@ -18,7 +18,6 @@ package com.xenoamess.p3c.pmd.lang.java.rule.other;
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.AbstractAliXpathRule;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 
 /**
@@ -30,13 +29,13 @@ import net.sourceforge.pmd.lang.ast.Node;
 public class AvoidNewDateGetTimeRule extends AbstractAliXpathRule {
 
     private static final String XPATH =
-        "//PrimaryExpression"
-            + "["
-            + "PrimaryPrefix/AllocationExpression/ClassOrInterfaceType[@Image='Date'] and "
-            + "PrimaryPrefix/AllocationExpression/Arguments[@ArgumentCount=0] and "
-            + "PrimarySuffix[@Image='getTime'] and "
-            + "PrimarySuffix/Arguments[@ArgumentCount=0]"
-            + "]";
+            "//PrimaryExpression"
+                    + "["
+                    + "PrimaryPrefix/AllocationExpression/ClassOrInterfaceType[@Image='Date'] and "
+                    + "PrimaryPrefix/AllocationExpression/Arguments[@ArgumentCount=0] and "
+                    + "PrimarySuffix[@Image='getTime'] and "
+                    + "PrimarySuffix/Arguments[@ArgumentCount=0]"
+                    + "]";
 
     public AvoidNewDateGetTimeRule() {
         setXPath(XPATH);
@@ -45,6 +44,6 @@ public class AvoidNewDateGetTimeRule extends AbstractAliXpathRule {
     @Override
     public void addViolation(Object data, Node node, String arg) {
         ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-            I18nResources.getMessage("java.other.AvoidNewDateGetTimeRule.violation.msg"));
+                I18nResources.getMessage("java.other.AvoidNewDateGetTimeRule.violation.msg"));
     }
 }

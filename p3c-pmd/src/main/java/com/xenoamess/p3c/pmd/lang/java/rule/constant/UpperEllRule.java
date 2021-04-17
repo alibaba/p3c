@@ -16,7 +16,6 @@
 package com.xenoamess.p3c.pmd.lang.java.rule.constant;
 
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import net.sourceforge.pmd.lang.java.ast.ASTLiteral;
 
 /**
@@ -35,7 +34,7 @@ public class UpperEllRule extends AbstractAliRule {
         // if it is an integer and ends with l, collects the current violation code
         if (image != null && node.isLongLiteral() && image.endsWith(LOWERCASE_L)) {
             addViolationWithMessage(data, node, "java.constant.UpperEllRule.violation.msg",
-                new Object[] {node.getImage()});
+                    new Object[]{node.getImage()});
         }
         return super.visit(node, data);
     }

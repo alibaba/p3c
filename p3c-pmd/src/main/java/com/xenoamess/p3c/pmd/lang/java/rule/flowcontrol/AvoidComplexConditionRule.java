@@ -17,7 +17,6 @@ package com.xenoamess.p3c.pmd.lang.java.rule.flowcontrol;
 
 import com.xenoamess.p3c.pmd.lang.AbstractAliXpathRule;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 
 /**
@@ -30,8 +29,8 @@ import net.sourceforge.pmd.lang.ast.Node;
  */
 public class AvoidComplexConditionRule extends AbstractAliXpathRule {
     private static final String XPATH = "(//IfStatement/Expression"
-        + "|//ConditionalExpression[@Ternary = 'true']/PrimaryExpression)"
-        + "[count(.//ConditionalAndExpression) + count(.//ConditionalOrExpression) > 1]";
+            + "|//ConditionalExpression[@Ternary = 'true']/PrimaryExpression)"
+            + "[count(.//ConditionalAndExpression) + count(.//ConditionalOrExpression) > 1]";
 
     public AvoidComplexConditionRule() {
         setXPath(XPATH);
@@ -40,6 +39,6 @@ public class AvoidComplexConditionRule extends AbstractAliXpathRule {
     @Override
     public void addViolation(Object data, Node node, String arg) {
         ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-            "java.flowcontrol.AvoidComplexConditionRule.violation.msg");
+                "java.flowcontrol.AvoidComplexConditionRule.violation.msg");
     }
 }

@@ -15,14 +15,8 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.comment;
 
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.java.rule.util.NodeSortUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
 import net.sourceforge.pmd.lang.java.ast.ASTEnumConstant;
@@ -30,6 +24,11 @@ import net.sourceforge.pmd.lang.java.ast.ASTExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
 import net.sourceforge.pmd.lang.java.ast.AbstractJavaNode;
 import net.sourceforge.pmd.lang.java.ast.Comment;
+
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * [Mandatory] Single line comments in a method should be put above the code to be commented, by using // and
@@ -48,14 +47,14 @@ public class AvoidCommentBehindStatementRule extends AbstractAliCommentRule {
         for (Entry<Integer, Node> entry : itemsByLineNumber.entrySet()) {
             Node value = entry.getValue();
             if (value instanceof AbstractJavaNode) {
-                lastNode = (AbstractJavaNode)value;
+                lastNode = (AbstractJavaNode) value;
             } else if (value instanceof Comment) {
-                Comment comment = (Comment)value;
+                Comment comment = (Comment) value;
                 if (lastNode != null && (comment.getBeginLine() == lastNode.getBeginLine())
-                    && (comment.getEndColumn() > lastNode.getBeginColumn())) {
+                        && (comment.getEndColumn() > lastNode.getBeginColumn())) {
                     addViolationWithMessage(data, lastNode,
-                        I18nResources.getMessage("java.comment.AvoidCommentBehindStatementRule.violation.msg"),
-                        comment.getBeginLine(), comment.getEndLine());
+                            I18nResources.getMessage("java.comment.AvoidCommentBehindStatementRule.violation.msg"),
+                            comment.getBeginLine(), comment.getEndLine());
                 }
             }
         }
@@ -79,12 +78,12 @@ public class AvoidCommentBehindStatementRule extends AbstractAliCommentRule {
 
         // filed declaration nodes
         List<ASTFieldDeclaration> fieldNodes =
-            cUnit.findDescendantsOfType(ASTFieldDeclaration.class);
+                cUnit.findDescendantsOfType(ASTFieldDeclaration.class);
         NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, fieldNodes);
 
         // enum constant nodes
         List<ASTEnumConstant> enumConstantNodes =
-            cUnit.findDescendantsOfType(ASTEnumConstant.class);
+                cUnit.findDescendantsOfType(ASTEnumConstant.class);
         NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, enumConstantNodes);
 
         NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, cUnit.getComments());

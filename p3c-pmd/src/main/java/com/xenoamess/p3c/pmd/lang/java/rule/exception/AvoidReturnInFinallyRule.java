@@ -18,14 +18,13 @@ package com.xenoamess.p3c.pmd.lang.java.rule.exception;
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.AbstractAliXpathRule;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 
 /**
  * [Mandatory] Never use return within a finally block.
  * A return statement in a finally block will cause exception or result
  * in a discarded return value in the try-catch block.
- * 
+ *
  * @author zenghou.fw
  * @date 2017/03/29
  */
@@ -39,6 +38,6 @@ public class AvoidReturnInFinallyRule extends AbstractAliXpathRule {
     @Override
     public void addViolation(Object data, Node node, String arg) {
         ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-            I18nResources.getMessage("java.exception.AvoidReturnInFinallyRule.violation.msg"));
+                I18nResources.getMessage("java.exception.AvoidReturnInFinallyRule.violation.msg"));
     }
 }

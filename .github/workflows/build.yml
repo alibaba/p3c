@@ -29,19 +29,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2.1.5
         with:
           path: ~/.m2
           key: ${{ runner.os }}-gradle-m2-${{ hashFiles('**/build.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2.1.5
         with:
           path: ~/.gradle/caches/
           key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/build.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2.1.5
         with:
           path: ~/.gradle/wrapper/
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/build.gradle') }}

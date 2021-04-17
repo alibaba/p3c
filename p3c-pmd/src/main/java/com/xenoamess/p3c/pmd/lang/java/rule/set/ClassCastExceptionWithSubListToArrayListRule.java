@@ -15,14 +15,13 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.set;
 
-import java.util.List;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTName;
 import org.jaxen.JaxenException;
+
+import java.util.List;
 
 /**
  * [Mandatory] Do not cast subList in class ArrayList, otherwise ClassCastException will be
@@ -35,8 +34,8 @@ import org.jaxen.JaxenException;
 public class ClassCastExceptionWithSubListToArrayListRule extends AbstractAliRule {
 
     private static final String XPATH =
-        "//CastExpression[Type/ReferenceType/ClassOrInterfaceType[@Image = "
-            + "\"ArrayList\"]]/PrimaryExpression/PrimaryPrefix/Name[ends-with(@Image,'.subList')]";
+            "//CastExpression[Type/ReferenceType/ClassOrInterfaceType[@Image = "
+                    + "\"ArrayList\"]]/PrimaryExpression/PrimaryPrefix/Name[ends-with(@Image,'.subList')]";
 
     @Override
     public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
@@ -50,8 +49,8 @@ public class ClassCastExceptionWithSubListToArrayListRule extends AbstractAliRul
                     continue;
                 }
                 addViolationWithMessage(data, item,
-                    "java.set.ClassCastExceptionWithSubListToArrayListRule.violation.msg",
-                    new Object[] {item.getImage()});
+                        "java.set.ClassCastExceptionWithSubListToArrayListRule.violation.msg",
+                        new Object[]{item.getImage()});
             }
         } catch (JaxenException e) {
             e.printStackTrace();

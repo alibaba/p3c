@@ -15,12 +15,8 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.concurrent;
 
-import java.util.List;
-import java.util.concurrent.ThreadFactory;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.xenoamess.p3c.pmd.lang.java.rule.util.NodeUtils;
-
 import net.sourceforge.pmd.lang.java.ast.ASTAllocationExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTBlockStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
@@ -36,6 +32,9 @@ import net.sourceforge.pmd.lang.java.ast.ASTResultType;
 import net.sourceforge.pmd.lang.java.ast.ASTType;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
 import net.sourceforge.pmd.lang.java.ast.Token;
+
+import java.util.List;
+import java.util.concurrent.ThreadFactory;
 
 /**
  * [Mandatory] Threads should be provided by thread pools. Explicitly creating threads is not allowed.
@@ -86,7 +85,7 @@ public class AvoidManuallyCreateThreadRule extends AbstractAliRule {
         }
         //implements of ThreadFactory
         boolean isThreadFactory = (checkForNamingClass(node) || threadFactoryVariable(node))
-            && isInPrimaryOrProtectedMethod(node);
+                && isInPrimaryOrProtectedMethod(node);
         if (isThreadFactory) {
             return super.visit(node, data);
         }
@@ -98,7 +97,7 @@ public class AvoidManuallyCreateThreadRule extends AbstractAliRule {
         if (blockStatement == null) {
             return false;
         }
-        Token token = (Token)blockStatement.jjtGetFirstToken();
+        Token token = (Token) blockStatement.jjtGetFirstToken();
         return Runtime.class.getSimpleName().equals(token.image);
     }
 
@@ -128,15 +127,15 @@ public class AvoidManuallyCreateThreadRule extends AbstractAliRule {
             return false;
         }
         List<ASTFormalParameter> parameters = methodDeclaration.getFirstDescendantOfType(ASTFormalParameters.class)
-            .findChildrenOfType(ASTFormalParameter.class);
+                .findChildrenOfType(ASTFormalParameter.class);
         return parameters.size() == 1
-            && parameters.get(0).getFirstChildOfType(ASTType.class).getType() == Runnable.class;
+                && parameters.get(0).getFirstChildOfType(ASTType.class).getType() == Runnable.class;
     }
 
     private boolean isInPrimaryOrProtectedMethod(ASTAllocationExpression node) {
         ASTMethodDeclaration methodDeclaration = node.getFirstParentOfType(ASTMethodDeclaration.class);
         return methodDeclaration != null && returnThread(methodDeclaration) && (methodDeclaration.isPrivate()
-            || methodDeclaration.isProtected());
+                || methodDeclaration.isProtected());
     }
 
     private boolean returnThread(ASTMethodDeclaration methodDeclaration) {
@@ -152,7 +151,7 @@ public class AvoidManuallyCreateThreadRule extends AbstractAliRule {
 
     private boolean checkForNamingClass(ASTAllocationExpression node) {
         ASTClassOrInterfaceDeclaration classOrInterfaceDeclaration =
-            node.getFirstParentOfType(ASTClassOrInterfaceDeclaration.class);
+                node.getFirstParentOfType(ASTClassOrInterfaceDeclaration.class);
         if (classOrInterfaceDeclaration == null) {
             return false;
         }

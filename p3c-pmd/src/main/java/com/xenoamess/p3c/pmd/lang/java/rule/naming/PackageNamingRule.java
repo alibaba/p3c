@@ -18,7 +18,6 @@ package com.xenoamess.p3c.pmd.lang.java.rule.naming;
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.AbstractAliXpathRule;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 
 /**
@@ -30,7 +29,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  */
 public class PackageNamingRule extends AbstractAliXpathRule {
     private static final String XPATH = "//PackageDeclaration/Name"
-        + "[not (matches(@Image, '^[a-z0-9]+(\\.[a-z][a-z0-9]*)*$'))]";
+            + "[not (matches(@Image, '^[a-z0-9]+(\\.[a-z][a-z0-9]*)*$'))]";
 
     public PackageNamingRule() {
         setXPath(XPATH);
@@ -39,6 +38,6 @@ public class PackageNamingRule extends AbstractAliXpathRule {
     @Override
     public void addViolation(Object data, Node node, String arg) {
         ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-            I18nResources.getMessage("java.naming.PackageNamingRule.violation.msg", node.getImage()));
+                I18nResources.getMessage("java.naming.PackageNamingRule.violation.msg", node.getImage()));
     }
 }

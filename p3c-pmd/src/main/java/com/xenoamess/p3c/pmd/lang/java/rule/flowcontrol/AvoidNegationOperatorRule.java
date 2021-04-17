@@ -17,7 +17,6 @@ package com.xenoamess.p3c.pmd.lang.java.rule.flowcontrol;
 
 import com.xenoamess.p3c.pmd.lang.AbstractAliXpathRule;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 
 /**
@@ -30,9 +29,9 @@ import net.sourceforge.pmd.lang.ast.Node;
  */
 public class AvoidNegationOperatorRule extends AbstractAliXpathRule {
     private static final String XPATH = "//UnaryExpressionNotPlusMinus[child::PrimaryExpression"
-        + "//PrimaryPrefix/Expression/RelationalExpression]"
-        + "|//UnaryExpressionNotPlusMinus[child::PrimaryExpression"
-        + "//PrimaryPrefix/Expression/EqualityExpression]";
+            + "//PrimaryPrefix/Expression/RelationalExpression]"
+            + "|//UnaryExpressionNotPlusMinus[child::PrimaryExpression"
+            + "//PrimaryPrefix/Expression/EqualityExpression]";
 
     public AvoidNegationOperatorRule() {
         setXPath(XPATH);
@@ -41,6 +40,6 @@ public class AvoidNegationOperatorRule extends AbstractAliXpathRule {
     @Override
     public void addViolation(Object data, Node node, String arg) {
         ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-            "java.flowcontrol.AvoidNegationOperatorRule.violation.msg");
+                "java.flowcontrol.AvoidNegationOperatorRule.violation.msg");
     }
 }

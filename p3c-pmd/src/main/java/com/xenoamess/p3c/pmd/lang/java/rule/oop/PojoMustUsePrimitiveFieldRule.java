@@ -15,10 +15,7 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.oop;
 
-import java.util.List;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractPojoRule;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.util.NodeUtils;
 import com.xenoamess.p3c.pmd.lang.java.util.VariableUtils;
 import net.sourceforge.pmd.lang.ast.Node;
@@ -26,6 +23,8 @@ import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTType;
 import org.jaxen.JaxenException;
+
+import java.util.List;
 
 /**
  * [Mandatory]  Rules for using primitive data types and wrapper classes:
@@ -47,10 +46,10 @@ public class PojoMustUsePrimitiveFieldRule extends AbstractPojoRule {
         }
         try {
             List<Node> fields = node.findChildNodesWithXPath(
-                "ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/FieldDeclaration");
+                    "ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/FieldDeclaration");
 
             for (Node fieldNode : fields) {
-                ASTFieldDeclaration field = (ASTFieldDeclaration)fieldNode;
+                ASTFieldDeclaration field = (ASTFieldDeclaration) fieldNode;
                 boolean shouldProcess = !field.isPublic() && !field.isStatic() && !field.isTransient();
                 if (!shouldProcess) {
                     continue;
@@ -59,8 +58,8 @@ public class PojoMustUsePrimitiveFieldRule extends AbstractPojoRule {
                 // TODO works only in current compilation file, by crossing files will be null
                 if (type != null && type.isPrimitive()) {
                     addViolationWithMessage(data, field.getFirstDescendantOfType(ASTType.class),
-                        "java.oop.PojoMustUsePrimitiveFieldRule.violation.msg",
-                        new Object[] {VariableUtils.getVariableName(field)});
+                            "java.oop.PojoMustUsePrimitiveFieldRule.violation.msg",
+                            new Object[]{VariableUtils.getVariableName(field)});
                 }
             }
         } catch (JaxenException e) {

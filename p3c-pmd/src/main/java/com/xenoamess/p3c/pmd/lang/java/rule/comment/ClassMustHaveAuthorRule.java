@@ -15,14 +15,8 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.comment;
 
-import java.util.List;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.regex.Pattern;
-
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTAnnotationTypeDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
@@ -30,6 +24,11 @@ import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
 import net.sourceforge.pmd.lang.java.ast.ASTEnumDeclaration;
 import net.sourceforge.pmd.lang.java.ast.AbstractJavaNode;
 import net.sourceforge.pmd.lang.java.ast.Comment;
+
+import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.regex.Pattern;
 
 /**
  * [Mandatory] Every class should include information of author(s) and date.
@@ -40,7 +39,7 @@ import net.sourceforge.pmd.lang.java.ast.Comment;
 public class ClassMustHaveAuthorRule extends AbstractAliCommentRule {
 
     private static final Pattern AUTHOR_PATTERN = Pattern.compile(".*@[Aa]uthor.*",
-        Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
+            Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
 
     private static final String MESSAGE_KEY_PREFIX = "java.comment.ClassMustHaveAuthorRule.violation.msg";
 
@@ -96,14 +95,14 @@ public class ClassMustHaveAuthorRule extends AbstractAliCommentRule {
         SortedMap<Integer, Node> itemsByLineNumber = new TreeMap<>();
 
         List<ASTClassOrInterfaceDeclaration> packageDecl = cUnit
-            .findDescendantsOfType(ASTClassOrInterfaceDeclaration.class);
+                .findDescendantsOfType(ASTClassOrInterfaceDeclaration.class);
         addDeclarations(itemsByLineNumber, packageDecl);
 
         List<ASTEnumDeclaration> enumDecl = cUnit.findDescendantsOfType(ASTEnumDeclaration.class);
         addDeclarations(itemsByLineNumber, enumDecl);
 
         List<ASTAnnotationTypeDeclaration> annotationDecl = cUnit
-            .findDescendantsOfType(ASTAnnotationTypeDeclaration.class);
+                .findDescendantsOfType(ASTAnnotationTypeDeclaration.class);
         addDeclarations(itemsByLineNumber, annotationDecl);
 
         addDeclarations(itemsByLineNumber, cUnit.getComments());
@@ -127,13 +126,13 @@ public class ClassMustHaveAuthorRule extends AbstractAliCommentRule {
         Comment comment = decl.comment();
         if (null == comment) {
             ViolationUtils.addViolationWithPrecisePosition(this, decl, data,
-                I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".comment", decl.getImage()));
+                    I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".comment", decl.getImage()));
         } else {
             String commentContent = comment.getImage();
             boolean hasAuthor = AUTHOR_PATTERN.matcher(commentContent).matches();
             if (!hasAuthor) {
                 ViolationUtils.addViolationWithPrecisePosition(this, decl, data,
-                    I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".author", decl.getImage()));
+                        I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".author", decl.getImage()));
             }
         }
     }

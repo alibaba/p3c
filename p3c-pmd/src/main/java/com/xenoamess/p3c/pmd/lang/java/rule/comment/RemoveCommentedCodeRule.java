@@ -15,14 +15,7 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.comment;
 
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.regex.Pattern;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.util.NodeSortUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTBlockStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
@@ -33,6 +26,12 @@ import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
 import net.sourceforge.pmd.lang.java.ast.Comment;
 import net.sourceforge.pmd.lang.java.ast.JavaNode;
+
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.regex.Pattern;
 
 /**
  * [Recommended] Codes or configuration that is noticed to be obsoleted should be resolutely removed from projects.
@@ -47,12 +46,12 @@ public class RemoveCommentedCodeRule extends AbstractAliCommentRule {
     private static final Pattern PRE_TAG_PATTERN = Pattern.compile(".*<pre>.*", Pattern.DOTALL);
 
     private static final Pattern IMPORT_PATTERN = Pattern.compile(".*import\\s(static\\s)?(\\w*\\.)*\\w*;.*",
-        Pattern.DOTALL);
+            Pattern.DOTALL);
 
     private static final Pattern FIELD_PATTERN = Pattern.compile(".*private\\s+(\\w*)\\s+(\\w*);.*", Pattern.DOTALL);
 
     private static final Pattern METHOD_PATTERN = Pattern.compile(
-        ".*(public|protected|private)\\s+\\w+\\s+\\w+\\(.*\\)\\s+\\{.*", Pattern.DOTALL);
+            ".*(public|protected|private)\\s+\\w+\\s+\\w+\\(.*\\)\\s+\\{.*", Pattern.DOTALL);
 
     /**
      * If string matches format ".xxx(.*);\n", then mark it as code.
@@ -77,7 +76,7 @@ public class RemoveCommentedCodeRule extends AbstractAliCommentRule {
             Node value = entry.getValue();
 
             if (value instanceof JavaNode) {
-                JavaNode node = (JavaNode)value;
+                JavaNode node = (JavaNode) value;
 
                 // add violation on the node after comment.
                 if (lastComment != null && isCommentBefore(lastComment, node)) {
@@ -85,11 +84,11 @@ public class RemoveCommentedCodeRule extends AbstractAliCommentRule {
                     if (!CommentPatternEnum.NONE.equals(commentPattern)) {
                         // check statement pattern only in method
                         boolean statementOutsideMethod = CommentPatternEnum.STATEMENT.equals(commentPattern)
-                            && !(node instanceof ASTBlockStatement);
+                                && !(node instanceof ASTBlockStatement);
                         if (!statementOutsideMethod) {
                             addViolationWithMessage(data, node, getMessage(),
-                                lastComment.getBeginLine(),
-                                lastComment.getEndLine());
+                                    lastComment.getBeginLine(),
+                                    lastComment.getEndLine());
                         }
                     }
                     lastComment = null;
@@ -100,7 +99,7 @@ public class RemoveCommentedCodeRule extends AbstractAliCommentRule {
                 commentPattern = CommentPatternEnum.NONE;
 
             } else if (value instanceof Comment) {
-                lastComment = (Comment)value;
+                lastComment = (Comment) value;
                 String content = lastComment.getImage();
 
                 if (!suppressWarning) {
@@ -150,11 +149,11 @@ public class RemoveCommentedCodeRule extends AbstractAliCommentRule {
         SortedMap<Integer, Node> itemsByLineNumber = new TreeMap<>();
 
         List<ASTImportDeclaration> importDecl = cUnit
-            .findDescendantsOfType(ASTImportDeclaration.class);
+                .findDescendantsOfType(ASTImportDeclaration.class);
         NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, importDecl);
 
         List<ASTClassOrInterfaceDeclaration> classDecl = cUnit
-            .findDescendantsOfType(ASTClassOrInterfaceDeclaration.class);
+                .findDescendantsOfType(ASTClassOrInterfaceDeclaration.class);
         NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, classDecl);
 
         List<ASTFieldDeclaration> fields = cUnit.findDescendantsOfType(ASTFieldDeclaration.class);
@@ -176,7 +175,7 @@ public class RemoveCommentedCodeRule extends AbstractAliCommentRule {
 
     private boolean isCommentBefore(Comment n1, Node n2) {
         return n1.getEndLine() < n2.getBeginLine() || n1.getEndLine() == n2.getBeginLine()
-            && n1.getEndColumn() < n2.getBeginColumn();
+                && n1.getEndColumn() < n2.getBeginColumn();
     }
 
     enum CommentPatternEnum {

@@ -15,13 +15,12 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.concurrent;
 
-import java.util.Timer;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
 import net.sourceforge.pmd.lang.java.ast.AbstractJavaTypeNode;
+
+import java.util.Timer;
 
 /**
  * [Mandatory] Run multiple TimeTask by using ScheduledExecutorService rather than Timer
@@ -49,7 +48,7 @@ public class AvoidUseTimerRule extends AbstractAliRule {
 
     private void checkType(AbstractJavaTypeNode node, Object data) {
         if (node.getType() == Timer.class) {
-            addViolationWithMessage(data, node,"java.concurrent.AvoidUseTimerRule.violation.msg");
+            addViolationWithMessage(data, node, "java.concurrent.AvoidUseTimerRule.violation.msg");
         }
     }
 }

@@ -15,16 +15,7 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.concurrent;
 
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import net.sourceforge.pmd.lang.java.ast.ASTAllocationExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTArgumentList;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
@@ -34,6 +25,14 @@ import net.sourceforge.pmd.lang.java.ast.ASTFormalParameters;
 import net.sourceforge.pmd.lang.java.ast.ASTLambdaExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTName;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
+
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * [Mandatory] A meaningful thread name is helpful to trace the error information,
@@ -84,7 +83,7 @@ public class ThreadShouldSetNameRule extends AbstractAliRule {
             return true;
         }
         if (argumentList.getNumChildren() < ARGUMENT_LENGTH_6
-            || !checkThreadFactoryArgument((ASTExpression)argumentList.getChild(ARGUMENT_LENGTH_6 - INDEX_1))) {
+                || !checkThreadFactoryArgument((ASTExpression) argumentList.getChild(ARGUMENT_LENGTH_6 - INDEX_1))) {
             addViolationWithMessage(data, node, MESSAGE_KEY_PREFIX + ".ThreadPoolExecutor");
         }
         return super.visit(node, data);
@@ -96,7 +95,7 @@ public class ThreadShouldSetNameRule extends AbstractAliRule {
             return true;
         }
         if (argumentList.getNumChildren() < ARGUMENT_LENGTH_2
-            || !checkThreadFactoryArgument((ASTExpression)argumentList.getChild(ARGUMENT_LENGTH_2 - INDEX_1))) {
+                || !checkThreadFactoryArgument((ASTExpression) argumentList.getChild(ARGUMENT_LENGTH_2 - INDEX_1))) {
             addViolationWithMessage(data, node, MESSAGE_KEY_PREFIX + ".ScheduledThreadPoolExecutor");
         }
         return super.visit(node, data);
@@ -122,7 +121,7 @@ public class ThreadShouldSetNameRule extends AbstractAliRule {
 
     private boolean isThreadFactoryLambda(ASTLambdaExpression lambdaExpression) {
         List<ASTVariableDeclaratorId> variableDeclaratorIds =
-            lambdaExpression.findChildrenOfType(ASTVariableDeclaratorId.class);
+                lambdaExpression.findChildrenOfType(ASTVariableDeclaratorId.class);
         if (variableDeclaratorIds != null && !variableDeclaratorIds.isEmpty()) {
             return variableDeclaratorIds.size() == SINGLE_LENGTH;
         }

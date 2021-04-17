@@ -15,18 +15,17 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.concurrent;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.Executors;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
 import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTName;
 import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
 import net.sourceforge.pmd.lang.java.ast.Token;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.Executors;
 
 /**
  * [Mandatory] A thread pool should be created by ThreadPoolExecutor rather than Executors.
@@ -56,20 +55,21 @@ public class ThreadPoolCreationRule extends AbstractAliRule {
         for (ASTImportDeclaration importDeclaration : importDeclarations) {
             ASTName name = importDeclaration.getFirstChildOfType(ASTName.class);
             info.executorsUsed = info.executorsUsed
-                || (name.getType() == Executors.class || Executors.class.getName().equals(name.getImage()));
+                    || (name.getType() == Executors.class || Executors.class.getName().equals(name.getImage()));
             if (name.getImage().startsWith(Executors.class.getName() + DOT)) {
                 info.importedExecutorsMethods.add(name.getImage());
             }
         }
         List<ASTPrimaryExpression> primaryExpressions = node.findDescendantsOfType(ASTPrimaryExpression.class);
-        for(ASTPrimaryExpression primaryExpression : primaryExpressions){
+        for (ASTPrimaryExpression primaryExpression : primaryExpressions) {
             if (!info.executorsUsed && info.importedExecutorsMethods.isEmpty()) {
                 continue;
             }
 
-            Token initToken = (Token)primaryExpression.jjtGetFirstToken();
+            Token initToken = (Token) primaryExpression.jjtGetFirstToken();
             if (!checkInitStatement(initToken, info)) {
-                addViolationWithMessage(data, primaryExpression,"java.concurrent.ThreadPoolCreationRule.violation.msg");
+                addViolationWithMessage(data, primaryExpression, "java.concurrent.ThreadPoolCreationRule.violation" +
+                        ".msg");
             }
         }
         return superResult;

@@ -18,7 +18,6 @@ package com.xenoamess.p3c.pmd.lang.java.rule.naming;
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.AbstractAliXpathRule;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 
 /**
@@ -30,9 +29,10 @@ import net.sourceforge.pmd.lang.ast.Node;
  */
 public class ServiceOrDaoClassShouldEndWithImplRule extends AbstractAliXpathRule {
     private static final String XPATH = "//ClassOrInterfaceDeclaration"
-        + "[ .[@Interface='false'] and .[@Abstract='false'] and ./ImplementsList/ClassOrInterfaceType[ ends-with(@Image, 'Service') or "
-        + "ends-with(@Image, 'DAO')]]"
-        + "[not(.[ ends-with(@Image, 'Impl')])]";
+            + "[ .[@Interface='false'] and .[@Abstract='false'] and ./ImplementsList/ClassOrInterfaceType[ ends-with" +
+            "(@Image, 'Service') or "
+            + "ends-with(@Image, 'DAO')]]"
+            + "[not(.[ ends-with(@Image, 'Impl')])]";
 
     public ServiceOrDaoClassShouldEndWithImplRule() {
         setXPath(XPATH);
@@ -41,7 +41,7 @@ public class ServiceOrDaoClassShouldEndWithImplRule extends AbstractAliXpathRule
     @Override
     public void addViolation(Object data, Node node, String arg) {
         ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-            I18nResources.getMessage("java.naming.ServiceOrDaoClassShouldEndWithImplRule.violation.msg",
-                node.getImage()));
+                I18nResources.getMessage("java.naming.ServiceOrDaoClassShouldEndWithImplRule.violation.msg",
+                        node.getImage()));
     }
 }

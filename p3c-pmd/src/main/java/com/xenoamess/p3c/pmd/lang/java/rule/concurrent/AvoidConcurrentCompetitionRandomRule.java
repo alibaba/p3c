@@ -15,11 +15,7 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.concurrent;
 
-import java.util.List;
-import java.util.Random;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.util.NodeUtils;
 import com.xenoamess.p3c.pmd.lang.java.util.VariableUtils;
 import net.sourceforge.pmd.lang.ast.Node;
@@ -32,6 +28,9 @@ import net.sourceforge.pmd.lang.java.ast.ASTName;
 import net.sourceforge.pmd.lang.java.ast.ASTPrimaryPrefix;
 import org.jaxen.JaxenException;
 
+import java.util.List;
+import java.util.Random;
+
 /**
  * 6.13 [Recommended] Avoid using Random instance by multiple threads.
  * Although it is safe to share this instance, competition on the same seed will damage performance.
@@ -43,7 +42,7 @@ import org.jaxen.JaxenException;
 public class AvoidConcurrentCompetitionRandomRule extends AbstractAliRule {
 
     private static final String XPATH_TPL = "//StatementExpression/PrimaryExpression"
-        + "/PrimaryPrefix/Name[starts-with(@Image,'%s.')]";
+            + "/PrimaryPrefix/Name[starts-with(@Image,'%s.')]";
 
     private static final String MATH_RANDOM_METHOD = ".random";
 
@@ -70,7 +69,7 @@ public class AvoidConcurrentCompetitionRandomRule extends AbstractAliRule {
         }
         for (ASTFieldDeclaration fieldDeclaration : fieldDeclarations) {
             if (NodeUtils.getNodeType(fieldDeclaration) == Random.class
-                && fieldDeclaration.isStatic()) {
+                    && fieldDeclaration.isStatic()) {
                 checkRandom(fieldDeclaration, methodDeclarations, data);
             }
         }
@@ -80,7 +79,7 @@ public class AvoidConcurrentCompetitionRandomRule extends AbstractAliRule {
     private void checkMathRandom(List<ASTMethodDeclaration> methodDeclarations, Object data) {
         for (ASTMethodDeclaration methodDeclaration : methodDeclarations) {
             List<ASTPrimaryPrefix> primaryPrefixes
-                = methodDeclaration.findDescendantsOfType(ASTPrimaryPrefix.class);
+                    = methodDeclaration.findDescendantsOfType(ASTPrimaryPrefix.class);
             if (primaryPrefixes == null || primaryPrefixes.isEmpty()) {
                 continue;
             }
@@ -93,24 +92,24 @@ public class AvoidConcurrentCompetitionRandomRule extends AbstractAliRule {
                     continue;
                 }
                 addViolationWithMessage(data, primaryPrefix,
-                    MESSAGE_KEY_PREFIX + ".violation.msg.math.random");
+                        MESSAGE_KEY_PREFIX + ".violation.msg.math.random");
             }
         }
     }
 
     private void checkRandom(ASTFieldDeclaration fieldDeclaration, List<ASTMethodDeclaration> methodDeclarations,
-        Object data) {
+                             Object data) {
         for (ASTMethodDeclaration methodDeclaration : methodDeclarations) {
             try {
                 List<Node> nodes = methodDeclaration.findChildNodesWithXPath(String.format(XPATH_TPL,
-                    VariableUtils.getVariableName(fieldDeclaration)));
+                        VariableUtils.getVariableName(fieldDeclaration)));
                 if (nodes == null || nodes.isEmpty()) {
                     continue;
                 }
                 for (Node rvNode : nodes) {
                     addViolationWithMessage(data, rvNode,
-                        MESSAGE_KEY_PREFIX + ".violation.msg.random",
-                        new Object[] {rvNode.getImage()});
+                            MESSAGE_KEY_PREFIX + ".violation.msg.random",
+                            new Object[]{rvNode.getImage()});
                 }
             } catch (JaxenException ignore) {
             }

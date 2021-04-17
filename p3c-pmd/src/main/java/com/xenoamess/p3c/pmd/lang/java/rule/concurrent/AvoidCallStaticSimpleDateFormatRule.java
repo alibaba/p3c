@@ -15,13 +15,7 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.concurrent;
 
-import java.text.SimpleDateFormat;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Stack;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.dfa.DataFlowNode;
 import net.sourceforge.pmd.lang.dfa.StartOrEndDataFlowNode;
@@ -35,6 +29,11 @@ import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
 import net.sourceforge.pmd.lang.java.ast.AbstractJavaNode;
 import net.sourceforge.pmd.lang.java.ast.Token;
+
+import java.text.SimpleDateFormat;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Stack;
 
 import static com.xenoamess.p3c.pmd.lang.java.rule.util.NodeUtils.isLockNode;
 import static com.xenoamess.p3c.pmd.lang.java.rule.util.NodeUtils.isLockStatementExpression;
@@ -75,8 +74,8 @@ public class AvoidCallStaticSimpleDateFormatRule extends AbstractAliRule {
             Node node = stack.pop();
             if (node instanceof ASTPrimaryExpression) {
                 addViolationWithMessage(data, node,
-                    "java.concurrent.AvoidCallStaticSimpleDateFormatRule.violation.msg",
-                    new Object[] {getExpressName((ASTPrimaryExpression)node)});
+                        "java.concurrent.AvoidCallStaticSimpleDateFormatRule.violation.msg",
+                        new Object[]{getExpressName((ASTPrimaryExpression) node)});
             }
         }
     }
@@ -87,17 +86,17 @@ public class AvoidCallStaticSimpleDateFormatRule extends AbstractAliRule {
         }
         // collect local variables of type SimpleDateFormat if match,then return
         if (flowNode.getNode() instanceof ASTVariableDeclarator) {
-            ASTVariableDeclarator variableDeclarator = (ASTVariableDeclarator)flowNode.getNode();
+            ASTVariableDeclarator variableDeclarator = (ASTVariableDeclarator) flowNode.getNode();
             if (variableDeclarator.getType() == SimpleDateFormat.class) {
                 ASTVariableDeclaratorId variableDeclaratorId =
-                    variableDeclarator.getFirstChildOfType(ASTVariableDeclaratorId.class);
+                        variableDeclarator.getFirstChildOfType(ASTVariableDeclaratorId.class);
                 localSimpleDateFormatNames.add(variableDeclaratorId.getImage());
                 return;
             }
         }
 
         if (flowNode.getNode() instanceof ASTStatementExpression) {
-            ASTStatementExpression statementExpression = (ASTStatementExpression)flowNode.getNode();
+            ASTStatementExpression statementExpression = (ASTStatementExpression) flowNode.getNode();
             if (isLockStatementExpression(statementExpression)) {
                 // add lock node
                 stack.push(flowNode.getNode());
@@ -115,7 +114,7 @@ public class AvoidCallStaticSimpleDateFormatRule extends AbstractAliRule {
                 return;
             }
         }
-        AbstractJavaNode javaNode = (AbstractJavaNode)flowNode.getNode();
+        AbstractJavaNode javaNode = (AbstractJavaNode) flowNode.getNode();
         ASTPrimaryExpression flowPrimaryExpression = javaNode.getFirstDescendantOfType(ASTPrimaryExpression.class);
         if (flowPrimaryExpression == null) {
             return;
@@ -136,8 +135,8 @@ public class AvoidCallStaticSimpleDateFormatRule extends AbstractAliRule {
     }
 
     private boolean isStaticSimpleDateFormatCall(
-        ASTPrimaryExpression primaryExpression,
-        Set<String> localSimpleDateFormatNames
+            ASTPrimaryExpression primaryExpression,
+            Set<String> localSimpleDateFormatNames
     ) {
         if (primaryExpression.getNumChildren() == 0) {
             return false;
@@ -152,12 +151,12 @@ public class AvoidCallStaticSimpleDateFormatRule extends AbstractAliRule {
         if (localSimpleDateFormatNames.contains(name.getNameDeclaration().getName())) {
             return false;
         }
-        ASTPrimaryPrefix primaryPrefix = (ASTPrimaryPrefix)primaryExpression.getChild(0);
+        ASTPrimaryPrefix primaryPrefix = (ASTPrimaryPrefix) primaryExpression.getChild(0);
         if (primaryPrefix.getType() != SimpleDateFormat.class) {
             return false;
         }
 
-        Token token = (Token)primaryPrefix.jjtGetLastToken();
+        Token token = (Token) primaryPrefix.jjtGetLastToken();
         return FORMAT_METHOD_NAME.equals(token.image);
     }
 

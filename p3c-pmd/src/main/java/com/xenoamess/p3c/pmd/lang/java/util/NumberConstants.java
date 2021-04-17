@@ -22,7 +22,7 @@ package com.xenoamess.p3c.pmd.lang.java.util;
 public final class NumberConstants {
     private NumberConstants() {
         throw new AssertionError("NumberConstants"
-            + " instances for you!");
+                + " instances for you!");
     }
 
     public static final int INTEGER_SIZE_OR_LENGTH_0 = 0;

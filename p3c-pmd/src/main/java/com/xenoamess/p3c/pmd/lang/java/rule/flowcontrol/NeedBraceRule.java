@@ -16,7 +16,6 @@
 package com.xenoamess.p3c.pmd.lang.java.rule.flowcontrol;
 
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import net.sourceforge.pmd.lang.java.ast.ASTBlock;
 import net.sourceforge.pmd.lang.java.ast.ASTForStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTIfStatement;
@@ -43,14 +42,14 @@ public class NeedBraceRule extends AbstractAliRule {
         // SwitchStatement without {} fail by compilation, no need to check here
         if (!node.hasDescendantMatchingXPath(STATEMENT_BLOCK)) {
             addViolationWithMessage(data, node, MESSAGE_KEY,
-                new Object[] {node.jjtGetFirstToken().toString()});
+                    new Object[]{node.jjtGetFirstToken().toString()});
         }
         if (node.hasElse()) {
             // IfStatement with else have 2 expression blocks, should never throws NPE
             ASTStatement elseStms = node.findChildrenOfType(ASTStatement.class).get(1);
 
             if (!elseStms.hasDescendantOfAnyType(ASTBlock.class, ASTIfStatement.class)) {
-                addViolationWithMessage(data, elseStms, MESSAGE_KEY, new Object[] {"else"});
+                addViolationWithMessage(data, elseStms, MESSAGE_KEY, new Object[]{"else"});
             }
         }
         return super.visit(node, data);
@@ -59,7 +58,7 @@ public class NeedBraceRule extends AbstractAliRule {
     @Override
     public Object visit(ASTForStatement node, Object data) {
         if (!node.hasDescendantMatchingXPath(STATEMENT_BLOCK)) {
-            addViolationWithMessage(data, node, MESSAGE_KEY, new Object[] {"for"});
+            addViolationWithMessage(data, node, MESSAGE_KEY, new Object[]{"for"});
         }
         return super.visit(node, data);
     }
@@ -67,7 +66,7 @@ public class NeedBraceRule extends AbstractAliRule {
     @Override
     public Object visit(ASTWhileStatement node, Object data) {
         if (!node.hasDescendantMatchingXPath(STATEMENT_BLOCK)) {
-            addViolationWithMessage(data, node, MESSAGE_KEY, new Object[] {"while"});
+            addViolationWithMessage(data, node, MESSAGE_KEY, new Object[]{"while"});
         }
         return super.visit(node, data);
     }

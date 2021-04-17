@@ -15,10 +15,10 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.util;
 
-import java.util.List;
-
 import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
 import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
+
+import java.util.List;
 
 /**
  * @author caikang
@@ -31,7 +31,7 @@ public class GeneratedCodeUtils {
 
     public static boolean isGenerated(ASTCompilationUnit compilationUnit) {
         List<ASTImportDeclaration> importDeclarationList
-            = compilationUnit.findChildrenOfType(ASTImportDeclaration.class);
+                = compilationUnit.findChildrenOfType(ASTImportDeclaration.class);
         if (importDeclarationList.isEmpty()) {
             return false;
         }

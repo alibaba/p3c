@@ -15,10 +15,7 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.set;
 
-import java.util.List;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTBlock;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
@@ -26,6 +23,8 @@ import net.sourceforge.pmd.lang.java.ast.ASTName;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
 import org.jaxen.JaxenException;
+
+import java.util.List;
 
 /**
  * [Mandatory] Do not use methods which will modify the list after using Arrays.asList to convert array to list,
@@ -36,14 +35,14 @@ import org.jaxen.JaxenException;
  */
 public class UnsupportedExceptionWithModifyAsListRule extends AbstractAliRule {
 
-    private final static String ADD = ".add";
-    private final static String REMOVE = ".remove";
-    private final static String CLEAR = ".clear";
-    private final static String XPATH
-        = "//VariableDeclarator[../Type/ReferenceType/ClassOrInterfaceType[@Image='List']]/VariableInitializer"
-        + "/Expression/PrimaryExpression/PrimaryPrefix/Name[@Image='Arrays.asList']";
-    private final static String CHILD_XPATH
-        = "BlockStatement/Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name";
+    private static final String ADD = ".add";
+    private static final String REMOVE = ".remove";
+    private static final String CLEAR = ".clear";
+    private static final String XPATH
+            = "//VariableDeclarator[../Type/ReferenceType/ClassOrInterfaceType[@Image='List']]/VariableInitializer"
+            + "/Expression/PrimaryExpression/PrimaryPrefix/Name[@Image='Arrays.asList']";
+    private static final String CHILD_XPATH
+            = "BlockStatement/Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name";
 
     @Override
     public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
@@ -58,13 +57,13 @@ public class UnsupportedExceptionWithModifyAsListRule extends AbstractAliRule {
                     continue;
                 }
                 List<ASTVariableDeclarator> parents =
-                    item.getParentsOfType(ASTVariableDeclarator.class);
+                        item.getParentsOfType(ASTVariableDeclarator.class);
                 if (parents == null || parents.size() == 0 || parents.size() > 1) {
                     continue;
                 }
                 ASTVariableDeclarator declarator = parents.get(0);
                 ASTVariableDeclaratorId variableName =
-                    declarator.getFirstChildOfType(ASTVariableDeclaratorId.class);
+                        declarator.getFirstChildOfType(ASTVariableDeclaratorId.class);
 
                 String valName = variableName.getImage();
                 // find Variable scope code block
@@ -80,8 +79,8 @@ public class UnsupportedExceptionWithModifyAsListRule extends AbstractAliRule {
                     }
                     if (checkBlockNodesValid(valName, blockItem)) {
                         addViolationWithMessage(data, blockItem,
-                            "java.set.UnsupportedExceptionWithModifyAsListRule.violation.msg",
-                            new Object[] {blockItem.getImage()});
+                                "java.set.UnsupportedExceptionWithModifyAsListRule.violation.msg",
+                                new Object[]{blockItem.getImage()});
                     }
                 }
 
@@ -116,7 +115,7 @@ public class UnsupportedExceptionWithModifyAsListRule extends AbstractAliRule {
      */
     private boolean judgeName(String name, String variableName) {
         return name.equals(variableName + ADD) || name.equals(variableName + REMOVE)
-            || name.equals(variableName + CLEAR);
+                || name.equals(variableName + CLEAR);
     }
 
 }

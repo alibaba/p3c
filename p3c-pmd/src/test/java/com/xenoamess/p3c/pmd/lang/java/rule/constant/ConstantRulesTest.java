@@ -27,7 +27,7 @@ import net.sourceforge.pmd.testframework.SimpleAggregatorTst;
 public class ConstantRulesTest extends SimpleAggregatorTst {
 
     private static final String RULESET = "java-ali-constant";
-    
+
     @Override
     public void setUp() {
         addRule(RULESET, "UpperEllRule");

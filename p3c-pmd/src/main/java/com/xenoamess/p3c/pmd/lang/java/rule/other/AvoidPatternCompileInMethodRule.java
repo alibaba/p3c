@@ -19,7 +19,6 @@ import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.AbstractAliXpathRule;
 import com.xenoamess.p3c.pmd.lang.java.util.VariableUtils;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;
 
@@ -35,9 +34,9 @@ public class AvoidPatternCompileInMethodRule extends AbstractAliXpathRule {
      * The parameter of Pattern.compile cannot be a string literal.
      */
     private static final String XPATH = "//MethodDeclaration//PrimaryExpression["
-        + "PrimaryPrefix/Name[@Image='Pattern.compile'] and "
-        + "PrimarySuffix/Arguments/ArgumentList/Expression/"
-        + "PrimaryExpression/PrimaryPrefix/Literal[@StringLiteral='true']]";
+            + "PrimaryPrefix/Name[@Image='Pattern.compile'] and "
+            + "PrimarySuffix/Arguments/ArgumentList/Expression/"
+            + "PrimaryExpression/PrimaryPrefix/Literal[@StringLiteral='true']]";
 
     public AvoidPatternCompileInMethodRule() {
         setXPath(XPATH);
@@ -46,13 +45,13 @@ public class AvoidPatternCompileInMethodRule extends AbstractAliXpathRule {
     @Override
     public void addViolation(Object data, Node node, String arg) {
         ASTLocalVariableDeclaration localVariableDeclaration = node.getFirstParentOfType(
-            ASTLocalVariableDeclaration.class);
+                ASTLocalVariableDeclaration.class);
         if (localVariableDeclaration == null) {
             super.addViolation(data, node, arg);
         } else {
             ViolationUtils.addViolationWithPrecisePosition(this, node, data,
-                I18nResources.getMessage("java.other.AvoidPatternCompileInMethodRule.violation.msg",
-                    VariableUtils.getVariableName(localVariableDeclaration)));
+                    I18nResources.getMessage("java.other.AvoidPatternCompileInMethodRule.violation.msg",
+                            VariableUtils.getVariableName(localVariableDeclaration)));
         }
     }
 }

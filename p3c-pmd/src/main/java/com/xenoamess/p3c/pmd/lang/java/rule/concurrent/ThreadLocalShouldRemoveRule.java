@@ -15,14 +15,11 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.concurrent;
 
-import java.util.List;
-
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
 import com.xenoamess.p3c.pmd.lang.java.rule.util.NodeUtils;
 import com.xenoamess.p3c.pmd.lang.java.util.VariableUtils;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
 import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
@@ -30,6 +27,8 @@ import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclarator;
 import net.sourceforge.pmd.lang.java.ast.ASTName;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
 import org.jaxen.JaxenException;
+
+import java.util.List;
 
 /**
  * [Mandatory] Customized ThreadLocal variables must be recycled, especially when using thread pools in which threads
@@ -41,7 +40,7 @@ import org.jaxen.JaxenException;
  */
 public class ThreadLocalShouldRemoveRule extends AbstractAliRule {
     private static final String XPATH_TPL = "//StatementExpression/PrimaryExpression"
-        + "/PrimaryPrefix/Name[@Image='%s.remove']";
+            + "/PrimaryPrefix/Name[@Image='%s.remove']";
 
     private static final String METHOD_INITIAL_VALUE = "initialValue";
 
@@ -55,7 +54,9 @@ public class ThreadLocalShouldRemoveRule extends AbstractAliRule {
         }
         for (ASTFieldDeclaration fieldDeclaration : fieldDeclarations) {
             if (NodeUtils.getNodeType(fieldDeclaration) == ThreadLocal.class) {
-                if (checkThreadLocalWithInitialValue(fieldDeclaration)) { continue; }
+                if (checkThreadLocalWithInitialValue(fieldDeclaration)) {
+                    continue;
+                }
                 checkThreadLocal(fieldDeclaration, node, data);
             }
         }
@@ -64,13 +65,13 @@ public class ThreadLocalShouldRemoveRule extends AbstractAliRule {
 
     private boolean checkThreadLocalWithInitialValue(ASTFieldDeclaration fieldDeclaration) {
         ASTVariableDeclarator variableDeclarator = fieldDeclaration.getFirstDescendantOfType(
-            ASTVariableDeclarator.class);
+                ASTVariableDeclarator.class);
         if (variableDeclarator == null) {
             return false;
         }
         // ASTClassOrInterfaceBodyDeclaration.isFindBoundary=true，使用getFirstDescendantOfType不能继续向方法内部查询
         List<ASTMethodDeclarator> astMethodDeclaratorList = variableDeclarator.findDescendantsOfType(
-            ASTMethodDeclarator.class, true);
+                ASTMethodDeclarator.class, true);
         if (!astMethodDeclaratorList.isEmpty()) {
             return METHOD_INITIAL_VALUE.equals(astMethodDeclaratorList.get(0).getImage());
         }
@@ -82,11 +83,11 @@ public class ThreadLocalShouldRemoveRule extends AbstractAliRule {
         try {
             String variableName = VariableUtils.getVariableName(fieldDeclaration);
             List<Node> nodes = node.findChildNodesWithXPath(String.format(XPATH_TPL,
-                variableName));
+                    variableName));
             if (nodes == null || nodes.isEmpty()) {
                 ViolationUtils.addViolationWithPrecisePosition(this, fieldDeclaration, data,
-                    I18nResources.getMessage("java.concurrent.ThreadLocalShouldRemoveRule.violation.msg",
-                        variableName));
+                        I18nResources.getMessage("java.concurrent.ThreadLocalShouldRemoveRule.violation.msg",
+                                variableName));
             }
         } catch (JaxenException ignore) {
         }

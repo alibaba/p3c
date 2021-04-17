@@ -1,7 +1,6 @@
 package com.xenoamess.p3c.pmd.lang.java.rule.other;
 
 import com.xenoamess.p3c.pmd.lang.AbstractAliXpathRule;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTLiteral;
 import org.apache.commons.lang3.StringUtils;
@@ -29,8 +28,8 @@ import org.apache.commons.lang3.StringUtils;
 public class UseRightCaseForDateFormatRule extends AbstractAliXpathRule {
 
     private static final String NEW_XPATH
-        = "//AllocationExpression/ClassOrInterfaceType[@Image='SimpleDateFormat']/../Arguments/ArgumentList"
-        + "/Expression/PrimaryExpression/PrimaryPrefix/*";
+            = "//AllocationExpression/ClassOrInterfaceType[@Image='SimpleDateFormat']/../Arguments/ArgumentList"
+            + "/Expression/PrimaryExpression/PrimaryPrefix/*";
     private static final String LOW_CASE_4Y = "yyyy";
     private static final String LOW_CASE_2Y = "yy";
     private static final String START_QUOTE = "\"";
@@ -63,12 +62,12 @@ public class UseRightCaseForDateFormatRule extends AbstractAliXpathRule {
         String lowerCaseTmp = image.toLowerCase();
         if (!image.startsWith(LOW_CASE_4Y) && lowerCaseTmp.startsWith(LOW_CASE_4Y)) {
             addViolationWithMessage(data, argNode,
-                "java.other.UseRightCaseForDateFormatRule.rule.msg",
-                new Object[] {image});
+                    "java.other.UseRightCaseForDateFormatRule.rule.msg",
+                    new Object[]{image});
         } else if (!image.startsWith(LOW_CASE_2Y) && lowerCaseTmp.startsWith(LOW_CASE_2Y)) {
             addViolationWithMessage(data, argNode,
-                "java.other.UseRightCaseForDateFormatRule.rule.msg",
-                new Object[] {image});
+                    "java.other.UseRightCaseForDateFormatRule.rule.msg",
+                    new Object[]{image});
         } else {
             //暂不考虑
         }

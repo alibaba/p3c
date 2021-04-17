@@ -25,20 +25,24 @@ import java.io.File;
  * @date 2017/03/27
  */
 public class NameListConfig {
-    private static @NotNull NameListService nameListService = createNameListService();
+    private static @NotNull
+    NameListService nameListService = createNameListService();
 
-    public synchronized static @NotNull NameListService renewNameListService() {
+    public static synchronized @NotNull
+    NameListService renewNameListService() {
         setNameListService(createNameListService());
         return getNameListService();
     }
 
-    public synchronized static @NotNull NameListService renewNameListService(@NotNull File patchConfigFile) {
+    public static synchronized @NotNull
+    NameListService renewNameListService(@NotNull File patchConfigFile) {
         setNameListService(createNameListService());
         getNameListService().loadPatchConfigFile(patchConfigFile);
         return getNameListService();
     }
 
-    private static @NotNull NameListService createNameListService() {
+    private static @NotNull
+    NameListService createNameListService() {
         NameListService instance = SpiLoader.getInstance(NameListService.class);
         if (instance == null) {
             instance = new NameListServiceImpl();
@@ -46,11 +50,12 @@ public class NameListConfig {
         return instance;
     }
 
-    public synchronized static @NotNull NameListService getNameListService() {
+    public static synchronized @NotNull
+    NameListService getNameListService() {
         return nameListService;
     }
 
-    public synchronized static void setNameListService(@NotNull NameListService nameListService) {
+    public static synchronized void setNameListService(@NotNull NameListService nameListService) {
         NameListConfig.nameListService = nameListService;
     }
 }

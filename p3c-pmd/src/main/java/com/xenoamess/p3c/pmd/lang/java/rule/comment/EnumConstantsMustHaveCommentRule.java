@@ -15,18 +15,17 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.comment;
 
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.java.rule.util.NodeSortUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
 import net.sourceforge.pmd.lang.java.ast.ASTEnumConstant;
 import net.sourceforge.pmd.lang.java.ast.ASTEnumDeclaration;
+
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * [Mandatory] All enumeration type fields should be commented as Javadoc style.
@@ -52,8 +51,8 @@ public class EnumConstantsMustHaveCommentRule extends AbstractAliCommentRule {
                 Node enumBody = value.getParent();
                 Node enumDeclaration = enumBody.getParent();
                 addViolationWithMessage(data, enumBody,
-                    I18nResources.getMessage("java.comment.EnumConstantsMustHaveCommentRule.violation.msg",
-                        enumDeclaration.getImage()));
+                        I18nResources.getMessage("java.comment.EnumConstantsMustHaveCommentRule.violation.msg",
+                                enumDeclaration.getImage()));
                 isPreviousEnumDecl = false;
             } else {
                 isPreviousEnumDecl = false;

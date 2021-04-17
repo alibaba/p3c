@@ -21,8 +21,11 @@ public class ExtendRuleTst extends RuleTst {
 
 
     public void runTest(Rule rule, String examFilePath, String expectedVioLineNumbers) {
-        TestDescriptor descriptor = extractTestsFromJavaFile(rule, examFilePath
-                , expectedVioLineNumbers);
+        TestDescriptor descriptor = extractTestsFromJavaFile(
+                rule,
+                examFilePath,
+                expectedVioLineNumbers
+        );
         if (descriptor != null) {
             runTest(descriptor);
         }

@@ -15,15 +15,14 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.set;
 
-import java.util.List;
-
 import com.xenoamess.p3c.pmd.lang.java.rule.AbstractAliRule;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTForStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTName;
 import org.jaxen.JaxenException;
+
+import java.util.List;
 
 /**
  * [Mandatory] Do not remove or add elements to a collection in a foreach loop. Please use Iterator to remove an item.
@@ -34,12 +33,12 @@ import org.jaxen.JaxenException;
  */
 public class DontModifyInForeachCircleRule extends AbstractAliRule {
 
-    private final static String ADD = ".add";
-    private final static String REMOVE = ".remove";
-    private final static String CLEAR = ".clear";
-    private final static String XPATH = "//ForStatement/Expression/PrimaryExpression/PrimaryPrefix/Name";
-    private final static String CHILD_XPATH
-        = "Statement/Block/BlockStatement/Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name";
+    private static final String ADD = ".add";
+    private static final String REMOVE = ".remove";
+    private static final String CLEAR = ".clear";
+    private static final String XPATH = "//ForStatement/Expression/PrimaryExpression/PrimaryPrefix/Name";
+    private static final String CHILD_XPATH
+            = "Statement/Block/BlockStatement/Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name";
 
     @Override
     public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
@@ -64,8 +63,8 @@ public class DontModifyInForeachCircleRule extends AbstractAliRule {
                     }
                     if (judgeName(blockItem.getImage(), variableName)) {
                         addViolationWithMessage(data, blockItem,
-                            "java.set.DontModifyInForeachCircleRule.violation.msg",
-                            new Object[] {blockItem.getImage()});
+                                "java.set.DontModifyInForeachCircleRule.violation.msg",
+                                new Object[]{blockItem.getImage()});
                     }
                 }
             }
@@ -77,7 +76,7 @@ public class DontModifyInForeachCircleRule extends AbstractAliRule {
 
     private boolean judgeName(String name, String variableName) {
         return name != null && (name.equals(variableName + ADD) ||
-            name.equals(variableName + REMOVE) || name.equals(variableName + CLEAR));
+                name.equals(variableName + REMOVE) || name.equals(variableName + CLEAR));
     }
 
 }

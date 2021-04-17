@@ -15,10 +15,10 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.rule.util;
 
+import net.sourceforge.pmd.lang.ast.Node;
+
 import java.util.List;
 import java.util.SortedMap;
-
-import net.sourceforge.pmd.lang.ast.Node;
 
 /**
  *
@@ -30,7 +30,7 @@ public class NodeSortUtils {
 
     /**
      * add node to SortedMap with sequence to determine comment location
-     * 
+     *
      * @param map sorted map
      * @param nodes nodes
      */

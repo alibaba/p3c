@@ -53,7 +53,7 @@
         <enforce.activate>true</enforce.activate>
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
         <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
-        <checkstyle.version>8.41.1</checkstyle.version>
+        <checkstyle.version>8.43</checkstyle.version>
         <checkstyle.configdir>src/site/resources/checkstyle
         </checkstyle.configdir>
     </properties>

@@ -78,3 +78,15 @@ String[] ary = str.split(",");
 <br>7） 类成员方法只供类内部调用，必须是private。
 <br>8） 类成员方法只对继承类公开，那么限制为protected。 
 <br><span style="color:orange">说明</span>：任何类、方法、参数、变量，严控访问范围。过于宽泛的访问范围，不利于模块解耦。思考：如果是一个private的方法，想删除就删除，可是一个public的service成员方法或成员变量，删除一下，不得手心冒点汗吗？变量像自己的小孩，尽量在自己的视线内，变量作用域太大，无限制的到处跑，那么你会担心的。 
+21. 【推荐】使用IntSummaryStatistics、LongSummaryStatistics、DoubleSummaryStatistics统计结果进行计算时，需先进行count检查，否则其min、max值为同类型的max和min值。 
+<br><span style="color:orange">说明</span>：
+```java
+IntSummaryStatistics summaryStatistics = IntStream.range(0, 0)
+                .summaryStatistics();
+        // count = 0
+        long count = summaryStatistics.getCount();
+        // max = Integer.MIN_VALUE
+        int max = summaryStatistics.getMax();
+        // min = Integer.MAX_VALUE
+        int min = summaryStatistics.getMin();
+```

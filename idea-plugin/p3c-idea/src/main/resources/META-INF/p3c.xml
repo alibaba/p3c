@@ -1,8 +1,7 @@
 <idea-plugin>
     <application-components>
         <component>
-            <implementation-class>com.alibaba.p3c.idea.component.CommonSettingsApplicationComponent
-            </implementation-class>
+            <implementation-class>com.alibaba.p3c.idea.component.CommonSettingsApplicationComponent</implementation-class>
         </component>
     </application-components>
     <project-components>

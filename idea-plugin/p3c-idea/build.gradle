@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "0.7.2"
+    id "org.jetbrains.intellij" version "1.0"
 
     id 'maven'
     id "com.github.ben-manes.versions" version "0.39.0"
@@ -14,11 +14,11 @@ if (shouldIncludeJava(idea_version)) {
 }
 
 intellij {
-    version idea_version
-    plugins = myPlugins
-    pluginName plugin_name
-    updateSinceUntilBuild false
-    sandboxDirectory "idea-sandbox"
+    version.set(idea_version)
+    plugins.set(myPlugins)
+    pluginName.set(plugin_name)
+    updateSinceUntilBuild.set(false)
+    sandboxDir.set("idea-sandbox")
 }
 
 version plugin_version

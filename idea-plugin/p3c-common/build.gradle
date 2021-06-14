@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "0.7.2"
+    id "org.jetbrains.intellij" version "1.0"
 
     id "org.sonarqube" version "3.3"
 
@@ -48,11 +48,11 @@ sonarqube {
 }
 
 intellij {
-    version idea_version
-    plugins = myPlugins
-    pluginName plugin_name
-    updateSinceUntilBuild false
-    sandboxDirectory "$project.buildDir/idea-sandbox/$idea_version"
+    version.set(idea_version)
+    plugins.set(myPlugins)
+    pluginName.set(plugin_name)
+    updateSinceUntilBuild.set(false)
+    sandboxDir.set("$project.buildDir/idea-sandbox/$idea_version")
 }
 version plugin_version
 

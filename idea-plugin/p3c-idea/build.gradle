@@ -26,7 +26,7 @@ version plugin_version
 dependencies {
     compile group: 'org.freemarker', name: 'freemarker', version: '2.3.31'
     compile project(':p3c-common')
-    compile group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
+    compile group: 'org.javassist', name: 'javassist', version: '3.28.0-GA'
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }
 

@@ -18,7 +18,6 @@ intellij {
     plugins.set(myPlugins)
     pluginName.set(plugin_name)
     updateSinceUntilBuild.set(false)
-    sandboxDir.set("idea-sandbox")
 }
 
 version plugin_version

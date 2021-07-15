@@ -1,8 +1,8 @@
 # Idea Plugin 
 ---
 ## <font color="green">Prepare</font>
-- Project JDK: 1.7+
-- Gradle: 3.0+（Require JDK1.8+ for gradle）
+- Project JDK: 11
+- Gradle: 6.8.3（Require JDK11 for gradle）
 
 ## <font color="green">Build</font>
 ```

@@ -24,7 +24,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest , macos-latest ]
-        java: [ 8, 11, 14 ]
+        java: [ 11, 14 ]
         experimental: [ false ]
 
     steps:

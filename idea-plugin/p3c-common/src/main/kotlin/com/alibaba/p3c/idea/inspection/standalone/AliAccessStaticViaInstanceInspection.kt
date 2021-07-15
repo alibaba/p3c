@@ -115,7 +115,12 @@ class AliAccessStaticViaInstanceInspection : AccessStaticViaInstance, AliBaseIns
             holder: ProblemsHolder,
             onTheFly: Boolean
     ) {
-        val result = expr.advancedResolve(false)
+        val result:JavaResolveResult;
+        try {
+            result = expr.advancedResolve(false)
+        } catch (e: Exception) {
+            return
+        }
         val resolved = result.element as? PsiMember ?: return
 
         val qualifierExpression = expr.qualifierExpression ?: return

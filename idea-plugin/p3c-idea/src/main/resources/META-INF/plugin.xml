@@ -31,8 +31,15 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.1.0.7x
+            <li>pmd upgrade to 6.36.0</li>
+            <li>upgrade other dependencies</li>
+            <li>fix https://github.com/alibaba/p3c/issues/832</li>
+            <li>fix https://github.com/XenoAmess/p3c/issues/118</li>
+            <li>fix https://github.com/alibaba/p3c/issues/757</li>
+        </ul>
         <ul>2.1.0.6x
-            li>pmd upgrade to 6.33.0</li>
+            <li>pmd upgrade to 6.33.0</li>
             <li>upgrade other dependencies</li>
         </ul>
         <ul>2.1.0.5x

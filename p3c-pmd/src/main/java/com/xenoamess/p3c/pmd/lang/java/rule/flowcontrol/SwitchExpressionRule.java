@@ -42,8 +42,14 @@ public class SwitchExpressionRule extends AbstractAliRule {
      * @param data ruleContext
      */
     private void checkDefault(ASTSwitchExpression node, Object data) {
-        final String switchCheckXpath = "SwitchLabeledExpression[SwitchLabel[@Default = 'true']]";
-        if (!node.hasDescendantMatchingXPath(switchCheckXpath)) {
+        final String switchLabelCheckXpath = "SwitchLabel[@Default = 'true']";
+        final String switchLabeledExpressionCheckXpath = "SwitchLabeledExpression[SwitchLabel[@Default = 'true']]";
+        final String switchLabeledBlockCheckXpath = "SwitchLabeledBlock[SwitchLabel[@Default = 'true']]";
+        if (
+                !node.hasDescendantMatchingXPath(switchLabelCheckXpath)
+                        && !node.hasDescendantMatchingXPath(switchLabeledExpressionCheckXpath)
+                        && !node.hasDescendantMatchingXPath(switchLabeledBlockCheckXpath)
+        ) {
             addViolationWithMessage(data, node, MESSAGE_KEY_PREFIX + ".nodefault");
         }
     }

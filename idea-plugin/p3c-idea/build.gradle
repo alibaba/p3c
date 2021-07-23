@@ -1,9 +1,9 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "0.7.2"
+    id "org.jetbrains.intellij" version "1.1.4"
 
     id 'maven'
-    id "com.github.ben-manes.versions" version "0.38.0"
+    id "com.github.ben-manes.versions" version "0.39.0"
 }
 apply plugin: 'kotlin'
 apply plugin: 'idea'
@@ -14,11 +14,10 @@ if (shouldIncludeJava(idea_version)) {
 }
 
 intellij {
-    version idea_version
-    plugins = myPlugins
-    pluginName plugin_name
-    updateSinceUntilBuild false
-    sandboxDirectory "idea-sandbox"
+    version.set(idea_version)
+    plugins.set(myPlugins)
+    pluginName.set(plugin_name)
+    updateSinceUntilBuild.set(false)
 }
 
 version plugin_version
@@ -26,7 +25,7 @@ version plugin_version
 dependencies {
     compile group: 'org.freemarker', name: 'freemarker', version: '2.3.31'
     compile project(':p3c-common')
-    compile group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
+    compile group: 'org.javassist', name: 'javassist', version: '3.28.0-GA'
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }
 

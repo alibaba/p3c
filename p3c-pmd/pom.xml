@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess.p3c</groupId>
     <artifactId>p3c-pmd</artifactId>
-    <version>2.1.0.7x-SNAPSHOT</version>
+    <version>2.1.0.7x</version>
     <packaging>jar</packaging>
     <name>p3c-pmd</name>
     <properties>
@@ -30,7 +30,7 @@
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-io.version>2.11.0</commons-io.version>
         <junit.version>4.13.2</junit.version>
-        <jackson.version>2.12.4</jackson.version>
+        <jackson.version>2.13.0-rc1</jackson.version>
         <!---->
         <!---->
         <!--maven plugins versions-->

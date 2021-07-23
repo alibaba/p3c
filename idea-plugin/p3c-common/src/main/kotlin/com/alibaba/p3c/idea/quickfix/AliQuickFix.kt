@@ -19,6 +19,7 @@ import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
 import com.intellij.psi.JavaPsiFacade
@@ -28,6 +29,7 @@ import com.intellij.psi.PsiIdentifier
 import com.intellij.psi.PsiLocalVariable
 import com.intellij.psi.PsiMember
 import com.intellij.psi.PsiParameter
+import java.lang.reflect.Method
 
 /**
  *
@@ -47,7 +49,11 @@ interface AliQuickFix : LocalQuickFix {
     companion object {
         const val groupName = "Ali QuickFix"
 
-        fun doQuickFix(newIdentifier: String, project: Project, psiIdentifier: PsiIdentifier) {
+        fun doQuickFix(
+            newIdentifier: String,
+            project: Project,
+            psiIdentifier: PsiIdentifier
+        ) {
             val offset = psiIdentifier.textOffset
             val cannotFix = psiIdentifier.parent !is PsiMember
                     && !(psiIdentifier.parent is PsiLocalVariable || psiIdentifier.parent is PsiParameter)
@@ -55,28 +61,45 @@ interface AliQuickFix : LocalQuickFix {
                 return
             }
 
-            val editor = FileEditorManager.getInstance(project).selectedTextEditor
-                    ?: return
+            val editor = FileEditorManager.getInstance(project).selectedTextEditor ?: return
             editor.caretModel.moveToOffset(psiIdentifier.textOffset)
-            val anAction = ActionManager.getInstance().getAction("RenameElement")
             val psiFile = psiIdentifier.containingFile
+
             commitDocumentIfNeeded(psiFile, project)
-            val event = AnActionEvent.createFromDataContext("MainMenu", anAction.templatePresentation) {
-                when (it) {
-                    CommonDataKeys.PROJECT.name -> project
-                    CommonDataKeys.EDITOR.name -> editor
-                    CommonDataKeys.PSI_FILE.name -> psiFile
-                    CommonDataKeys.PSI_ELEMENT.name -> psiIdentifier.parent
-                    else -> null
-                }
-            }
+
             val psiFacade = JavaPsiFacade.getInstance(project)
             val factory = psiFacade.elementFactory
 
-            anAction.actionPerformed(event)
+            try {
+                val application = ApplicationManager.getApplication()
+                val isWriteThreadMethod: Method =
+                    application.javaClass.getDeclaredMethod("isWriteThread")
+                val isWriteThread = isWriteThreadMethod.invoke(application)
+                if (!(isWriteThread as Boolean)) {
+                    val anAction =
+                        ActionManager.getInstance().getAction("RenameElement")
+                    val event = AnActionEvent.createFromDataContext(
+                        "MainMenu",
+                        anAction.templatePresentation
+                    ) {
+                        when (it) {
+                            CommonDataKeys.PROJECT.name -> project
+                            CommonDataKeys.EDITOR.name -> editor
+                            CommonDataKeys.PSI_FILE.name -> psiFile
+                            CommonDataKeys.PSI_ELEMENT.name -> psiIdentifier.parent
+                            else -> null
+                        }
+                    }
+                    anAction.actionPerformed(event)
+                }
+            } catch (e: Exception) {
+            } finally {
+            }
 
             // origin PsiIdentifier is unavailable
             psiFile.findElementAt(offset)?.replace(factory.createIdentifier(newIdentifier))
+
+            commitDocumentIfNeeded(psiFile, project)
         }
 
         private fun commitDocumentIfNeeded(file: PsiFile?, project: Project) {

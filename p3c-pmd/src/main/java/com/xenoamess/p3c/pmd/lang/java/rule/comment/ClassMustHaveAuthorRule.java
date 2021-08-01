@@ -49,7 +49,7 @@ public class ClassMustHaveAuthorRule extends AbstractAliCommentRule {
      *
      * @param decl node
      * @param data ruleContext
-     * @return param data
+     * @return result
      */
     @Override
     public Object visit(ASTClassOrInterfaceDeclaration decl, Object data) {

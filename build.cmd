@@ -1,3 +1,4 @@
+set JAVA_HOME=C:\jdk-11.0.11+9
 cd ./p3c-pmd
 call ./mvnw clean install -Dmaven.javadoc.skip=false -e -X
 cd ../
@@ -12,4 +13,3 @@ call ../gradlew clean publishToMavenLocal buildPlugin
 cd ../
 
 cd ../
-pause

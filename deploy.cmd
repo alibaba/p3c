@@ -1,3 +1,4 @@
+set JAVA_HOME=C:\jdk-11.0.11+9
 cd ./p3c-pmd
 call ./mvnw clean deploy -Dmaven.javadoc.skip=false -e -X -Psonatype-oss-release
 cd ../
@@ -13,4 +14,3 @@ call ../gradlew clean publishToMavenLocal buildPlugin
 cd ../
 
 cd ../
-pause

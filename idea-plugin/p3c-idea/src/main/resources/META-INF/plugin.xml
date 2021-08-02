@@ -31,6 +31,12 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.1.1.1x-SNAPSHOT
+            <li>sync some minor fix in 2.1.1</li>
+        </ul>
+        <ul>2.1.1
+            <li>Fix idea 2021.2 Ultimate compatibility issue</li>
+        </ul>
         <ul>2.1.0.7x
             <li>pmd upgrade to 6.36.0</li>
             <li>upgrade other dependencies</li>

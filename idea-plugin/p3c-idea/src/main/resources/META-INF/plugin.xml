@@ -33,6 +33,7 @@
     <change-notes><![CDATA[
         <ul>2.1.1.1x
             <li>sync some minor fix in 2.1.1</li>
+            <li>pmd upgrade to 6.37.0</li>
             <li>update deprecated grammars in PojoMustOverrideToStringRule</li>
             <li>update deprecated pmd grammars in AvoidNewDateGetTimeRule : @ArgumentCount to @Size</li>
             <li>update deprecated pmd grammars in BooleanPropertyShouldNotStartWithIsRule : @Image to @Name</li>

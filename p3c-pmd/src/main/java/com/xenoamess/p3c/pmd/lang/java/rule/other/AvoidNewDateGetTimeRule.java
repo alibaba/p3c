@@ -32,9 +32,9 @@ public class AvoidNewDateGetTimeRule extends AbstractAliXpathRule {
             "//PrimaryExpression"
                     + "["
                     + "PrimaryPrefix/AllocationExpression/ClassOrInterfaceType[@Image='Date'] and "
-                    + "PrimaryPrefix/AllocationExpression/Arguments[@ArgumentCount=0] and "
+                    + "PrimaryPrefix/AllocationExpression/Arguments[@Size=0] and "
                     + "PrimarySuffix[@Image='getTime'] and "
-                    + "PrimarySuffix/Arguments[@ArgumentCount=0]"
+                    + "PrimarySuffix/Arguments[@Size=0]"
                     + "]";
 
     public AvoidNewDateGetTimeRule() {

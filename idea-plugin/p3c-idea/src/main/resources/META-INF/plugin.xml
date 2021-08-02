@@ -34,6 +34,14 @@
         <ul>2.1.1.1x-SNAPSHOT
             <li>sync some minor fix in 2.1.1</li>
             <li>update deprecated grammars in PojoMustOverrideToStringRule</li>
+            <li>update deprecated pmd grammars in AvoidNewDateGetTimeRule : @ArgumentCount to @Size</li>
+            <li>update deprecated pmd grammars in BooleanPropertyShouldNotStartWithIsRule : @Image to @Name</li>
+            <li>update deprecated pmd grammars in BooleanPropertyShouldNotStartWithIsRule : @Image to @SimpleName</li>
+            <li>update missing attribute language="java" for some ruleset xml.</li>
+            <li>update deprecated pmd grammars in AvoidComplexConditionRule : @Ternary to null(@Ternary is always true in new versions of PMD)</li>
+            <li>update deprecated pmd grammars in StringConcatRule : @Image to @Operator</li>
+            <li>update deprecated pmd grammars in PojoMustOverrideToStringRule : MethodDeclarator[@ParameterCount] to @Arity</li>
+            <li>update deprecated pmd grammars in PojoMustOverrideToStringRule : MethodDeclarator[@Image] to @Name</li>
         </ul>
         <ul>2.1.1
             <li>Fix idea 2021.2 Ultimate compatibility issue</li>

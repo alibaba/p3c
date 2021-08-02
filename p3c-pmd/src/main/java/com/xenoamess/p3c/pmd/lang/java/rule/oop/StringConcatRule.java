@@ -42,7 +42,7 @@ import java.util.List;
 public class StringConcatRule extends AbstractAliRule {
 
     private static final String XPATH =
-            "Statement/Block//Expression[preceding-sibling::AssignmentOperator]/AdditiveExpression[(@Image = '+') and "
+            "Statement/Block//Expression[preceding-sibling::AssignmentOperator]/AdditiveExpression[(@Operator = '+') and "
                     + "count(./PrimaryExpression/PrimaryPrefix/Literal[@StringLiteral = 'true']) > 0]";
 
     @Override

@@ -33,6 +33,7 @@
     <change-notes><![CDATA[
         <ul>2.1.1.1x-SNAPSHOT
             <li>sync some minor fix in 2.1.1</li>
+            <li>update deprecated grammars in PojoMustOverrideToStringRule</li>
         </ul>
         <ul>2.1.1
             <li>Fix idea 2021.2 Ultimate compatibility issue</li>

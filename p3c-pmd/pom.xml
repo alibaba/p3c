@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess.p3c</groupId>
     <artifactId>p3c-pmd</artifactId>
-    <version>2.1.0.7x</version>
+    <version>2.1.1.1x</version>
     <packaging>jar</packaging>
     <name>p3c-pmd</name>
     <properties>
@@ -22,7 +22,7 @@
         <!---->
         <!---->
         <!--libraries versions-->
-        <pmd.version>6.36.0</pmd.version>
+        <pmd.version>6.37.0</pmd.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <annotation.version>1.3.2</annotation.version>
         <kotlin.version>1.5.21</kotlin.version>
@@ -41,7 +41,7 @@
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
         <maven-javadoc-plugin.version>3.3.0</maven-javadoc-plugin.version>
-        <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+        <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
         <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
         <maven-project-info-reports-plugin.version>3.1.2</maven-project-info-reports-plugin.version>

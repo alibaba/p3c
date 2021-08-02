@@ -29,7 +29,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  */
 public class AvoidComplexConditionRule extends AbstractAliXpathRule {
     private static final String XPATH = "(//IfStatement/Expression"
-            + "|//ConditionalExpression[@Ternary = 'true']/PrimaryExpression)"
+            + "|//ConditionalExpression/PrimaryExpression)"
             + "[count(.//ConditionalAndExpression) + count(.//ConditionalOrExpression) > 1]";
 
     public AvoidComplexConditionRule() {

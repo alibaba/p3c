@@ -6,8 +6,9 @@
     <description>AlibabaJavaConstants</description>
 
     <rule name="UpperEllRule"
-        message="java.constant.UpperEllRule.rule.msg"
-        class="com.xenoamess.p3c.pmd.lang.java.rule.constant.UpperEllRule">
+          language="java"
+          message="java.constant.UpperEllRule.rule.msg"
+          class="com.xenoamess.p3c.pmd.lang.java.rule.constant.UpperEllRule">
         <priority>1</priority>
         <example>
       <![CDATA[
@@ -25,8 +26,9 @@ Positive example:
     </rule>
 
     <rule name="UndefineMagicConstantRule"
-        message="java.constant.UndefineMagicConstantRule.rule.msg"
-        class="com.xenoamess.p3c.pmd.lang.java.rule.constant.UndefineMagicConstantRule">
+          language="java"
+          message="java.constant.UndefineMagicConstantRule.rule.msg"
+          class="com.xenoamess.p3c.pmd.lang.java.rule.constant.UndefineMagicConstantRule">
         <priority>3</priority>
 
         <example>

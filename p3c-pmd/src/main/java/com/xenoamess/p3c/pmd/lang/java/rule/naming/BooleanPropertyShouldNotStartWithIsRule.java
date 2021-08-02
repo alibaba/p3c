@@ -32,7 +32,7 @@ public class BooleanPropertyShouldNotStartWithIsRule extends AbstractAliXpathRul
     private static final String XPATH = "//VariableDeclaratorId[(ancestor::ClassOrInterfaceDeclaration)["
             + "@Interface='false' and ( ends-with(@SimpleName, 'DO') or ends-with(@SimpleName, 'DTO')"
             + " or ends-with(@SimpleName, 'VO') or ends-with(@SimpleName, 'DAO'))]]"
-            + "[../../../FieldDeclaration/Type/PrimitiveType[@Image = 'boolean']][.[ starts-with(@Image, 'is')]]";
+            + "[../../../FieldDeclaration/Type/PrimitiveType[@Image = 'boolean']][.[ starts-with(@Name, 'is')]]";
 
     public BooleanPropertyShouldNotStartWithIsRule() {
         setXPath(XPATH);

@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "1.1.4"
+    id "org.jetbrains.intellij" version "1.1.6"
 
     id 'maven'
     id "com.github.ben-manes.versions" version "0.39.0"

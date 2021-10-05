@@ -22,7 +22,7 @@
         <!---->
         <!---->
         <!--libraries versions-->
-        <pmd.version>6.38.0</pmd.version>
+        <pmd.version>6.39.0</pmd.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <annotation.version>1.3.2</annotation.version>
         <kotlin.version>1.5.30</kotlin.version>
@@ -30,17 +30,17 @@
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-io.version>2.11.0</commons-io.version>
         <junit.version>4.13.2</junit.version>
-        <jackson.version>2.13.0-rc2</jackson.version>
+        <jackson.version>2.13.0</jackson.version>
         <!---->
         <!---->
         <!--maven plugins versions-->
         <versions-maven-plugin.version>2.8.1</versions-maven-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-        <maven-pmd-plugin.version>3.14.0</maven-pmd-plugin.version>
+        <maven-pmd-plugin.version>3.15.0</maven-pmd-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
-        <maven-javadoc-plugin.version>3.3.0</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
         <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
         <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
@@ -52,7 +52,7 @@
         <enforce.activate>true</enforce.activate>
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
         <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
-        <checkstyle.version>8.45.1</checkstyle.version>
+        <checkstyle.version>9.0.1</checkstyle.version>
         <checkstyle.configdir>src/site/resources/checkstyle
         </checkstyle.configdir>
     </properties>

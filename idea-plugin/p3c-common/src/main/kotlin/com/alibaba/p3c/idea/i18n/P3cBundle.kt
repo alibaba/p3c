@@ -16,7 +16,7 @@
 package com.alibaba.p3c.idea.i18n
 
 import com.alibaba.p3c.idea.config.P3cConfig
-import com.alibaba.p3c.pmd.I18nResources
+import com.xenoamess.p3c.pmd.I18nResources
 import com.alibaba.smartfox.idea.common.util.getService
 import com.intellij.CommonBundle
 import java.util.Locale

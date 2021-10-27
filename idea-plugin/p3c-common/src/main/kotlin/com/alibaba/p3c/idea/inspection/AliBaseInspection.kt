@@ -65,18 +65,22 @@ interface AliBaseInspection {
     /**
      * inspection short name
 
-     * @return shor name
+     * @return short name
      */
     fun getShortName(): String
 
     fun manualBuildFix(psiElement: PsiElement, isOnTheFly: Boolean): LocalQuickFix? = null
 
-    fun manualParsePsiElement(psiFile: PsiFile, manager: InspectionManager,
-            start: Int, end: Int): PsiElement {
+    fun manualParsePsiElement(
+            psiFile: PsiFile,
+            manager: InspectionManager,
+            start: Int,
+            end: Int
+    ): PsiElement {
         return psiFile.findElementAt(start)!!
     }
 
     companion object {
-        val GROUP_NAME = "Ali-Check"
+        const val GROUP_NAME = "Ali-Check"
     }
 }

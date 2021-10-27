@@ -22,5 +22,4 @@ package com.alibaba.p3c.idea.inspection
  * @date 2017/03/16
 6
  */
-interface PmdRuleInspectionIdentify {
-}
+interface PmdRuleInspectionIdentify

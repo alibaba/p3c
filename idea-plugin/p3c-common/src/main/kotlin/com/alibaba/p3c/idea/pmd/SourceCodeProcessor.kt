@@ -26,6 +26,10 @@ import net.sourceforge.pmd.lang.LanguageVersionHandler
 import net.sourceforge.pmd.lang.Parser
 import net.sourceforge.pmd.lang.ast.Node
 import net.sourceforge.pmd.lang.ast.ParseException
+import net.sourceforge.pmd.lang.xpath.Initializer
+import java.io.IOException
+import java.io.InputStream
+import java.io.InputStreamReader
 import java.io.Reader
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeUnit.MILLISECONDS
@@ -60,6 +64,15 @@ class SourceCodeProcessor(
     @Throws(PMDException::class)
     fun processSourceCode(sourceCode: Reader, ruleSets: RuleSets, ctx: RuleContext) {
         determineLanguage(ctx)
+
+        // make sure custom XPath functions are initialized
+        Initializer.initialize()
+
+        processSourceCodeWithoutCache(sourceCode, ruleSets, ctx)
+    }
+
+    @Throws(PMDException::class)
+    private fun processSourceCodeWithoutCache(sourceCode: Reader, ruleSets: RuleSets, ctx: RuleContext) {
         try {
             ruleSets.start(ctx)
             processSource(sourceCode, ruleSets, ctx)
@@ -143,6 +156,7 @@ class SourceCodeProcessor(
         val languageVersionHandler = languageVersion.languageVersionHandler
         val parser = PMD.parserFor(languageVersion, configuration)
         val rootNode = parse(ctx, sourceCode, parser)
+        resolveQualifiedNames(rootNode, languageVersionHandler)
         symbolFacade(rootNode, languageVersionHandler)
         val language = languageVersion.language
         usesDFA(languageVersion, rootNode, ruleSets, language)
@@ -181,20 +195,25 @@ class SourceCodeProcessor(
     }
 
     private fun usesTypeResolution(
-        languageVersion: LanguageVersion, rootNode: Node, ruleSets: RuleSets,
-        language: Language
+            languageVersion: LanguageVersion,
+            rootNode: Node,
+            ruleSets: RuleSets,
+            language: Language
     ) {
 
         if (ruleSets.usesTypeResolution(language)) {
             TimeTracker.startOperation(TimedOperationCategory.TYPE_RESOLUTION).use { to ->
                 languageVersion.languageVersionHandler.getTypeResolutionFacade(configuration.classLoader)
-                    .start(rootNode)
+                        .start(rootNode)
             }
         }
     }
 
+
     private fun usesMultifile(
-        rootNode: Node, languageVersionHandler: LanguageVersionHandler, ruleSets: RuleSets,
+        rootNode: Node,
+        languageVersionHandler: LanguageVersionHandler,
+        ruleSets: RuleSets,
         language: Language
     ) {
 

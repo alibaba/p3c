@@ -31,4 +31,8 @@ object HighlightInfoTypes {
             CodeInsightColors.WARNINGS_ATTRIBUTES)
     val MAJOR: HighlightInfoType = HighlightInfoType.HighlightInfoTypeImpl(HighlightSeverities.MAJOR,
             CodeInsightColors.WEAK_WARNING_ATTRIBUTES)
+    val WARNING: HighlightInfoType = HighlightInfoType.HighlightInfoTypeImpl(HighlightSeverities.WARNING,
+            CodeInsightColors.INFO_ATTRIBUTES)
+    val WEAK_WARNING: HighlightInfoType = HighlightInfoType.HighlightInfoTypeImpl(HighlightSeverities.WEAK_WARNING,
+            CodeInsightColors.INFO_ATTRIBUTES)
 }

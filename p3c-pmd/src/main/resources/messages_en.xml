@@ -197,7 +197,14 @@ Explain 3: It is possible that when implementing the lock() method in Lock objec
         <![CDATA[every case should end with break or return etc.]]>
     </entry>
     <entry key="java.flowcontrol.SwitchStatementRule.rule.msg">
-        <![CDATA[ In a switch block, each case should be finished by break/return. If not, a note should be included to describe at which case it will stop. Within every switch block, a default statement must be present, even if it is empty.]]>
+        <![CDATA[In a switch block, each case should be finished by break/return. If not, a note should be included to describe at which case it will stop. Within every switch block, a default statement must be present, even if it is empty.]]>
+    </entry>
+
+    <entry key="java.flowcontrol.SwitchExpressionRule.violation.nodefault">
+        <![CDATA[missing default statement in switch expression]]>
+    </entry>
+    <entry key="java.flowcontrol.SwitchExpressionRule.rule.msg">
+        <![CDATA[Within every switch expression, a default statement must be present, even if it is empty.]]>
     </entry>
 
     <entry key="java.flowcontrol.NeedBraceRule.violation.msg">
@@ -269,6 +276,15 @@ Explain 3: It is possible that when implementing the lock() method in Lock objec
     </entry>
     <entry key="java.set.UnsupportedExceptionWithModifyAsListRule.rule.msg">
         <![CDATA[Do not use methods which will modify the list after using Arrays.asList to convert array to list, otherwise methods like add/remove/clear will throw UnsupportedOperationException. ]]>
+    </entry>
+    <entry key="java.set.EqualsHashCodeRule.rule.msg">
+        <![CDATA[
+            Regarding the processing of hashCode and equals, follow the rules below:
+                1) As long as you override 'equals', you must override 'hashCode'.
+                2) 'Set' stores unique objects, its uniqueness is judged by 'equals' and 'hashCode'. So the objects stored by 'Set' must override these two methods.
+                3) If the custom object is used as the map key, then 'hashCode' and 'equals' must be overridden.
+            Note: String has overridden the 'hashCode' and 'equals' methods, so we can happily use String objects as keys.
+        ]]>
     </entry>
     <!-- constant -->
     <entry key="java.constant.UndefineMagicConstantRule.violation.msg">
@@ -355,6 +371,9 @@ Explain 3: It is possible that when implementing the lock() method in Lock objec
     </entry>
     <entry key="java.oop.BigDecimalAvoidDoubleConstructorRule.rule.msg.desc">
         <![CDATA[Note：Use the constructor BigDecimal(String) or valueOf method of BigDecimal. Inside valueOf the toString of Double is executed, which truncate the mantissa according to the precision of double.]]>
+    </entry>
+    <entry key="java.oop.VarargsParameterRule.rule.msg">
+        <![CDATA[Only with the same parameter type and same business logic, you can use varargs and avoid using Object. Note: Varargs must be placed at the end of the parameter list. (Better to avoid programming with varargs)]]>
     </entry>
 
     <!-- comment -->
@@ -466,7 +485,7 @@ Note: Do not define Pattern pattern = Pattern.compile(.); within method body.
     </entry>
 
     <entry key="java.other.AvoidApacheBeanUtilsCopyRule.rule.msg">
-        <![CDATA[Avoid using *Apache Beanutils* to copy attributes.]]>
+        <![CDATA[Avoid using *Apache BeanUtils* to copy attributes.]]>
     </entry>
     <entry key="java.other.AvoidApacheBeanUtilsCopyRule.rule.desc">
         <![CDATA[

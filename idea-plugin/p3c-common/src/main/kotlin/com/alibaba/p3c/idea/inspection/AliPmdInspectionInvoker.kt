@@ -21,7 +21,7 @@ import com.alibaba.p3c.idea.pmd.AliPmdProcessor
 import com.alibaba.p3c.idea.util.DocumentUtils.calculateLineStart
 import com.alibaba.p3c.idea.util.DocumentUtils.calculateRealOffset
 import com.alibaba.p3c.idea.util.ProblemsUtils
-import com.alibaba.p3c.pmd.lang.java.rule.comment.RemoveCommentedCodeRule
+import com.xenoamess.p3c.pmd.lang.java.rule.comment.RemoveCommentedCodeRule
 import com.beust.jcommander.internal.Lists
 import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
@@ -43,9 +43,9 @@ import java.util.concurrent.TimeUnit
  * @date 2016/12/13
  */
 class AliPmdInspectionInvoker(
-    private val psiFile: PsiFile,
-    private val manager: InspectionManager,
-    private val rule: Rule
+        private val psiFile: PsiFile,
+        private val manager: InspectionManager,
+        private val rule: Rule
 ) {
     private val logger = Logger.getInstance(javaClass)
 
@@ -75,9 +75,12 @@ class AliPmdInspectionInvoker(
         }
         val problemDescriptors = Lists.newArrayList<ProblemDescriptor>(violations.size)
         for (rv in violations) {
-            val virtualFile = LocalFileSystem.getInstance().findFileByPath(rv.filename) ?: continue
-            val psiFile = PsiManager.getInstance(manager.project).findFile(virtualFile) ?: continue
-            val document = FileDocumentManager.getInstance().getDocument(virtualFile) ?: continue
+            val virtualFile = LocalFileSystem.getInstance().findFileByPath(rv.filename)
+                    ?: continue
+            val psiFile = PsiManager.getInstance(manager.project).findFile(virtualFile)
+                    ?: continue
+            val document = FileDocumentManager.getInstance().getDocument(virtualFile)
+                    ?: continue
 
             val offsets = if (rv.rule.name == RemoveCommentedCodeRule::class.java.simpleName) {
                 Offsets(
@@ -96,8 +99,14 @@ class AliPmdInspectionInvoker(
                 "${rv.description} (line ${rv.beginLine})"
             }
             val problemDescriptor = ProblemsUtils.createProblemDescriptorForPmdRule(
-                psiFile, manager,
-                isOnTheFly, rv.rule.name, errorMessage, offsets.start, offsets.end, rv.beginLine
+                    psiFile,
+                    manager,
+                    isOnTheFly,
+                    rv.rule.name,
+                    errorMessage,
+                    offsets.start,
+                    offsets.end,
+                    rv.beginLine
             ) ?: continue
             problemDescriptors.add(problemDescriptor)
         }
@@ -113,8 +122,10 @@ class AliPmdInspectionInvoker(
         }
 
         fun invokeInspection(
-            psiFile: PsiFile?, manager: InspectionManager, rule: Rule,
-            isOnTheFly: Boolean
+                psiFile: PsiFile?,
+                manager: InspectionManager,
+                rule: Rule,
+                isOnTheFly: Boolean
         ): Array<ProblemDescriptor>? {
             if (psiFile == null) {
                 return null

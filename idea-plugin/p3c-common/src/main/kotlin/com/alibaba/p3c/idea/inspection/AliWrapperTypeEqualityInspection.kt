@@ -113,7 +113,7 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
                 return true
             }
             return TypeUtils.expressionHasTypeOrSubtype(expression, CommonClassNames.JAVA_LANG_BOOLEAN)
-                || TypeUtils.expressionHasTypeOrSubtype(expression, CommonClassNames.JAVA_LANG_CHARACTER)
+                    || TypeUtils.expressionHasTypeOrSubtype(expression, CommonClassNames.JAVA_LANG_CHARACTER)
         }
 
         private fun hasNumberType(expression: PsiExpression): Boolean {
@@ -126,13 +126,13 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
     }
 
     private class ArrayEqualityFix(private val deepEquals: Boolean, private val familyName: String) :
-        InspectionGadgetsFix() {
+            InspectionGadgetsFix() {
 
         override fun getName(): String {
-            if (deepEquals) {
-                return "$replaceWith 'Arrays.deepEquals()'"
+            return if (deepEquals) {
+                "$replaceWith 'Arrays.deepEquals()'"
             } else {
-                return "$replaceWith 'Arrays.equals()'"
+                "$replaceWith 'Arrays.equals()'"
             }
         }
 
@@ -145,6 +145,7 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
             val element = descriptor.psiElement
             val parent = element.parent as? PsiBinaryExpression ?: return
             val tokenType = parent.operationTokenType
+
             @NonNls
             val newExpressionText = StringBuilder()
             if (JavaTokenType.NE == tokenType) {
@@ -163,14 +164,15 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
             newExpressionText.append(rhs.text)
             newExpressionText.append(')')
             PsiReplacementUtil.replaceExpressionAndShorten(
-                parent,
-                newExpressionText.toString()
+                    parent,
+                    newExpressionText.toString()
             )
         }
     }
 
     override fun manualBuildFix(psiElement: PsiElement, isOnTheFly: Boolean): LocalQuickFix? {
-        val expression = psiElement.parent as? PsiBinaryExpression ?: return null
+        val expression = psiElement.parent as? PsiBinaryExpression
+                ?: return null
         val rhs = expression.rOperand ?: return null
         val lhs = expression.lOperand
         val lhsType = lhs.type

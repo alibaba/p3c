@@ -32,6 +32,7 @@ class AliControlFlowStatementWithoutBracesInspection
     : ControlFlowStatementWithoutBracesInspection,
         AliBaseInspection {
     constructor()
+
     /**
      * For Javassist
      */

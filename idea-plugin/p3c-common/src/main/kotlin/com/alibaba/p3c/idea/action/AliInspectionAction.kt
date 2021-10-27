@@ -46,6 +46,9 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileSystemItem
 import com.intellij.psi.PsiManager
 import java.awt.event.KeyEvent
+import kotlin.reflect.full.companionObject
+import kotlin.reflect.full.companionObjectInstance
+import kotlin.reflect.full.functions
 
 /**
  * @author caikang
@@ -114,9 +117,13 @@ class AliInspectionAction : AnAction() {
     }
 
     private fun inspectForKeyEvent(
-        project: Project, managerEx: InspectionManagerEx,
-        toolWrappers: List<InspectionToolWrapper<*, *>>, psiElement: PsiElement?, psiFile: PsiFile?,
-        virtualFile: VirtualFile?, analysisScope: AnalysisScope
+            project: Project,
+            managerEx: InspectionManagerEx,
+            toolWrappers: List<InspectionToolWrapper<*, *>>,
+            psiElement: PsiElement?,
+            psiFile: PsiFile?,
+            virtualFile: VirtualFile?,
+            analysisScope: AnalysisScope
     ) {
         var module: Module? = null
         if (virtualFile != null && project.baseDir != virtualFile) {
@@ -126,8 +133,14 @@ class AliInspectionAction : AnAction() {
         val uiOptions = AnalysisUIOptions.getInstance(project)
         uiOptions.ANALYZE_TEST_SOURCES = false
         val dialog = BaseAnalysisActionDialog(
-            "Select Analyze Scope", "Analyze Scope", project, analysisScope,
-            module?.name, true, uiOptions, psiElement
+                "Select Analyze Scope",
+                "Analyze Scope",
+                project,
+                analysisScope,
+                module?.name,
+                true,
+                uiOptions,
+                psiElement
         )
 
         if (!dialog.showAndGet()) {
@@ -163,11 +176,11 @@ class AliInspectionAction : AnAction() {
         }
 
         fun createContext(
-            toolWrapperList: List<InspectionToolWrapper<*, *>>,
-            managerEx: InspectionManagerEx, psiElement: PsiElement?,
-            projectScopeSelected: Boolean, scope: AnalysisScope
+                toolWrapperList: List<InspectionToolWrapper<*, *>>,
+                managerEx: InspectionManagerEx, psiElement: PsiElement?,
+                projectScopeSelected: Boolean, scope: AnalysisScope
         ):
-            GlobalInspectionContextImpl {
+                GlobalInspectionContextImpl {
             // remove last same scope content
             val project = managerEx.project
             val title = getTitle(psiElement, projectScopeSelected)
@@ -177,12 +190,32 @@ class AliInspectionAction : AnAction() {
             }
 
             val inspectionContext = createNewGlobalContext(
-                managerEx, projectScopeSelected
+                    managerEx, projectScopeSelected
             )
             InspectionProfileService.setExternalProfile(model, inspectionContext)
 
-            val toolWindow = ToolWindowManager.getInstance(project).getToolWindow(ToolWindowId.INSPECTION)
+            // toolWindowManager = ToolWindowManager.getInstance(project)
+            var toolWindowManager : ToolWindowManager? = null;
+            try {
+                toolWindowManager = ToolWindowManager::class.java.getMethod("getInstance").invoke(null, project) as ToolWindowManager;
+            } catch (e : Exception) {
+                val functions = ToolWindowManager::class.companionObject?.functions;
+                if (functions != null) {
+                    for (f in functions) {
+                        val ps = f.parameters
+                        if (f.name == "getInstance" && ps.size == 2) {
+                            try {
+                                toolWindowManager = f.call(ToolWindowManager::class.companionObjectInstance, project) as ToolWindowManager
+                                break
+                            } catch (e2 : Exception) {
+                                e2.printStackTrace()
+                            }
+                        }
+                    }
+                }
+            }
 
+            val toolWindow = toolWindowManager?.getToolWindow(ToolWindowId.INSPECTION);
             if (toolWindow != null) {
                 val contentManager = toolWindow.contentManager
                 val contentTitle = title?.let {

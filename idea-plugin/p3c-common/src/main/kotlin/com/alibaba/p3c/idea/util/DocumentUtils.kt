@@ -26,7 +26,7 @@ import com.intellij.openapi.util.TextRange
 6
  */
 object DocumentUtils {
-    private val PMD_TAB_SIZE = 8
+    private const val PMD_TAB_SIZE = 8
     fun calculateRealOffset(document: Document, line: Int, pmdColumn: Int): Int {
         val maxLine = document.lineCount
         if (maxLine < line) {

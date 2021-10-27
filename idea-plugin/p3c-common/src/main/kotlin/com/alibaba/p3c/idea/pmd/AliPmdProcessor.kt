@@ -15,6 +15,7 @@
  */
 package com.alibaba.p3c.idea.pmd
 
+import com.alibaba.p3c.idea.compatible.inspection.Inspections
 import com.alibaba.p3c.idea.component.AliProjectComponent
 import com.google.common.base.Throwables
 import com.intellij.openapi.application.ex.ApplicationUtil
@@ -52,6 +53,7 @@ class AliPmdProcessor private constructor(val rule: Rule? = null, val ruleSets: 
     }
 
     fun processFile(psiFile: PsiFile, isOnTheFly: Boolean): List<RuleViolation> {
+        Inspections.loadPatchConfigFile(psiFile.project)
         configuration.setSourceEncoding(psiFile.virtualFile.charset.name())
         configuration.inputPaths = psiFile.virtualFile.canonicalPath
         val document = FileDocumentManager.getInstance().getDocument(psiFile.virtualFile) ?: return emptyList()

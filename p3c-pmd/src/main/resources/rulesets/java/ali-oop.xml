@@ -8,7 +8,7 @@
     <rule name="EqualsAvoidNullRule"
           language="java"
           message="java.oop.EqualsAvoidNullRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.oop.EqualsAvoidNullRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.oop.EqualsAvoidNullRule">
         <priority>2</priority>
 
         <example>
@@ -26,7 +26,7 @@
     <rule name="WrapperTypeEqualityRule"
           language="java"
           message="java.oop.WrapperTypeEqualityRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.oop.WrapperTypeEqualityRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.oop.WrapperTypeEqualityRule">
         <description>java.oop.WrapperTypeEqualityRule.rule.desc</description>
         <priority>1</priority>
 
@@ -44,7 +44,7 @@
     <rule name="PojoMustUsePrimitiveFieldRule"
           language="java"
           message="java.oop.PojoMustUsePrimitiveFieldRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.oop.PojoMustUsePrimitiveFieldRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.oop.PojoMustUsePrimitiveFieldRule">
         <description>java.oop.PojoMustUsePrimitiveFieldRule.rule.msg.desc</description>
         <priority>3</priority>
 
@@ -61,7 +61,7 @@
     <rule name="PojoNoDefaultValueRule"
           language="java"
           message="java.oop.PojoNoDefaultValueRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.oop.PojoNoDefaultValueRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.oop.PojoNoDefaultValueRule">
         <priority>3</priority>
 
         <example>
@@ -77,7 +77,7 @@
     <rule name="PojoMustOverrideToStringRule"
           language="java"
           message="java.oop.PojoMustOverrideToStringRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.oop.PojoMustOverrideToStringRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.oop.PojoMustOverrideToStringRule">
         <description>java.oop.PojoMustOverrideToStringRule.rule.desc</description>
         <priority>3</priority>
 
@@ -107,7 +107,7 @@
     <rule name="StringConcatRule"
           language="java"
           message="java.oop.StringConcatRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.oop.StringConcatRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.oop.StringConcatRule">
         <description>java.oop.StringConcatRule.rule.msg.desc</description>
         <priority>3</priority>
 
@@ -135,7 +135,7 @@ Positive example:
     <rule name="BigDecimalAvoidDoubleConstructorRule"
           language="java"
           message="java.oop.BigDecimalAvoidDoubleConstructorRule.rule.msg"
-          class="com.alibaba.p3c.pmd.lang.java.rule.oop.BigDecimalAvoidDoubleConstructorRule">
+          class="com.xenoamess.p3c.pmd.lang.java.rule.oop.BigDecimalAvoidDoubleConstructorRule">
         <description>java.oop.BigDecimalAvoidDoubleConstructorRule.rule.msg.desc</description>
         <priority>3</priority>
 
@@ -153,5 +153,21 @@ Positive example:
 ]]>
         </example>
     </rule>
+    <rule name="VarargsParameterRule" language="java"
+          message="java.oop.VarargsParameterRule.rule.msg"
+          class="com.xenoamess.p3c.pmd.lang.java.rule.oop.VarargsParameterRule">
+        <priority>5</priority>
+        <example>
+            <![CDATA[
+Positive example:
+   private void method(int a, int b, int... varargs) {
 
+   }
+Negative example:
+   private void method(int a, int b, Object... varargs) {
+
+   }
+         ]]>
+        </example>
+    </rule>
 </ruleset>

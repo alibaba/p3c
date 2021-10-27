@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
+    <code-fragment id="bigDecimal-initialization">
+        <![CDATA[
+    public class Foo {
+        public void bar() {
+            BigDecimal a = new BigDecimal(0.1);
+            BigDecimal b = new BigDecimal("0.1");
+            BigDecimal c = BigDecimal.valueOf(0.1);
+
+            Double d = Double.parseDouble("0.1");
+            BigDecimal e = new BigDecimal(d);
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>BigDecimal initializer allocation</description>
+        <expected-problems>2</expected-problems>
+        <expected-linenumbers>3,8</expected-linenumbers>
+        <code-ref id="bigDecimal-initialization"/>
+    </test-code>
+
+    <code-fragment id="bigDecimal-false-positive">
+        <![CDATA[
+    public class Foo {
+        public void bar() {
+            BigDecimal ztpjAllScore = new BigDecimal(Double.toString(0.0));
+        }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>BigDecimal initializer allocation</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="bigDecimal-false-positive"/>
+    </test-code>
+
+
+    <!-- ====================================================================== -->
+</test-data>

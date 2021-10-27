@@ -34,6 +34,6 @@ interface InspectionActionExtensionPoint {
 
     companion object {
         val extension = ExtensionPointName.create<InspectionActionExtensionPoint>(
-                "${PluginVersions.pluginId.idString}.inspectionAction")!!
+                "${PluginVersions.pluginId.idString}.inspectionAction")
     }
 }

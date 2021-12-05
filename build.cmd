@@ -1,4 +1,4 @@
-set JAVA_HOME=C:\jdk-11.0.11+9
+set JAVA_HOME=C:\jdk-11.0.13+8\
 cd ./p3c-pmd
 call ./mvnw clean install -Dmaven.javadoc.skip=false -e -X
 cd ../

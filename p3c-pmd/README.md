@@ -11,12 +11,12 @@
 <dependency>
     <groupId>com.alibaba.p3c</groupId>
     <artifactId>p3c-pmd</artifactId>
-    <version>1.3.6</version>
+    <version>2.1.1</version>
 </dependency>
 ```
 ### <font color="green">Gradle</font>
 ```groovy
-compile 'com.alibaba.p3c:p3c-pmd:1.3.6'
+compile 'com.alibaba.p3c:p3c-pmd:2.1.1'
 ```
 
 ## <font color="green">Rules</font>

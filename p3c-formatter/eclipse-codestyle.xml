@@ -431,7 +431,7 @@
         <setting id="org.eclipse.jdt.core.formatter.join_lines_in_comments" value="true"/>
         <!--和IDEA保持一致，注释换行-->
         <setting id="org.eclipse.jdt.core.formatter.comment.indent_parameter_description" value="true"/>
-        <setting id="org.eclipse.jdt.core.formatter.comment.insert_new_line_for_parameter" value="insert"/>
+        <setting id="org.eclipse.jdt.core.formatter.comment.insert_new_line_for_parameter" value="do not insert"/>
 
 
         <!--comment end-->

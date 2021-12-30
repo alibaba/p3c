@@ -5,7 +5,7 @@ plugins {
     id "org.sonarqube" version "3.3"
 
     id 'maven'
-    id "com.github.ben-manes.versions" version "0.39.0"
+    id "com.github.ben-manes.versions" version "0.40.0"
 }
 
 apply plugin: 'kotlin'

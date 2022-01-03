@@ -10,6 +10,9 @@ static boolean shouldIncludeJava(String idea_version_string) {
 }
 
 buildscript {
+    project.ext {
+        kotlin_version = "1.5.21"
+    }
     repositories {
         mavenCentral()
         mavenLocal()
@@ -21,7 +24,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$project.kotlin_version"
     }
 }
 
@@ -40,12 +43,6 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        jcenter()
-    }
-
-    dependencies {
-        compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-        testCompile group: 'junit', name: 'junit', version: '4.13.2'
     }
 }
 

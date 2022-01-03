@@ -15,7 +15,6 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.util.namelist;
 
-import com.xenoamess.x8l.dealers.LanguageDealer;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;

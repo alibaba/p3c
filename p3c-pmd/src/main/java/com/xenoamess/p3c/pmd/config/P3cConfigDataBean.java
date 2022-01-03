@@ -5,7 +5,6 @@ import com.xenoamess.x8l.X8lTree;
 import com.xenoamess.x8l.databind.X8lDataBean;
 import com.xenoamess.x8l.databind.X8lDataBeanFieldMark;
 import com.xenoamess.x8l.dealers.LanguageDealer;
-import com.xenoamess.x8l.dealers.X8lDealer;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;

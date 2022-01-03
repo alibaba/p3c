@@ -20,7 +20,6 @@ import com.xenoamess.x8l.ContentNode;
 import com.xenoamess.x8l.X8lTree;
 import com.xenoamess.x8l.databind.X8lDataBeanFieldScheme;
 import com.xenoamess.x8l.dealers.JsonDealer;
-import com.xenoamess.x8l.dealers.LanguageDealer;
 import com.xenoamess.x8l.dealers.X8lDealer;
 import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;

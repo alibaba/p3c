@@ -23,4 +23,5 @@
     <rule ref="rulesets/java/ali-flowcontrol.xml">
         <exclude name="NeedBraceRule"/>
     </rule>
+    <rule ref="rulesets/java/xenoamess-additional.xml"/>
 </ruleset>

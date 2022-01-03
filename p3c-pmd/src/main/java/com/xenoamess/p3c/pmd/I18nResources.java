@@ -16,7 +16,6 @@
 package com.xenoamess.p3c.pmd;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -102,12 +101,16 @@ public class I18nResources {
 
         @Override
         @NotNull
-        protected Object handleGetObject(String key) {
-            return props.getProperty(key);
+        protected Object handleGetObject(@NotNull String key) {
+            Object value = props.getProperty(key);
+            if (value == null) {
+                return key;
+            }
+            return value;
         }
 
         @Override
-        @Nullable
+        @NotNull
         public Enumeration<String> getKeys() {
             List<String> keys = new ArrayList<>();
             Enumeration<Object> enumeration = props.keys();

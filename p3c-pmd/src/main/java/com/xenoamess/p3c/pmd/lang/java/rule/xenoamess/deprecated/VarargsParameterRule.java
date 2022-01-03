@@ -1,4 +1,4 @@
-package com.xenoamess.p3c.pmd.lang.java.rule.oop;
+package com.xenoamess.p3c.pmd.lang.java.rule.xenoamess.deprecated;
 
 /*
  * Copyright 1999-2017 Alibaba Group.
@@ -27,6 +27,7 @@ import net.sourceforge.pmd.lang.ast.Node;
  * @author leonard99559
  * @date 2019/10/16
  */
+@Deprecated
 public class VarargsParameterRule extends AbstractAliXpathRule {
     private static final String XPATH = "//FormalParameter[@Varargs = 'true' and ./Type[@TypeImage = 'Object']]";
 

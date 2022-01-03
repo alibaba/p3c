@@ -30,5 +30,6 @@ public class XenoAmessAdditionalTest extends SimpleAggregatorTst {
     @Override
     public void setUp() {
         addRule(RULESET, "EqualsHashCodeRule");
+        addRule(RULESET, "SneakyThrowsWithoutExceptionTypeRule");
     }
 }

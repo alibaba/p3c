@@ -20,8 +20,6 @@ This TPM aims to help maintain alibaba/p3c, fix bugs, and add improvements, as t
 
 This TPM is NOT created, or maintained, or controlled by any alibaba employee, in other words it is a TPM, but not an official branch.
 
-TPM maintainer XenoAmess is not interested in changing the grammar/rules in p3c guidelines (by now).
-
 TPM maintainer XenoAmess have no knowledge with eclipse plugin development.
 
 TPM maintainer XenoAmess suggest you only create pr for module idea-plugin and p3c-pmd, unless you really have a strong reason.

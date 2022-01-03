@@ -22,8 +22,6 @@
 <br/>
 <p>This TPM is NOT created, or maintained, or controlled by any alibaba employee, in other words it is not a TPM, not an official branch.</p>
 <br/>
-<p>TPM maintainer XenoAmess is not interested in changing the grammar/rules in p3c guidelines (by now).</p>
-<br/>
 <p>TPM maintainer XenoAmess have no knowledge with eclipse plugin development.</p>
 <br/>
 <p>TPM maintainer XenoAmess suggest you only create pr for module idea-plugin and p3c-pmd, unless you really have a strong reason.</p>
@@ -35,7 +33,7 @@
             <li>pmd upgrade to 6.30.0</li>
             <li>now allow use json for configuration too (p3c_config.json). see https://github.com/XenoAmess/p3c/issues/144</li>
             <li>add addition rules mechanism</li>
-<!--            <li>add an addition rule to detect using lombok.SneakyThrow annotation while not specify the type of exception to throw.</li>-->
+            <li>add an addition rule to detect using lombok.SneakyThrow annotation while not specify the type of exception to throw.</li>
 <!--            <li>add an addition rule to detect using String.trim().length().</li>-->
 <!--            <li>add an addition rule to detect using String.trim().isEmpty().</li>-->
         </ul>

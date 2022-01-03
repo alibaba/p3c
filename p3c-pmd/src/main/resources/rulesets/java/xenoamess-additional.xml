@@ -45,4 +45,51 @@
              ]]>
         </example>
     </rule>
+    <rule name="SneakyThrowsWithoutExceptionTypeRule"
+          language="java"
+          message="java.xenoamess.additional.SneakyThrowsWithoutExceptionTypeRule.rule.msg"
+          class="com.xenoamess.p3c.pmd.lang.java.rule.xenoamess.additional.SneakyThrowsWithoutExceptionTypeRule">
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+    Positive example:
+        import lombok.SneakyThrows;
+        import org.apache.commons.io.FileUtils;
+
+        import java.io.File;
+        import java.io.IOException;
+        import java.nio.charset.StandardCharsets;
+        import java.util.function.Function;
+
+        public class FileReadFunction implements Function<File, Object> {
+
+            @SneakyThrows(value = {IOException.class})
+            @Override
+            public Object apply(File file) {
+                return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+            }
+
+        }
+
+    Negative example:
+        import lombok.SneakyThrows;
+        import org.apache.commons.io.FileUtils;
+
+        import java.io.File;
+        import java.io.IOException;
+        import java.nio.charset.StandardCharsets;
+        import java.util.function.Function;
+
+        public class FileReadFunction implements Function<File, Object> {
+
+            @SneakyThrows
+            @Override
+            public Object apply(File file) {
+                return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+            }
+
+        }
+             ]]>
+        </example>
+    </rule>
 </ruleset>

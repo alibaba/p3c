@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
+    <code-fragment id="testFail1"><![CDATA[
+        import lombok.SneakyThrows;
+
+        public class Foo {
+            @SneakyThrows
+            public boolean test(Object o) {
+                throw new IOException("");
+            }
+        }
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>testFail1</description>
+        <expected-problems>1</expected-problems>
+        <code-ref id="testFail1"/>
+    </test-code>
+
+    <code-fragment id="testFail2"><![CDATA[
+        import lombok.SneakyThrows;
+
+        public class Foo {
+            @SneakyThrows()
+            public boolean test(Object o) {
+                throw new IOException("");
+            }
+        }
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>testFail2</description>
+        <expected-problems>1</expected-problems>
+        <code-ref id="testFail2"/>
+    </test-code>
+
+    <code-fragment id="testFail3"><![CDATA[
+        import lombok.SneakyThrows;
+
+        public class Foo {
+            @SneakyThrows(a = {})
+            public boolean test(Object o) {
+                throw new IOException("");
+            }
+        }
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>testFail3</description>
+        <expected-problems>1</expected-problems>
+        <code-ref id="testFail3"/>
+    </test-code>
+
+    <code-fragment id="testFail4"><![CDATA[
+        public class Foo {
+            @lombok.SneakyThrows(a = {})
+            public boolean test(Object o) {
+                throw new IOException("");
+            }
+        }
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>testFail4</description>
+        <expected-problems>1</expected-problems>
+        <code-ref id="testFail4"/>
+    </test-code>
+
+    <code-fragment id="testSucceed1"><![CDATA[
+        import lombok.SneakyThrows;
+
+        public class Foo {
+            @SneakyThrows({IOException.class})
+            public boolean test(Object o) {
+                throw new IOException("");
+            }
+        }
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>testSucceed1</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="testSucceed1"/>
+    </test-code>
+
+    <code-fragment id="testSucceed2"><![CDATA[
+        import lombok.SneakyThrows;
+
+        public class Foo {
+            @SneakyThrows(value = {IOException.class})
+            public boolean test(Object o) {
+                throw new IOException("");
+            }
+        }
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>testSucceed2</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="testSucceed2"/>
+    </test-code>
+
+    <code-fragment id="testSucceed3"><![CDATA[
+        import lombok.SneakyThrows;
+
+        public class Foo {
+            @SneakyThrows(value = {Throwable.class})
+            public boolean test(Object o) {
+                throw new IOException("");
+            }
+        }
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>testSucceed3</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="testSucceed3"/>
+    </test-code>
+
+</test-data>

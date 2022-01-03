@@ -30,14 +30,12 @@
 
     <change-notes><![CDATA[
         <ul>2.1.1.2x-SNAPSHOT
-            <li>pmd upgrade to 6.30.0</li>
+            <li>pmd upgrade to 6.41.0</li>
             <li>now allow use json for configuration too (p3c_config.json). see https://github.com/XenoAmess/p3c/issues/144</li>
             <li>add addition rules mechanism</li>
             <li>add an addition rule to detect using lombok.SneakyThrow annotation while not specify the type of exception to throw.</li>
             <li>update deprecated pmd grammars in ServiceOrDaoClassShouldEndWithImplRule : @Image to @SimpleName</li>
             <li>update deprecated pmd grammars in TestClassShouldEndWithTestNamingRule : to suite codes changes in AbstractJUnitRule</li>
-<!--            <li>add an addition rule to detect using String.trim().length().</li>-->
-<!--            <li>add an addition rule to detect using String.trim().isEmpty().</li>-->
         </ul>
         <ul>2.1.1.1x
             <li>sync some minor fix in 2.1.1</li>

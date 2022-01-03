@@ -4,6 +4,7 @@ import com.xenoamess.x8l.ContentNode;
 import com.xenoamess.x8l.X8lTree;
 import com.xenoamess.x8l.databind.X8lDataBean;
 import com.xenoamess.x8l.databind.X8lDataBeanFieldMark;
+import com.xenoamess.x8l.dealers.LanguageDealer;
 import com.xenoamess.x8l.dealers.X8lDealer;
 import org.jetbrains.annotations.NotNull;
 
@@ -92,11 +93,14 @@ public class P3cConfigDataBean implements X8lDataBean {
     )
     private Map<String, Set<String>> ruleClassPairBlackListMap;
 
-    public void tryPatchP3cConfigDataBean(@NotNull File file) {
+    public void tryPatchP3cConfigDataBean(
+            @NotNull File file,
+            @NotNull LanguageDealer languageDealer
+    ) {
         if (file.exists() && file.isFile()) {
             try {
                 X8lTree patchConfigX8lTree = X8lTree.load(
-                        file, X8lDealer.INSTANCE
+                        file, languageDealer
                 );
                 this.getP3cConfigX8lTree().append(patchConfigX8lTree);
                 this.loadFromX8lTree(this.getP3cConfigX8lTree());

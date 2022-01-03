@@ -1,5 +1,5 @@
 <com.alibaba.p3c.pmd.config version=0.0.1>
     <rule_class_pair_blacklist>
-        <I18nResources>VarargsParameterRule>
+        <I18nResources [>VarargsParameterRule>
     >
 >

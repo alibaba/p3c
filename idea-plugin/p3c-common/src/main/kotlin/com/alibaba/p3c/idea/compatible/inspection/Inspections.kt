@@ -16,13 +16,14 @@
 package com.alibaba.p3c.idea.compatible.inspection
 
 import com.xenoamess.p3c.pmd.lang.java.util.namelist.NameListConfig
-import com.xenoamess.p3c.pmd.lang.java.util.namelist.NameListServiceImpl.P3C_CONFIG_FILE_NAME
 import com.google.common.base.Splitter
 import com.intellij.codeInspection.ex.InspectionProfileImpl
 import com.intellij.codeInspection.ex.InspectionToolWrapper
 import com.intellij.codeInspection.ex.ScopeToolState
 import com.intellij.codeInspection.javaDoc.JavaDocLocalInspection
 import com.intellij.openapi.project.Project
+import com.xenoamess.p3c.pmd.lang.java.util.namelist.NameListServiceImpl.P3C_JSON_CONFIG_FILE_NAME
+import com.xenoamess.p3c.pmd.lang.java.util.namelist.NameListServiceImpl.P3C_X8L_CONFIG_FILE_NAME
 import org.jetbrains.annotations.SystemIndependent
 import java.io.File
 import java.io.FilenameFilter
@@ -32,7 +33,7 @@ import java.io.FilenameFilter
  */
 class P3cConfigFilenameFilter : FilenameFilter {
     override fun accept(dir: File?, name: String?): Boolean {
-        return P3C_CONFIG_FILE_NAME.equals(name)
+        return P3C_X8L_CONFIG_FILE_NAME.equals(name) || P3C_JSON_CONFIG_FILE_NAME.equals(name)
     }
 }
 

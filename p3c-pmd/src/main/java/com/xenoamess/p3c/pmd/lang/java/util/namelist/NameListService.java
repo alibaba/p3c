@@ -15,6 +15,9 @@
  */
 package com.xenoamess.p3c.pmd.lang.java.util.namelist;
 
+import com.xenoamess.x8l.dealers.LanguageDealer;
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +48,9 @@ public interface NameListService {
      * patch config from a patch file.
      * @param file additional config file
      */
-    void loadPatchConfigFile(File file);
+    void loadPatchConfigFile(
+            @NotNull File file
+    );
 
     /**
      * check if a rule is in rule black list.

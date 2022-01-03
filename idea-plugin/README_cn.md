@@ -154,7 +154,7 @@ Alt+Enter键可呼出Intention菜单，不同的规则会提示不同信息的Qu
 <com.alibaba.p3c.pmd.config version=0.0.1>
     <rule_config>
         <LowerCamelCaseVariableNamingRule>
-            <WHITE_LIST>
+            <WHITE_LIST [>
                 DAOImpl&
                 GLFW&
                 URL&
@@ -171,23 +171,48 @@ Alt+Enter键可呼出Intention菜单，不同的规则会提示不同信息的Qu
                 lastY&
             >
         >
-        <ClassNamingShouldBeCamelRule><CLASS_NAMING_WHITE_LIST>Hbase&HBase&ID&ConcurrentHashMap&GLFW&URL&URI&JXInput&SettingFileParser_>>
+        <ClassNamingShouldBeCamelRule>
+            <CLASS_NAMING_WHITE_LIST [>
+                Hbase&
+                HBase&
+                ID&
+                ConcurrentHashMap&
+                GLFW&
+                URL&
+                URI&
+                JXInput&
+                SettingFileParser_
+            >
+        >
     >
-    <rule_blacklist>
+    <rule_blacklist [>
         PackageNamingRule&
         AbstractClassShouldStartWithAbstractNamingRule&
         ThreadPoolCreationRule&
         MethodTooLongRule&
     >
-    <class_blacklist>
+    <class_blacklist [>
         Console
     >
     <rule_class_pair_blacklist>
-        <FileUtils>AvoidUseDeprecationRule>
-        <Font>AvoidUseDeprecationRule>
-        <GameInputManager>LowerCamelCaseVariableNamingRule&AvoidUseDeprecationRule>
-        <Keymap>AvoidUseDeprecationRule>
-        <WorldForDemo>AvoidUseDeprecationRule>
+        <JamepadGamepadKeyEnum [>EnumConstantsMustHaveCommentRule>
+        <JXInputGamepadKeyEnum [>EnumConstantsMustHaveCommentRule>
+        <KeyActionEnum [>EnumConstantsMustHaveCommentRule>
+        <KeyboardKeyEnum [>EnumConstantsMustHaveCommentRule>
+        <CodePluginPosition [>EnumConstantsMustHaveCommentRule>
+        <ShapeRelation [>EnumConstantsMustHaveCommentRule>
+
+        <WaveData [>UndefineMagicConstantRule>
+
+        <FileUtils [>AvoidUseDeprecationRule>
+
+        <Font [>AvoidUseDeprecationRule>
+        <Keymap [>AvoidUseDeprecationRule>
+        <WorldForDemo [>AvoidUseDeprecationRule>
+
+        <GameInputManager [>LowerCamelCaseVariableNamingRule&AvoidUseDeprecationRule>
+
+        <Colors [>ConstantFieldShouldBeUpperCaseRule>
     >
 >
 ```
@@ -255,3 +280,103 @@ rule_class_pair_blacklist节点主要包括对该项目中的某一类禁用某�
 
 Rule类名既可以是SimpleName，也可以是CanonicalName。
 注意，由于PMD技术原因，被忽略检测的类名必须为SimpleName。
+
+### 为了反X8L主义者干杯
+
+如果你确实讨厌X8L文件格式，你可以使用等价json格式配置文件。
+
+```json
+{
+  "com.alibaba.p3c.pmd.config": {
+    "_attributes": {
+      "version": "0.0.1"
+    },
+    "rule_config": {
+      "LowerCamelCaseVariableNamingRule": {
+        "WHITE_LIST": [
+          "DAOImpl",
+          "GLFW",
+          "URL",
+          "URI",
+          "XInput",
+          "PosX",
+          "PosY",
+          "AWT",
+          "XY",
+          "drawBoxTC",
+          "FPS",
+          "ID",
+          "lastX",
+          "lastY"
+        ]
+      },
+      "ClassNamingShouldBeCamelRule": {
+        "CLASS_NAMING_WHITE_LIST": [
+          "Hbase",
+          "HBase",
+          "ID",
+          "ConcurrentHashMap",
+          "GLFW",
+          "URL",
+          "URI",
+          "JXInput",
+          "SettingFileParser_"
+        ]
+      }
+    },
+    "rule_blacklist": [
+      "PackageNamingRule",
+      "AbstractClassShouldStartWithAbstractNamingRule",
+      "ThreadPoolCreationRule",
+      "MethodTooLongRule"
+    ],
+    "class_blacklist": [
+      "Console"
+    ],
+    "rule_class_pair_blacklist": {
+      "JamepadGamepadKeyEnum": [
+        "EnumConstantsMustHaveCommentRule"
+      ],
+      "JXInputGamepadKeyEnum": [
+        "EnumConstantsMustHaveCommentRule"
+      ],
+      "KeyActionEnum": [
+        "EnumConstantsMustHaveCommentRule"
+      ],
+      "KeyboardKeyEnum": [
+        "EnumConstantsMustHaveCommentRule"
+      ],
+      "CodePluginPosition": [
+        "EnumConstantsMustHaveCommentRule"
+      ],
+      "ShapeRelation": [
+        "EnumConstantsMustHaveCommentRule"
+      ],
+      "WaveData": [
+        "UndefineMagicConstantRule"
+      ],
+      "FileUtils": [
+        "AvoidUseDeprecationRule"
+      ],
+      "Font": [
+        "AvoidUseDeprecationRule"
+      ],
+      "Keymap": [
+        "AvoidUseDeprecationRule"
+      ],
+      "WorldForDemo": [
+        "AvoidUseDeprecationRule"
+      ],
+      "GameInputManager": [
+        "LowerCamelCaseVariableNamingRule",
+        "AvoidUseDeprecationRule"
+      ],
+      "Colors": [
+        "ConstantFieldShouldBeUpperCaseRule"
+      ]
+    }
+  }
+}
+```
+
+文件名为p3c_config.json即可。

@@ -135,45 +135,4 @@ Negative example:
          ]]>
         </example>
     </rule>
-    <rule name="EqualsHashCodeRule"
-          language="java"
-          message="java.set.EqualsHashCodeRule.rule.msg"
-          class="com.xenoamess.p3c.pmd.lang.java.rule.set.EqualsHashCodeRule">
-        <priority>4</priority>
-        <example>
-            <![CDATA[
-Positive example:
-    public class Foo {
-
-        @Override
-        public boolean equals(Object o) {
-            // ...
-        }
-
-        @Override
-        public int hashCode() {
-            // ...
-        }
-    }
-
-Negative example 1:
-    public class Foo {
-
-        @Override
-        public boolean equals(Object o) {
-            // ...
-        }
-    }
-
-Negative example 2:
-    public class Foo {
-
-        @Override
-        public int hashCode() {
-            // ...
-        }
-    }
-         ]]>
-        </example>
-    </rule>
 </ruleset>

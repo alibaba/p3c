@@ -1,9 +1,9 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "1.1.4"
+    id "org.jetbrains.intellij" version "1.3.0"
 
     id 'maven'
-    id "com.github.ben-manes.versions" version "0.39.0"
+    id "com.github.ben-manes.versions" version "0.40.0"
 }
 apply plugin: 'kotlin'
 apply plugin: 'idea'
@@ -23,9 +23,6 @@ intellij {
 version plugin_version
 
 dependencies {
-    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.31'
     compile project(':p3c-common')
-    compile group: 'org.javassist', name: 'javassist', version: '3.28.0-GA'
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }
 

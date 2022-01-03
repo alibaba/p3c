@@ -32,7 +32,7 @@ public class ServiceOrDaoClassShouldEndWithImplRule extends AbstractAliXpathRule
             + "[ .[@Interface='false'] and .[@Abstract='false'] and ./ImplementsList/ClassOrInterfaceType[ ends-with" +
             "(@Image, 'Service') or "
             + "ends-with(@Image, 'DAO')]]"
-            + "[not(.[ ends-with(@Image, 'Impl')])]";
+            + "[not(.[ ends-with(@SimpleName, 'Impl')])]";
 
     public ServiceOrDaoClassShouldEndWithImplRule() {
         setXPath(XPATH);

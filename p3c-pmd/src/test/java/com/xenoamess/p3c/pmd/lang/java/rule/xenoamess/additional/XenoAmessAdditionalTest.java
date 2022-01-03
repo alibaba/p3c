@@ -13,30 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.xenoamess.p3c.pmd.lang.java.rule.oop;
+package com.xenoamess.p3c.pmd.lang.java.rule.xenoamess.additional;
 
 import net.sourceforge.pmd.testframework.SimpleAggregatorTst;
 
 /**
- * Test for oop rules.
+ * Test for set rules.
  *
- * @author zenghou.fw
- * @date 2016/11/29
- *
+ * @author shengfang.gsf
+ * @date 2016/12/13
  */
-public class OopRuleTest extends SimpleAggregatorTst {
+public class XenoAmessAdditionalTest extends SimpleAggregatorTst {
 
-    // 加载CLASSPATH下的rulesets/java/ali-oop.xml
-    private static final String RULESET = "java-ali-oop";
+    private static final String RULESET = "java-xenoamess-additional";
 
     @Override
     public void setUp() {
-        addRule(RULESET, "EqualsAvoidNullRule");
-        addRule(RULESET, "WrapperTypeEqualityRule");
-        addRule(RULESET, "PojoNoDefaultValueRule");
-        addRule(RULESET, "PojoMustUsePrimitiveFieldRule");
-        addRule(RULESET, "PojoMustOverrideToStringRule");
-        addRule(RULESET, "StringConcatRule");
-        addRule(RULESET, "BigDecimalAvoidDoubleConstructorRule");
+        addRule(RULESET, "EqualsHashCodeRule");
+        addRule(RULESET, "SneakyThrowsWithoutExceptionTypeRule");
     }
 }

@@ -1,4 +1,4 @@
-package com.xenoamess.p3c.pmd.lang.java.rule.set;
+package com.xenoamess.p3c.pmd.lang.java.rule.xenoamess.additional;
 
 /*
  * Copyright 1999-2017 Alibaba Group.

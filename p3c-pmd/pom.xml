@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess.p3c</groupId>
     <artifactId>p3c-pmd</artifactId>
-    <version>2.1.1.1x</version>
+    <version>2.1.1.2x</version>
     <packaging>jar</packaging>
     <name>p3c-pmd</name>
     <properties>
@@ -22,37 +22,37 @@
         <!---->
         <!---->
         <!--libraries versions-->
-        <pmd.version>6.37.0</pmd.version>
+        <pmd.version>6.41.0</pmd.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <annotation.version>1.3.2</annotation.version>
-        <kotlin.version>1.5.21</kotlin.version>
-        <x8l.version>2.3.6</x8l.version>
+        <kotlin.version>1.6.10</kotlin.version>
+        <x8l.version>2.3.8</x8l.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-io.version>2.11.0</commons-io.version>
         <junit.version>4.13.2</junit.version>
-        <jackson.version>2.13.0-rc1</jackson.version>
+        <jackson.version>2.13.1</jackson.version>
         <!---->
         <!---->
         <!--maven plugins versions-->
         <versions-maven-plugin.version>2.8.1</versions-maven-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-        <maven-pmd-plugin.version>3.14.0</maven-pmd-plugin.version>
+        <maven-pmd-plugin.version>3.15.0</maven-pmd-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
-        <maven-javadoc-plugin.version>3.3.0</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
         <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
-        <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
+        <maven-site-plugin.version>3.10.0</maven-site-plugin.version>
         <maven-project-info-reports-plugin.version>3.1.2</maven-project-info-reports-plugin.version>
-        <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
+        <maven-deploy-plugin.version>3.0.0-M2</maven-deploy-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
         <!--enforce-->
         <enforce.activate>true</enforce.activate>
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
         <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
-        <checkstyle.version>8.44</checkstyle.version>
+        <checkstyle.version>9.2.1</checkstyle.version>
         <checkstyle.configdir>src/site/resources/checkstyle
         </checkstyle.configdir>
     </properties>
@@ -277,19 +277,16 @@
                             <rulesets>
                                 <ruleset>rulesets/java/imports.xml</ruleset>
                                 <ruleset>rulesets/java/ali-comment.xml</ruleset>
-                                <ruleset>rulesets/java/ali-concurrent.xml
-                                </ruleset>
-                                <ruleset>rulesets/java/ali-constant.xml
-                                </ruleset>
-                                <ruleset>rulesets/java/ali-exception.xml
-                                </ruleset>
-                                <ruleset>rulesets/java/ali-flowcontrol.xml
-                                </ruleset>
+                                <ruleset>rulesets/java/ali-concurrent.xml</ruleset>
+                                <ruleset>rulesets/java/ali-constant.xml</ruleset>
+                                <ruleset>rulesets/java/ali-exception.xml</ruleset>
+                                <ruleset>rulesets/java/ali-flowcontrol.xml</ruleset>
                                 <ruleset>rulesets/java/ali-naming.xml</ruleset>
                                 <ruleset>rulesets/java/ali-oop.xml</ruleset>
                                 <ruleset>rulesets/java/ali-orm.xml</ruleset>
                                 <ruleset>rulesets/java/ali-other.xml</ruleset>
                                 <ruleset>rulesets/java/ali-set.xml</ruleset>
+                                <ruleset>rulesets/java/xenoamess-additional.xml</ruleset>
                             </rulesets>
                             <excludes>
                                 <exclude>**/FixClassTypeResolver.java</exclude>
@@ -331,7 +328,7 @@
                         <groupId>com.xenoamess</groupId>
                         <artifactId>remove-unused-imports-maven-plugin
                         </artifactId>
-                        <version>0.0.4</version>
+                        <version>0.0.5</version>
                         <executions>
                             <execution>
                                 <id>rui1</id>
@@ -596,6 +593,7 @@
                         <ruleset>rulesets/java/ali-orm.xml</ruleset>
                         <ruleset>rulesets/java/ali-other.xml</ruleset>
                         <ruleset>rulesets/java/ali-set.xml</ruleset>
+                        <ruleset>rulesets/java/xenoamess-additional.xml</ruleset>
                     </rulesets>
                     <excludes>
                         <exclude>**/FixClassTypeResolver.java</exclude>

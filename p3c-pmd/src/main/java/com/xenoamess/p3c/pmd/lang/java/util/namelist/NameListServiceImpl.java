@@ -19,7 +19,10 @@ import com.xenoamess.p3c.pmd.config.P3cConfigDataBean;
 import com.xenoamess.x8l.ContentNode;
 import com.xenoamess.x8l.X8lTree;
 import com.xenoamess.x8l.databind.X8lDataBeanFieldScheme;
+import com.xenoamess.x8l.dealers.JsonDealer;
+import com.xenoamess.x8l.dealers.X8lDealer;
 import org.apache.commons.io.IOUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,7 +39,8 @@ import static com.xenoamess.x8l.databind.X8lDataBeanDefaultParser.getLastFromLis
  */
 public class NameListServiceImpl implements NameListService {
 
-    public static final String P3C_CONFIG_FILE_NAME = "p3c_config.x8l";
+    public static final String P3C_X8L_CONFIG_FILE_NAME = "p3c_config.x8l";
+    public static final String P3C_JSON_CONFIG_FILE_NAME = "p3c_config.json";
     public static final String DEFAULT_P3C_CONFIG_FILE_NAME = "p3c_config.default.x8l";
     private final P3cConfigDataBean p3cConfigDataBean;
 
@@ -63,15 +67,26 @@ public class NameListServiceImpl implements NameListService {
         }
 
         if (ifLoadCustomerConfigX8lTreeLocal) {
-            p3cConfigDataBeanLocal.tryPatchP3cConfigDataBean(new File(P3C_CONFIG_FILE_NAME));
+            File p3cX8lConfigFile = new File(P3C_X8L_CONFIG_FILE_NAME);
+            if (p3cX8lConfigFile.exists() && p3cX8lConfigFile.isFile()) {
+                p3cConfigDataBeanLocal.tryPatchP3cConfigDataBean(p3cX8lConfigFile, X8lDealer.INSTANCE);
+            } else {
+                p3cConfigDataBeanLocal.tryPatchP3cConfigDataBean(new File(P3C_JSON_CONFIG_FILE_NAME), JsonDealer.INSTANCE);
+            }
         }
         p3cConfigDataBeanLocal.loadFromX8lTree(p3cConfigDataBeanLocal.getP3cConfigX8lTree());
         return p3cConfigDataBeanLocal;
     }
 
     @Override
-    public void loadPatchConfigFile(File file) {
-        this.getP3cConfigDataBean().tryPatchP3cConfigDataBean(file);
+    public void loadPatchConfigFile(@NotNull File file) {
+        String fileName = file.getName();
+        if (fileName.endsWith(X8lTree.STRING_X8L)) {
+            this.getP3cConfigDataBean().tryPatchP3cConfigDataBean(file, X8lDealer.INSTANCE);
+        }
+        if (fileName.endsWith(X8lTree.STRING_JSON)) {
+            this.getP3cConfigDataBean().tryPatchP3cConfigDataBean(file, JsonDealer.INSTANCE);
+        }
     }
 
     @Override

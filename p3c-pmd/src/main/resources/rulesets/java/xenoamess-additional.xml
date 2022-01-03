@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+
+<ruleset name="AlibabaJavaSets" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+    <description>XenoAmessAdditional</description>
+    <rule name="EqualsHashCodeRule"
+          language="java"
+          message="java.set.EqualsHashCodeRule.rule.msg"
+          class="com.xenoamess.p3c.pmd.lang.java.rule.xenoamess.additional.EqualsHashCodeRule">
+        <priority>4</priority>
+        <example>
+            <![CDATA[
+    Positive example:
+        public class Foo {
+
+            @Override
+            public boolean equals(Object o) {
+                // ...
+            }
+
+            @Override
+            public int hashCode() {
+                // ...
+            }
+        }
+
+    Negative example 1:
+        public class Foo {
+
+            @Override
+            public boolean equals(Object o) {
+                // ...
+            }
+        }
+
+    Negative example 2:
+        public class Foo {
+
+            @Override
+            public int hashCode() {
+                // ...
+            }
+        }
+             ]]>
+        </example>
+    </rule>
+    <rule name="SneakyThrowsWithoutExceptionTypeRule"
+          language="java"
+          message="java.xenoamess.additional.SneakyThrowsWithoutExceptionTypeRule.rule.msg"
+          class="com.xenoamess.p3c.pmd.lang.java.rule.xenoamess.additional.SneakyThrowsWithoutExceptionTypeRule">
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+    Positive example:
+        import lombok.SneakyThrows;
+        import org.apache.commons.io.FileUtils;
+
+        import java.io.File;
+        import java.io.IOException;
+        import java.nio.charset.StandardCharsets;
+        import java.util.function.Function;
+
+        public class FileReadFunction implements Function<File, Object> {
+
+            @SneakyThrows(value = {IOException.class})
+            @Override
+            public Object apply(File file) {
+                return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+            }
+
+        }
+
+    Negative example:
+        import lombok.SneakyThrows;
+        import org.apache.commons.io.FileUtils;
+
+        import java.io.File;
+        import java.io.IOException;
+        import java.nio.charset.StandardCharsets;
+        import java.util.function.Function;
+
+        public class FileReadFunction implements Function<File, Object> {
+
+            @SneakyThrows
+            @Override
+            public Object apply(File file) {
+                return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+            }
+
+        }
+             ]]>
+        </example>
+    </rule>
+</ruleset>

@@ -21,7 +21,7 @@ cd p3c-idea
 
 ## <font color="green">Use p3c-common as your plugin dependency</font>
 ```groovy
-compile 'com.xenoamess.p3c.idea:p3c-common:2.1.1.1x'
+compile 'com.xenoamess.p3c.idea:p3c-common:2.1.1.2x'
 ```
 ## [中文使用手册](README_cn.md)
 ## <font color="green">Install</font>
@@ -118,7 +118,7 @@ Firstly p3c_config.x8l be at "$your_project_path/p3c_config.x8l".
 <com.alibaba.p3c.pmd.config version=0.0.1>
     <rule_config>
         <LowerCamelCaseVariableNamingRule>
-            <WHITE_LIST>
+            <WHITE_LIST [>
                 DAOImpl&
                 GLFW&
                 URL&
@@ -135,23 +135,48 @@ Firstly p3c_config.x8l be at "$your_project_path/p3c_config.x8l".
                 lastY&
             >
         >
-        <ClassNamingShouldBeCamelRule><CLASS_NAMING_WHITE_LIST>Hbase&HBase&ID&ConcurrentHashMap&GLFW&URL&URI&JXInput&SettingFileParser_>>
+        <ClassNamingShouldBeCamelRule>
+            <CLASS_NAMING_WHITE_LIST [>
+                Hbase&
+                HBase&
+                ID&
+                ConcurrentHashMap&
+                GLFW&
+                URL&
+                URI&
+                JXInput&
+                SettingFileParser_
+            >
+        >
     >
-    <rule_blacklist>
+    <rule_blacklist [>
         PackageNamingRule&
         AbstractClassShouldStartWithAbstractNamingRule&
         ThreadPoolCreationRule&
         MethodTooLongRule&
     >
-    <class_blacklist>
+    <class_blacklist [>
         Console
     >
     <rule_class_pair_blacklist>
-        <FileUtils>AvoidUseDeprecationRule>
-        <Font>AvoidUseDeprecationRule>
-        <GameInputManager>LowerCamelCaseVariableNamingRule&AvoidUseDeprecationRule>
-        <Keymap>AvoidUseDeprecationRule>
-        <WorldForDemo>AvoidUseDeprecationRule>
+        <JamepadGamepadKeyEnum [>EnumConstantsMustHaveCommentRule>
+        <JXInputGamepadKeyEnum [>EnumConstantsMustHaveCommentRule>
+        <KeyActionEnum [>EnumConstantsMustHaveCommentRule>
+        <KeyboardKeyEnum [>EnumConstantsMustHaveCommentRule>
+        <CodePluginPosition [>EnumConstantsMustHaveCommentRule>
+        <ShapeRelation [>EnumConstantsMustHaveCommentRule>
+
+        <WaveData [>UndefineMagicConstantRule>
+
+        <FileUtils [>AvoidUseDeprecationRule>
+
+        <Font [>AvoidUseDeprecationRule>
+        <Keymap [>AvoidUseDeprecationRule>
+        <WorldForDemo [>AvoidUseDeprecationRule>
+
+        <GameInputManager [>LowerCamelCaseVariableNamingRule&AvoidUseDeprecationRule>
+
+        <Colors [>ConstantFieldShouldBeUpperCaseRule>
     >
 >
 ```
@@ -231,3 +256,102 @@ Rule class name in rule_class_pair_blacklist CAN be SimpleName OR CanonicalName.
 BE ATTENTION, according to PMD interface reason,
 class names in rule_class_pair_blacklist must be SimpleName.
 
+### For the X8L Haters
+
+If you really hate x8l you can use json configuration files.
+
+```json
+{
+  "com.alibaba.p3c.pmd.config": {
+    "_attributes": {
+      "version": "0.0.1"
+    },
+    "rule_config": {
+      "LowerCamelCaseVariableNamingRule": {
+        "WHITE_LIST": [
+          "DAOImpl",
+          "GLFW",
+          "URL",
+          "URI",
+          "XInput",
+          "PosX",
+          "PosY",
+          "AWT",
+          "XY",
+          "drawBoxTC",
+          "FPS",
+          "ID",
+          "lastX",
+          "lastY"
+        ]
+      },
+      "ClassNamingShouldBeCamelRule": {
+        "CLASS_NAMING_WHITE_LIST": [
+          "Hbase",
+          "HBase",
+          "ID",
+          "ConcurrentHashMap",
+          "GLFW",
+          "URL",
+          "URI",
+          "JXInput",
+          "SettingFileParser_"
+        ]
+      }
+    },
+    "rule_blacklist": [
+      "PackageNamingRule",
+      "AbstractClassShouldStartWithAbstractNamingRule",
+      "ThreadPoolCreationRule",
+      "MethodTooLongRule"
+    ],
+    "class_blacklist": [
+      "Console"
+    ],
+    "rule_class_pair_blacklist": {
+      "JamepadGamepadKeyEnum": [
+        "EnumConstantsMustHaveCommentRule"
+      ],
+      "JXInputGamepadKeyEnum": [
+        "EnumConstantsMustHaveCommentRule"
+      ],
+      "KeyActionEnum": [
+        "EnumConstantsMustHaveCommentRule"
+      ],
+      "KeyboardKeyEnum": [
+        "EnumConstantsMustHaveCommentRule"
+      ],
+      "CodePluginPosition": [
+        "EnumConstantsMustHaveCommentRule"
+      ],
+      "ShapeRelation": [
+        "EnumConstantsMustHaveCommentRule"
+      ],
+      "WaveData": [
+        "UndefineMagicConstantRule"
+      ],
+      "FileUtils": [
+        "AvoidUseDeprecationRule"
+      ],
+      "Font": [
+        "AvoidUseDeprecationRule"
+      ],
+      "Keymap": [
+        "AvoidUseDeprecationRule"
+      ],
+      "WorldForDemo": [
+        "AvoidUseDeprecationRule"
+      ],
+      "GameInputManager": [
+        "LowerCamelCaseVariableNamingRule",
+        "AvoidUseDeprecationRule"
+      ],
+      "Colors": [
+        "ConstantFieldShouldBeUpperCaseRule"
+      ]
+    }
+  }
+}
+```
+
+name it p3c_config.json

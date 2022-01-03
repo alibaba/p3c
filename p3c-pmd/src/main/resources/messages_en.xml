@@ -579,4 +579,9 @@ Positive example:
         <![CDATA[To judge the equivalence of floating-point numbers, == cannot be used for primitive types, while equals cannot be used for wrapper classes.]]>
     </entry>
 
+    <entry key="java.xenoamess.additional.SneakyThrowsWithoutExceptionTypeRule.rule.msg">
+        <![CDATA[
+            must clarify the exception types when using lombok.SneakyThrows .
+        ]]>
+    </entry>
 </properties>

@@ -35,6 +35,24 @@ public class TestClassShouldEndWithTestNamingRule extends AbstractJUnitRule {
 
     @Override
     public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+        boolean oldJunit3Class = isJUnit3Class;
+        boolean oldJunit4Class = isJUnit4Class;
+        boolean oldJunit5Class = isJUnit5Class;
+
+        Object res;
+        try {
+            analyzeJUnitClass(node);
+            res = this.visitInternal(node, data);
+        } finally {
+            isJUnit3Class = oldJunit3Class;
+            isJUnit4Class = oldJunit4Class;
+            isJUnit5Class = oldJunit5Class;
+        }
+
+        return res;
+    }
+
+    private Object visitInternal(ASTClassOrInterfaceDeclaration node, Object data) {
         if (node.isAbstract() || node.isInterface() || node.isNested()) {
             return super.visit(node, data);
         }
@@ -50,10 +68,10 @@ public class TestClassShouldEndWithTestNamingRule extends AbstractJUnitRule {
             }
         }
 
-        if ((testsFound) && (!(node.getImage().endsWith(TEST_SUFFIX)))) {
+        if ((testsFound) && (!(node.getSimpleName().endsWith(TEST_SUFFIX)))) {
             ViolationUtils.addViolationWithPrecisePosition(this, node, data,
                     I18nResources.getMessage("java.naming.TestClassShouldEndWithTestNamingRule.violation.msg",
-                            node.getImage()));
+                            node.getSimpleName()));
         }
 
         return super.visit(node, data);

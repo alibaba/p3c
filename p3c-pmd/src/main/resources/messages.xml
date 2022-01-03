@@ -574,4 +574,9 @@
         <![CDATA[浮点数之间的等值判断，基本数据类型不能用==来比较，包装数据类型不能用equals来判断。]]>
     </entry>
 
+    <entry key="java.xenoamess.additional.SneakyThrowsWithoutExceptionTypeRule.rule.msg">
+        <![CDATA[
+            使用lombok.SneakyThrows时必须显示声明抛出的异常类型。
+        ]]>
+    </entry>
 </properties>

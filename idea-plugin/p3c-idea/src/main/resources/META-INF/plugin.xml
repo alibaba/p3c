@@ -10,9 +10,9 @@
 <br/>
 <p><b>Third-party maintenance by XenoAmess.</b></p>
 <br/>
-<p>This Third-party maintenance(TPM) here is forked from original [alibaba/p3c](https://github.com/alibaba/p3c)</p>
+<p>This Third-party maintenance(TPM) here is forked from original <a href="https://github.com/alibaba/p3c">alibaba/p3c</a></p>
 <br/>
-<p>Follows Apache license described in [license](https://github.com/XenoAmess/p3c/blob/xenoamess_maintain_fork/license.txt)</p>
+<p>Follows Apache license described in <a href="https://github.com/XenoAmess/p3c/blob/xenoamess_maintain_fork/license.txt">license</a></p>
 <br/>
 <p>Sources can be found https://github.com/XenoAmess/p3c</p>
 <br/>
@@ -22,8 +22,6 @@
 <br/>
 <p>This TPM is NOT created, or maintained, or controlled by any alibaba employee, in other words it is not a TPM, not an official branch.</p>
 <br/>
-<p>TPM maintainer XenoAmess is not interested in changing the grammar/rules in p3c guidelines (by now).</p>
-<br/>
 <p>TPM maintainer XenoAmess have no knowledge with eclipse plugin development.</p>
 <br/>
 <p>TPM maintainer XenoAmess suggest you only create pr for module idea-plugin and p3c-pmd, unless you really have a strong reason.</p>
@@ -31,6 +29,14 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.1.1.2x
+            <li>pmd upgrade to 6.41.0</li>
+            <li>now allow use json for configuration too (p3c_config.json). see https://github.com/XenoAmess/p3c/issues/144</li>
+            <li>add addition rules mechanism</li>
+            <li>add an addition rule to detect using lombok.SneakyThrow annotation while not specify the type of exception to throw.</li>
+            <li>update deprecated pmd grammars in ServiceOrDaoClassShouldEndWithImplRule : @Image to @SimpleName</li>
+            <li>update deprecated pmd grammars in TestClassShouldEndWithTestNamingRule : to suite codes changes in AbstractJUnitRule</li>
+        </ul>
         <ul>2.1.1.1x
             <li>sync some minor fix in 2.1.1</li>
             <li>pmd upgrade to 6.37.0</li>

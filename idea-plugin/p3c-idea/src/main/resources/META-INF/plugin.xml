@@ -35,6 +35,7 @@
             <li>add addition rules mechanism</li>
             <li>add an addition rule to detect using lombok.SneakyThrow annotation while not specify the type of exception to throw.</li>
             <li>update deprecated pmd grammars in ServiceOrDaoClassShouldEndWithImplRule : @Image to @SimpleName</li>
+            <li>update deprecated pmd grammars in TestClassShouldEndWithTestNamingRule : to suite codes changes in AbstractJUnitRule</li>
 <!--            <li>add an addition rule to detect using String.trim().length().</li>-->
 <!--            <li>add an addition rule to detect using String.trim().isEmpty().</li>-->
         </ul>

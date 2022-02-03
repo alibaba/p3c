@@ -47,6 +47,7 @@
         <maven-project-info-reports-plugin.version>3.1.2</maven-project-info-reports-plugin.version>
         <maven-deploy-plugin.version>3.0.0-M2</maven-deploy-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <animal-sniffer-maven-plugin.version>1.21</animal-sniffer-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
         <log4j.version>2.17.1</log4j.version>
         <slf4j.version>1.7.35</slf4j.version>
@@ -243,6 +244,15 @@
     </dependencyManagement>
 
     <profiles>
+        <profile>
+            <id>maven.compiler.release</id>
+            <activation>
+                <jdk>[9,)</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.release>${java.version}</maven.compiler.release>
+            </properties>
+        </profile>
         <profile>
             <id>update_dependencies</id>
             <!-- GPG mvn clean deploy -P release -Dgpg.passphrase=YourPassphase -->
@@ -770,17 +780,26 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--            <plugin>-->
-            <!--                <groupId>org.apache.maven.plugins</groupId>-->
-            <!--                <artifactId>maven-release-plugin</artifactId>-->
-            <!--                <version>${maven-release-plugin.version}</version>-->
-            <!--                <configuration>-->
-            <!--                    <mavenExecutorId>forked-path</mavenExecutorId>-->
-            <!--                    <useReleaseProfile>false</useReleaseProfile>-->
-            <!--                    <arguments>${arguments} -Psonatype-oss-release-->
-            <!--                    </arguments>-->
-            <!--                </configuration>-->
-            <!--            </plugin>-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>animal-sniffer-maven-plugin</artifactId>
+                <version>${animal-sniffer-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <signature>
+                        <groupId>org.codehaus.mojo.signature</groupId>
+                        <artifactId>java18</artifactId>
+                        <version>1.0</version>
+                    </signature>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

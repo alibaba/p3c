@@ -10,8 +10,6 @@
 For more information please refer the *Alibaba Java Coding Guidelines*:
 - 中文版: 直接下载上方的PDF文件（黄山版）
 - English Version: *[Alibaba Java Coding Guidelines](https://alibaba.github.io/Alibaba-Java-Coding-Guidelines)*
-- 《阿里巴巴Java开发手册》书籍版天猫官方店: *[阿里巴巴Java开发手册最新版](https://detail.tmall.com/item.htm?spm=a220m.1000858.1000725.1.4577601asIhzbW&id=628337143778&areaId=330100&user_id=1932014659&cat_id=2&is_b=1&rn=11a322ef70720cdf5e894001e4b48b55)*
-- 《码出高效》书籍版天猫官方店: *[码出高效：Java开发手册](https://detail.tmall.com/item.htm?spm=a230r.1.14.40.7dee7d6bwpO82U&id=575107529181&ns=1&abbucket=20)*
 
 ## <font color="green">Introduction</font>
 The project consists of 3 parts:  

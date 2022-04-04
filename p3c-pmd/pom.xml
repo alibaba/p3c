@@ -22,37 +22,40 @@
         <!---->
         <!---->
         <!--libraries versions-->
-        <pmd.version>6.41.0</pmd.version>
+        <pmd.version>6.44.0</pmd.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <annotation.version>1.3.2</annotation.version>
-        <kotlin.version>1.6.10</kotlin.version>
-        <x8l.version>2.3.8</x8l.version>
+        <kotlin.version>1.6.20</kotlin.version>
+        <x8l.version>2.3.9</x8l.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-io.version>2.11.0</commons-io.version>
         <junit.version>4.13.2</junit.version>
-        <jackson.version>2.13.1</jackson.version>
+        <jackson.version>2.13.2.20220328</jackson.version>
         <!---->
         <!---->
         <!--maven plugins versions-->
-        <versions-maven-plugin.version>2.8.1</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.10.0</versions-maven-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-        <maven-pmd-plugin.version>3.15.0</maven-pmd-plugin.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-pmd-plugin.version>3.16.0</maven-pmd-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
-        <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.3.2</maven-javadoc-plugin.version>
         <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
-        <maven-site-plugin.version>3.10.0</maven-site-plugin.version>
-        <maven-project-info-reports-plugin.version>3.1.2</maven-project-info-reports-plugin.version>
+        <maven-site-plugin.version>3.11.0</maven-site-plugin.version>
+        <maven-project-info-reports-plugin.version>3.2.2</maven-project-info-reports-plugin.version>
         <maven-deploy-plugin.version>3.0.0-M2</maven-deploy-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M6</maven-surefire-plugin.version>
+        <animal-sniffer-maven-plugin.version>1.21</animal-sniffer-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+        <log4j.version>2.17.2</log4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
         <!--enforce-->
         <enforce.activate>true</enforce.activate>
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
         <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
-        <checkstyle.version>9.2.1</checkstyle.version>
+        <checkstyle.version>10.1</checkstyle.version>
         <checkstyle.configdir>src/site/resources/checkstyle
         </checkstyle.configdir>
     </properties>
@@ -177,39 +180,56 @@
                 <version>${junit.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
                 <version>${jackson.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>${jackson.version}</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.fasterxml.jackson.module</groupId>
-                <artifactId>jackson-module-parameter-names</artifactId>
-                <version>${jackson.version}</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-bom</artifactId>
+                <version>${log4j.version}</version>
+                <type>pom</type>
             </dependency>
             <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-jdk8</artifactId>
-                <version>${jackson.version}</version>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-jsr310</artifactId>
-                <version>${jackson.version}</version>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${slf4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <profiles>
+        <profile>
+            <id>maven.compiler.release</id>
+            <activation>
+                <jdk>[9,)</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.release>${java.version}</maven.compiler.release>
+            </properties>
+        </profile>
         <profile>
             <id>update_dependencies</id>
             <!-- GPG mvn clean deploy -P release -Dgpg.passphrase=YourPassphase -->
@@ -328,7 +348,7 @@
                         <groupId>com.xenoamess</groupId>
                         <artifactId>remove-unused-imports-maven-plugin
                         </artifactId>
-                        <version>0.0.5</version>
+                        <version>0.0.6</version>
                         <executions>
                             <execution>
                                 <id>rui1</id>
@@ -737,17 +757,26 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--            <plugin>-->
-            <!--                <groupId>org.apache.maven.plugins</groupId>-->
-            <!--                <artifactId>maven-release-plugin</artifactId>-->
-            <!--                <version>${maven-release-plugin.version}</version>-->
-            <!--                <configuration>-->
-            <!--                    <mavenExecutorId>forked-path</mavenExecutorId>-->
-            <!--                    <useReleaseProfile>false</useReleaseProfile>-->
-            <!--                    <arguments>${arguments} -Psonatype-oss-release-->
-            <!--                    </arguments>-->
-            <!--                </configuration>-->
-            <!--            </plugin>-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>animal-sniffer-maven-plugin</artifactId>
+                <version>${animal-sniffer-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <signature>
+                        <groupId>org.codehaus.mojo.signature</groupId>
+                        <artifactId>java18</artifactId>
+                        <version>1.0</version>
+                    </signature>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

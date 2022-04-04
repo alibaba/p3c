@@ -23,25 +23,25 @@ jobs:
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        os: [ ubuntu-latest , macos-latest ]
+        os: [ windows-latest , ubuntu-latest , macos-latest ]
         java: [ 11, 14 ]
         experimental: [ false ]
 
     steps:
-      - uses: actions/checkout@v2.4.0
-      - uses: actions/cache@v2.1.7
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         with:
           path: ~/.m2
           key: ${{ runner.os }}-gradle-m2-${{ hashFiles('**/build.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - uses: actions/cache@v2.1.7
+      - uses: actions/cache@v3
         with:
           path: ~/.gradle/caches/
           key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/build.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - uses: actions/cache@v2.1.7
+      - uses: actions/cache@v3
         with:
           path: ~/.gradle/wrapper/
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/build.gradle') }}
@@ -56,7 +56,7 @@ jobs:
         run: |
           cd ./p3c-pmd
           chmod 777 ./mvnw
-          ./mvnw install
+          ./mvnw install -Penforce
           cd ../
           cd ./idea-plugin
           chmod 777 ./gradlew

@@ -23,6 +23,7 @@ import com.xenoamess.x8l.dealers.JsonDealer;
 import com.xenoamess.x8l.dealers.X8lDealer;
 import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.IOException;
@@ -112,6 +113,22 @@ public class NameListServiceImpl implements NameListService {
     @Override
     public boolean ifClassNameInClassBlackList(String className) {
         return this.getP3cConfigDataBean().getClassBlackListSet().contains(className);
+    }
+
+    @Override
+    public boolean ifPackageNameInPackageBlackList(@Nullable String packageName) {
+        if (packageName == null) {
+            return false;
+        }
+        Set<String> packageBlackListSet = this.getP3cConfigDataBean().getPackageBlackListSet();
+        if (packageBlackListSet != null) {
+            for (String packageBlack : packageBlackListSet) {
+                if (packageName.startsWith(packageBlack)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override

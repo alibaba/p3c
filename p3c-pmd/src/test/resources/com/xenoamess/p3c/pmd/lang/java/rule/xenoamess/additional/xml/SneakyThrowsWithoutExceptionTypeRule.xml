@@ -18,6 +18,7 @@
     <test-code>
         <description>testFail1</description>
         <expected-problems>1</expected-problems>
+        <expected-linenumbers>4</expected-linenumbers>
         <code-ref id="testFail1"/>
     </test-code>
 
@@ -36,6 +37,7 @@
     <test-code>
         <description>testFail2</description>
         <expected-problems>1</expected-problems>
+        <expected-linenumbers>4</expected-linenumbers>
         <code-ref id="testFail2"/>
     </test-code>
 
@@ -54,6 +56,7 @@
     <test-code>
         <description>testFail3</description>
         <expected-problems>1</expected-problems>
+        <expected-linenumbers>4</expected-linenumbers>
         <code-ref id="testFail3"/>
     </test-code>
 
@@ -70,6 +73,7 @@
     <test-code>
         <description>testFail4</description>
         <expected-problems>1</expected-problems>
+        <expected-linenumbers>2</expected-linenumbers>
         <code-ref id="testFail4"/>
     </test-code>
 

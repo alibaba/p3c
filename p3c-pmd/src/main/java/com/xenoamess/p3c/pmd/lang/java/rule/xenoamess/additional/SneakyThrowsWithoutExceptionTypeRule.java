@@ -30,7 +30,6 @@ public class SneakyThrowsWithoutExceptionTypeRule extends AbstractAliRule {
                             + " not((.//MemberValuePair/@Image = 'value') or (./SingleMemberAnnotation))"
                             + "]"
                             + "]"
-                            + "//MethodDeclaration"
             );
         } catch (JaxenException e) {
             e.printStackTrace();

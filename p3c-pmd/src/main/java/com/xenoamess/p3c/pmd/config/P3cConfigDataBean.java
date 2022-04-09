@@ -85,6 +85,15 @@ public class P3cConfigDataBean implements X8lDataBean {
 
     @X8lDataBeanFieldMark(
             paths = {
+                    "com.alibaba.p3c.pmd.config>package_blacklist"
+            },
+            parser = P3cConfigDataBean.class,
+            functionName = "getContentNodeAsStringSet"
+    )
+    private Set<String> packageBlackListSet;
+
+    @X8lDataBeanFieldMark(
+            paths = {
                     "com.alibaba.p3c.pmd.config>rule_class_pair_blacklist"
             },
             parser = P3cConfigDataBean.class,
@@ -145,4 +154,13 @@ public class P3cConfigDataBean implements X8lDataBean {
     public void setRuleClassPairBlackListMap(Map<String, Set<String>> ruleClassPairBlackListMap) {
         this.ruleClassPairBlackListMap = ruleClassPairBlackListMap;
     }
+
+    public Set<String> getPackageBlackListSet() {
+        return packageBlackListSet;
+    }
+
+    public void setPackageBlackListSet(Set<String> packageBlackListSet) {
+        this.packageBlackListSet = packageBlackListSet;
+    }
+
 }

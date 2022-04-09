@@ -29,6 +29,11 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.1.1.3x
+            <li>pmd upgrade to 6.44.0</li>
+            <li>fix bugs of SneakyThrowsWithoutExceptionTypeRule</li>
+            <li>add com.alibaba.p3c.pmd.config>package_blacklist config. see https://github.com/XenoAmess/p3c/issues/211</li>
+        </ul>
         <ul>2.1.1.2x
             <li>pmd upgrade to 6.41.0</li>
             <li>now allow use json for configuration too (p3c_config.json). see https://github.com/XenoAmess/p3c/issues/144</li>

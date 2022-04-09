@@ -194,6 +194,9 @@ Alt+Enter键可呼出Intention菜单，不同的规则会提示不同信息的Qu
     <class_blacklist [>
         Console
     >
+	<package_blacklist [>
+        com.xenoamess.cyan_potion.base.steam
+    >
     <rule_class_pair_blacklist>
         <JamepadGamepadKeyEnum [>EnumConstantsMustHaveCommentRule>
         <JXInputGamepadKeyEnum [>EnumConstantsMustHaveCommentRule>
@@ -267,6 +270,14 @@ class_blacklist节点主要包括对该项目中的某一类禁用所有规则�
 
 注意，由于PMD技术原因，class_blacklist中的类必须为SimpleName
 
+### package_blacklist
+
+package_blacklist节点主要包括对该项目中的某一个父包禁用所有规则。
+
+如，package_blacklist中含有`com.xenoamess`包，则该项目中所有`com.xenoamess`包下的类均不会进行任何检测。
+
+注意，形如`com.xenoamess.cyan_potion`的，`com.xenoamess`包的子包也会被禁用所有规则。
+
 ### rule_class_pair_blacklist
 
 rule_class_pair_blacklist节点主要包括对该项目中的某一类禁用某数个规则。
@@ -332,7 +343,10 @@ Rule类名既可以是SimpleName，也可以是CanonicalName。
     ],
     "class_blacklist": [
       "Console"
-    ],
+    ], 
+	"package_blacklist": [
+	  "com.xenoamess.cyan_potion.base.steam"
+	],
     "rule_class_pair_blacklist": {
       "JamepadGamepadKeyEnum": [
         "EnumConstantsMustHaveCommentRule"

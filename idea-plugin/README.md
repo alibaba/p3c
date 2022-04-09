@@ -158,6 +158,9 @@ Firstly p3c_config.x8l be at "$your_project_path/p3c_config.x8l".
     <class_blacklist [>
         Console
     >
+	<package_blacklist [>
+        com.xenoamess.cyan_potion.base.steam
+    >
     <rule_class_pair_blacklist>
         <JamepadGamepadKeyEnum [>EnumConstantsMustHaveCommentRule>
         <JXInputGamepadKeyEnum [>EnumConstantsMustHaveCommentRule>
@@ -239,6 +242,16 @@ then means in this repo we will not detect anything for all classes whose name b
 BE ATTENTION, according to PMD interface reason,
 class names in class_blacklist must be SimpleName.
 
+### package_blacklist
+
+Node package_blacklist contains global settings for a repo,
+means ban packages in this repo globally.
+
+For example, if package_blacklist contains `com.xenoamess`,
+then means in this repo we will not detect anything for all classes whose package under `com.xenoamess`.
+
+BE ATTENTION, it will also ban packages under `com.xenoamess`, like `com.xenoamess.cyan_potion`
+
 ### rule_class_pair_blacklist
 
 Node rule_class_pair_blacklist contains settings for class/rule pairs,
@@ -307,7 +320,10 @@ If you really hate x8l you can use json configuration files.
     ],
     "class_blacklist": [
       "Console"
-    ],
+    ], 
+	"package_blacklist": [
+	  "com.xenoamess.cyan_potion.base.steam"
+	],
     "rule_class_pair_blacklist": {
       "JamepadGamepadKeyEnum": [
         "EnumConstantsMustHaveCommentRule"

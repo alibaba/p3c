@@ -16,6 +16,7 @@
 package com.xenoamess.p3c.pmd.lang.java.util.namelist;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.util.List;
@@ -64,6 +65,13 @@ public interface NameListService {
      * @return true if in class black list
      */
     boolean ifClassNameInClassBlackList(String className);
+
+    /**
+     * check if package name is in package black list.
+     * @param packageName package name
+     * @return true if in package black list
+     */
+    boolean ifPackageNameInPackageBlackList(@Nullable String packageName);
 
     /**
      * check if class name is in class name pair black list.

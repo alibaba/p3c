@@ -17,6 +17,7 @@ package com.xenoamess.p3c.pmd.lang.java.util;
 
 import com.xenoamess.p3c.pmd.lang.java.util.namelist.NameListConfig;
 import net.sourceforge.pmd.lang.ast.Node;
+import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
 import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclarator;
@@ -25,6 +26,7 @@ import net.sourceforge.pmd.lang.java.symboltable.ClassScope;
 import net.sourceforge.pmd.lang.rule.AbstractRule;
 import net.sourceforge.pmd.lang.symboltable.Scope;
 import net.sourceforge.pmd.lang.symboltable.ScopedNode;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author caikang
@@ -67,6 +69,14 @@ public class ViolationUtils {
             return true;
         }
 
+        ASTCompilationUnit nodeRoot = getNodeRoot(node);
+        if (nodeRoot != null) {
+            String packageName = nodeRoot.getPackageName();
+            if (NameListConfig.getNameListService().ifPackageNameInPackageBlackList(packageName)) {
+                return true;
+            }
+        }
+
         if (node instanceof ScopedNode) {
             ScopedNode scopedNode = (ScopedNode) node;
             Scope scope = scopedNode.getScope();
@@ -85,4 +95,16 @@ public class ViolationUtils {
 
         return false;
     }
+
+    @Nullable
+    private static ASTCompilationUnit getNodeRoot(@Nullable Node node) {
+        while (node != null) {
+            if (node instanceof ASTCompilationUnit) {
+                return (ASTCompilationUnit) node;
+            }
+            node = node.getParent();
+        }
+        return null;
+    }
+
 }

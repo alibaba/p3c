@@ -29,7 +29,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <ul>2.1.1.3x-SNAPSHOT
+        <ul>2.1.1.3x
             <li>pmd upgrade to 6.44.0</li>
             <li>fix bugs of SneakyThrowsWithoutExceptionTypeRule</li>
             <li>add com.alibaba.p3c.pmd.config>package_blacklist config. see https://github.com/XenoAmess/p3c/issues/211</li>

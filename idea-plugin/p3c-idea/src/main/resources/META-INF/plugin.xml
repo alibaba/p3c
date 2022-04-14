@@ -29,6 +29,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.1.1.4x
+            <li>Fix idea 2022.1 Ultimate compatibility issue</li>
+        </ul>
         <ul>2.1.1.3x
             <li>pmd upgrade to 6.44.0</li>
             <li>fix bugs of SneakyThrowsWithoutExceptionTypeRule</li>

@@ -60,7 +60,10 @@ ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 dependencies {
     implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.31'
-    implementation "com.xenoamess.p3c:p3c-pmd:$plugin_version"
+    implementation("com.xenoamess.p3c:p3c-pmd:$plugin_version") {
+        exclude group: 'org.apache.logging.log4j'
+        exclude group: 'org.slf4j'
+    }
     implementation group: 'org.javassist', name: 'javassist', version: '3.28.0-GA'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$project.kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$project.kotlin_version"

@@ -29,6 +29,7 @@ import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiModifier
 import com.intellij.psi.PsiModifierListOwner
 import com.intellij.psi.util.InheritanceUtil
+import com.jetbrains.rd.util.catch
 import com.siyeh.ig.BaseInspectionVisitor
 import com.siyeh.ig.InspectionGadgetsFix
 import com.siyeh.ig.inheritance.MissingOverrideAnnotationInspection
@@ -66,7 +67,12 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
     override fun createOptionsPanel(): JComponent? = null
 
     override fun buildFix(vararg infos: Any): InspectionGadgetsFix? {
-        val fix = super.buildFix(*infos) ?: return null
+        val fix : InspectionGadgetsFix
+        try {
+            fix = super.buildFix(*infos) ?: return null
+        } catch (e: Exception){
+            return null;
+        }
         return DecorateInspectionGadgetsFix(
                 fix,
                 P3cBundle.getMessage("com.alibaba.p3c.idea.quickfix.standalone.AliMissingOverrideAnnotationInspection")

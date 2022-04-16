@@ -18,6 +18,7 @@ package com.alibaba.p3c.idea.i18n
 import com.alibaba.p3c.idea.config.P3cConfig
 import com.xenoamess.p3c.pmd.I18nResources
 import com.alibaba.smartfox.idea.common.util.getService
+import com.intellij.AbstractBundle
 import com.intellij.CommonBundle
 import java.util.Locale
 import java.util.ResourceBundle
@@ -38,6 +39,6 @@ object P3cBundle {
     }
 
     fun message(key: String, vararg params: Any): String {
-        return CommonBundle.message(resourceBundle, key, *params).trim()
+        return AbstractBundle.message(resourceBundle, key, *params).trim()
     }
 }

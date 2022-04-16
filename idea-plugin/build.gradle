@@ -22,9 +22,6 @@ buildscript {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
-        maven {
-            url 'http://dl.bintray.com/jetbrains/intellij-plugin-service'
-        }
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$project.kotlin_version"

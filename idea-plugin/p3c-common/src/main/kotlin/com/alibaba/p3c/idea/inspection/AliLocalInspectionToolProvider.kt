@@ -20,7 +20,6 @@ import com.alibaba.p3c.idea.inspection.standalone.AliAccessStaticViaInstanceInsp
 import com.alibaba.p3c.idea.inspection.standalone.AliDeprecationInspection
 import com.alibaba.p3c.idea.inspection.standalone.AliMissingOverrideAnnotationInspection
 import com.alibaba.p3c.idea.inspection.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsInspection
-import com.xenoamess.p3c.pmd.I18nResources
 import com.alibaba.smartfox.idea.common.util.getService
 import com.beust.jcommander.internal.Lists
 import com.beust.jcommander.internal.Maps
@@ -32,6 +31,7 @@ import com.intellij.psi.PsiCompiledFile
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiImportList
 import com.intellij.psi.PsiJavaFile
+import com.xenoamess.p3c.pmd.I18nResources
 import javassist.CannotCompileException
 import javassist.ClassClassPath
 import javassist.ClassPool
@@ -40,7 +40,6 @@ import javassist.NotFoundException
 import net.sourceforge.pmd.Rule
 import net.sourceforge.pmd.RuleSet
 import net.sourceforge.pmd.RuleSetFactory
-import net.sourceforge.pmd.RuleSetNotFoundException
 import net.sourceforge.pmd.RuleSets
 import javax.annotation.Generated
 
@@ -199,8 +198,8 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
                 ruleSet.rules.mapTo(result) {
                     RuleInfo(it, shouldInspectChecker)
                 }
-            } catch (e: RuleSetNotFoundException) {
-                LOGGER.error(String.format("rule set %s not found for", ruleSetName))
+            } catch (e: Exception) {
+                LOGGER.error(String.format("rule set %s load failed for", ruleSetName))
             }
 
             return result

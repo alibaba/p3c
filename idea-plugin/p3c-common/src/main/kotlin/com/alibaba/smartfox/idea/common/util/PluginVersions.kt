@@ -17,6 +17,7 @@ package com.alibaba.smartfox.idea.common.util
 
 import com.intellij.ide.plugins.IdeaPluginDescriptor
 import com.intellij.ide.plugins.PluginManager
+import com.intellij.ide.plugins.PluginManagerCore
 import com.intellij.ide.plugins.cl.PluginClassLoader
 import com.intellij.openapi.application.ApplicationInfo
 import com.intellij.openapi.extensions.PluginId
@@ -33,7 +34,7 @@ object PluginVersions {
     const val baseVersion171 = 171
 
     val pluginId: PluginId = (javaClass.classLoader as PluginClassLoader).pluginId
-    val pluginDescriptor: IdeaPluginDescriptor = PluginManager.getPlugin(pluginId)!!
+    val pluginDescriptor: IdeaPluginDescriptor = PluginManagerCore.getPlugin(pluginId)!!
 
     /**
      * 获取当前安装的 plugin版本

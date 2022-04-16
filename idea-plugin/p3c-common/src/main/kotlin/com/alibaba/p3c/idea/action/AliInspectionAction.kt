@@ -24,6 +24,7 @@ import com.google.common.collect.Lists
 import com.intellij.analysis.AnalysisScope
 import com.intellij.analysis.AnalysisUIOptions
 import com.intellij.analysis.BaseAnalysisActionDialog
+import com.intellij.analysis.problemsView.toolWindow.ProblemsView
 import com.intellij.codeInspection.InspectionManager
 import com.intellij.codeInspection.InspectionsBundle
 import com.intellij.codeInspection.ex.GlobalInspectionContextImpl
@@ -32,9 +33,9 @@ import com.intellij.codeInspection.ex.InspectionToolWrapper
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.module.Module
+import com.intellij.openapi.module.ModuleManager
 import com.intellij.openapi.module.ModuleUtilCore
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VfsUtilCore
@@ -58,7 +59,7 @@ class AliInspectionAction : AnAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
-        val analysisUIOptions = ServiceManager.getService(project, AnalysisUIOptions::class.java)!!
+        val analysisUIOptions = project.getService(AnalysisUIOptions::class.java)!!
         analysisUIOptions.GROUP_BY_SEVERITY = true
 
         val managerEx = InspectionManager.getInstance(project) as InspectionManagerEx
@@ -133,20 +134,23 @@ class AliInspectionAction : AnAction() {
         val uiOptions = AnalysisUIOptions.getInstance(project)
         uiOptions.ANALYZE_TEST_SOURCES = false
         val dialog = BaseAnalysisActionDialog(
-                "Select Analyze Scope",
-                "Analyze Scope",
+            "Select Analyze Scope",
+            "Analyze Scope",
+            project,
+            BaseAnalysisActionDialog.standardItems(
                 project,
                 analysisScope,
-                module?.name,
-                true,
-                uiOptions,
+                module,
                 psiElement
+            ),
+            uiOptions,
+            true
         )
 
         if (!dialog.showAndGet()) {
             return
         }
-        val scope = dialog.getScope(uiOptions, analysisScope, project, module)
+        val scope = dialog.getScope(analysisScope)
         scope.setSearchInLibraries(true)
         val element = psiFile ?: psiElement
         createContext(
@@ -194,28 +198,7 @@ class AliInspectionAction : AnAction() {
             )
             InspectionProfileService.setExternalProfile(model, inspectionContext)
 
-            // toolWindowManager = ToolWindowManager.getInstance(project)
-            var toolWindowManager : ToolWindowManager? = null;
-            try {
-                toolWindowManager = ToolWindowManager::class.java.getMethod("getInstance").invoke(null, project) as ToolWindowManager;
-            } catch (e : Exception) {
-                val functions = ToolWindowManager::class.companionObject?.functions;
-                if (functions != null) {
-                    for (f in functions) {
-                        val ps = f.parameters
-                        if (f.name == "getInstance" && ps.size == 2) {
-                            try {
-                                toolWindowManager = f.call(ToolWindowManager::class.companionObjectInstance, project) as ToolWindowManager
-                                break
-                            } catch (e2 : Exception) {
-                                e2.printStackTrace()
-                            }
-                        }
-                    }
-                }
-            }
-
-            val toolWindow = toolWindowManager?.getToolWindow(ToolWindowId.INSPECTION);
+            val toolWindow = ProblemsView.getToolWindow(project);
             if (toolWindow != null) {
                 val contentManager = toolWindow.contentManager
                 val contentTitle = title?.let {

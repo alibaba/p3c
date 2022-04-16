@@ -19,7 +19,7 @@ import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiIdentifier
-import org.apache.commons.lang3.StringUtils
+import org.apache.commons.lang3.RegExUtils
 
 /**
  *
@@ -40,7 +40,7 @@ object AvoidStartWithDollarAndUnderLineNamingQuickFix : AliQuickFix {
     override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
         val psiIdentifier = descriptor.psiElement as? PsiIdentifier ?: return
         val identifier = psiIdentifier.text
-        val resultName = StringUtils.replacePattern(identifier, "^[\$_]+", "")
+        val resultName = RegExUtils.replacePattern(identifier, "^[\$_]+", "")
         if (resultName.toLongOrNull() != null) {
             return
         }

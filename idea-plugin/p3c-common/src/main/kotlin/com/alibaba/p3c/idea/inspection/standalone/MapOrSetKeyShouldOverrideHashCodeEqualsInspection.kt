@@ -33,6 +33,7 @@ import com.intellij.psi.PsiVariable
 import com.siyeh.ig.BaseInspection
 import com.siyeh.ig.BaseInspectionVisitor
 import org.jetbrains.annotations.NonNls
+import java.util.Locale
 
 /**
  * @author caikang
@@ -81,7 +82,7 @@ class MapOrSetKeyShouldOverrideHashCodeEqualsInspection : BaseInspection, AliBas
 
         override fun toString(): String {
             val string = super.toString()
-            return string[0] + string.substring(1).toLowerCase()
+            return string[0] + string.substring(1).lowercase()
         }
     }
 

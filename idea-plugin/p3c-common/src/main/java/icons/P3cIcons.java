@@ -29,17 +29,17 @@ public final class P3cIcons {
                 + " instances for you!");
     }
 
-    public static final Icon ANALYSIS_ACTION = IconLoader.getIcon("/icons/ali-ide-run.png");
+    public static final Icon ANALYSIS_ACTION = IconLoader.getIcon("/icons/ali-ide-run.png", P3cIcons.class);
 
     /**
      * qiyong means 启用
      */
-    public static final Icon PROJECT_INSPECTION_ON = IconLoader.getIcon("/icons/qiyong.png");
+    public static final Icon PROJECT_INSPECTION_ON = IconLoader.getIcon("/icons/qiyong.png", P3cIcons.class);
 
     /**
      * tingyong means 停用
      */
-    public static final Icon PROJECT_INSPECTION_OFF = IconLoader.getIcon("/icons/tingyong.png");
-    public static final Icon LANGUAGE = IconLoader.getIcon("/icons/language.png");
-    public static final Icon ALIBABA = IconLoader.getIcon("/icons/alibaba.png");
+    public static final Icon PROJECT_INSPECTION_OFF = IconLoader.getIcon("/icons/tingyong.png", P3cIcons.class);
+    public static final Icon LANGUAGE = IconLoader.getIcon("/icons/language.png", P3cIcons.class);
+    public static final Icon ALIBABA = IconLoader.getIcon("/icons/alibaba.png", P3cIcons.class);
 }

@@ -21,17 +21,16 @@ import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.p3c.idea.inspection.AliPmdInspectionInvoker
 import com.alibaba.p3c.idea.pmd.SourceCodeProcessor
 import com.alibaba.p3c.idea.util.withLockNotInline
-import com.xenoamess.p3c.pmd.I18nResources
 import com.alibaba.smartfox.idea.common.component.AliBaseProjectComponent
 import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
-import com.intellij.openapi.vfs.VirtualFileAdapter
 import com.intellij.openapi.vfs.VirtualFileEvent
 import com.intellij.openapi.vfs.VirtualFileListener
 import com.intellij.openapi.vfs.VirtualFileManager
 import com.intellij.openapi.vfs.VirtualFileMoveEvent
 import com.intellij.psi.PsiManager
+import com.xenoamess.p3c.pmd.I18nResources
 import net.sourceforge.pmd.RuleViolation
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.locks.ReentrantReadWriteLock
@@ -55,7 +54,7 @@ class AliProjectComponent(
     private val fileContexts = ConcurrentHashMap<String, FileContext>()
 
     init {
-        listener = object : VirtualFileAdapter() {
+        listener = object : VirtualFileListener {
             override fun contentsChanged(event: VirtualFileEvent) {
                 val path = getFilePath(event) ?: return
                 PsiManager.getInstance(project).findFile(event.file) ?: return

@@ -20,16 +20,12 @@ import com.alibaba.p3c.idea.inspection.AliBaseInspection
 import com.alibaba.p3c.idea.quickfix.DecorateInspectionGadgetsFix
 import com.alibaba.p3c.idea.util.HighlightDisplayLevels
 import com.intellij.codeHighlighting.HighlightDisplayLevel
+import com.intellij.codeInspection.AnnotateMethodFix
 import com.intellij.codeInspection.LocalQuickFix
-import com.intellij.psi.CommonClassNames
-import com.intellij.psi.PsiAnonymousClass
-import com.intellij.psi.PsiClass
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiMethod
-import com.intellij.psi.PsiModifier
-import com.intellij.psi.PsiModifierListOwner
+import com.intellij.psi.*
 import com.intellij.psi.util.InheritanceUtil
 import com.siyeh.ig.BaseInspectionVisitor
+import com.siyeh.ig.DelegatingFix
 import com.siyeh.ig.InspectionGadgetsFix
 import com.siyeh.ig.inheritance.MissingOverrideAnnotationInspection
 import com.siyeh.ig.psiutils.MethodUtils
@@ -44,6 +40,7 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
     private val messageKey = "com.alibaba.p3c.idea.inspection.standalone.AliMissingOverrideAnnotationInspection"
 
     constructor()
+
     /**
      * For Javassist
      */
@@ -65,9 +62,14 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
     override fun createOptionsPanel(): JComponent? = null
 
     override fun buildFix(vararg infos: Any): InspectionGadgetsFix? {
-        val fix = super.buildFix(*infos) ?: return null
-        return DecorateInspectionGadgetsFix(fix,
-            P3cBundle.getMessage("com.alibaba.p3c.idea.quickfix.standalone.AliMissingOverrideAnnotationInspection"))
+        val fix = if (infos.isEmpty())
+            DelegatingFix(AnnotateMethodFix(CommonClassNames.JAVA_LANG_OVERRIDE))
+        else
+            super.buildFix(*infos) ?: return null
+        return DecorateInspectionGadgetsFix(
+            fix,
+            P3cBundle.getMessage("com.alibaba.p3c.idea.quickfix.standalone.AliMissingOverrideAnnotationInspection")
+        )
     }
 
     override fun manualBuildFix(psiElement: PsiElement, isOnTheFly: Boolean): LocalQuickFix? = buildFix(psiElement)
@@ -99,8 +101,9 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
                 return
             }
             if (ignoreObjectMethods && (MethodUtils.isHashCode(method) ||
-                    MethodUtils.isEquals(method) ||
-                    MethodUtils.isToString(method))) {
+                        MethodUtils.isEquals(method) ||
+                        MethodUtils.isToString(method))
+            ) {
                 return
             }
             registerMethodError(method)

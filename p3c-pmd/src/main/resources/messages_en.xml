@@ -96,7 +96,7 @@
         <![CDATA[All Service and DAO classes must be interface based on SOA principle. Implementation class names should be ended with Impl]]>
     </entry>
     <entry key="java.naming.PackageNamingRule.rule.msg">
-        <![CDATA[All Service and DAO classes must be interface based on SOA principle. Implementation class names]]>
+        <![CDATA[ Package should be named in lowercase characters. There should be only one English word after each dot. Package names are always in singular format while class name can be in plural format if necessary.]]>
     </entry>
     <entry key="java.naming.BooleanPropertyShouldNotStartWithIsRule.rule.msg">
         <![CDATA[Do not add 'is' as prefix while defining Boolean variable, since it may cause a serialization exception in some Java Frameworks]]>

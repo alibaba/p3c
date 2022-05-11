@@ -1,11 +1,14 @@
 buildscript {
     repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
         maven {
             url "https://oss.sonatype.org/content/repositories/snapshots/"
         }
         maven {
             url 'http://dl.bintray.com/jetbrains/intellij-plugin-service'
         }
+        jcenter()
         mavenCentral()
 
     }
@@ -26,6 +29,8 @@ allprojects {
         resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     }
     repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
         jcenter()
         mavenCentral()
     }

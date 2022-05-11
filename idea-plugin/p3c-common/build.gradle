@@ -1,8 +1,8 @@
 plugins {
-    id "org.jetbrains.intellij" version '0.4.5'
+    id "java"
+    id "org.jetbrains.intellij" version '0.4.21'
 }
 apply plugin: 'kotlin'
-apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin: 'signing'
 

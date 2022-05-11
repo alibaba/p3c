@@ -22,6 +22,8 @@ import com.intellij.psi.JavaPsiFacade
 import com.intellij.psi.PsiClass
 import com.intellij.psi.javadoc.PsiDocToken
 import com.siyeh.ig.InspectionGadgetsFix
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 /**
  *
@@ -31,10 +33,13 @@ import com.siyeh.ig.InspectionGadgetsFix
  */
 object ClassMustHaveAuthorQuickFix : InspectionGadgetsFix(), AliQuickFix {
 
-    val tag = "@author ${System.getProperty("user.name") ?: System.getenv("USER")}"
+    private var dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+
+    private val authorTag = "@author ${System.getProperty("user.name") ?: System.getenv("USER")}"
 
     override fun doFix(project: Project?, descriptor: ProblemDescriptor?) {
         descriptor ?: return
+        val dateTag = "@date ${LocalDate.now().format(dateFormatter)}"
         val psiClass = descriptor.psiElement as? PsiClass ?: descriptor.psiElement?.parent as? PsiClass ?: return
 
         val document = psiClass.docComment
@@ -43,7 +48,8 @@ object ClassMustHaveAuthorQuickFix : InspectionGadgetsFix(), AliQuickFix {
         if (document == null) {
             val doc = factory.createDocCommentFromText("""
 /**
- * $tag
+ * $authorTag
+ * $dateTag
  */
 """)
             if (psiClass.isEnum) {
@@ -68,11 +74,13 @@ object ClassMustHaveAuthorQuickFix : InspectionGadgetsFix(), AliQuickFix {
         }
 
         if (document.tags.isNotEmpty()) {
-            document.addBefore(factory.createDocTagFromText(tag), document.tags[0])
+            document.addBefore(factory.createDocTagFromText(dateTag), document.tags[0])
+            document.addBefore(factory.createDocTagFromText(authorTag), document.tags[0])
             return
         }
 
-        document.add(factory.createDocTagFromText(tag))
+        document.add(factory.createDocTagFromText(authorTag))
+        document.add(factory.createDocTagFromText(dateTag))
     }
 
     override val ruleName: String

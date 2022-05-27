@@ -5,8 +5,12 @@ static boolean shouldIncludeJava(String idea_version_string) {
     if (idea_version_string.contains('.')) {
         idea_version_string = idea_version_string.substring(0, idea_version_string.indexOf('.'))
     }
-    int idea_version_int = Integer.parseInt(idea_version_string);
-    return idea_version_int >= 2019 || (idea_version_int < 1500 && idea_version_int >= 193);
+    try {
+        int idea_version_int = Integer.parseInt(idea_version_string);
+        return idea_version_int >= 2019 || (idea_version_int < 1500 && idea_version_int >= 193);
+    } catch (Exception e) {
+        return true
+    }
 }
 
 buildscript {

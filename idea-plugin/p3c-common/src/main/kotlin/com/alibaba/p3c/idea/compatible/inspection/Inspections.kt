@@ -20,10 +20,12 @@ import com.google.common.base.Splitter
 import com.intellij.codeInspection.ex.InspectionProfileImpl
 import com.intellij.codeInspection.ex.InspectionToolWrapper
 import com.intellij.codeInspection.ex.ScopeToolState
-import com.intellij.codeInspection.javaDoc.JavaDocLocalInspection
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.util.JDOMExternalizerUtil
 import com.xenoamess.p3c.pmd.lang.java.util.namelist.NameListServiceImpl.P3C_JSON_CONFIG_FILE_NAME
 import com.xenoamess.p3c.pmd.lang.java.util.namelist.NameListServiceImpl.P3C_X8L_CONFIG_FILE_NAME
+import org.apache.commons.lang3.StringUtils
+import org.jdom.Element
 import org.jetbrains.annotations.SystemIndependent
 import java.io.File
 import java.io.FilenameFilter
@@ -73,21 +75,24 @@ object Inspections {
 
 
     fun addCustomTag(project: Project, tag: String) {
-        val profile = InspectionProfileService.getProjectInspectionProfile(project)
-        val javaDocLocalInspection = profile.getInspectionTool("JavaDoc", project)?.tool
-                as? JavaDocLocalInspection ?: return
-        if (javaDocLocalInspection.myAdditionalJavadocTags.isEmpty()) {
-            javaDocLocalInspection.myAdditionalJavadocTags = tag
-            return
-        }
+        try {
+            val profile = InspectionProfileService.getProjectInspectionProfile(project)
+            val javaDocLocalInspection : Element = profile.getInspectionTool("JavaDoc", project)?.tool as? Element ?: return
+            val myAdditionalJavadocTags : String? = JDOMExternalizerUtil.readField(javaDocLocalInspection, "myAdditionalJavadocTags")
+            if (StringUtils.isEmpty(myAdditionalJavadocTags)) {
+                JDOMExternalizerUtil.writeField(javaDocLocalInspection, "myAdditionalJavadocTags", tag)
+                return
+            }
 
-        val tags = Splitter.on(',').splitToList(javaDocLocalInspection.myAdditionalJavadocTags)
-        if (tags.contains(tag)) {
-            return
+            val tags = Splitter.on(',').splitToList(myAdditionalJavadocTags)
+            if (tags.contains(tag)) {
+                return
+            }
+            JDOMExternalizerUtil.writeField(javaDocLocalInspection, "myAdditionalJavadocTags", myAdditionalJavadocTags + ",$tag")
+            profile.profileChanged()
+            profile.scopesChanged()
+        } catch (ignored : Exception) {
         }
-        javaDocLocalInspection.myAdditionalJavadocTags += ",$tag"
-        profile.profileChanged()
-        profile.scopesChanged()
     }
 
     private fun getAllTools(project: Project, profile: InspectionProfileImpl): List<InspectionToolWrapper<*, *>> {

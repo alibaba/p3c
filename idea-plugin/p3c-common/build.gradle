@@ -1,16 +1,14 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "1.5.3"
+    id "org.jetbrains.intellij" version "1.5.2"
 
     id "org.sonarqube" version "3.3"
 
-    id 'maven'
     id "com.github.ben-manes.versions" version "0.42.0"
 }
 
 apply plugin: 'kotlin'
 apply plugin: 'idea'
-apply plugin: 'maven'
 apply plugin: 'signing'
 
 javadoc {
@@ -68,62 +66,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$project.kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$project.kotlin_version"
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: System.getProperty('ossrhUsername'), password: System.getProperty('ossrhPassword'))
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: System.getProperty('ossrhUsername'), password: System.getProperty('ossrhPassword'))
-            }
-
-            pom.project {
-                name 'p3c-common'
-                packaging 'jar'
-                description 'P3c Idea Plugin Common.'
-                url 'https://github.com/xenoamess/p3c'
-
-                scm {
-                    url 'https://github.com/xenoamess/p3c'
-                    connection 'scm:git:https://git@github.com/xenoamess/p3c.git'
-                }
-
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                        distribution 'repo'
-                    }
-                }
-
-                developers {
-                    developer {
-                        id 'junlie'
-                        name 'Junlie'
-                        email 'sean.caikang@gmail.com'
-                    }
-                    developer {
-                        id 'ZengHou'
-                        name 'ZengHou'
-                        email 'fengwei1983@gmail.com'
-                    }
-                    developer {
-                        id 'XenoAmess'
-                        name 'XenoAmess'
-                        email 'xenoamess@gmail.com'
-                        organization 'XenoAmess'
-                        url 'https://github.com/xenoamess'
-                    }
-                }
-            }
-        }
-    }
 }
 
 signing {

@@ -2,7 +2,6 @@ plugins {
     id 'java'
     id "org.jetbrains.intellij" version "1.5.2"
 
-    id 'maven'
     id "com.github.ben-manes.versions" version "0.42.0"
 }
 apply plugin: 'kotlin'
@@ -23,6 +22,6 @@ intellij {
 version plugin_version
 
 dependencies {
-    compile project(':p3c-common')
+    implementation project(':p3c-common')
 }
 

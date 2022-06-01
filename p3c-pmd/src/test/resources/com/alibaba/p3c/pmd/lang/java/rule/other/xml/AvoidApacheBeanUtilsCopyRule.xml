@@ -3,7 +3,7 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
 
-	<code-fragment id="use-apache-beanutils-copy"><![CDATA[
+	<code-fragment id="use-apache-beanutils-copyProperties"><![CDATA[
 import java.lang.reflect.InvocationTargetException;
 import org.apache.commons.beanutils.BeanUtils;
 public class AvoidApacheBeanUtilsCopyRule {
@@ -15,10 +15,28 @@ public class AvoidApacheBeanUtilsCopyRule {
 	</code-fragment>
 
 	<test-code>
-		<description>Use Apache BeanUtils copy</description>
+		<description>Use Apache BeanUtils copyProperties</description>
 		<expected-problems>1</expected-problems>
 		<expected-linenumbers>5</expected-linenumbers>
-		<code-ref id="use-apache-beanutils-copy" />
+		<code-ref id="use-apache-beanutils-copyProperties" />
+	</test-code>
+
+
+	<code-fragment id="use-apache-beanutils-other"><![CDATA[
+import java.lang.reflect.InvocationTargetException;
+import org.apache.commons.beanutils.BeanUtils;
+public class AvoidApacheBeanUtilsCopyRule {
+    public void test(Object a) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        BeanUtils.describe (a);
+    }
+}
+    ]]>
+	</code-fragment>
+
+	<test-code>
+		<description>Use Apache BeanUtils other</description>
+		<expected-problems>0</expected-problems>
+		<code-ref id="use-apache-beanutils-other" />
 	</test-code>
 
 

@@ -26,6 +26,8 @@ buildscript {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
+        gradlePluginPortal()
+        google()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$project.kotlin_version"
@@ -45,8 +47,16 @@ allprojects {
         resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     }
     repositories {
-        mavenLocal()
         mavenCentral()
+        mavenLocal()
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        gradlePluginPortal()
+        google()
     }
 }
 

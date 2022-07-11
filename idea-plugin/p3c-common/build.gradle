@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id "org.jetbrains.intellij" version "1.5.2"
 
-    id "org.sonarqube" version "3.3"
+    id "org.sonarqube" version "3.4.0.2513"
 
     id "com.github.ben-manes.versions" version "0.42.0"
 }

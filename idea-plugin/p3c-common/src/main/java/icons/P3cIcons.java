@@ -15,9 +15,9 @@
  */
 package icons;
 
-import javax.swing.Icon;
-
 import com.intellij.openapi.util.IconLoader;
+
+import javax.swing.*;
 
 /**
  * @author caikang
@@ -26,13 +26,13 @@ import com.intellij.openapi.util.IconLoader;
 public final class P3cIcons {
     private P3cIcons() {
         throw new AssertionError("icons.P3cIcons"
-            + " instances for you!");
+                + " instances for you!");
     }
 
-    public static final Icon ANALYSIS_ACTION = IconLoader.getIcon("/icons/ali-ide-run.png");
+    public static final Icon ANALYSIS_ACTION = IconLoader.getIcon("/icons/ali-ide-run.png", P3cIcons.class);
 
-    public static final Icon PROJECT_INSPECTION_ON = IconLoader.getIcon("/icons/qiyong.png");
-    public static final Icon PROJECT_INSPECTION_OFF = IconLoader.getIcon("/icons/tingyong.png");
-    public static final Icon LANGUAGE = IconLoader.getIcon("/icons/language.png");
-    public static final Icon ALIBABA = IconLoader.getIcon("/icons/alibaba.png");
+    public static final Icon PROJECT_INSPECTION_ON = IconLoader.getIcon("/icons/qiyong.png", P3cIcons.class);
+    public static final Icon PROJECT_INSPECTION_OFF = IconLoader.getIcon("/icons/tingyong.png", P3cIcons.class);
+    public static final Icon LANGUAGE = IconLoader.getIcon("/icons/language.png", P3cIcons.class);
+    public static final Icon ALIBABA = IconLoader.getIcon("/icons/alibaba.png", P3cIcons.class);
 }

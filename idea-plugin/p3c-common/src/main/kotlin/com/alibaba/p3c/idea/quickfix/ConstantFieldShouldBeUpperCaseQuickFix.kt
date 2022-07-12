@@ -28,7 +28,7 @@ import com.intellij.psi.PsiIdentifier
  * @date 2017/02/28
  */
 object ConstantFieldShouldBeUpperCaseQuickFix : AliQuickFix {
-    val separator = '_'
+    private const val separator = '_'
 
     override fun getName(): String {
         return P3cBundle.getMessage("com.alibaba.p3c.idea.quickfix.field.to.upperCaseWithUnderscore")
@@ -43,7 +43,7 @@ object ConstantFieldShouldBeUpperCaseQuickFix : AliQuickFix {
             separateCamelCase(it).toUpperCase()
         }
 
-        AliQuickFix.doQuickFix(resultName, project, psiIdentifier)
+        AliQuickFix.doQuickFixNew(resultName, project, psiIdentifier)
     }
 
     private fun separateCamelCase(name: String): String {

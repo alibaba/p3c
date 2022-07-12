@@ -21,13 +21,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
-import com.intellij.psi.JavaPsiFacade
-import com.intellij.psi.PsiDocumentManager
-import com.intellij.psi.PsiFile
-import com.intellij.psi.PsiIdentifier
-import com.intellij.psi.PsiLocalVariable
-import com.intellij.psi.PsiMember
-import com.intellij.psi.PsiParameter
+import com.intellij.psi.*
 
 /**
  *
@@ -46,6 +40,27 @@ interface AliQuickFix : LocalQuickFix {
 
     companion object {
         const val groupName = "Ali QuickFix"
+
+        fun doQuickFixNew(
+            newIdentifier: String,
+            project: Project,
+            psiIdentifier: PsiIdentifier
+        ) {
+            val offset = psiIdentifier.textOffset
+            val cannotFix = psiIdentifier.parent !is PsiMember
+                    && !(psiIdentifier.parent is PsiLocalVariable || psiIdentifier.parent is PsiParameter)
+            if (cannotFix) {
+                return
+            }
+
+            val editor = FileEditorManager.getInstance(project).selectedTextEditor ?: return
+            editor.caretModel.moveToOffset(psiIdentifier.textOffset)
+            val psiFile = psiIdentifier.containingFile
+            commitDocumentIfNeeded(psiFile, project)
+            val psiFacade = JavaPsiFacade.getInstance(project)
+            val factory = psiFacade.elementFactory
+            psiFile.findElementAt(offset)?.replace(factory.createIdentifier(newIdentifier))
+        }
 
         fun doQuickFix(newIdentifier: String, project: Project, psiIdentifier: PsiIdentifier) {
             val offset = psiIdentifier.textOffset

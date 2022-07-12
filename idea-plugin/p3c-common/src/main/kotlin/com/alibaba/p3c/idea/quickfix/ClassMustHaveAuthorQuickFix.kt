@@ -33,8 +33,7 @@ object ClassMustHaveAuthorQuickFix : InspectionGadgetsFix(), AliQuickFix {
 
     val tag = "@author ${System.getProperty("user.name") ?: System.getenv("USER")}"
 
-    override fun doFix(project: Project?, descriptor: ProblemDescriptor?) {
-        descriptor ?: return
+    override fun doFix(project: Project, descriptor: ProblemDescriptor) {
         val psiClass = descriptor.psiElement as? PsiClass ?: descriptor.psiElement?.parent as? PsiClass ?: return
 
         val document = psiClass.docComment

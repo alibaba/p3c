@@ -49,7 +49,7 @@ object LowerCamelCaseVariableNamingQuickFix : AliQuickFix {
             .omitEmptyStrings().split(identifier).toList()
         val result = list.mapIndexed { i, s ->
             val charArray = s.toCharArray()
-            charArray[0] = if (i == 0) charArray[0].toLowerCase() else charArray[0].toLowerCase()
+            charArray[0] = if (i == 0) charArray[0].toLowerCase() else charArray[0].toUpperCase()
             String(charArray)
         }
         return result.joinToString("")

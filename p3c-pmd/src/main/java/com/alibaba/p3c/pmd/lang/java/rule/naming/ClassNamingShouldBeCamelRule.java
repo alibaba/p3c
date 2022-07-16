@@ -34,7 +34,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 public class ClassNamingShouldBeCamelRule extends AbstractAliRule {
 
     private static final Pattern PATTERN
-        = Pattern.compile("^I?([A-Z][a-z0-9]+)+(([A-Z])|(DO|DTO|VO|DAO|BO|DAOImpl|YunOS|AO|PO))?$");
+        = Pattern.compile("^I?([A-Z][a-z0-9]+)+(([A-Z])|(DO|DTO|VO|DAO|BO|DAOImpl|YunOS|AO|PO｜DOMapper))?$");
 
     private static final List<String> CLASS_NAMING_WHITE_LIST = NameListConfig.NAME_LIST_SERVICE.getNameList(
         ClassNamingShouldBeCamelRule.class.getSimpleName(), "CLASS_NAMING_WHITE_LIST");

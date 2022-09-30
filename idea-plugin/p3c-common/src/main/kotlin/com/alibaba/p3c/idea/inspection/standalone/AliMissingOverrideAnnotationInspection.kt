@@ -77,7 +77,6 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
     override fun buildVisitor(): BaseInspectionVisitor = MissingOverrideAnnotationVisitor()
 
     private inner class MissingOverrideAnnotationVisitor : BaseInspectionVisitor() {
-
         override fun visitMethod(method: PsiMethod) {
             if (method.nameIdentifier == null) {
                 return
@@ -103,7 +102,8 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
                     MethodUtils.isToString(method))) {
                 return
             }
-            registerMethodError(method)
+            // 兼容高版本 buildFix 参数结构
+            registerMethodError(method, method, false, false)
         }
 
         private fun hasOverrideAnnotation(element: PsiModifierListOwner): Boolean {

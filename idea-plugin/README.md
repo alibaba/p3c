@@ -2,7 +2,7 @@
 ---
 ## <font color="green">Prepare</font>
 - Project JDK: 11
-- Gradle: 6.8.3（Require JDK11 for gradle）
+- Gradle: 7.3（Require JDK17 for gradle）
 
 ## <font color="green">Build</font>
 ```

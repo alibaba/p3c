@@ -20,13 +20,16 @@ updates:
     schedule:
       interval: "daily"
     target-branch: "xenoamess_maintain_fork_develop"
+    open-pull-requests-limit: 100
   - package-ecosystem: "gradle"
     directory: "/idea-plugin/"
     schedule:
       interval: "daily"
     target-branch: "xenoamess_maintain_fork_develop"
+    open-pull-requests-limit: 100
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
     target-branch: "xenoamess_maintain_fork_develop"
+    open-pull-requests-limit: 100

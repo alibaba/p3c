@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id "org.jetbrains.intellij" version "1.5.2"
 
-    id "com.github.ben-manes.versions" version "0.45.0"
+    id "com.github.ben-manes.versions" version "0.46.0"
 }
 apply plugin: 'kotlin'
 apply plugin: 'idea'

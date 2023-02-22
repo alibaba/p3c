@@ -221,7 +221,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="2020.2.4"/>
+    <idea-version since-build="202.8194.7"/>
 
     <depends optional="true" config-file="pluginWithJava.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>

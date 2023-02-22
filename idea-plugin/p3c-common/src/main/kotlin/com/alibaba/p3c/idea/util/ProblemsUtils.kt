@@ -153,7 +153,12 @@ object ProblemsUtils {
                 QuickFixes.getQuickFix(ruleName, isOnTheFly)
             }
     ): ProblemDescriptor? {
-        val localQuickFix = quickFix() ?: return null
+        val localQuickFix = quickFix();
+        if (localQuickFix == null) {
+            return manager.createProblemDescriptor(psiFile, textRange,
+                desc, ProblemHighlightType.GENERIC_ERROR_OR_WARNING,
+                isOnTheFly)
+        }
         return manager.createProblemDescriptor(psiFile, textRange,
                 desc, ProblemHighlightType.GENERIC_ERROR_OR_WARNING,
                 isOnTheFly, localQuickFix)

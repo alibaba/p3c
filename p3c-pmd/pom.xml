@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess.p3c</groupId>
     <artifactId>p3c-pmd</artifactId>
-    <version>2.1.1.6x-SNAPSHOT</version>
+    <version>2.2.0.0x-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>p3c-pmd</name>
     <properties>
@@ -172,6 +172,26 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>3.2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>1.11.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okio</groupId>
+                <artifactId>okio</artifactId>
+                <version>1.17.6</version>
+            </dependency>
+            <dependency>
+                <groupId>com.beust</groupId>
+                <artifactId>jcommander</artifactId>
+                <version>1.82</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>

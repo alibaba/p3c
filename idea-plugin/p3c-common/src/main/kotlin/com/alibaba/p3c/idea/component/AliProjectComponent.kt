@@ -24,7 +24,6 @@ import com.alibaba.p3c.idea.util.withLockNotInline
 import com.alibaba.smartfox.idea.common.component.AliBaseProjectComponent
 import com.alibaba.smartfox.idea.common.util.getService
 import com.intellij.openapi.actionSystem.ActionManager
-import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManager
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.VirtualFileEvent
@@ -41,8 +40,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock
  * @author caikang
  * @date 2016/12/13
  */
-class AliProjectComponent(
-) : AliBaseProjectComponent {
+class AliProjectComponent : AliBaseProjectComponent {
     private val listener: VirtualFileListener
     private val javaExtension = ".java"
     private val velocityExtension = ".vm"
@@ -53,33 +51,17 @@ class AliProjectComponent(
 
     private val fileContexts = ConcurrentHashMap<String, FileContext>()
 
-    private var project: Project? = null;
-
-    private var p3cConfig: P3cConfig? = null;
-
-    public fun getProject(): Project {
-        if (this.project == null) {
-            project = ProjectManager.getInstance().defaultProject
-        }
-        return this.project!!
-    }
-
-    public fun getP3cConfig(): P3cConfig {
-        if (this.p3cConfig == null) {
-            p3cConfig = P3cConfig::class.java.getService()
-        }
-        return this.p3cConfig!!
-    }
-
     init {
         listener = object : VirtualFileListener {
             override fun contentsChanged(event: VirtualFileEvent) {
                 val path = getFilePath(event) ?: return
-                PsiManager.getInstance(getProject()).findFile(event.file) ?: return
-                if (!getP3cConfig().ruleCacheEnable) {
+                val project = ProjectManager.getInstance().defaultProject
+                PsiManager.getInstance(project).findFile(event.file) ?: return
+                val p3cConfig = P3cConfig::class.java.getService()
+                if (!p3cConfig.ruleCacheEnable) {
                     AliPmdInspectionInvoker.refreshFileViolationsCache(event.file)
                 }
-                if (!getP3cConfig().astCacheEnable) {
+                if (!p3cConfig.astCacheEnable) {
                     SourceCodeProcessor.invalidateCache(path)
                 }
                 SourceCodeProcessor.invalidUserTrigger(path)
@@ -115,13 +97,15 @@ class AliProjectComponent(
     }
 
     override fun initComponent() {
-        I18nResources.changeLanguage(getP3cConfig().locale)
+        val p3cConfig = P3cConfig::class.java.getService()
+        I18nResources.changeLanguage(p3cConfig.locale)
         val analyticsGroup = ActionManager.getInstance().getAction(analyticsGroupId)
         analyticsGroup.templatePresentation.text = P3cBundle.getMessage(analyticsGroupText)
     }
 
     override fun projectOpened() {
-        Inspections.addCustomTag(getProject(), "date")
+        val project = ProjectManager.getInstance().defaultProject
+        Inspections.addCustomTag(project, "date")
         VirtualFileManager.getInstance().addVirtualFileListener(listener)
     }
 

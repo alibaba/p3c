@@ -29,6 +29,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.2.0.0x
+            <li>Fix idea 2023 compatibility issue</li>
+        </ul>
         <ul>2.1.1.6x-SNAPSHOT
             <li>Fix idea 2023.1-EAP compatibility issue</li>
         </ul>
@@ -224,7 +227,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="202.8194.7"/>
+    <idea-version since-build="231.8109.175"/>
 
     <depends optional="true" config-file="pluginWithJava.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>

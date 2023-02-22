@@ -248,7 +248,7 @@ class PmdGlobalInspectionContextImpl(
                                 // do not inspect binary files
                                 if (psiFile != null) {
                                     try {
-                                        if(ApplicationManager.getApplication().isReadAccessAllowed) {
+                                        if (ApplicationManager.getApplication().isReadAccessAllowed) {
                                             outFilesToInspect.put(psiFile)
                                         }
                                     } catch (e: InterruptedException) {

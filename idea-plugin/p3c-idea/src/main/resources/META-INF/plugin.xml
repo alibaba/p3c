@@ -29,7 +29,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <ul>2.1.1.5x-SNAPSHOT
+        <ul>2.1.1.5x
             <li>Migrate deprecated/removal idea function usages</li>
         </ul>
         <ul>2.1.1.4x

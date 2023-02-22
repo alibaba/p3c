@@ -29,6 +29,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.1.1.5x
+            <li>Migrate deprecated/removal idea function usages</li>
+        </ul>
         <ul>2.1.1.4x
             <li>Fix idea 2022.1 Ultimate compatibility issue</li>
         </ul>
@@ -218,7 +221,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="181.5540.23"/>
+    <idea-version since-build="2020.2.4"/>
 
     <depends optional="true" config-file="pluginWithJava.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>

@@ -53,7 +53,7 @@ object LowerCamelCaseVariableNamingQuickFix : AliQuickFix {
                 .toList()
         val result = list.mapIndexed { i, s ->
             val charArray = s.toCharArray()
-            charArray[0] = if (i == 0) charArray[0].toLowerCase() else charArray[0].toUpperCase()
+            charArray[0] = if (i == 0) charArray[0].lowercaseChar() else charArray[0].uppercaseChar()
             String(charArray)
         }
         return result.joinToString("")

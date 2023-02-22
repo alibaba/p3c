@@ -116,7 +116,7 @@ class PmdGlobalInspectionContextImpl(
                             logger.info(file.name + "; scope: " + scope + "; " + virtualFile)
                             return@tryRunReadActionInSmartMode true
                         }
-                        val path = virtualFile.canonicalPath?.toLowerCase() ?: ""
+                        val path = virtualFile.canonicalPath?.lowercase() ?: ""
                         if (!path.endsWith(".java") && !path.endsWith(".vm")) {
                             return@tryRunReadActionInSmartMode true
                         }

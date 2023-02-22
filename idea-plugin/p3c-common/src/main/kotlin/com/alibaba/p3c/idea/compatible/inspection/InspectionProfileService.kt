@@ -120,6 +120,6 @@ object InspectionProfileService {
     }
 
     fun getProjectInspectionProfile(project: Project): InspectionProfileImpl {
-        return InspectionProjectProfileManager.getInstance(project).inspectionProfile as InspectionProfileImpl
+        return InspectionProjectProfileManager.getInstance(project).currentProfile
     }
 }

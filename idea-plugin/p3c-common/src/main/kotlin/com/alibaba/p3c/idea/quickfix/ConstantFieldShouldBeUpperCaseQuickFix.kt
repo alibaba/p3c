@@ -20,6 +20,7 @@ import com.google.common.base.Splitter
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiIdentifier
+import java.util.Locale
 
 /**
  *
@@ -40,7 +41,7 @@ object ConstantFieldShouldBeUpperCaseQuickFix : AliQuickFix {
         val list = Splitter.on(separator).trimResults().omitEmptyStrings().splitToList(identifier)
 
         val resultName = list.joinToString(separator.toString()) {
-            separateCamelCase(it).toUpperCase()
+            separateCamelCase(it).uppercase()
         }
 
         AliQuickFix.doQuickFix(resultName, project, psiIdentifier)

@@ -2,7 +2,7 @@
 ---
 ## <font color="green">Prepare</font>
 - Project JDK: 11
-- Gradle: 6.8.3（Require JDK11 for gradle）
+- Gradle: 7.3（Require JDK17 for gradle）
 
 ## <font color="green">Build</font>
 ```
@@ -21,7 +21,7 @@ cd p3c-idea
 
 ## <font color="green">Use p3c-common as your plugin dependency</font>
 ```groovy
-compile 'com.xenoamess.p3c.idea:p3c-common:2.1.1.4x'
+compile 'com.xenoamess.p3c.idea:p3c-common:2.1.1.5x'
 ```
 ## [中文使用手册](README_cn.md)
 ## <font color="green">Install</font>

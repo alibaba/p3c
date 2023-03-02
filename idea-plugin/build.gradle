@@ -34,5 +34,9 @@ allprojects {
         compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
         testCompile group: 'junit', name: 'junit', version: '4.11'
     }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions.jvmTarget = "1.8"
+    }
 }
 

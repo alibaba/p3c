@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "1.13.0"
+    id "org.jetbrains.intellij" version "1.13.1"
 
     id "org.sonarqube" version "4.0.0.2929"
 

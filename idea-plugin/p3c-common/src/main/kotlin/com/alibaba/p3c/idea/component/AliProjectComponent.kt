@@ -41,8 +41,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock
  * @date 2016/12/13
  */
 class AliProjectComponent(
-    private val project: Project,
-    val p3cConfig: P3cConfig
+    private val project: Project
 ) : AliBaseProjectComponent {
     private val listener: VirtualFileListener
     private val javaExtension = ".java"
@@ -55,6 +54,7 @@ class AliProjectComponent(
     private val fileContexts = ConcurrentHashMap<String, FileContext>()
 
     init {
+        val p3cConfig = P3cConfig.getInstance()
         listener = object : VirtualFileAdapter() {
             override fun contentsChanged(event: VirtualFileEvent) {
                 val path = getFilePath(event) ?: return
@@ -98,6 +98,7 @@ class AliProjectComponent(
     }
 
     override fun initComponent() {
+        val p3cConfig = P3cConfig.getInstance()
         I18nResources.changeLanguage(p3cConfig.locale)
         val analyticsGroup = ActionManager.getInstance().getAction(analyticsGroupId)
         analyticsGroup.templatePresentation.text = P3cBundle.getMessage(analyticsGroupText)

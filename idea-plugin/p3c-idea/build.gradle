@@ -17,6 +17,29 @@ intellij {
     pluginName plugin_name
     updateSinceUntilBuild false
     sandboxDirectory "idea-sandbox"
+
+    patchPluginXml {
+        sinceBuild pluginSinceBuild
+        untilBuild pluginUntilBuild
+        pluginId = "io.github.godfather1103.alibaba.p3c"
+        pluginDescription """
+            Alibaba Java Coding Guidelines plugin support.Fix some bug.such as issues-898,issues-900
+            修复了部分官方一直未更新解决的Bug，如issues-898，issues-900
+        """
+        changeNotes """
+        <ul>
+        2.1.1
+        <li>fix(<a href="https://github.com/alibaba/p3c/issues/898">issues-898</a>): 1、修复2022.1中检测到缺失override注解出现异常；2、修复编译异常</li>
+        <li>fix(<a href="https://github.com/alibaba/p3c/issues/900">issues-900</a>): 修复驼峰等自动修改异常</li>
+        </ul>
+        """
+    }
+
+    publishPlugin {
+        username publishUsername
+        token = publishToken.isEmpty() ? ORG_GRADLE_PROJECT_intellijPublishToken : publishToken
+        channels publishChannel
+    }
 }
 
 version plugin_version

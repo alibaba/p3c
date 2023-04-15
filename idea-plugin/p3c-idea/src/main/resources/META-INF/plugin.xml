@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.alibaba.p3c.smartfox</id>
-    <name>Alibaba Java Coding Guidelines</name>
+    <name>Alibaba Java Coding Guidelines(Fix Some Bug)</name>
     <description>Alibaba Java Coding Guidelines plugin support.</description>
 
     <change-notes>
@@ -82,10 +82,10 @@
         </ul>
         ]]>
     </change-notes>
-    <vendor>alibaba</vendor>
-    <version>2.0.0</version>
+    <vendor>Jack Chu</vendor>
+    <version>2.1.1</version>
     <idea-version since-build="183.4284"/>
-    <depends optional="true">com.intellij.velocity</depends>
+<!--    <depends optional="true">com.intellij.velocity</depends>-->
     <depends optional="true" config-file="p3c.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>

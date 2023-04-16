@@ -4,7 +4,7 @@ buildscript {
             url "https://oss.sonatype.org/content/repositories/snapshots/"
         }
         maven {
-            url 'http://dl.bintray.com/jetbrains/intellij-plugin-service'
+            url 'https://dl.bintray.com/jetbrains/intellij-plugin-service'
         }
         mavenCentral()
 

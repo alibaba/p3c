@@ -3,27 +3,16 @@ plugins {
 }
 apply plugin: 'kotlin'
 apply plugin: 'idea'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
 javadoc {
     options.tags = ["date"]
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from 'build/docs/javadoc'
-}
-
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives jar
-    archives javadocJar
-    archives sourcesJar
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
 def myPlugins = []
@@ -50,48 +39,53 @@ dependencies {
     implementation group: 'org.javassist', name: 'javassist', version: '3.21.0-GA'
 }
 
-uploadArchives {
+publishing {
     repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: findProperty('ossrhUsername'), password: findProperty('ossrhPassword'))
+        maven {
+            if (version.toString().toUpperCase().contains("SNAPSHOT")) {
+                url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            } else {
+                url = "https://oss.sonatype.org/content/repositories/snapshots/"
             }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: findProperty('ossrhUsername'), password: findProperty('ossrhPassword'))
+            credentials {
+                username = "${property("ossrhUsername")}"
+                password = "${property("ossrhPassword")}"
             }
+        }
+    }
 
-            pom.project {
-                name 'p3c-common'
-                packaging 'jar'
-                description 'P3c Idea Plugin Common.'
-                url 'https://github.com/alibaba/p3c'
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'p3c-common'
+            from components.java
+            pom {
+                name = 'p3c-common'
+                description = 'P3c Idea Plugin Common.'
+                url = 'https://github.com/alibaba/p3c'
 
                 scm {
-                    url 'https://github.com/alibaba/p3c'
-                    connection 'scm:git:https://git@github.com/alibaba/p3c.git'
+                    url = 'https://github.com/alibaba/p3c'
+                    connection = 'scm:git:https://git@github.com/alibaba/p3c.git'
                 }
 
                 licenses {
                     license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                        distribution 'repo'
+                        name = 'The Apache Software License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution = 'repo'
                     }
                 }
 
                 developers {
                     developer {
-                        id 'junlie'
-                        name 'Junlie'
-                        email 'sean.caikang@gmail.com'
+                        id = 'junlie'
+                        name = 'Junlie'
+                        email = 'sean.caikang@gmail.com'
                     }
                     developer {
-                        id 'ZengHou'
-                        name 'ZengHou'
-                        email 'fengwei1983@gmail.com'
+                        id = 'ZengHou'
+                        name = 'ZengHou'
+                        email = 'fengwei1983@gmail.com'
                     }
                 }
             }
@@ -100,8 +94,5 @@ uploadArchives {
 }
 
 signing {
-    required {
-        isReleaseVersion && gradle.taskGraph.hasTask("uploadArchives")
-    }
-    sign configurations.archives
+    sign publishing.publications.mavenJava
 }

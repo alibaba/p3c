@@ -1,5 +1,5 @@
 plugins {
-    id "org.jetbrains.intellij" version "0.7.3"
+    id "org.jetbrains.intellij" version "1.13.1"
 }
 apply plugin: 'kotlin'
 apply plugin: 'idea'
@@ -14,17 +14,20 @@ if (intVersion >= 2023) {
 }
 
 intellij {
-    version idea_version
-    plugins = myPlugins
-    pluginName plugin_name
-    updateSinceUntilBuild false
-    sandboxDirectory "idea-sandbox"
+    version.set(idea_version)
+    plugins.set(myPlugins)
+    pluginName.set(plugin_name)
+    updateSinceUntilBuild.set(false)
+    sandboxDir.set("idea-sandbox")
+}
+
+tasks {
 
     patchPluginXml {
-        sinceBuild pluginSinceBuild
-        untilBuild pluginUntilBuild
-        pluginId "io.github.godfather1103.alibaba.p3c"
-        pluginDescription """
+        sinceBuild.set(pluginSinceBuild)
+        untilBuild.set(pluginUntilBuild)
+        pluginId.set("io.github.godfather1103.alibaba.p3c")
+        pluginDescription.set("""
 <h2>English Readme：</h2>
 <p>Alibaba Java Coding Guidelines plugin support.Fix some bug.such as <a href="https://github.com/alibaba/p3c/issues/898">issues-898</a>,<a href="https://github.com/alibaba/p3c/issues/900">issues-900</a></p>
 <p>Official plugin URL: <a href="https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines">Alibaba Java Coding Guidelines</a></p>
@@ -47,20 +50,18 @@ Your gift will help me to contribute better, thank you!
 微信(WeChat)
 <img src="https://plugins.jetbrains.com/files/17512/screenshot_da480b29-acfa-47dd-b9fe-d8c9ce1f624b" alt="微信支付" width="300" height="320" align="bottom" />
 </pre>
-        """
-        changeNotes """
+        """)
+        changeNotes.set("""
         <ul>
         2.1.1
         <li>fix(<a href="https://github.com/alibaba/p3c/issues/898">issues-898</a>): 1、修复2022.1中检测到缺失override注解出现异常；2、修复编译异常</li>
         <li>fix(<a href="https://github.com/alibaba/p3c/issues/900">issues-900</a>): 修复驼峰等自动修改异常</li>
         </ul>
-        """
+        """)
     }
 
     publishPlugin {
-        username publishUsername
-        token = publishToken.isEmpty() ? ORG_GRADLE_PROJECT_intellijPublishToken : publishToken
-        channels publishChannel
+        token.set(publishToken.isEmpty() ? ORG_GRADLE_PROJECT_intellijPublishToken : publishToken)
     }
 }
 

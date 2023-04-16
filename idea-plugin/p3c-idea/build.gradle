@@ -65,7 +65,7 @@ Your gift will help me to contribute better, thank you!
     }
 }
 
-version plugin_version
+version plugin_version + "-" + idea_version
 
 dependencies {
     implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.25-incubating'

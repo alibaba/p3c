@@ -22,14 +22,7 @@ import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.util.TextRange
-import com.intellij.psi.PsiClass
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiField
-import com.intellij.psi.PsiFile
-import com.intellij.psi.PsiIdentifier
-import com.intellij.psi.PsiJavaToken
-import com.intellij.psi.PsiKeyword
-import com.intellij.psi.PsiWhiteSpace
+import com.intellij.psi.*
 import com.intellij.psi.impl.source.tree.ElementType
 
 /**
@@ -42,12 +35,14 @@ import com.intellij.psi.impl.source.tree.ElementType
 object ProblemsUtils {
     private val highlightLineRules = setOf(AvoidCommentBehindStatementRule::class.java.simpleName)
 
-    fun createProblemDescriptorForPmdRule(psiFile: PsiFile, manager: InspectionManager, isOnTheFly: Boolean,
-            ruleName: String, desc: String, start: Int, end: Int,
-            checkLine: Int = 0,
-            quickFix: (PsiElement) -> LocalQuickFix? = {
-                QuickFixes.getQuickFix(ruleName, isOnTheFly)
-            }): ProblemDescriptor? {
+    fun createProblemDescriptorForPmdRule(
+        psiFile: PsiFile, manager: InspectionManager, isOnTheFly: Boolean,
+        ruleName: String, desc: String, start: Int, end: Int,
+        checkLine: Int = 0,
+        quickFix: (PsiElement) -> LocalQuickFix? = {
+            QuickFixes.getQuickFix(ruleName, isOnTheFly)
+        }
+    ): ProblemDescriptor? {
         val document = FileDocumentManager.getInstance().getDocument(psiFile.virtualFile) ?: return null
         if (highlightLineRules.contains(ruleName) && checkLine <= document.lineCount) {
             val lineNumber = if (start >= document.textLength) {
@@ -82,9 +77,11 @@ object ProblemsUtils {
             }
             endElement = psiElement
         }
-        return manager.createProblemDescriptor(psiElement, endElement,
-                desc, ProblemHighlightType.GENERIC_ERROR_OR_WARNING, isOnTheFly,
-                quickFix(psiElement))
+        return manager.createProblemDescriptor(
+            psiElement, endElement,
+            desc, ProblemHighlightType.GENERIC_ERROR_OR_WARNING, isOnTheFly,
+            *listOfNotNull(quickFix(psiElement)).toTypedArray()
+        )
     }
 
     private fun getEndElement(psiFile: PsiFile, psiElement: PsiElement, endOffset: Int): PsiElement {
@@ -99,7 +96,8 @@ object ProblemsUtils {
             return psiElement
         }
         if (endElement == null || endElement is PsiWhiteSpace
-                || psiElement.textRange.startOffset >= endElement.textRange.endOffset) {
+            || psiElement.textRange.startOffset >= endElement.textRange.endOffset
+        ) {
             endElement = psiElement
         }
         return endElement
@@ -114,8 +112,9 @@ object ProblemsUtils {
             return null
         }
         if (psiElement is PsiKeyword && psiElement.text != null && (ObjectConstants.CLASS_LITERAL == psiElement.text
-                || ObjectConstants.INTERFACE_LITERAL == psiElement.text
-                || ObjectConstants.ENUM_LITERAL == psiElement.text) && psiElement.parent is PsiClass) {
+                    || ObjectConstants.INTERFACE_LITERAL == psiElement.text
+                    || ObjectConstants.ENUM_LITERAL == psiElement.text) && psiElement.parent is PsiClass
+        ) {
             val parent = psiElement.parent as PsiClass
             val identifier = parent.nameIdentifier
             return identifier ?: psiElement
@@ -123,14 +122,20 @@ object ProblemsUtils {
         return psiElement
     }
 
-    private fun createTextRangeProblem(manager: InspectionManager, textRange: TextRange, isOnTheFly: Boolean,
-            psiFile: PsiFile, ruleName: String, desc: String,
-            quickFix: () -> LocalQuickFix? = {
-                QuickFixes.getQuickFix(ruleName, isOnTheFly)
-            }): ProblemDescriptor {
-
-        return manager.createProblemDescriptor(psiFile, textRange,
-                desc, ProblemHighlightType.GENERIC_ERROR_OR_WARNING,
-                isOnTheFly, quickFix())
+    private fun createTextRangeProblem(
+        manager: InspectionManager, textRange: TextRange, isOnTheFly: Boolean,
+        psiFile: PsiFile, ruleName: String, desc: String,
+        quickFix: () -> LocalQuickFix? = {
+            QuickFixes.getQuickFix(ruleName, isOnTheFly)
+        }
+    ): ProblemDescriptor {
+        return manager.createProblemDescriptor(
+            psiFile,
+            textRange,
+            desc,
+            ProblemHighlightType.GENERIC_ERROR_OR_WARNING,
+            isOnTheFly,
+            *listOfNotNull(quickFix()).toTypedArray()
+        )
     }
 }

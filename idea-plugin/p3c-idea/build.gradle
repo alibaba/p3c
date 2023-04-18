@@ -42,14 +42,6 @@ tasks {
 Your gift will help me to contribute better, thank you!
 
 <a href="https://paypal.me/godfather1103?locale.x=zh_XC">PayPal</a>
-
-支付宝(Alipay)
-<img src="https://plugins.jetbrains.com/files/17512/screenshot_434da076-114d-435c-a832-a86584ff29db" alt="支付宝" width="200" height="300" align="bottom" />
-<img src="https://plugins.jetbrains.com/files/17512/screenshot_96f642c8-e168-4141-a29c-78166dc61ac5" alt="支付宝" width="200" height="300" align="bottom" />
-
-微信(WeChat)
-<img src="https://plugins.jetbrains.com/files/17512/screenshot_da480b29-acfa-47dd-b9fe-d8c9ce1f624b" alt="微信支付" width="300" height="320" align="bottom" />
-</pre>
         """)
         changeNotes.set("""
         <ul>

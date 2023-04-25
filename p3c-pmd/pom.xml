@@ -24,7 +24,7 @@
         <!--libraries versions-->
         <pmd.version>6.55.0</pmd.version>
         <annotation.version>1.3.2</annotation.version>
-        <kotlin.version>1.8.20</kotlin.version>
+        <kotlin.version>1.8.21</kotlin.version>
         <x8l.version>2.3.9</x8l.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-io.version>2.11.0</commons-io.version>

@@ -231,11 +231,14 @@ class PmdGlobalInspectionContextImpl(
                     val fileIndex: FileIndex = ProjectRootManager.getInstance(project).fileIndex
                     scope.accept { file: VirtualFile? ->
                         ProgressManager.checkCanceled()
-                        if (isProjectOrWorkspaceFile(file!!) || !fileIndex.isInContent(file)) return@accept true
+                        val isValidFile = ReadAction.compute<Boolean, RuntimeException> {
+                            isProjectOrWorkspaceFile(file!!) || !fileIndex.isInContent(file)
+                        }
+                        if (isValidFile) return@accept true
                         val psiFile =
                             ReadAction.compute<PsiFile?, RuntimeException> {
                                 if (project.isDisposed) throw ProcessCanceledException()
-                                val psi = PsiManager.getInstance(project).findFile(file)
+                                val psi = PsiManager.getInstance(project).findFile(file!!)
                                 val document =
                                     psi?.let { shouldProcess(it, headlessEnvironment, localScopeFiles) }
                                 if (document != null) {

@@ -27,7 +27,7 @@
         <kotlin.version>1.8.21</kotlin.version>
         <x8l.version>2.3.9</x8l.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
-        <commons-io.version>2.11.0</commons-io.version>
+        <commons-io.version>2.12.0</commons-io.version>
         <junit.version>4.13.2</junit.version>
         <jackson.version>2.15.0</jackson.version>
         <!---->

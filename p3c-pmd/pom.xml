@@ -29,7 +29,7 @@
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-io.version>2.13.0</commons-io.version>
         <junit.version>4.13.2</junit.version>
-        <jackson.version>2.15.0</jackson.version>
+        <jackson.version>2.15.2</jackson.version>
         <!---->
         <!---->
         <!--maven plugins versions-->

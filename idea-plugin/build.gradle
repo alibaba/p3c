@@ -15,7 +15,7 @@ static boolean shouldIncludeJava(String idea_version_string) {
 
 buildscript {
     project.ext {
-        kotlin_version = "1.9.0"
+        kotlin_version = "1.9.10"
     }
     repositories {
         mavenCentral()

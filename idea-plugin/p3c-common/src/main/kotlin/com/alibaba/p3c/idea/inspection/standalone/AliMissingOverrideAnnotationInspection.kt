@@ -29,7 +29,6 @@ import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiModifier
 import com.intellij.psi.PsiModifierListOwner
 import com.intellij.psi.util.InheritanceUtil
-import com.jetbrains.rd.util.catch
 import com.siyeh.ig.BaseInspectionVisitor
 import com.siyeh.ig.InspectionGadgetsFix
 import com.siyeh.ig.inheritance.MissingOverrideAnnotationInspection
@@ -118,7 +117,7 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
             ) {
                 return
             }
-            registerMethodError(method)
+            this.registerMethodError(method, *arrayOf<Any>(method, true, true))
         }
 
         private fun hasOverrideAnnotation(element: PsiModifierListOwner): Boolean {

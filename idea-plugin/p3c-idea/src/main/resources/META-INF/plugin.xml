@@ -29,6 +29,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.2.1.0x
+            <li>Fix @Override missing error</li>
+        </ul>
         <ul>2.2.0.0x
             <li>Fix idea 2023.1 2023.2 2023.3 compatibility issue</li>
         </ul>

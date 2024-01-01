@@ -90,9 +90,15 @@ object ProblemsUtils {
             }
             endElement = psiElement
         }
-        return manager.createProblemDescriptor(psiElement, endElement,
-                desc, ProblemHighlightType.GENERIC_ERROR_OR_WARNING, isOnTheFly,
-                quickFix(psiElement))
+        val localQuickFix = quickFix(psiElement) ?: return null
+        return manager.createProblemDescriptor(
+            psiElement,
+            endElement,
+                desc,
+            ProblemHighlightType.GENERIC_ERROR_OR_WARNING,
+            isOnTheFly,
+            localQuickFix
+        )
     }
 
     private fun getEndElement(psiFile: PsiFile, psiElement: PsiElement, endOffset: Int): PsiElement {
@@ -146,10 +152,15 @@ object ProblemsUtils {
             quickFix: () -> LocalQuickFix? = {
                 QuickFixes.getQuickFix(ruleName, isOnTheFly)
             }
-    ): ProblemDescriptor {
-
+    ): ProblemDescriptor? {
+        val localQuickFix = quickFix();
+        if (localQuickFix == null) {
+            return manager.createProblemDescriptor(psiFile, textRange,
+                desc, ProblemHighlightType.GENERIC_ERROR_OR_WARNING,
+                isOnTheFly)
+        }
         return manager.createProblemDescriptor(psiFile, textRange,
                 desc, ProblemHighlightType.GENERIC_ERROR_OR_WARNING,
-                isOnTheFly, quickFix())
+                isOnTheFly, localQuickFix)
     }
 }

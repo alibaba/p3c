@@ -1,4 +1,4 @@
-set JAVA_HOME=C:\jdk-11.0.13+8\
+set JAVA_HOME=C:\jdk-17\
 cd ./p3c-pmd
 call ./mvnw clean deploy -Dmaven.javadoc.skip=false -e -X -Psonatype-oss-release
 cd ../

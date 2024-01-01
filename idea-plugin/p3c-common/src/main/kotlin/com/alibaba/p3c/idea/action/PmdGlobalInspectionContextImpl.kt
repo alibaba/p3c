@@ -227,43 +227,50 @@ class PmdGlobalInspectionContextImpl(
     ): Future<*>? {
         val task: Backgroundable = object : Backgroundable(project, "Scanning Files to Inspect") {
             override fun run(indicator: ProgressIndicator) {
-                try {
-                    val fileIndex: FileIndex = ProjectRootManager.getInstance(project).fileIndex
-                    scope.accept { file: VirtualFile? ->
-                        ProgressManager.checkCanceled()
-                        if (isProjectOrWorkspaceFile(file!!) || !fileIndex.isInContent(file)) return@accept true
-                        val psiFile =
-                            ReadAction.compute<PsiFile?, RuntimeException> {
-                                if (project.isDisposed) throw ProcessCanceledException()
-                                val psi = PsiManager.getInstance(project).findFile(file)
-                                val document =
-                                    psi?.let { shouldProcess(it, headlessEnvironment, localScopeFiles) }
-                                if (document != null) {
-                                    return@compute psi
+                ApplicationManager.getApplication().runReadAction(
+                    Runnable {
+                        try {
+                            val fileIndex: FileIndex = ProjectRootManager.getInstance(project).fileIndex
+                            scope.accept { file: VirtualFile? ->
+                                ProgressManager.checkCanceled()
+                                if (isProjectOrWorkspaceFile(file!!) || !fileIndex.isInContent(file)) return@accept true
+                                val psiFile =
+                                    ReadAction.compute<PsiFile?, RuntimeException> {
+                                        if (project.isDisposed) throw ProcessCanceledException()
+                                        val psi = PsiManager.getInstance(project).findFile(file)
+                                        val document =
+                                            psi?.let { shouldProcess(it, headlessEnvironment, localScopeFiles) }
+                                        if (document != null) {
+                                            return@compute psi
+                                        }
+                                        null
+                                    }
+                                // do not inspect binary files
+                                if (psiFile != null) {
+                                    try {
+                                        if (ApplicationManager.getApplication().isReadAccessAllowed) {
+                                            outFilesToInspect.put(psiFile)
+                                        }
+                                    } catch (e: InterruptedException) {
+                                        logger.error("psiFile interrupted : " + psiFile.name, e)
+                                    } catch (e: IllegalStateException) {
+                                        logger.info("psiFile ignored : " + psiFile.name, e)
+                                    }
                                 }
-                                null
+                                ProgressManager.checkCanceled()
+                                true
                             }
-                        // do not inspect binary files
-                        if (psiFile != null) {
+                        } catch (e: ProcessCanceledException) {
+                            // ignore, but put tombstone
+                        } finally {
                             try {
-                                check(!ApplicationManager.getApplication().isReadAccessAllowed) { "Must not have read action" }
-                                outFilesToInspect.put(psiFile)
+                                outFilesToInspect.put(PsiUtilCore.NULL_PSI_FILE)
                             } catch (e: InterruptedException) {
                                 logger.error(e)
                             }
                         }
-                        ProgressManager.checkCanceled()
-                        true
                     }
-                } catch (e: ProcessCanceledException) {
-                    // ignore, but put tombstone
-                } finally {
-                    try {
-                        outFilesToInspect.put(PsiUtilCore.NULL_PSI_FILE)
-                    } catch (e: InterruptedException) {
-                        logger.error(e)
-                    }
-                }
+                )
             }
         }
         return (ProgressManager.getInstance() as CoreProgressManager).runProcessWithProgressAsynchronously(

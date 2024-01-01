@@ -1,10 +1,10 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "1.9.0"
+    id "org.jetbrains.intellij" version "1.13.3"
 
-    id "org.sonarqube" version "4.0.0.2929"
+    id "org.sonarqube" version "4.4.1.3373"
 
-    id "com.github.ben-manes.versions" version "0.46.0"
+    id "com.github.ben-manes.versions" version "0.50.0"
 }
 
 apply plugin: 'kotlin'
@@ -62,7 +62,7 @@ dependencies {
         exclude group: 'org.apache.logging.log4j'
         exclude group: 'org.slf4j'
     }
-    implementation group: 'org.javassist', name: 'javassist', version: '3.29.2-GA'
+    implementation group: 'org.javassist', name: 'javassist', version: '3.30.2-GA'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$project.kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$project.kotlin_version"
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'

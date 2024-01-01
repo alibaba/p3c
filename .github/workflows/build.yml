@@ -24,11 +24,11 @@ jobs:
     strategy:
       matrix:
         os: [ windows-latest , ubuntu-latest , macos-latest ]
-        java: [ 11, 14 ]
+        java: [ 17 ]
         experimental: [ false ]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/cache@v3
         with:
           path: ~/.m2
@@ -48,7 +48,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Set up JDK ${{ matrix.java }}
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java }}
           distribution: adopt

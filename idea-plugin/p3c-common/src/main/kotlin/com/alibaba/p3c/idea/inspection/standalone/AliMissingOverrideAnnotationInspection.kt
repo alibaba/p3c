@@ -65,8 +65,8 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
 
     override fun createOptionsPanel(): JComponent? = null
 
-    override fun buildFix(vararg infos: Any): InspectionGadgetsFix? {
-        val fix : InspectionGadgetsFix
+    override protected fun buildFix(vararg infos: Any): InspectionGadgetsFix? {
+        val fix : LocalQuickFix
         try {
             fix = super.buildFix(*infos) ?: return null
         } catch (e: Exception){

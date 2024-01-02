@@ -15,6 +15,7 @@
  */
 package com.alibaba.p3c.idea.quickfix
 
+import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import com.siyeh.ig.InspectionGadgetsFix
@@ -26,9 +27,9 @@ import com.siyeh.ig.InspectionGadgetsFix
  * @date 2017/03/02
  */
 class DecorateInspectionGadgetsFix(
-        val fix: InspectionGadgetsFix,
-        internal val name: String,
-        internal val familyName: String = name
+    val fix: LocalQuickFix,
+    internal val name: String,
+    internal val familyName: String = name
 ) : InspectionGadgetsFix() {
     override fun getName(): String {
         return name

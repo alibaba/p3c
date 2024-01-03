@@ -29,6 +29,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.2.2.0x
+            <li>Fix 2023.2 compatibility issue</li>
+        </ul>
         <ul>2.2.1.0x
             <li>Fix @Override missing error</li>
         </ul>
@@ -230,7 +233,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="231.8109.175"/>
+    <idea-version since-build="232.8660.185"/>
 
     <depends optional="true" config-file="pluginWithJava.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>

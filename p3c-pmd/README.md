@@ -268,4 +268,4 @@ Note: When doing date formatting, "yyyy" represents the day in which year, while
     
     Counter Example: Someone applied "YYYY/MM/dd" pattern for date formatting, and the execution result of 2017/12/31 was 2018/12/31, leading to a serious failure.
 * 7 ``[Recommended]`` The total number of lines for a method should not be more than 80.
-Note: The total number of lines, including the method signature, closing brace, codes, comments, blank lines, line breaks and any invisible lines, should not be more than 80.
+Note: The total number of lines, including the method signature, closing brace, codes, comments, blank lines, line breaks and any invisible lines, should not be more than 80..

@@ -65,12 +65,20 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
     override fun createOptionsPanel(): JComponent? = null
 
     override fun buildFix(vararg infos: Any): InspectionGadgetsFix? {
+        if (infos.isEmpty()) {
+            return null
+        }
         val fix = super.buildFix(*infos) ?: return null
         return DecorateInspectionGadgetsFix(fix,
             P3cBundle.getMessage("com.alibaba.p3c.idea.quickfix.standalone.AliMissingOverrideAnnotationInspection"))
     }
 
-    override fun manualBuildFix(psiElement: PsiElement, isOnTheFly: Boolean): LocalQuickFix? = buildFix(psiElement)
+    override fun manualBuildFix(psiElement: PsiElement, isOnTheFly: Boolean): LocalQuickFix? {
+        if (psiElement == null) {
+            return null
+        }
+        return buildFix(psiElement)
+    }
 
     override fun getDefaultLevel(): HighlightDisplayLevel = HighlightDisplayLevels.BLOCKER
 

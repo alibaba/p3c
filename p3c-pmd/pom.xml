@@ -33,7 +33,7 @@
         <!---->
         <!---->
         <!--maven plugins versions-->
-        <versions-maven-plugin.version>2.22.0</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.23.0</versions-maven-plugin.version>
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
         <maven-pmd-plugin.version>3.21.2</maven-pmd-plugin.version>
